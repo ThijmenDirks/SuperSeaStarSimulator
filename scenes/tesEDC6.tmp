@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbifjqhl4pa28"]
+
+[ext_resource type="Texture2D" uid="uid://cc3kuwiw2cfbc" path="res://art/Small-8-Direction-Characters_by_AxulArt/Small-8-Direction-Characters_by_AxulArt.png" id="1_o3scs"]
+[ext_resource type="PackedScene" uid="uid://bqhlp5wv10xgg" path="res://scenes/player.tscn" id="2_m87fg"]
+
+[sub_resource type="GDScript" id="GDScript_guruh"]
+script/source = "extends Sprite2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="test_level" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(86.5, 41)
+scale = Vector2(6.53906, 1.75694)
+texture = ExtResource("1_o3scs")
+script = SubResource("GDScript_guruh")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_m87fg")]
+position = Vector2(2, -1)
+
+[node name="TileMap" type="TileMap" parent="."]
+format = 2

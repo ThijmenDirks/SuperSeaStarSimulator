@@ -1,0 +1,27 @@
+extends CanvasLayer
+
+@onready var last_screen_size = get_viewport().get_visible_rect().size
+#@onready var mana_thingy = load("res://scenes/other/mana_thingy.tscn").instantiate()
+
+var all_colors = ["red", "blue", "green"]
+var used_colors = ["red", "green", "blue", "a"]
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	for i in range(used_colors.size() - 1, -1, -1):
+		var color = used_colors[i]
+		var new_mana_thingy = load("res://scenes/UI_and_the_like/mana_thingy.tscn").instantiate()
+		add_child(new_mana_thingy)
+		new_mana_thingy.my_color = color
+		#new_mana_thingy.position = Vector2(-190, 50-i*30)
+		new_mana_thingy.position = Vector2(10, 250-i*30)
+
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta: float) -> void:
+	#if last_screen_size != get_viewport().get_visible_rect().size and false:
+		#var new_screen_size = get_viewport().get_visible_rect().size/last_screen_size
+		#scale *= new_screen_size
+		#last_screen_size = get_viewport().get_visible_rect().size
