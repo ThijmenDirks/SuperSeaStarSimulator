@@ -116,6 +116,7 @@ F={
 
 2d_physics/layer_5="damage"
 2d_physics/layer_7="see_player"
+2d_physics/layer_8="waypoints"
 2d_physics/layer_10="noise"
 
 [rendering]

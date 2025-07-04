@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=4 uid="uid://dbifjqhl4pa28"]
+[gd_scene load_steps=12 format=4 uid="uid://dbifjqhl4pa28"]
 
 [ext_resource type="Texture2D" uid="uid://bpr42wymrm17w" path="res://art/forest base tileset_5.png" id="1_vwirq"]
 [ext_resource type="PackedScene" uid="uid://bqhlp5wv10xgg" path="res://scenes/other/player.tscn" id="2_ao355"]
 [ext_resource type="PackedScene" uid="uid://cx7gamb5b8mx3" path="res://scenes/enemies/goblin.tscn" id="3_nvebn"]
 [ext_resource type="PackedScene" uid="uid://reit1f4jthf3" path="res://scenes/enemies/green_slime.tscn" id="4_vsvhc"]
 [ext_resource type="PackedScene" uid="uid://dbv11dm7ge4bt" path="res://scenes/other/moveable_block.tscn" id="5_hf8w6"]
+[ext_resource type="PackedScene" uid="uid://cw65fjbyen3ns" path="res://scenes/other/waypoint.tscn" id="6_jnk05"]
 
 [sub_resource type="GDScript" id="GDScript_guruh"]
 script/source = "extends Sprite2D
@@ -219,6 +220,9 @@ collision_mask = 512
 position = Vector2(300.128, 83.75)
 shape = SubResource("RectangleShape2D_kbsjh")
 
+[node name="Node2D" parent="Area2D" instance=ExtResource("6_jnk05")]
+position = Vector2(366, 48)
+
 [node name="temporary_wall" type="StaticBody2D" parent="."]
 collision_layer = 65
 
@@ -230,3 +234,30 @@ texture = ExtResource("1_vwirq")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="temporary_wall"]
 position = Vector2(12.75, -14)
 shape = SubResource("RectangleShape2D_b08o3")
+
+[node name="Node2D2" parent="." instance=ExtResource("6_jnk05")]
+position = Vector2(74, -90)
+
+[node name="Node2D3" parent="." instance=ExtResource("6_jnk05")]
+position = Vector2(215, -92)
+
+[node name="Node2D4" parent="." instance=ExtResource("6_jnk05")]
+position = Vector2(312, -89)
+
+[node name="Node2D5" parent="." instance=ExtResource("6_jnk05")]
+position = Vector2(384, -54)
+
+[node name="Node2D6" parent="." instance=ExtResource("6_jnk05")]
+position = Vector2(390, -1)
+
+[node name="Node2D7" parent="." instance=ExtResource("6_jnk05")]
+position = Vector2(552, -72)
+
+[node name="Node2D8" parent="." instance=ExtResource("6_jnk05")]
+position = Vector2(357, 20)
+
+[node name="Node2D9" parent="." instance=ExtResource("6_jnk05")]
+position = Vector2(266, 45)
+
+[node name="Node2D10" parent="." instance=ExtResource("6_jnk05")]
+position = Vector2(447, -92)

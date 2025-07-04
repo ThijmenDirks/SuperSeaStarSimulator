@@ -33,6 +33,11 @@ var sprite : Sprite2D
 var rng = RandomNumberGenerator.new()
 var look_for_player_area : Area2D
 var spell_heard
+var waypoint_area : Area2D
+var base_waypoint = {
+	"name" : "placeholder_name",
+	"children" : []
+}
 
 enum {
 	IDLE,
@@ -47,6 +52,17 @@ enum {
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	get_tree().create_timer(0)
+	waypoint_area = Area2D.new() # gets automatically deleted when this function is done # ?
+	var waypoint_area_collision = CollisionShape2D.new()
+	waypoint_area_collision.shape = CircleShape2D.new()
+	waypoint_area_collision.shape.radius = 300
+	waypoint_area.set_collision_mask_value(1, false)
+	waypoint_area.set_collision_mask_value(8, true)
+	waypoint_area.add_child(waypoint_area_collision)
+	waypoint_area.name = "waypoint_area"
+	# VERGEET DIT DING NIET OOK TE VERWIJDEREN!
+	#add_child(waypoint_area)
+
 	#timer.start(2)
 
 
@@ -124,16 +140,315 @@ func drop_loot():
 
  #hierzo was ik bezig
  #25-05-25
+
+#func expand_tree_until_spell(tree: Array) -> Array:
+	#var results := []
+	#for root_node_dict in tree:
+		#_recurse(root_node_dict, [])
+#
+	#return results
+#
+#func _recurse(current_node_dict: Dictionary, path: Array):
+	#var current_node := current_node_dict["name"]
+	#
+	## Check if this is a Spell
+	#if current_node is Spell:
+		## Store the reversed path INCLUDING the Spell node
+		#var reversed_path = path.duplicate()
+		#reversed_path.append(current_node)
+		#results.append(reversed_path.inverted())
+		#return
+		#
+	## Expand this node
+	#get_waypoints_in_area(current_node_dict)
+	#
+	## Recurse into children
+	#for child in current_node_dict["children"]:
+		## Append the current node to the path and dive deeper
+		#var new_path = path.duplicate()
+		#new_path.append(current_node)
+		#_recurse(child, new_path)
+
+	# Start the recursion
+
+#func expand_tree_until_spell(tree: Array) -> Array:
+	#var results := []
+	#for root_node_dict in tree:
+		#_recurse(root_node_dict, [], results)
+	#return results
+#
+#func _recurse(current_node_dict: Dictionary, path: Array, results: Array) -> void:
+	#var current_node = current_node_dict["name"]
+#
+	#if current_node is Spell:
+		#var reversed_path = path.duplicate()
+		#reversed_path.append(current_node)
+		#results.append(reversed_path.inverted())
+		#return
+#
+	#get_waypoints_in_area(current_node_dict)
+#
+	#for child in current_node_dict["children"]:
+		#var new_path = path.duplicate()
+		#new_path.append(current_node)
+		#_recurse(child, new_path, results)
+
+#func expand_tree_until_spell(tree: Array) -> Array:
+	#var results := []
+#
+	#for root_node_dict in tree:
+		#expand_recurse(root_node_dict, [], {}, results)
+#
+	#return results
+#
+#
+#func expand_recurse(current_node_dict: Dictionary, path: Array, visited: Dictionary, results: Array) -> void:
+	#var current_node = current_node_dict["name"]
+#
+	## Cycle check
+	#if current_node in visited:
+		#return
+	#
+	## Add this node to visited set
+	##visited.insert(current_node)
+#
+	#if current_node is Spell:
+		#var reversed_path = path.duplicate()
+		#reversed_path.append(current_node)
+		#results.append(reversed_path.inverted())
+		#return
+#
+	#get_waypoints_in_area(current_node_dict)
+#
+	#for child in current_node_dict["children"]:
+		#var new_path = path.duplicate()
+		#new_path.append(current_node)
+		#expand_recurse(child, new_path, visited.duplicate(), results)
+# Call this to kick off the search. Returns an Array of Node2D (deepest → root).
+# If no Spell is found, returns an empty Array.
+#func wat_dan_ook(): # get_waypoint_path
+#
+	#var still_searching = true
+#
+	#var tree_var : Array
+#
+	##var layer : int = 0
+	##var sibling_count : int = 0
+#
+	#var current_place : Array # [parent, child, grandchild]
+	#var enemy
+#
+	##datgene_met_add_area(enemy)
+#
+	#while still_searching:
+		#for waypoint in enemy:
+				#pass
+			##layer += 1
+#
+#func get_waypoint_path():
+	#pass
+#
+#func add_to_tree_var():
+	#pass
+#
+#func get_waypoints_in_area(subject): # waypoint (soms enemy)
+	 ##die node getten we met die functie_van_chagtpt(Node)
+	#
+	## NEE. we stoppen er niet een nde in maar een plek binnen tree_var
+	#subject.add_child(waypoint_area)
+	#await get_tree().physics_frame
+	#for body in waypoint_area.get_overlapping_bodies():
+		#if body is Waypoint:
+			#var new_waypoint = base_waypoint.duplicate()
+			#new_waypoint.name = body
+			##tree_var[layer]
+			#subject["children"].append(new_waypoint)
+	#subject.remove_child(waypoint_area)
+#
+#func get_node_in_tree_var(tree_var, layer, step):
+	#pass
+#
+#
+#func find_spell_path(tree_var: Array) -> Array:
+	#var visited := []        # Array of Node2D we’ve already seen
+	#var path := []           # current root→…→node chain
+	#var result := []         # will hold the reversed chain when Spell is found
+#
+	#for root_dict in tree_var:
+		#if await _dfs_find_spell(root_dict, visited, path, result):
+			#print("hhh ", result)
+			#return result
+	#print("hhhh")
+	#return []
+#
+#
+## Recursive helper. Returns true as soon as Spell is found.
+## - dict: a {"name":Node2D, "children":Array} dict
+## - visited: Array of Node2D
+## - path: Array of Node2D from root down to current
+## - result: Array to populate (inverted) on success
+#func _dfs_find_spell(dict: Dictionary, visited: Array, path: Array, result: Array) -> bool:
+	#var node: Node2D = dict["name"]
+#
+	## cycle check
+	#if visited.has(node):
+		#return false
+	#visited.append(node)
+	#path.append(node)
+#
+	## found the Spell!
+	#if node is Spell:
+		## copy and reverse the path
+		#result.clear()
+		#result = path.duplicate()
+		#result.reverse()
+		#return true
+	## if no children yet, expand this leaf
+	#if dict["children"].size() == 0:
+		#await get_waypoints_in_area(dict)
+	## recurse into each child
+	#for child_dict in dict["children"]:
+		#if await _dfs_find_spell(child_dict, visited, path, result):
+			#return true
+	## backtrack
+	#path.pop_back()
+	#return false
+
+func get_nearby_waypoints(subject: Node2D) -> Array:
+	var area := Area2D.new()
+	var shape := CircleShape2D.new()
+	shape.radius = 300
+	
+	var collision := CollisionShape2D.new()
+	collision.shape = shape
+	
+	area.name = "waypoint_area"
+	area.set_collision_mask_value(1, false)
+	area.set_collision_mask_value(8, true)
+	area.add_child(collision)
+	
+	subject.add_child(area)
+	await get_tree().physics_frame
+	
+	var waypoints := []
+	for body in area.get_overlapping_bodies():
+		if body is Waypoint:
+			waypoints.append(body)
+	
+	subject.remove_child(area)
+	return waypoints
+
+func expand_waypoint_node(tree_node: Dictionary, visited: Array) -> void:
+	var current_node: Node2D = tree_node["name"]
+	var nearby := await get_nearby_waypoints(current_node) # ! coroutine
+	
+	for body in nearby:
+		if body in visited:
+			continue
+		
+		var new_node = {
+			"name": body,
+			"children": []
+		}
+		tree_node["children"].append(new_node)
+
+
+func search_for_spell(tree_node: Dictionary, path := [], visited := []) -> Array:
+	var node: Node2D = tree_node["name"]
+	
+	if node in visited:
+		return []
+	
+	path.append(tree_node)
+	visited.append(node)
+	
+	# Check for Spell nearby
+	for body in await get_nearby_waypoints(node):  # ! coroutine
+		if body is Spell:
+			var final_path := path.duplicate()
+			final_path.reverse()
+			print("hhh ", final_path)
+			return final_path
+	
+	# Expand only once
+	if tree_node["children"].is_empty():
+		expand_waypoint_node(tree_node, visited)
+	
+	for child in tree_node["children"]:
+		var result := await search_for_spell(child, path.duplicate(), visited.duplicate())
+		if result.size() > 0:
+			return result
+	
+	return []
+
+func search_all_branches(tree: Array) -> Array:
+	for node in tree:
+		var result := await search_for_spell(node)
+		if result.size() > 0:
+			return result
+	return []
+
+
 func on_noise_heard(noise_source):
+
+	
 	if not look_for_player():
 		if not look_for_sound_source(noise_source):
 			pass
-			#way_find()
+			#get_waypoint_path()
+			#look_for_waypoint(self)
+			
+#			
+			#je voegt een niewuwe area toe en neem alle body in die area. for bodies in die area doe je if is wapoint, ray_cast.cast()/
+			# if dat ding returnt body: voeg toe aan die tree_var.
+			# wanneer die for loop over is doe je het nog een keer (dus bovenstaand gevaarte wordt eigen funcite), maar dan in een for loop die door de eerstegraadsnodes van tree_var loopt.
+			# in die loop voeg je dus de area toe (aan bijbvoorbeeld waypoint.)DZEZ AREA IS DUS NIET ONDERDEEL VAN ENEMY, AAR WORDT VIA CODE TOEGEVOEGD. deze area niet iedere keer opnieuw maken, dat doe je ergnes aan het begin van on_souns-_heard ofzo. miss nog iets eerder.
+			# area add je gewoon steeds as child. vergeet neit weer te deleten.
+			# dat dan nog een keer maar dan met tweedegraads? hoe benaadere je die? met veel nesteded forloops?
+			# + dan heb je kans dat die niet voor kortste route maar minste waypoint route gaat.
+
+			#zal vast al wergesn staan, maar:
+			#een wqypoint bestaat uit een dictionary:
+			#een string: name and een sarray: chuldren
+			#in de array zitten dictionaries...
+			
+	# twee vars, diepte/layer en stap
+
+#
+func delteme():
+	var tree_var_example = [
+		{
+			"name" : "waypoint_1", # !! "name" is not just the name, IT IS THE NODE SELF!
+			"children" : [
+				{
+					"name" : "waypoint_11",
+					"children" : []
+				},
+				{
+					"name" : "waypoint_12",
+					"children" : [
+						{
+							"name" : "waypoint_121",
+							"children" : []
+						}
+					]
+				},
+			]
+		},
+		{},
+		{},
+		{},
+	]
+
+			# ^ way_find() ^
+
 	#ray_cast.target_position
-	for i in 1000:
-		ray_cast.force_raycast_update()
+
+
+	#for i in 1000:
+		#ray_cast.force_raycast_update()
 	#if add_child(RayCast2D.new()).get_collider():
-	if ray_cast.get_collider() is PLayer:# or ray_cast.is_colliding():
+	if ray_cast.get_collider() is Player:# or ray_cast.is_colliding():
 		print("ddd", ray_cast.get_collider())
 		pass
 	#if ray_to_player() == player: # and thus not something like a wall:
@@ -143,23 +458,24 @@ func on_noise_heard(noise_source):
 	#pass
 
 
-#func ray_to_player():
-	#if ray_to_player.succeeds():
-		#move_to_sound()
-		#return true
-	#else:
-		#return false
-#
-#func ray_to_sound():
-	#if ray_to_sound.succeeds():
-		#attack_player()
-		#return true
-	#else:
-		#return false
+#func look_for_waypoint(subject):
+	#subject.add_child(waypoint_area)
+	#for body in subject.get_node("waypoint_area").get_overlapping_bodies():
+		#print("fff ",body)
+
+
+func has_line_of_sight(from, to):
+	var raycast = $RayCast  # Reuse one raycast node
+	raycast.global_position = from
+	raycast.target_position = to
+	raycast.force_raycast_update()
+	return not raycast.is_colliding()
+
 
 #anti-error placeholder, altough it might get to be used.
 func attack_player():
 	pass
+	speed
 
 
 func rotate_vision_field():
@@ -168,15 +484,16 @@ func rotate_vision_field():
 
 
 # no works...
+# whyn't ?
 func look_for_player():
 	print("eee")
 	#var old_rotation = vision_field.rotation
 	#var look_for_player_area = Area2D.new()
 	for body in look_for_player_area.get_overlapping_bodies():
-		if body is PLayer:
+		if body is Player:
 			ray_cast.target_position = to_local(body.position)
 			ray_cast.force_raycast_update()
-			if ray_cast.get_collider() is PLayer:
+			if ray_cast.get_collider() is Player:
 				#some_func() , like attacking the player,different for each enemy
 				print(self, " dddd ", "player detected! ", randf_range(-1.0, 1.0))
 				var label = Label.new()
@@ -235,6 +552,20 @@ func singal_test(argumeng):
 					#vision_field.rotation = old_rotation
 					#return true
 	#return false
+
+#func ray_to_player():
+	#if ray_to_player.succeeds():
+		#move_to_sound()
+		#return true
+	#else:
+		#return false
+#
+#func ray_to_sound():
+	#if ray_to_sound.succeeds():
+		#attack_player()
+		#return true
+	#else:
+		#return false
 
 #----- D4NGER! ----- D4NGER! ----- D4NGER! ----- D4NGER! ----- D4NGER! ----- D4NGER! ----- D4NGER! ----- D4NGER! ----- D4NGER!
 
