@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://dbifjqhl4pa28"]
+[gd_scene load_steps=13 format=4 uid="uid://dbifjqhl4pa28"]
 
 [ext_resource type="Texture2D" uid="uid://bpr42wymrm17w" path="res://art/forest base tileset_5.png" id="1_vwirq"]
 [ext_resource type="PackedScene" uid="uid://bqhlp5wv10xgg" path="res://scenes/other/player.tscn" id="2_ao355"]
@@ -176,6 +176,11 @@ size = Vector2(822.256, 429.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b08o3"]
 size = Vector2(680.5, 14)
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_na4xt"]
+vertices = PackedVector2Array(531.688, -33.9766, 1677.87, 559.063, -1038.45, 577.93, -171.797, -35.0234, -1096.51, -685.781, -169.258, -67.9922, 1663.12, -631.188, 529.352, -69.0078)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 2, 4, 5), PackedInt32Array(5, 4, 6, 7), PackedInt32Array(6, 1, 0, 7)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-1107, -696, 1673, -641, 1688, 569, -1048, 588), PackedVector2Array(-160, -58, -161, -45, 521, -44, 520, -59)])
+
 [node name="test_level" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -224,7 +229,7 @@ shape = SubResource("RectangleShape2D_kbsjh")
 position = Vector2(366, 48)
 
 [node name="temporary_wall" type="StaticBody2D" parent="."]
-collision_layer = 65
+collision_layer = 67
 
 [node name="Sprite2D" type="Sprite2D" parent="temporary_wall"]
 position = Vector2(10.5, -14.5)
@@ -235,29 +240,6 @@ texture = ExtResource("1_vwirq")
 position = Vector2(12.75, -14)
 shape = SubResource("RectangleShape2D_b08o3")
 
-[node name="Node2D2" parent="." instance=ExtResource("6_jnk05")]
-position = Vector2(74, -90)
-
-[node name="Node2D3" parent="." instance=ExtResource("6_jnk05")]
-position = Vector2(215, -92)
-
-[node name="Node2D4" parent="." instance=ExtResource("6_jnk05")]
-position = Vector2(312, -89)
-
-[node name="Node2D5" parent="." instance=ExtResource("6_jnk05")]
-position = Vector2(384, -54)
-
-[node name="Node2D6" parent="." instance=ExtResource("6_jnk05")]
-position = Vector2(390, -1)
-
-[node name="Node2D7" parent="." instance=ExtResource("6_jnk05")]
-position = Vector2(552, -72)
-
-[node name="Node2D8" parent="." instance=ExtResource("6_jnk05")]
-position = Vector2(357, 20)
-
-[node name="Node2D9" parent="." instance=ExtResource("6_jnk05")]
-position = Vector2(266, 45)
-
-[node name="Node2D10" parent="." instance=ExtResource("6_jnk05")]
-position = Vector2(447, -92)
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+position = Vector2(-169, 37)
+navigation_polygon = SubResource("NavigationPolygon_na4xt")

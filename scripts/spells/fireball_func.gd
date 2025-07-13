@@ -15,6 +15,7 @@ func deal_damage(a,b):
 
 
 func cast_this_spell():
+	print("nnn")
 	var caster = get_parent()
 	var texture = load("res://art/Small-8-Direction-Characters_by_AxulArt/Small-8-Direction-Characters_by_AxulArt.png")
 	var other_texture = $Sprite2D

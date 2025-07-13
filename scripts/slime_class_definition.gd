@@ -1,6 +1,4 @@
-class_name Slime
-
-extends Enemy
+class_name Slime extends Enemy
 
 
 # Called when the node enters the scene tree for the first time.

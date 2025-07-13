@@ -15,7 +15,7 @@ func _ready() -> void:
 	HP = 200#max_HP
 	speed = 50
 	jump_hight = 20
-	state = IDLE
+	state = STATES.IDLE_WALK
 	look_for_player_area = $LookForPlayerArea
 	print("slime_", state)
 	timer.start(1)
@@ -33,17 +33,17 @@ func _physics_process(delta: float) -> void:
 	#super(delta)
 	print("HP ", HP)
 	update_animation_parameters()
-	if state == JUMP:
+	if state == STATES.JUMP:
 		jump(delta)
-	if state == IDLE:
+	if state == STATES.IDLE_STAND:
 		if not timer_is_already_running:
 			#timer.start(1)
 			pass
 
 
 func change_state():
-	if state == IDLE:
-		state = JUMP
+	if state == STATES.IDLE_STAND:
+		state = STATES.JUMP
 		#walk()
 		#jump(0.0)
 		print("slime_jumpp")
@@ -55,12 +55,12 @@ func change_state():
 		velocity = Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0)).normalized() * speed
 
 
-	elif state == WALK:
-		state = IDLE
+	elif state == STATES.IDLE_WALK:
+		state = STATES.IDLE_STAND
 		print("WARNING! SOMETHING GOES WRONG")
 		#idle() # ?
-	elif state == JUMP:
-		state = IDLE
+	elif state == STATES.JUMP:
+		state = STATES.IDLE_STAND
 		timer.start(3)
 
 

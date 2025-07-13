@@ -6,30 +6,57 @@ const JUMP_VELOCITY = -400.0
 @export var animation_tree : AnimationTree
 
 @onready var timer = $Timer
-#@onready vision_field = $VisionField
 
 func _ready() -> void:
+	
 	speed = 50
-	state = IDLE
+	#state = states.IDLE_STAND
 	look_for_player_area = $LookForPlayerArea
 	#vision_field = $VisionField # now in enemy_class_definition
 	timer.start(1)
 
+	state = STATES.IDLE_WALK
+	# deze code moet wel weer weg
 
 func _physics_process(delta: float) -> void:
+	print("goblin_state: ", state)
 	update_animation_parameters()
 
 
-func change_state():
-	if state == IDLE:
-		state = WALK
-		walk()
-		rotate_vision_field()
-		timer.start(3)
-	elif state == WALK:
-		state = IDLE
-		idle() # ?
-		timer.start(2)
+func request_change_state(new_state):
+	match new_state:
+		STATES.CHASE:
+			change_state(STATES.CHASE)
+		STATES.PATHFIND:
+			change_state(STATES.PATHFIND)
+
+
+func change_state(new_state):
+	match new_state:
+		STATES.IDLE_STAND:
+			state = STATES.IDLE_STAND
+			idle_stand("enter")
+		STATES.IDLE_WALK:
+			state = STATES.IDLE_WALK
+			idle_walk(0, "enter")
+		STATES.CHASE:
+			print("STATE.CHASE ENTER fake")
+			state = STATES.CHASE
+			chase("enter")
+		STATES.PATHFIND:
+			print("STATE.PATHFIND ENTER fake")
+			pathfind_state(0, "enter")
+			state = STATES.PATHFIND
+
+	#if state == STATES.IDLE_STAND:
+		#state = STATES.IDLE_WALK
+		#idle_walk(0, "enter")
+		#rotate_vision_field()
+		#timer.start(3)
+	#elif state == STATES.IDLE_WALK:
+		#state = STATES.IDLE_STAND
+		#idle_stand() # ?
+		#timer.start(2)
 
 
 func update_animation_parameters():
@@ -40,7 +67,11 @@ func update_animation_parameters():
 	animation_tree["parameters/IdleCast/blend_position"] = velocity
 	animation_tree["parameters/WalkCast/blend_position"] = velocity
 
-
-func _on_timer_timeout() -> void:
-	change_state()
+# dit spul moet wel weer aan
+#func _on_timer_timeout() -> void:
+	#match state:
+		#STATES.IDLE_STAND:
+			#change_state(STATES.IDLE_WALK)
+		#STATES.IDLE_WALK:
+			#change_state(STATES.IDLE_STAND)
 	#timer.start(randi_range(1,5)) # dit moet eigenlijk in WALK, IDLE, ETC

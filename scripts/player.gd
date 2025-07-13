@@ -1,7 +1,7 @@
 class_name Player
 extends CharacterBody2D
 
-@export var speed = 50
+@export var speed = 75
 @export var animation_tree : AnimationTree
 #@export var animation_player : AnimationPlayer
 
@@ -62,15 +62,15 @@ func natius():
 	for key in keys_for_spellcasting:
 		if Input.is_action_just_pressed(key):
 			approved_input += key
-			print(key)
-			print(approved_input)
+			#print(key)
+			#print(approved_input)
 		#potential_approved_input.append(Input.is_action_just_pressed(key))
 	if approved_input:
 #		coyote_timer_to_press_simoultaniously.stop()
 		if coyote_timer_to_press_simoultaniously.is_stopped():
 			coyote_timer_to_press_simoultaniously.start()
 		input_pressed_almost_simoultaniously += approved_input
-		print(input_pressed_almost_simoultaniously)
+		#print(input_pressed_almost_simoultaniously)
 #		if coyote_timer_to_cast_spell.is_stopped():
 		coyote_timer_to_cast_spell.stop()
 		coyote_timer_to_cast_spell.start()
@@ -83,16 +83,16 @@ func sort_almost_simoultanious_input(input: String,order: Array): #works
 	for i in order:
 		if i in input:
 			fixed_input += i
-	print("sort ",fixed_input)
+	#print("sort ",fixed_input)
 	return fixed_input
 
 
 func _on_ctimer_to_press_simoultaniously_timeout() -> void:
-	print("_on_ctimer_to_press_simoultaniously_timeout has stopped")
+	#print("_on_ctimer_to_press_simoultaniously_timeout has stopped")
 	input_pressed_almost_simoultaniously = sort_almost_simoultanious_input(input_pressed_almost_simoultaniously, keys_for_spellcasting)
 #	print("sorted input", input_pressed_almost_simoultaniously)
 	current_spell_input.append_array([input_pressed_almost_simoultaniously])
-	print("currentspelllinput",current_spell_input)
+	#print("currentspelllinput",current_spell_input)
 	input_pressed_almost_simoultaniously = ""
 #	coyote_timer_to_cast_spell.start()
 
@@ -132,7 +132,7 @@ func _on_ctimer_to_cast_spell_timeout() -> void:
 func cast(spell_that_is_being_cast):
 	#var this_spell_function = spell_that_is_being_cast["spell_functie"].cast_this_spell
 	var script_of_spell_that_is_being_cast = spell_that_is_being_cast["spell_function"].new()
-	print("schenetree", get_tree())
+	#print("schenetree", get_tree())
 	self.add_child(script_of_spell_that_is_being_cast)
 	#if spell_that_is_being_cast["spell_is_targetable"]:
 		#move_toward(spell_that_is_being_cast.position, get_local_mouse_position(), spell_that_is_being_cast["spell_range"])

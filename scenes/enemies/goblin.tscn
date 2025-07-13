@@ -1,7 +1,8 @@
-[gd_scene load_steps=85 format=3 uid="uid://cx7gamb5b8mx3"]
+[gd_scene load_steps=86 format=3 uid="uid://cx7gamb5b8mx3"]
 
-[ext_resource type="Script" path="res://scripts/goblin.gd" id="1_fo8t4"]
 [ext_resource type="Texture2D" uid="uid://b860wle2jujie" path="res://art/spridesheet_test_player_V2.png" id="1_j38nt"]
+[ext_resource type="Script" path="res://scripts/goblin.gd" id="1_ne1kd"]
+[ext_resource type="PackedScene" uid="uid://cn2bi5uhlbamd" path="res://scenes/other/vector_wheel.tscn" id="3_ue5on"]
 
 [sub_resource type="Animation" id="Animation_kx0ak"]
 length = 0.001
@@ -857,8 +858,8 @@ radius = 12.0
 radius = 224.377
 
 [node name="CharacterBody2DG" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree")]
-collision_layer = 529
-script = ExtResource("1_fo8t4")
+collision_layer = 533
+script = ExtResource("1_ne1kd")
 animation_tree = NodePath("AnimationTree")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -905,6 +906,13 @@ collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LookForPlayerArea"]
 shape = SubResource("CircleShape2D_st8s6")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(1, 0, 0, 1)
+
+[node name="VectorWheel" parent="." instance=ExtResource("3_ue5on")]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="VisionField" to="." method="singal_test"]

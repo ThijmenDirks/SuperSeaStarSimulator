@@ -1,0 +1,54 @@
+[gd_scene load_steps=2 format=3 uid="uid://cn2bi5uhlbamd"]
+
+[ext_resource type="Script" path="res://scripts/vector_wheel.gd" id="1_8u1ka"]
+
+[node name="VectorWheel" type="Node2D"]
+script = ExtResource("1_8u1ka")
+
+[node name="RayCast0" type="RayCast2D" parent="."]
+target_position = Vector2(0, -50)
+collision_mask = 70
+
+[node name="RayCast1" type="RayCast2D" parent="."]
+exclude_parent = false
+target_position = Vector2(25, -43.301)
+collision_mask = 70
+
+[node name="RayCast2" type="RayCast2D" parent="."]
+target_position = Vector2(43.301, -25)
+collision_mask = 70
+
+[node name="RayCast3" type="RayCast2D" parent="."]
+target_position = Vector2(50, 0)
+collision_mask = 70
+
+[node name="RayCast4" type="RayCast2D" parent="."]
+target_position = Vector2(43.301, 25)
+collision_mask = 70
+
+[node name="RayCast5" type="RayCast2D" parent="."]
+target_position = Vector2(25, 43.301)
+collision_mask = 70
+
+[node name="RayCast6" type="RayCast2D" parent="."]
+collision_mask = 70
+
+[node name="RayCast7" type="RayCast2D" parent="."]
+target_position = Vector2(-25, 43.301)
+collision_mask = 70
+
+[node name="RayCast8" type="RayCast2D" parent="."]
+target_position = Vector2(-43.301, 25)
+collision_mask = 70
+
+[node name="RayCast9" type="RayCast2D" parent="."]
+target_position = Vector2(-50, 0)
+collision_mask = 70
+
+[node name="RayCast10" type="RayCast2D" parent="."]
+target_position = Vector2(-43.301, -25)
+collision_mask = 70
+
+[node name="RayCast11" type="RayCast2D" parent="."]
+target_position = Vector2(-25, -43.301)
+collision_mask = 70

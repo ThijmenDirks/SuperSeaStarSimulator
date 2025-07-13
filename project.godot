@@ -114,6 +114,8 @@ F={
 
 [layer_names]
 
+2d_physics/layer_2="walls"
+2d_physics/layer_3="entities"
 2d_physics/layer_5="damage"
 2d_physics/layer_7="see_player"
 2d_physics/layer_8="waypoints"
