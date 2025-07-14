@@ -21,9 +21,9 @@ func _process(delta: float) -> void:
 func get_most_favourable_direction(desired_vector): # desired_vector should be the same as navigation_agent returns
 	pass
 	desired_vector = desired_vector.normalized()
-	var interest_array = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-	var danger_array = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-	var context_map = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+	var interest_array = [0, 0, 0, 0, 0, 0, 0, 0]
+	var danger_array = [0, 0, 0, 0, 0, 0, 0, 0]
+	var context_map = [0, 0, 0, 0, 0, 0, 0, 0]
 	var steering_force : Vector2 # (desired_vel - current_vel) * steering_constant (the higher, the sharper)
 	var ray_ast = $RayCast0
 	#var test = $RayCast0.target_position.x
@@ -42,7 +42,7 @@ func get_most_favourable_direction(desired_vector): # desired_vector should be t
 			#print("something detectd: ", current_raycast.get_collider())
 			danger_array[i] += 5
 			danger_array[i-1] += 2
-			danger_array[i-11] += 2
+			danger_array[i-7] += 2
 		elif current_raycast.get_collider() == null:
 			#print("vector_wheel tested and verified!")
 			pass
