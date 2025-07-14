@@ -1,8 +1,12 @@
-[gd_scene load_steps=86 format=3 uid="uid://reit1f4jthf3"]
+[gd_scene load_steps=90 format=3 uid="uid://reit1f4jthf3"]
 
 [ext_resource type="Script" path="res://scripts/enemies/green_slime.gd" id="1_kitjp"]
 [ext_resource type="Texture2D" uid="uid://eny37osmjycx" path="res://icon.svg" id="2_0sjpc"]
 [ext_resource type="Texture2D" uid="uid://b860wle2jujie" path="res://art/spridesheet_test_player_V2.png" id="2_pi5wj"]
+[ext_resource type="Texture2D" uid="uid://c2ir4uvppn44l" path="res://art/slime 1.png" id="4_537vl"]
+[ext_resource type="Texture2D" uid="uid://b0xk4atsmqnk7" path="res://art/slime 2.png" id="5_jws3e"]
+[ext_resource type="Texture2D" uid="uid://c8103cg1s0i8h" path="res://art/slime jump 1.png" id="6_q3a81"]
+[ext_resource type="Texture2D" uid="uid://pjcout05nvww" path="res://art/slime jump 2.png" id="7_vkmvn"]
 
 [sub_resource type="Animation" id="Animation_kx0ak"]
 length = 0.001
@@ -915,5 +919,21 @@ visible = false
 shape = SubResource("CircleShape2D_a7g13")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="Slime1" type="Sprite2D" parent="."]
+position = Vector2(-21, -24)
+texture = ExtResource("4_537vl")
+
+[node name="Slime2" type="Sprite2D" parent="."]
+position = Vector2(26, -34)
+texture = ExtResource("5_jws3e")
+
+[node name="SlimeJump1" type="Sprite2D" parent="."]
+position = Vector2(-42, 8)
+texture = ExtResource("6_q3a81")
+
+[node name="SlimeJump2" type="Sprite2D" parent="."]
+position = Vector2(43, -10)
+texture = ExtResource("7_vkmvn")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
