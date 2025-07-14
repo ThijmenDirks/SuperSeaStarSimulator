@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://q3n17mgpdknc"]
 
-[ext_resource type="Script" path="res://scripts/mana_thingy.gd" id="1_cygvf"]
+[ext_resource type="Script" path="res://scripts/interfaces/mana_thingy.gd" id="1_cygvf"]
 [ext_resource type="Texture2D" uid="uid://eny37osmjycx" path="res://icon.svg" id="1_pm13x"]
 
 [node name="mana_thingy" type="Node2D"]

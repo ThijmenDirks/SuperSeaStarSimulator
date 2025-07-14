@@ -47,6 +47,7 @@ func change_state(new_state):
 			print("STATE.PATHFIND ENTER fake")
 			pathfind_state(0, "enter")
 			state = STATES.PATHFIND
+			speed = 75 # should this go in pathfind_State() ?
 
 	#if state == STATES.IDLE_STAND:
 		#state = STATES.IDLE_WALK

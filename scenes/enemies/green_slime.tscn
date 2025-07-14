@@ -1,6 +1,6 @@
 [gd_scene load_steps=86 format=3 uid="uid://reit1f4jthf3"]
 
-[ext_resource type="Script" path="res://scripts/green_slime.gd" id="1_kitjp"]
+[ext_resource type="Script" path="res://scripts/enemies/green_slime.gd" id="1_kitjp"]
 [ext_resource type="Texture2D" uid="uid://eny37osmjycx" path="res://icon.svg" id="2_0sjpc"]
 [ext_resource type="Texture2D" uid="uid://b860wle2jujie" path="res://art/spridesheet_test_player_V2.png" id="2_pi5wj"]
 
@@ -911,6 +911,7 @@ collision_layer = 0
 collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LookForPlayerArea"]
+visible = false
 shape = SubResource("CircleShape2D_a7g13")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

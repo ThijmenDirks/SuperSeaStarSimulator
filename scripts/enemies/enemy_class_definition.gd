@@ -253,13 +253,13 @@ func look_for_player():
 				print(self, " dddd ", "player detected! ", randf_range(-1.0, 1.0))
 				var label = Label.new()
 				self.add_child(label)
-				label.set_text("i see you")
+				#label.set_text("i see you")  # but can go back
 				label.position = Vector2(randi_range(-50, 50), randi_range(-50, 50))
 				#vision_field.rotation = old_rotation
 				return true
 	var label = Label.new()
 	self.add_child(label)
-	label.set_text("mustvbeen a wall")
+	#label.set_text("mustvbeen a wall")  # but can go back
 	label.position = Vector2(randi_range(-50, 50), randi_range(-50, 50))
 	return false
 
@@ -273,12 +273,12 @@ func look_for_sound_source(noise_source):
 		#print(self, " dddd ", "player detected! ", randf_range(-1.0, 1.0))
 		var label = Label.new()
 		self.add_child(label)
-		label.set_text("i hear you")
+		#label.set_text("i hear you")  # but can go back
 		label.position = Vector2(randi_range(-50, 50), randi_range(-50, 50))
 		return true
 	var label = Label.new()
 	self.add_child(label)
-	label.set_text("no idea")
+	#label.set_text("no idea")  # but can go back
 	label.position = Vector2(randi_range(-50, 50), randi_range(-50, 50))
 	return false
 

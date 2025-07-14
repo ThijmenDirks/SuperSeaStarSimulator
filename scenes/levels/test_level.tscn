@@ -240,6 +240,36 @@ texture = ExtResource("1_vwirq")
 position = Vector2(12.75, -14)
 shape = SubResource("RectangleShape2D_b08o3")
 
+[node name="CharacterBody2DG" parent="temporary_wall" instance=ExtResource("3_nvebn")]
+position = Vector2(-57, -53)
+
+[node name="CharacterBody2DG2" parent="temporary_wall" instance=ExtResource("3_nvebn")]
+position = Vector2(-137, -105)
+
+[node name="CharacterBody2DG3" parent="temporary_wall" instance=ExtResource("3_nvebn")]
+position = Vector2(-67, -85)
+
+[node name="CharacterBody2DG4" parent="temporary_wall" instance=ExtResource("3_nvebn")]
+position = Vector2(-76, -51)
+
+[node name="CharacterBody2DG5" parent="temporary_wall" instance=ExtResource("3_nvebn")]
+position = Vector2(6, -127)
+
+[node name="CharacterBody2DG6" parent="temporary_wall" instance=ExtResource("3_nvebn")]
+position = Vector2(7, -56)
+
+[node name="CharacterBody2DG7" parent="temporary_wall" instance=ExtResource("3_nvebn")]
+position = Vector2(-19, -97)
+
+[node name="CharacterBody2DG8" parent="temporary_wall" instance=ExtResource("3_nvebn")]
+position = Vector2(65, -97)
+
+[node name="CharacterBody2DG9" parent="temporary_wall" instance=ExtResource("3_nvebn")]
+position = Vector2(25, -91)
+
+[node name="CharacterBody2DG10" parent="temporary_wall" instance=ExtResource("3_nvebn")]
+position = Vector2(62, -64)
+
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 position = Vector2(-169, 37)
 navigation_polygon = SubResource("NavigationPolygon_na4xt")
