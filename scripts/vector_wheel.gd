@@ -71,8 +71,8 @@ func get_most_favourable_direction(desired_vector): # desired_vector should be t
 	#Vector2(-0.866, -0.500),
 	#Vector2(-0.500, -0.866),
 #]
-	print("interest_array ", interest_array)
-	print("danger_array ", danger_array)
-	print("context_map ", context_map)
+	#print("interest_array ", interest_array)
+	#print("danger_array ", danger_array)
+	#print("context_map ", context_map)
 	#print("vector_wheel will return: ", (get_child(context_map.find(context_map.max())).target_position).normalized())
 	return (get_child(context_map.find(context_map.max())).target_position).normalized()

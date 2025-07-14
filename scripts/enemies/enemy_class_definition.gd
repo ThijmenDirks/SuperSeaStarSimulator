@@ -76,9 +76,9 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	chase()
-	print("PPP ", get_parent())
-	if HP != 0:
-		print("HP", HP)
+	#print("PPP ", get_parent())
+	#if HP != 0:
+		#print("HP", HP)
 	update_state(delta)
 
 
@@ -138,7 +138,7 @@ func idle_walk(delta : float, phase : String = "running"):
 			desired_walk_direction = get_local_mouse_position()
 			move(desired_walk_direction, delta)
 			#move_and_slide()
-			print("goblinwalk ", velocity, speed)
+			#print("goblinwalk ", velocity, speed)
 		"exit":
 			pass
 
@@ -150,7 +150,7 @@ func chase(phase = "running"): # fpr when player is in sight
 			pass
 		"running":
 			nav_agent.target_position
-			print("STATE.CHASE RUNNING")
+			#print("STATE.CHASE RUNNING")
 		"exit":
 			print("STATE.CHASE EXIT")
 			pass
@@ -164,11 +164,11 @@ func pathfind_state(delta, phase : String = "running"):
 			pass
 		"running":
 			#nav_agent.target_position = target.position
-			print("nnn ", nav_agent.get_next_path_position(), "   ", )#move(nav_agent.get_next_path_position(), delta))
+			#print("nnn ", nav_agent.get_next_path_position(), "   ", )#move(nav_agent.get_next_path_position(), delta))
 			move(nav_agent.get_next_path_position() - global_position, delta)
 			# ^ this line should come back
 			#velocity = nav_agent.get_next_path_position() - global_position # this line is just for debuging
-			print("STATE.PATHFIND RUNNING")
+			#print("STATE.PATHFIND RUNNING")
 		"exit":
 			print("STATE.PATHFIND EXIT")
 			pass
