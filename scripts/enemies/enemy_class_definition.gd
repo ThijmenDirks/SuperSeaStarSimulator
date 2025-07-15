@@ -35,10 +35,11 @@ var rng = RandomNumberGenerator.new()
 var look_for_player_area : Area2D
 var spell_heard
 var waypoint_area : Area2D
-var steering_constant = 2
+var steering_constant = 10
 var steerong_force
 var desired_walk_direction
 var pathfind_target
+var pathfind_target_position : Vector2
 var base_waypoint = {
 	"name" : "placeholder_name",
 	"children" : []
@@ -159,13 +160,18 @@ func chase(phase = "running"): # fpr when player is in sight
 func pathfind_state(delta, phase : String = "running"):
 	match phase:
 		"enter":
-			nav_agent.target_position = pathfind_target.position
-			print("STATE.PATHFIND ENTER")
+			#pathfind_target_position = pathfind_target.global_position
+			nav_agent.target_position = pathfind_target.global_position#pathfind_target_position#to_global(pathfind_target.position)
+			print("STATE.PATHFIND ENTER  ", nav_agent.target_position, "  ", pathfind_target_position)
 			pass
 		"running":
+			#nav_agent.target_position = pathfind_target_position#to_global(pathfind_target.position)
+			print("STATE.PATHFIND ENTER  ", nav_agent.target_position, "  ", pathfind_target_position)
+
 			#nav_agent.target_position = target.position
 			#print("nnn ", nav_agent.get_next_path_position(), "   ", )#move(nav_agent.get_next_path_position(), delta))
 			move(nav_agent.get_next_path_position() - global_position, delta)
+			print("LLL ", pathfind_target)
 			# ^ this line should come back
 			#velocity = nav_agent.get_next_path_position() - global_position # this line is just for debuging
 			#print("STATE.PATHFIND RUNNING")
@@ -215,11 +221,13 @@ func on_noise_heard(noise_source):
 		#print("state.chase enter")
 		#nav_agent.target_position = noise_source.position
 		pathfind_target = noise_source
+		#nav_agent.target_position = pathfind_target.position
+		#print("STATE.PATHFIND ENTER ", pathfind_target.position, "  ", noise_source.position)
 		request_change_state(STATES.PATHFIND)
 		#if not look_for_sound_source(noise_source):
 			#pass
-	else:
-		print("")
+	#else:
+		#print("")
 
 
 func has_line_of_sight(from, to):

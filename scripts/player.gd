@@ -134,6 +134,7 @@ func cast(spell_that_is_being_cast):
 	var script_of_spell_that_is_being_cast = spell_that_is_being_cast["spell_function"].new()
 	#print("schenetree", get_tree())
 	self.add_child(script_of_spell_that_is_being_cast)
+	script_of_spell_that_is_being_cast.position# = randi_range(-1000,1000)
 	#if spell_that_is_being_cast["spell_is_targetable"]:
 		#move_toward(spell_that_is_being_cast.position, get_local_mouse_position(), spell_that_is_being_cast["spell_range"])
 		#spell_that_is_being_cast.position = spell_that_is_being_cast.position.move_toward(get_local_mouse_position(), spell_that_is_being_cast["spell_range"])

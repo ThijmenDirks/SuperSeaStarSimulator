@@ -28,6 +28,7 @@ func cast_this_spell():
 	var noise = this_spell.spell_noise
 	var kleurenbalkje_change = this_spell.spell_kleurenbalkje_change
 	var orb_cost = this_spell.spell_orb_cost
+	#self.position = caster.position # JUST FOR DEBUGING  PURPOSES! REMOVE ASAP !
 #------- hierzo kijken of je kan betalen
 	if caster: # == player	#CharacterBody2D/interface/kleurenalbkje/PanelContainer/HBoxContainer/@Panel@2
 		for child in caster.get_node("interface").get_children():
@@ -79,7 +80,8 @@ func cast_this_spell():
 		else:
 			caster.get_node("interface/Control/Kleurenbalkje/PanelContainer/HBoxContainer").functie_die_op_basis_van_naam_ofwel_kleur_alle_informaite_van_desbetrefend_balkje_kan_halen("red").size_flags_stretch_ratio /= kleurenbalkje_change
 #----
-	make_noise(noise)
+	print("PATH ",self.position)
+	await make_noise(noise)
 	#await animation
-	#self.queue_free() # MOET WEL WEER TERUG!
+	self.queue_free() # MOET WEL WEER TERUG!
 	#print_tree_pretty()

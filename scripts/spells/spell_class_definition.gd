@@ -60,8 +60,11 @@ func make_noise(noise):
 	# solution: call all the stuff below on the next frame.
 	# or await get_tree().process_frame / await get_tree().physics_frame
 
+	print("spell_area 0")
 	await get_tree().physics_frame
+	print("spell_area 1")
 	await get_tree().physics_frame
+	print("spell_area 2")
 
 	#await get_tree().create_timer(0.0).timeout
 
@@ -91,7 +94,7 @@ func make_noise(noise):
 			#print("its an enemy")
 	
 	#!!! #noise_area.queue_free() !!!
-	noise_area.queue_free()
+	#noise_area.queue_free() # 15-07-25
 	# did it.`
 
 #func make_noise_part_two(noise):
