@@ -174,7 +174,7 @@ func chase_state(delta, phase : String = "running"): # fpr when player is in sig
 				debug_label.set_text("ATTACK!")
 			elif self.global_position.distance_to(chase_target_position) < 100:
 				debug_label.set_text("CHASE ENDED")
-				if look_for_player_in_vision_chircle():
+				if look_for_player_in_vision_circle():
 					chase_target_position = chase_target.global_position
 				else:
 					request_change_state(STATES.IDLE_WALK) # STATES.ALERTED ?
@@ -209,8 +209,9 @@ func pathfind_state(delta, phase : String = "running"):
 				#debug_label.set_text("ATTACK!")
 			if self.global_position.distance_to(pathfind_target_position) < 100:
 				debug_label.set_text("PATHFINDING ENDED")
-				if look_for_player_in_vision_chircle():
-					chase_target_position = look_for_player_in_vision_chircle().global_position
+				if look_for_player_in_vision_circle():
+					chase_target = look_for_player_in_vision_circle()
+					#chase_target_position = look_for_player_in_vision_circle().global_position
 					request_change_state(STATES.CHASE) # STATES.ALERTED ?
 				else:
 					request_change_state(STATES.IDLE_WALK) # STATES.ALERTED ?
@@ -271,7 +272,11 @@ func attack_player():
 
 func on_noise_heard(noise_source):
 	#print("enter")
-	if not look_for_player_in_vision_chircle():
+	var noise_maker = look_for_player_in_vision_circle()
+	if noise_maker:
+		chase_target = noise_maker
+		request_change_state(STATES.CHASE)
+	else:
 		#print("state.chase enter")
 		#nav_agent.target_position = noise_source.position
 		pathfind_target = noise_source
@@ -280,8 +285,6 @@ func on_noise_heard(noise_source):
 		request_change_state(STATES.PATHFIND)
 		#if not look_for_sound_source(noise_source):
 			#pass
-	#else:
-		#print("")
 
 
 func has_line_of_sight(from, to):
@@ -302,7 +305,7 @@ func rotate_vision_field():
 
 # no works...
 # whyn't ?
-func look_for_player_in_vision_chircle():
+func look_for_player_in_vision_circle():
 	print("eee")
 	#var old_rotation = vision_field.rotation
 	#var look_for_player_area = Area2D.new()
