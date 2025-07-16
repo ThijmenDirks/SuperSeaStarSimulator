@@ -29,9 +29,12 @@ func request_change_state(new_state):
 			change_state(STATES.CHASE)
 		STATES.PATHFIND:
 			change_state(STATES.PATHFIND)
+		STATES.IDLE_WALK:
+			change_state(STATES.IDLE_WALK)
 
 
 func change_state(new_state):
+# right now im changing state here, but might do that in state funcionts self because of on_stae("exit"): state = state.last
 	match new_state:
 		STATES.IDLE_STAND:
 			state = STATES.IDLE_STAND
@@ -40,11 +43,11 @@ func change_state(new_state):
 			state = STATES.IDLE_WALK
 			idle_walk(0, "enter")
 		STATES.CHASE:
-			print("STATE.CHASE ENTER fake")
+			#print("STATE.CHASE ENTER fake")
 			state = STATES.CHASE
-			chase("enter")
+			chase_state(0, "enter")
 		STATES.PATHFIND:
-			print("STATE.PATHFIND ENTER fake")
+			#print("STATE.PATHFIND ENTER fake")
 			pathfind_state(0, "enter")
 			state = STATES.PATHFIND
 			speed = 75 # should this go in pathfind_State() ?
@@ -76,3 +79,11 @@ func update_animation_parameters():
 		#STATES.IDLE_WALK:
 			#change_state(STATES.IDLE_STAND)
 	#timer.start(randi_range(1,5)) # dit moet eigenlijk in WALK, IDLE, ETC
+
+
+func _on_vision_field_body_entered(body: Node2D) -> void:
+	if body is Player:
+		if look_for_player_in_vision_field(body):
+			chase_target = body
+			change_state(STATES.CHASE)
+		#state = STATES.CHASE

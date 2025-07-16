@@ -1,5 +1,7 @@
 class_name Enemy extends  CharacterBody2D
 
+@onready var debug_label = $DebugLabel
+
 @onready var ray_cast = $RayCast2D
 @onready var vision_field = $VisionField
 @onready var vector_wheel = $VectorWheel
@@ -35,11 +37,13 @@ var rng = RandomNumberGenerator.new()
 var look_for_player_area : Area2D
 var spell_heard
 var waypoint_area : Area2D
-var steering_constant = 10
+var steering_constant = 2
 var steerong_force
 var desired_walk_direction
 var pathfind_target
-var pathfind_target_position : Vector2
+#var pathfind_target_position : Vector2
+var chase_target
+var chase_target_position : Vector2
 var base_waypoint = {
 	"name" : "placeholder_name",
 	"children" : []
@@ -68,7 +72,7 @@ func _ready() -> void:
 	waypoint_area.set_collision_mask_value(8, true)
 	waypoint_area.add_child(waypoint_area_collision)
 	waypoint_area.name = "waypoint_area"
-	# VERGEET DIT DING NIET OOK TE VERWIJDEREN!
+		# VERGEET DIT DING NIET OOK TE VERWIJDEREN!
 	#add_child(waypoint_area)
 
 	#timer.start(2)
@@ -76,10 +80,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	chase()
+	#chase()
 	#print("PPP ", get_parent())
 	#if HP != 0:
 		#print("HP", HP)
+	vision_field.rotation = velocity.angle()
 	update_state(delta)
 
 
@@ -89,6 +94,8 @@ func update_state(delta):
 			idle_walk(delta)
 		STATES.PATHFIND:
 			pathfind_state(delta)
+		STATES.CHASE:
+			chase_state(delta)
 
 
 func request_change_state(new_state):
@@ -110,23 +117,10 @@ func idle_stand(phase = "running"):
 		"enter":
 			velocity = Vector2.ZERO
 		"running":
+			debug_label.set_text("IDLE.STAND")
 			pass
 		"exit":
 			pass
-
-
-func steering_behavior(steering_constant, delta, speed):
-	pass
-
-
-func move(desired_walk_direction, delta):
-	velocity = velocity.normalized()
-	desired_walk_direction = vector_wheel.get_most_favourable_direction(desired_walk_direction)
-	var steering_force = (desired_walk_direction - velocity) * steering_constant# * speed
-	velocity += steering_force * delta
-	velocity *= speed
-	#velocity = desired_walk_direction * speed # for debugging, shouldget deleted
-	move_and_slide() 
 
 
 func idle_walk(delta : float, phase : String = "running"):
@@ -140,20 +134,45 @@ func idle_walk(delta : float, phase : String = "running"):
 			move(desired_walk_direction, delta)
 			#move_and_slide()
 			#print("goblinwalk ", velocity, speed)
+			print("STATES.IDLE_WALK RUNNING")
+			debug_label.set_text("IDLE.WALK")
 		"exit":
 			pass
 
 
-func chase(phase = "running"): # fpr when player is in sight
+func look_for_player_in_vision_field(target):
+	for body in vision_field.get_overlapping_bodies():
+		if body == target:
+			ray_cast.target_position = to_local(body.global_position)
+			ray_cast.force_raycast_update()
+			if ray_cast.get_collider() == body:
+				return body
+	return false
+
+
+func chase_state(delta, phase : String = "running"): # fpr when player is in sight
+# assuihng melee enemy:
+#run after coords were player last seen. once there, look around
 	match phase:
 		"enter":
-			print("STATE.CHASE ENTER")
+			print("STATES.CHASE ENTER")
 			pass
 		"running":
-			nav_agent.target_position
-			#print("STATE.CHASE RUNNING")
+			debug_label.set_text("CHASE")
+			if look_for_player_in_vision_field(chase_target):
+				chase_target_position = chase_target.global_position
+			move(to_local(chase_target_position), delta)
+			if self.global_position.distance_to(chase_target.global_position) < 100:
+				debug_label.set_text("ATTACK!")
+			elif self.global_position.distance_to(chase_target_position) < 100:
+				debug_label.set_text("CHASE ENDED")
+				if look_for_player_in_vision_chircle():
+					chase_target_position = chase_target.global_position
+				else:
+					request_change_state(STATES.IDLE_WALK) # STATES.ALERTED ?
+			print("STATES.CHASE RUNNING")
 		"exit":
-			print("STATE.CHASE EXIT")
+			print("STATES.CHASE EXIT")
 			pass
 
 
@@ -162,11 +181,11 @@ func pathfind_state(delta, phase : String = "running"):
 		"enter":
 			#pathfind_target_position = pathfind_target.global_position
 			nav_agent.target_position = pathfind_target.global_position#pathfind_target_position#to_global(pathfind_target.position)
-			print("STATE.PATHFIND ENTER  ", nav_agent.target_position, "  ", pathfind_target_position)
+			#print("STATE.PATHFIND ENTER  ", nav_agent.target_position, "  ", pathfind_target_position)
 			pass
 		"running":
 			#nav_agent.target_position = pathfind_target_position#to_global(pathfind_target.position)
-			print("STATE.PATHFIND ENTER  ", nav_agent.target_position, "  ", pathfind_target_position)
+			#print("STATE.PATHFIND ENTER  ", nav_agent.target_position, "  ", pathfind_target_position)
 
 			#nav_agent.target_position = target.position
 			#print("nnn ", nav_agent.get_next_path_position(), "   ", )#move(nav_agent.get_next_path_position(), delta))
@@ -174,10 +193,26 @@ func pathfind_state(delta, phase : String = "running"):
 			print("LLL ", pathfind_target)
 			# ^ this line should come back
 			#velocity = nav_agent.get_next_path_position() - global_position # this line is just for debuging
-			#print("STATE.PATHFIND RUNNING")
+			print("STATES.PATHFIND RUNNING")
+			debug_label.set_text("PATHFIND")
 		"exit":
-			print("STATE.PATHFIND EXIT")
+			print("STATES.PATHFIND EXIT")
 			pass
+
+
+func steering_behavior(steering_constant, delta, speed):
+	pass
+
+
+func move(desired_walk_direction : Vector2, delta : float):
+	# desired_walk_direction is in local (?)
+	velocity = velocity.normalized()
+	desired_walk_direction = vector_wheel.get_most_favourable_direction(desired_walk_direction)
+	var steering_force = (desired_walk_direction - velocity) * steering_constant# * speed
+	velocity += steering_force * delta
+	velocity *= speed
+	#velocity = desired_walk_direction * speed # for debugging, shouldget deleted
+	move_and_slide() 
 
 
 func attack():
@@ -217,7 +252,7 @@ func attack_player():
 
 func on_noise_heard(noise_source):
 	#print("enter")
-	if not look_for_player():
+	if not look_for_player_in_vision_chircle():
 		#print("state.chase enter")
 		#nav_agent.target_position = noise_source.position
 		pathfind_target = noise_source
@@ -248,7 +283,7 @@ func rotate_vision_field():
 
 # no works...
 # whyn't ?
-func look_for_player():
+func look_for_player_in_vision_chircle():
 	print("eee")
 	#var old_rotation = vision_field.rotation
 	#var look_for_player_area = Area2D.new()
@@ -438,8 +473,8 @@ func delteme():
 
 
 
-func singal_test(argumeng):
-	print("kukiric", randf_range(-1.0, 1.0))
+#func singal_test(argumeng):
+	#print("kukiric", randf_range(-1.0, 1.0))
 
 
 	#for i in 36:

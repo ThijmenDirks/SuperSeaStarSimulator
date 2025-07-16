@@ -1,7 +1,7 @@
 class_name Player
 extends CharacterBody2D
 
-@export var speed = 75
+@export var speed = 100
 @export var animation_tree : AnimationTree
 #@export var animation_player : AnimationPlayer
 
