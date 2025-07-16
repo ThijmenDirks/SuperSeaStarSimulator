@@ -85,6 +85,14 @@ func _process(delta: float) -> void:
 	#if HP != 0:
 		#print("HP", HP)
 	vision_field.rotation = velocity.angle()
+	var chase_target_placeholder =  look_for_player_in_vision_field()
+	if chase_target_placeholder:
+		chase_target = chase_target_placeholder
+		request_change_state(STATES.CHASE)
+	#if body is Player:
+		#if look_for_player_in_vision_field(body):
+			#chase_target = body
+			#change_state(STATES.CHASE)
 	update_state(delta)
 
 
@@ -140,9 +148,9 @@ func idle_walk(delta : float, phase : String = "running"):
 			pass
 
 
-func look_for_player_in_vision_field(target):
+func look_for_player_in_vision_field():
 	for body in vision_field.get_overlapping_bodies():
-		if body == target:
+		if body == null or body is Player:
 			ray_cast.target_position = to_local(body.global_position)
 			ray_cast.force_raycast_update()
 			if ray_cast.get_collider() == body:
@@ -159,9 +167,10 @@ func chase_state(delta, phase : String = "running"): # fpr when player is in sig
 			pass
 		"running":
 			debug_label.set_text("CHASE")
-			if look_for_player_in_vision_field(chase_target):
+			if look_for_player_in_vision_field():
 				chase_target_position = chase_target.global_position
 			move(to_local(chase_target_position), delta)
+			print(self, "   hhh   ", chase_target)
 			if self.global_position.distance_to(chase_target.global_position) < 100:
 				debug_label.set_text("ATTACK!")
 			elif self.global_position.distance_to(chase_target_position) < 100:

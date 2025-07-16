@@ -81,9 +81,10 @@ func update_animation_parameters():
 	#timer.start(randi_range(1,5)) # dit moet eigenlijk in WALK, IDLE, ETC
 
 
-func _on_vision_field_body_entered(body: Node2D) -> void:
-	if body is Player:
-		if look_for_player_in_vision_field(body):
-			chase_target = body
-			change_state(STATES.CHASE)
-		#state = STATES.CHASE
+#func _on_vision_field_body_entered(body: Node2D) -> void:
+	#if body is Player:
+		#if look_for_player_in_vision_field(body):
+			#chase_target = body
+			#change_state(STATES.CHASE)
+# this does not work when the players is in visionfield but there is a wall between them,
+# casuse when the wall is gone but the player didnt left the visionField, ithis wont trigger again.
