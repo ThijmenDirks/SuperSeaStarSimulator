@@ -41,7 +41,7 @@ var steering_constant = 2
 var steerong_force
 var desired_walk_direction
 var pathfind_target
-#var pathfind_target_position : Vector2
+var pathfind_target_position : Vector2
 var chase_target
 var chase_target_position : Vector2
 var base_waypoint = {
@@ -170,7 +170,6 @@ func chase_state(delta, phase : String = "running"): # fpr when player is in sig
 			if look_for_player_in_vision_field():
 				chase_target_position = chase_target.global_position
 			move(to_local(chase_target_position), delta)
-			print(self, "   hhh   ", chase_target)
 			if self.global_position.distance_to(chase_target.global_position) < 100:
 				debug_label.set_text("ATTACK!")
 			elif self.global_position.distance_to(chase_target_position) < 100:
@@ -188,8 +187,8 @@ func chase_state(delta, phase : String = "running"): # fpr when player is in sig
 func pathfind_state(delta, phase : String = "running"):
 	match phase:
 		"enter":
-			#pathfind_target_position = pathfind_target.global_position
-			nav_agent.target_position = pathfind_target.global_position#pathfind_target_position#to_global(pathfind_target.position)
+			pathfind_target_position = pathfind_target.global_position
+			nav_agent.target_position = pathfind_target_position #pathfind_target.global_position#pathfind_target_position#to_global(pathfind_target.position)
 			#print("STATE.PATHFIND ENTER  ", nav_agent.target_position, "  ", pathfind_target_position)
 			pass
 		"running":
@@ -199,11 +198,22 @@ func pathfind_state(delta, phase : String = "running"):
 			#nav_agent.target_position = target.position
 			#print("nnn ", nav_agent.get_next_path_position(), "   ", )#move(nav_agent.get_next_path_position(), delta))
 			move(nav_agent.get_next_path_position() - global_position, delta)
-			print("LLL ", pathfind_target)
+			#print("LLL ", pathfind_target)
 			# ^ this line should come back
 			#velocity = nav_agent.get_next_path_position() - global_position # this line is just for debuging
 			print("STATES.PATHFIND RUNNING")
 			debug_label.set_text("PATHFIND")
+
+			# should make a function of the folowing block
+			#if self.global_position.distance_to(chase_target.global_position) < 100:
+				#debug_label.set_text("ATTACK!")
+			if self.global_position.distance_to(pathfind_target_position) < 100:
+				debug_label.set_text("PATHFINDING ENDED")
+				if look_for_player_in_vision_chircle():
+					chase_target_position = look_for_player_in_vision_chircle().global_position
+					request_change_state(STATES.CHASE) # STATES.ALERTED ?
+				else:
+					request_change_state(STATES.IDLE_WALK) # STATES.ALERTED ?
 		"exit":
 			print("STATES.PATHFIND EXIT")
 			pass
@@ -308,7 +318,7 @@ func look_for_player_in_vision_chircle():
 				#label.set_text("i see you")  # but can go back
 				label.position = Vector2(randi_range(-50, 50), randi_range(-50, 50))
 				#vision_field.rotation = old_rotation
-				return true
+				return body
 	var label = Label.new()
 	self.add_child(label)
 	#label.set_text("mustvbeen a wall")  # but can go back
@@ -334,6 +344,8 @@ func look_for_sound_source(noise_source):
 	label.position = Vector2(randi_range(-50, 50), randi_range(-50, 50))
 	return false
 
+
+# --------------------------------------------------------------------------------------------------------------------------------------------
 
 
 func get_nearby_waypoints(subject: Node2D) -> Array:
