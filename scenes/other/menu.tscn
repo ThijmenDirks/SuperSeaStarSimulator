@@ -21,4 +21,15 @@ text = "Play"
 icon = ExtResource("2_mnd0f")
 icon_alignment = 1
 
+[node name="play_button2" type="Button" parent="."]
+offset_left = 29.0
+offset_top = 180.0
+offset_right = 165.0
+offset_bottom = 344.0
+action_mode = 0
+text = "Play"
+icon = ExtResource("2_mnd0f")
+icon_alignment = 1
+
 [connection signal="button_down" from="play_button" to="." method="_on_play_button_button_down"]
+[connection signal="button_down" from="play_button2" to="." method="_on_play_button_button_down"]
