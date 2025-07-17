@@ -1,6 +1,6 @@
 extends Node2D
 
-var test_level = load("res://scenes/levels/test_level.tscn").instantiate()
+var testlevel2 = load("res://scenes/levels/testlevel2.tscn").instantiate()
 
 #"res://scenes/levels/test_level.tscn"
 # Called when the node enters the scene tree for the first time.
@@ -16,6 +16,6 @@ func _process(delta: float) -> void:
 func _on_play_button_button_down() -> void:
 	pass # Replace with function body.
 	print("hi")
-	get_tree().root.add_child(test_level)
-	self.add_child(test_level)
+	get_tree().root.add_child(testlevel2)
+	self.add_child(testlevel2)
 	self.visible = false
