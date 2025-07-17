@@ -1,6 +1,8 @@
 extends Spell
 
 
+@onready var small_explosion_area = $SmallExplosion
+
 func get_damage_by_explosion(base_damage, distance_enemy_to_center, aoe_size):
 	var distance_to_center_ratio : float =  (1 - float(distance_enemy_to_center/aoe_size)) # 1 op center, 0 op rand)
 	print("HP   ", distance_to_center_ratio)
@@ -34,6 +36,8 @@ func _ready():
 	#direction = get_local_mouse_position().angle()
 	target_position = get_global_mouse_position()
 	max_range = min(position.distance_to(target_position), this_spell.spell_range)
+	self.look_at(target_position)
+	rotation += PI
 	print("max_range: ", max_range, "   position   ", position, "   global_position   ", global_position, "   target_position   ", target_position, "   length:   ", self.position.distance_to(origin_position))
 
 	if caster:
@@ -52,18 +56,40 @@ func _physics_process(delta: float,) -> void:
 	print(position.length(), "   fff   ", self)
 	if self.position.distance_to(origin_position) >= max_range or position == target_position:
 		on_max_range()
+	#if get_contact_count():
+		#print("big_explosion n")
+		#big_explosion()
 
 func on_max_range():
 	print("on_max_range")
-	self.queue_free()
-	# small explosion
+	small_explosion()
+
 
 func small_explosion():
-	pass
+	print("no big_explosion")
+	var small_explosion_area = $SmallExplosion
+	var hit_enemies = small_explosion_area.get_overlapping_bodies()
+	for enemy in hit_enemies:
+		if enemy is Enemy:
+			print("hit an enemy  ", enemy)
+			enemy.take_damage(get_damage_by_explosion(base_damage, self.global_position.distance_to(enemy.global_position) , aoe_size), damage_type)
+	await make_noise(noise)
+	queue_free()
 
 
 func big_explosion():
-	pass
+	var big_explosion_area = $BigExplosion
+	var hit_enemies = big_explosion_area.get_overlapping_bodies()
+	for enemy in hit_enemies:
+		if enemy is Enemy:
+			print("hit an enemy  ", enemy)
+			enemy.take_damage(get_damage_by_explosion(base_damage, self.global_position.distance_to(enemy.global_position) , aoe_size), damage_type)
+	await make_noise(noise)
+	queue_free()
+
+func _on_body_entered(body: Node) -> void:
+	print("big_explosion")
+	big_explosion()
 
 
 func cast_this_spell(caster):

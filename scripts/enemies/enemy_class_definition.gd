@@ -172,7 +172,7 @@ func chase_state(delta, phase : String = "running"): # fpr when player is in sig
 			move(to_local(chase_target_position), delta)
 			if self.global_position.distance_to(chase_target.global_position) < 100:
 				debug_label.set_text("ATTACK!")
-			elif self.global_position.distance_to(chase_target_position) < 100:
+			elif self.global_position.distance_to(chase_target_position) < 25:
 				debug_label.set_text("CHASE ENDED")
 				if look_for_player_in_vision_circle():
 					chase_target_position = chase_target.global_position
@@ -207,7 +207,7 @@ func pathfind_state(delta, phase : String = "running"):
 			# should make a function of the folowing block
 			#if self.global_position.distance_to(chase_target.global_position) < 100:
 				#debug_label.set_text("ATTACK!")
-			if self.global_position.distance_to(pathfind_target_position) < 100:
+			if self.global_position.distance_to(pathfind_target_position) < 25:
 				debug_label.set_text("PATHFINDING ENDED")
 				if look_for_player_in_vision_circle():
 					chase_target = look_for_player_in_vision_circle()

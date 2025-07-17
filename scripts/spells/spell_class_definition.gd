@@ -1,4 +1,4 @@
-class_name Spell extends Node2D
+class_name Spell extends RigidBody2D
 
 # VERY IMPORTANT CODE
 
