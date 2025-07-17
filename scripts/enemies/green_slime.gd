@@ -11,8 +11,8 @@ var jump_duration = 1.0 # in sec
 
 
 func _ready() -> void:
-	max_HP = 200
-	HP = 200#max_HP
+	max_hp= 200
+	hp = 200#max_HP
 	speed = 50
 	jump_hight = 20
 	state = STATES.IDLE_WALK
@@ -31,7 +31,7 @@ func _ready() -> void:
 # shouldnt this be in Enemy?
 func _physics_process(delta: float) -> void:
 	#super(delta)
-	print("HP ", HP)
+	print("HP ", hp)
 	update_animation_parameters()
 	if state == STATES.JUMP:
 		jump(delta)

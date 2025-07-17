@@ -8,11 +8,12 @@ class_name Enemy extends  CharacterBody2D
 @onready var nav_agent = $NavigationAgent2D
 
 var speed : int
+var base_speed : int
 var jump_hight : int
 var direction : Vector2 #float # wil dit liever in rad of degree hebben # bij nader inzien: gewoon V2
 #@onready var timer = $Timer
-var max_HP = 100#: int# = 100
-var HP = 100#: int
+var max_hp = 100#: int# = 100
+var hp = 100#: int
 var resistances_and_weaknesses : Dictionary
 var threat_range : int
 var vision_range : int
@@ -40,10 +41,18 @@ var waypoint_area : Area2D
 var steering_constant = 2
 var steerong_force
 var desired_walk_direction
+
 var pathfind_target
 var pathfind_target_position : Vector2
 var chase_target
 var chase_target_position : Vector2
+var melee_attack_target
+var state_is_locked : bool = false
+# at this point i should just do this with parameters (i think)
+# but then you have to constantly pass it through the state_machine
+
+var attack_damage : int
+var state_history : Array
 var base_waypoint = {
 	"name" : "placeholder_name",
 	"children" : []
@@ -52,7 +61,7 @@ var base_waypoint = {
 enum STATES {
 	IDLE_STAND,
 	IDLE_WALK,
-	ATTACK,
+	MELEE_ATTACK,
 	CAST,
 	SLIME_IDLE,
 	JUMP_ATTACK,
@@ -86,8 +95,9 @@ func _process(delta: float) -> void:
 		#print("HP", HP)
 	vision_field.rotation = velocity.angle()
 	var chase_target_placeholder =  look_for_player_in_vision_field()
-	if chase_target_placeholder:
+	if chase_target_placeholder and not state == STATES.CHASE:
 		chase_target = chase_target_placeholder
+		#print("enter") # please delete this line when done !
 		request_change_state(STATES.CHASE)
 	#if body is Player:
 		#if look_for_player_in_vision_field(body):
@@ -104,6 +114,8 @@ func update_state(delta):
 			pathfind_state(delta)
 		STATES.CHASE:
 			chase_state(delta)
+		STATES.MELEE_ATTACK:
+			melee_attack_state(delta)
 
 
 func request_change_state(new_state):
@@ -137,6 +149,7 @@ func idle_walk(delta : float, phase : String = "running"):
 			#desired_walk_direction = Vector2(randf_range(-1, 1), randf_range(-1, 1))
 			# deze line moet wel weer aan
 			print("idle_walk enter")
+			speed = base_speed
 		"running":
 			desired_walk_direction = get_local_mouse_position()
 			move(desired_walk_direction, delta)
@@ -148,36 +161,31 @@ func idle_walk(delta : float, phase : String = "running"):
 			pass
 
 
-func look_for_player_in_vision_field():
-	for body in vision_field.get_overlapping_bodies():
-		if body == null or body is Player:
-			ray_cast.target_position = to_local(body.global_position)
-			ray_cast.force_raycast_update()
-			if ray_cast.get_collider() == body:
-				return body
-	return false
-
-
 func chase_state(delta, phase : String = "running"): # fpr when player is in sight
 # assuihng melee enemy:
 #run after coords were player last seen. once there, look around
 	match phase:
 		"enter":
 			print("STATES.CHASE ENTER")
-			pass
+			speed = base_speed * 2
 		"running":
 			debug_label.set_text("CHASE")
 			if look_for_player_in_vision_field():
 				chase_target_position = chase_target.global_position
 			move(to_local(chase_target_position), delta)
-			if self.global_position.distance_to(chase_target.global_position) < 100:
+			if self.global_position.distance_to(chase_target.global_position) < 50:
 				debug_label.set_text("ATTACK!")
+				melee_attack_target = chase_target # dirty code. clean it
+				print("melee")
+				request_change_state(STATES.MELEE_ATTACK)
+				#melee_attack(chase_target)
 			elif self.global_position.distance_to(chase_target_position) < 25:
 				debug_label.set_text("CHASE ENDED")
 				if look_for_player_in_vision_circle():
 					chase_target_position = chase_target.global_position
 				else:
 					request_change_state(STATES.IDLE_WALK) # STATES.ALERTED ?
+			#debug_label.set_text("CHASE") # this line should be deleted
 			print("STATES.CHASE RUNNING")
 		"exit":
 			print("STATES.CHASE EXIT")
@@ -190,7 +198,7 @@ func pathfind_state(delta, phase : String = "running"):
 			pathfind_target_position = pathfind_target.global_position
 			nav_agent.target_position = pathfind_target_position #pathfind_target.global_position#pathfind_target_position#to_global(pathfind_target.position)
 			#print("STATE.PATHFIND ENTER  ", nav_agent.target_position, "  ", pathfind_target_position)
-			pass
+			speed = base_speed * 1.5
 		"running":
 			#nav_agent.target_position = pathfind_target_position#to_global(pathfind_target.position)
 			#print("STATE.PATHFIND ENTER  ", nav_agent.target_position, "  ", pathfind_target_position)
@@ -220,6 +228,38 @@ func pathfind_state(delta, phase : String = "running"):
 			pass
 
 
+#func melee_attack_state(delta, phase : String = "running"):#, target : Object = null):
+	#melee_attack_target
+	#var backup_speed = speed
+	#speed = 0
+	## await attack_animation
+	#await get_tree().create_timer(2).timeout
+	#if self.position.distance_to(melee_attack_target.position) < 50:
+		#print("enemy attacks !")
+		#melee_attack_target.take_damage(attack_damage, "physical")
+	#speed = backup_speed
+
+
+func melee_attack_state(delta, phase : String = "running"):#, target : Object = null):
+	match phase:
+		"enter":
+			print("STATES.MELEE_ATTACK ENTER")
+			var backup_speed = speed
+			speed = 0
+			state_is_locked = true
+			await get_tree().create_timer(0.5).timeout
+			if self.global_position.distance_to(melee_attack_target.global_position) < 50:
+				print("enemy attacks !  ", melee_attack_target)
+				melee_attack_target.take_damage(attack_damage, "physical")
+			speed = backup_speed
+			state_is_locked = false
+			request_change_state(get_last_state())
+		"running":
+			pass
+		"exit":
+			pass
+
+
 func steering_behavior(steering_constant, delta, speed):
 	pass
 
@@ -235,15 +275,11 @@ func move(desired_walk_direction : Vector2, delta : float):
 	move_and_slide() 
 
 
-func attack():
-	pass
-
-
 func take_damage(damage : int, damage_type : String):
 	if damage_type in resistances_and_weaknesses:
 		damage *= resistances_and_weaknesses.damage_type
-	HP -= damage
-	if HP < 0:
+	hp -= damage
+	if hp < 0:
 		die()
 
 
@@ -263,12 +299,19 @@ func drop_loot():
  #my_array[rng.rand_weighted(weights)]
 
 
+func get_last_state():
+	if state_history[-1]:
+		return state_history[-1]
+	else:
+		print("won't work, sorry")
+
 #anti-error placeholder, altough it might get to be used.
-func attack_player():
+func attack(target):
 	pass
-	speed
 
 
+func get_distance_to_player():
+	return
 
 func on_noise_heard(noise_source):
 	#print("enter")
@@ -296,6 +339,14 @@ func has_line_of_sight(from, to):
 	return not raycast.is_colliding()
 
 
+func look_for_player_in_vision_field():
+	for body in vision_field.get_overlapping_bodies():
+		if body == null or body is Player:
+			ray_cast.target_position = to_local(body.global_position)
+			ray_cast.force_raycast_update()
+			if ray_cast.get_collider() == body:
+				return body
+	return false
 
 
 func rotate_vision_field():
@@ -305,6 +356,7 @@ func rotate_vision_field():
 
 # no works...
 # whyn't ?
+# ?
 func look_for_player_in_vision_circle():
 	print("eee")
 	#var old_rotation = vision_field.rotation
@@ -346,6 +398,7 @@ func look_for_sound_source(noise_source):
 	#label.set_text("no idea")  # but can go back
 	label.position = Vector2(randi_range(-50, 50), randi_range(-50, 50))
 	return false
+
 
 
 # --------------------------------------------------------------------------------------------------------------------------------------------

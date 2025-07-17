@@ -1,8 +1,9 @@
-class_name Player
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 @export var speed = 100
 @export var animation_tree : AnimationTree
+@export var hp = 250
+var game_over_screen = load("res://scenes/UI_and_the_like/game_over_screen.tscn").instantiate()
 #@export var animation_player : AnimationPlayer
 
 @onready var coyote_timer_to_cast_spell = $CTimerToCastSpell
@@ -17,6 +18,7 @@ var current_spell_input = []
 var input_pressed_almost_simoultaniously = ""
 var equiped_spells = ["fireball", "heal"]
 var is_casting = false
+var resistances_and_weaknesses : Dictionary
 
 
 func _ready():
@@ -153,18 +155,40 @@ func get_spell_by_name(name):
 	for i in spelldata.get_names():
 		if i == name:
 			return spelldata[i]
+
+
+func take_damage(damage : int, damage_type : String):
+	if damage_type in resistances_and_weaknesses:
+		damage *= resistances_and_weaknesses.damage_type
+	hp -= damage
+	if hp < 0:
+		die()
+
+
+func die():
+	get_parent().add_child(game_over_screen)
+	queue_free()
+	get_tree().paused = true
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #func cast_by_name(spell_name):
 	#var spell_data = spells[spell_name]
 	#if spell_data:
 		#spell_data["script"].new().boom()
 	#else:
 		#print("Spell not found")
-
-
-
-
-
-
 
 
 #func select_animation():

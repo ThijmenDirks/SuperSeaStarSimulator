@@ -9,14 +9,15 @@ const JUMP_VELOCITY = -400.0
 
 func _ready() -> void:
 	
-	speed = 50
-	#state = states.IDLE_STAND
+	base_speed = 50
+	speed = base_speed
 	look_for_player_area = $LookForPlayerArea
-	#vision_field = $VisionField # now in enemy_class_definition
 	timer.start(1)
+	attack_damage = 50
 
 	state = STATES.IDLE_WALK
 	# deze code moet wel weer weg
+	# niet gewoon deze line?
 
 func _physics_process(delta: float) -> void:
 	print("goblin_state: ", state)
@@ -31,10 +32,15 @@ func request_change_state(new_state):
 			change_state(STATES.PATHFIND)
 		STATES.IDLE_WALK:
 			change_state(STATES.IDLE_WALK)
+		STATES.MELEE_ATTACK:
+			change_state(STATES.MELEE_ATTACK)
 
 
 func change_state(new_state):
 # right now im changing state here, but might do that in state funcionts self because of on_stae("exit"): state = state.last
+	if state_is_locked:
+		return
+	state_history.append(state)
 	match new_state:
 		STATES.IDLE_STAND:
 			state = STATES.IDLE_STAND
@@ -43,14 +49,14 @@ func change_state(new_state):
 			state = STATES.IDLE_WALK
 			idle_walk(0, "enter")
 		STATES.CHASE:
-			#print("STATE.CHASE ENTER fake")
 			state = STATES.CHASE
 			chase_state(0, "enter")
 		STATES.PATHFIND:
-			#print("STATE.PATHFIND ENTER fake")
 			pathfind_state(0, "enter")
 			state = STATES.PATHFIND
-			speed = 75 # should this go in pathfind_State() ?
+		STATES.MELEE_ATTACK:
+			melee_attack_state(0, "enter")
+			state = STATES.MELEE_ATTACK
 
 	#if state == STATES.IDLE_STAND:
 		#state = STATES.IDLE_WALK

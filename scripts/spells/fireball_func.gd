@@ -70,7 +70,7 @@ func small_explosion():
 	var small_explosion_area = $SmallExplosion
 	var hit_enemies = small_explosion_area.get_overlapping_bodies()
 	for enemy in hit_enemies:
-		if enemy is Enemy:
+		if enemy is Enemy or enemy is Player:
 			print("hit an enemy  ", enemy)
 			enemy.take_damage(get_damage_by_explosion(base_damage, self.global_position.distance_to(enemy.global_position) , aoe_size), damage_type)
 	await make_noise(noise)
@@ -81,7 +81,7 @@ func big_explosion():
 	var big_explosion_area = $BigExplosion
 	var hit_enemies = big_explosion_area.get_overlapping_bodies()
 	for enemy in hit_enemies:
-		if enemy is Enemy:
+		if enemy is Enemy or Player:
 			print("hit an enemy  ", enemy)
 			enemy.take_damage(get_damage_by_explosion(base_damage, self.global_position.distance_to(enemy.global_position) , aoe_size), damage_type)
 	await make_noise(noise)

@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://durvae1qdqtig"]
+
+[ext_resource type="Texture2D" uid="uid://eny37osmjycx" path="res://icon.svg" id="1_p2sai"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(314.5, 175)
+scale = Vector2(4.38281, 2.35938)
+texture = ExtResource("1_p2sai")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 161.0
+offset_top = 110.0
+offset_right = 470.0
+offset_bottom = 300.0
+text = "GAME OVER
+SCORE: insert(randi_range(1,999) * 100)"
+horizontal_alignment = 1

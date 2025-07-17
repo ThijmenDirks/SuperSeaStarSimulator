@@ -41,7 +41,7 @@ var aoe_size
 # ^ this is a mess right now, most/some of it is for debugging.
 
 func _physics_process(delta: float,) -> void:
-	print(position.length(), "   fff   ", self)
+	#print(position.length(), "   fff   ", self)
 	if self.position.length() >= max_range:
 		on_max_range()
 	#print("spell_area ", is_making_noise)
