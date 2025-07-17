@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://cunitmhjmor4t"]
+
+[ext_resource type="Script" path="res://scripts/spells/fireball_func.gd" id="1_xhdr4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bmfga"]
+radius = 24.0208
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c3tof"]
+radius = 78.0064
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0d406"]
+radius = 27.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t4vyy"]
+radius = 46.2709
+
+[node name="Fireball" type="CharacterBody2D"]
+collision_layer = 32
+collision_mask = 11
+script = ExtResource("1_xhdr4")
+
+[node name="FireballCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bmfga")
+
+[node name="NoiseArea" type="Area2D" parent="."]
+
+[node name="NoiseAreaCollision" type="CollisionShape2D" parent="NoiseArea"]
+shape = SubResource("CircleShape2D_c3tof")
+
+[node name="SmallExplosion" type="Area2D" parent="."]
+
+[node name="SmallExplosionArea" type="CollisionShape2D" parent="SmallExplosion"]
+shape = SubResource("CircleShape2D_0d406")
+
+[node name="BigExplosion" type="Area2D" parent="."]
+
+[node name="BigExplosionArea" type="CollisionShape2D" parent="BigExplosion"]
+shape = SubResource("CircleShape2D_t4vyy")

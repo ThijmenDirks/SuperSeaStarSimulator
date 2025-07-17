@@ -88,7 +88,7 @@ func add_color(color):
 	self.add_child(new_panel)
 
 # functie die op basis van naam (kleur) alle informtaire van desbetreffend balkje kna halen.
-func functie_die_op_basis_van_naam_ofwel_kleur_alle_informaite_van_desbetrefend_balkje_kan_halen(color):
+func get_color_bar(color):
 	for i in used_colors:
 		if i == color:
 			return  get_child(used_colors.find(i))

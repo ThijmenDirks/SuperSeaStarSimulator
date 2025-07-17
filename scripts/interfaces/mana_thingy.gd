@@ -20,7 +20,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	mana_recharge_multiplier = get_parent().get_node("Control/Kleurenbalkje/PanelContainer/HBoxContainer").functie_die_op_basis_van_naam_ofwel_kleur_alle_informaite_van_desbetrefend_balkje_kan_halen(my_color).size_flags_stretch_ratio ** 2
+	mana_recharge_multiplier = get_parent().get_node("Control/Kleurenbalkje/PanelContainer/HBoxContainer").get_color_bar(my_color).size_flags_stretch_ratio ** 2
 	#print("dd ", mana_recharge_multiplier)
 	mana_recharge_speed = mana_recharge_base_speed * mana_recharge_multiplier
 	mana_bar.value += mana_recharge_speed

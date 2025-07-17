@@ -18,10 +18,12 @@ var input_pressed_almost_simoultaniously = ""
 var equiped_spells = ["fireball", "heal"]
 var is_casting = false
 
+
 func _ready():
 	pass
 	#playback = animation_tree["parameters/playback"]
 	#get_viewport().size = DisplayServer.screen_get_size()
+
 
 func _physics_process(delta: float) -> void:
 	input = Input.get_vector("left", "right", "up", "down")
@@ -36,8 +38,6 @@ func _physics_process(delta: float) -> void:
 		#spell_cast_funtion_one()
 	#natius()
 #	print("-")
-
-
 
 
 func update_animation_parameters():
@@ -131,16 +131,23 @@ func _on_ctimer_to_cast_spell_timeout() -> void:
 
 func cast(spell_that_is_being_cast):
 	#var this_spell_function = spell_that_is_being_cast["spell_functie"].cast_this_spell
-	var script_of_spell_that_is_being_cast = spell_that_is_being_cast["spell_function"].new()
+	var scene_of_spell_that_is_being_cast = spell_that_is_being_cast["spell_scene"].instantiate()
+	scene_of_spell_that_is_being_cast.caster = self
 	#print("schenetree", get_tree())
-	self.add_child(script_of_spell_that_is_being_cast)
-	script_of_spell_that_is_being_cast.position# = randi_range(-1000,1000)
+
+	scene_of_spell_that_is_being_cast.position = position
+	#print("leng  ", global_position)
+	#scene_of_spell_that_is_being_cast.global_position = global_position
+	#scene_of_spell_that_is_being_cast.position = Vector2.ZERO
+
+	self.get_parent().add_child(scene_of_spell_that_is_being_cast)
 	#if spell_that_is_being_cast["spell_is_targetable"]:
 		#move_toward(spell_that_is_being_cast.position, get_local_mouse_position(), spell_that_is_being_cast["spell_range"])
 		#spell_that_is_being_cast.position = spell_that_is_being_cast.position.move_toward(get_local_mouse_position(), spell_that_is_being_cast["spell_range"])
-	script_of_spell_that_is_being_cast.cast_this_spell()
+	#scene_of_spell_that_is_being_cast.cast_this_spell(self) #
 	#this_spell_function.call()
  #NIET ".BOOM()", MAAR BIJ ELKE CAST NIEUWE INSTANCE VAN FUNCTIE, ANDERS WORDT ER GEOVERWRITED BIJ SPAMMEN! + gebruik await in functie zodat de animatie niet direct weer wordt verwijderd
+
 
 func get_spell_by_name(name):
 	for i in spelldata.get_names():

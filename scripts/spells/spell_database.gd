@@ -18,8 +18,10 @@ var fireball = {
 	"spell_orb_cost" = 3,
 	"spell_noise" = 200, #amount of (???)(pixels?) ditance in witch enemies are warned. this, or something else, might get multyplied for some enemies.
 	"spell_is_targetable" = true,
-	"spell_range" = 100,
+	"spell_range" = 300,
+	"spell_speed" = 200,
 	"spell_function" = load("res://scripts/spells/fireball_func.gd"),# NIET ".BOOM()", MAAR BIJ ELKE CAST NIEUWE INSTANCE VAN FUNCTIE, ANDERS WORDT ER GEOVERWRITED BIJ SPAMMEN! + gebruik await in functie zodat de animatie niet direct weer wordt verwijderd
+	"spell_scene" = load("res://scenes/spells/fireball.tscn")
 	}
 
 var heal = {

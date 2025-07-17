@@ -14,33 +14,76 @@ func deal_damage(a,b):
 	#^true!
 
 
-func cast_this_spell():
-	print("nnn")
-	var caster = get_parent()
-	var texture = load("res://art/Small-8-Direction-Characters_by_AxulArt/Small-8-Direction-Characters_by_AxulArt.png")
-	var other_texture = $Sprite2D
-	var this_spell = SpellDatabase.fireball
-	var hit_enemies = ["goblin", "goblin", "orc"]
-	var damage_multiplier = get_parent().get_node("interface/Control/Kleurenbalkje/PanelContainer/HBoxContainer").functie_die_op_basis_van_naam_ofwel_kleur_alle_informaite_van_desbetrefend_balkje_kan_halen("red").size_flags_stretch_ratio
-	var base_damage = this_spell.spell_damage * damage_multiplier
-	var damage_type = this_spell.spell_damage_type
-	var aoe_size = this_spell.spell_aoe_size
-	var noise = this_spell.spell_noise
-	var kleurenbalkje_change = this_spell.spell_kleurenbalkje_change
-	var orb_cost = this_spell.spell_orb_cost
+func _ready():
+	print("nnn   ", caster)
+	texture = load("res://art/Small-8-Direction-Characters_by_AxulArt/Small-8-Direction-Characters_by_AxulArt.png")
+	other_texture = $Sprite2D
+	this_spell = SpellDatabase.fireball
+	hit_enemies = ["goblin", "goblin", "orc"]
+	damage_multiplier = caster.get_node("interface/Control/Kleurenbalkje/PanelContainer/HBoxContainer").get_color_bar("red").size_flags_stretch_ratio
+	base_damage = this_spell.spell_damage * damage_multiplier
+	damage_type = this_spell.spell_damage_type
+	aoe_size = this_spell.spell_aoe_size
+	noise = this_spell.spell_noise
+	kleurenbalkje_change = this_spell.spell_kleurenbalkje_change
+	orb_cost = this_spell.spell_orb_cost
+	speed = this_spell.spell_speed
+
+	origin_position = caster.position
+	#direction = origin_position.angle_to(get_global_mouse_position())
+	#direction = get_local_mouse_position().angle()
+	target_position = get_global_mouse_position()
+	max_range = min(position.distance_to(target_position), this_spell.spell_range)
+	print("max_range: ", max_range, "   position   ", position, "   global_position   ", global_position, "   target_position   ", target_position, "   length:   ", self.position.distance_to(origin_position))
+
+	if caster:
+		if pay_mana(["red"]):
+			change_kleurenbalkje(["red"])
+		else:
+			print("gigantic miscast!")
+			return
+
+
+func _physics_process(delta: float,) -> void:
+	#print("local ", get_local_mouse_position())
+	position = position.move_toward(target_position, speed * delta)
+	print("max_range: ", max_range, "   position   ", position, "   global_position   ", global_position, "   target_position   ", target_position, "   length:   ", self.position.distance_to(origin_position))
+	print(position, "   target_position   ", target_position)
+	print(position.length(), "   fff   ", self)
+	if self.position.distance_to(origin_position) >= max_range or position == target_position:
+		on_max_range()
+
+func on_max_range():
+	print("on_max_range")
+	self.queue_free()
+	# small explosion
+
+func small_explosion():
+	pass
+
+
+func big_explosion():
+	pass
+
+
+func cast_this_spell(caster):
+	#source = caster
+	texture = load("res://art/Small-8-Direction-Characters_by_AxulArt/Small-8-Direction-Characters_by_AxulArt.png")
+	other_texture = $Sprite2D
+	this_spell = SpellDatabase.fireball
+	hit_enemies = ["goblin", "goblin", "orc"]
+	damage_multiplier = caster.get_node("interface/Control/Kleurenbalkje/PanelContainer/HBoxContainer").get_color_bar("red").size_flags_stretch_ratio
+	base_damage = this_spell.spell_damage * damage_multiplier
+	damage_type = this_spell.spell_damage_type
+	aoe_size = this_spell.spell_aoe_size
+	noise = this_spell.spell_noise
+	kleurenbalkje_change = this_spell.spell_kleurenbalkje_change
+	orb_cost = this_spell.spell_orb_cost
+	
 	#self.position = caster.position # JUST FOR DEBUGING  PURPOSES! REMOVE ASAP !
 #------- hierzo kijken of je kan betalen
 	if caster: # == player	#CharacterBody2D/interface/kleurenalbkje/PanelContainer/HBoxContainer/@Panel@2
-		for child in caster.get_node("interface").get_children():
-			if child is ManaThingy:
-				if child.my_color == "red":
-					if orb_cost <= child.filled_orbs:
-						child.filled_orbs -= orb_cost
-						print("mana_thingy red FALSE",child.filled_orbs)
-
-					else:
-						print("gigantic miscast!")
-						return
+		pay_mana(["red"])
 #-------
 	print("boom")
 	print(this_spell)
@@ -72,16 +115,17 @@ func cast_this_spell():
 		print(enemy)
 #----- en hiezro kleurenbalkje aanpassen
 	if caster: # == player	#CharacterBody2D/interface/kleurenalbkje/PanelContainer/HBoxContainer/@Panel@2
-		print("kleurkleurkl ", caster.get_node("interface/Control/Kleurenbalkje/PanelContainer/HBoxContainer").functie_die_op_basis_van_naam_ofwel_kleur_alle_informaite_van_desbetrefend_balkje_kan_halen("red").size_flags_stretch_ratio)
-		if caster.get_node("interface/Control/Kleurenbalkje/PanelContainer/HBoxContainer").functie_die_op_basis_van_naam_ofwel_kleur_alle_informaite_van_desbetrefend_balkje_kan_halen("red").size_flags_stretch_ratio == 1.0:
-			caster.get_node("interface/Control/Kleurenbalkje/PanelContainer/HBoxContainer").functie_die_op_basis_van_naam_ofwel_kleur_alle_informaite_van_desbetrefend_balkje_kan_halen("red").size_flags_stretch_ratio /= kleurenbalkje_change
-			caster.get_node("interface/Control/Kleurenbalkje/PanelContainer/HBoxContainer").keep_scales_fancy()
-			print("kleurkleurkleur")
-		else:
-			caster.get_node("interface/Control/Kleurenbalkje/PanelContainer/HBoxContainer").functie_die_op_basis_van_naam_ofwel_kleur_alle_informaite_van_desbetrefend_balkje_kan_halen("red").size_flags_stretch_ratio /= kleurenbalkje_change
+		print("color_bar debug   ", caster)
+		change_kleurenbalkje(["red"])
+		#print("kleurkleurkl ", caster.get_node("interface/Control/Kleurenbalkje/PanelContainer/HBoxContainer").get_color_bar("red").size_flags_stretch_ratio)
+		#if caster.get_node("interface/Control/Kleurenbalkje/PanelContainer/HBoxContainer").get_color_bar("red").size_flags_stretch_ratio == 1.0:
+			#caster.get_node("interface/Control/Kleurenbalkje/PanelContainer/HBoxContainer").get_color_bar("red").size_flags_stretch_ratio /= kleurenbalkje_change
+			#caster.get_node("interface/Control/Kleurenbalkje/PanelContainer/HBoxContainer").keep_scales_fancy()
+		#else:
+			#caster.get_node("interface/Control/Kleurenbalkje/PanelContainer/HBoxContainer").get_color_bar("red").size_flags_stretch_ratio /= kleurenbalkje_change
 #----
 	print("PATH ",self.position)
 	await make_noise(noise)
 	#await animation
-	self.queue_free() # MOET WEL WEER TERUG!
+	#self.queue_free() # MOET WEL WEER TERUG!
 	#print_tree_pretty()
