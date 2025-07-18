@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccmwkars1n0na"]
+
+[ext_resource type="Script" path="res://scripts/interfaces/hp_bar.gd" id="1_48b7a"]
+[ext_resource type="Texture2D" uid="uid://eny37osmjycx" path="res://icon.svg" id="1_klj2q"]
+
+[node name="hp_bar" type="TextureProgressBar"]
+offset_right = 128.0
+offset_bottom = 128.0
+scale = Vector2(0.3, 0.05)
+value = 100.0
+texture_under = ExtResource("1_klj2q")
+texture_progress = ExtResource("1_klj2q")
+tint_under = Color(100, 0, 0, 1)
+tint_progress = Color(0, 100, 0, 1)
+script = ExtResource("1_48b7a")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=3 uid="uid://reit1f4jthf3"]
+[gd_scene load_steps=91 format=3 uid="uid://reit1f4jthf3"]
 
 [ext_resource type="Script" path="res://scripts/enemies/green_slime.gd" id="1_kitjp"]
 [ext_resource type="Texture2D" uid="uid://eny37osmjycx" path="res://icon.svg" id="2_0sjpc"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b0xk4atsmqnk7" path="res://art/slime 2.png" id="5_jws3e"]
 [ext_resource type="Texture2D" uid="uid://c8103cg1s0i8h" path="res://art/slime jump 1.png" id="6_q3a81"]
 [ext_resource type="Texture2D" uid="uid://pjcout05nvww" path="res://art/slime jump 2.png" id="7_vkmvn"]
+[ext_resource type="PackedScene" uid="uid://ccmwkars1n0na" path="res://scenes/UI_and_the_like/hp_bar.tscn" id="8_n7h3g"]
 
 [sub_resource type="Animation" id="Animation_kx0ak"]
 length = 0.001
@@ -941,5 +942,7 @@ offset_left = -19.0
 offset_top = -10.0
 offset_right = 21.0
 offset_bottom = 13.0
+
+[node name="hp_bar" parent="." instance=ExtResource("8_n7h3g")]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

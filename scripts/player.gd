@@ -2,13 +2,15 @@ class_name Player extends CharacterBody2D
 
 @export var speed = 100
 @export var animation_tree : AnimationTree
-@export var hp = 250
-var game_over_screen = load("res://scenes/UI_and_the_like/game_over_screen.tscn").instantiate()
+@export var max_hp = 250
 #@export var animation_player : AnimationPlayer
 
 @onready var coyote_timer_to_cast_spell = $CTimerToCastSpell
 @onready var coyote_timer_to_press_simoultaniously = $CTimerToPressSimoultaniously
+@onready var hp_bar = $hp_bar
 
+var hp = max_hp
+var game_over_screen = load("res://scenes/UI_and_the_like/game_over_screen.tscn").instantiate()
 var spelldata = SpellDatabase
 var input : Vector2
 #var playback : AnimationNodeStateMachinePlayback
@@ -22,7 +24,8 @@ var resistances_and_weaknesses : Dictionary
 
 
 func _ready():
-	pass
+	hp_bar.max_value = max_hp
+	hp_bar.value = hp
 	#playback = animation_tree["parameters/playback"]
 	#get_viewport().size = DisplayServer.screen_get_size()
 
@@ -157,10 +160,16 @@ func get_spell_by_name(name):
 			return spelldata[i]
 
 
+func update_hp_bar():
+	hp_bar.value = hp
+
+
 func take_damage(damage : int, damage_type : String):
 	if damage_type in resistances_and_weaknesses:
 		damage *= resistances_and_weaknesses.damage_type
 	hp -= damage
+	update_hp_bar()
+	print("player hp: ", hp)
 	if hp < 0:
 		die()
 

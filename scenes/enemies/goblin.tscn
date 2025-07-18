@@ -1,8 +1,9 @@
-[gd_scene load_steps=86 format=3 uid="uid://cx7gamb5b8mx3"]
+[gd_scene load_steps=87 format=3 uid="uid://cx7gamb5b8mx3"]
 
 [ext_resource type="Texture2D" uid="uid://b860wle2jujie" path="res://art/spridesheet_test_player_V2.png" id="1_j38nt"]
 [ext_resource type="Script" path="res://scripts/enemies/goblin.gd" id="1_ne1kd"]
 [ext_resource type="PackedScene" uid="uid://cn2bi5uhlbamd" path="res://scenes/other/vector_wheel.tscn" id="3_ue5on"]
+[ext_resource type="PackedScene" uid="uid://ccmwkars1n0na" path="res://scenes/UI_and_the_like/hp_bar.tscn" id="4_58xyb"]
 
 [sub_resource type="Animation" id="Animation_kx0ak"]
 length = 0.001
@@ -922,6 +923,12 @@ offset_top = -10.0
 offset_right = 21.0
 offset_bottom = 13.0
 
+[node name="hp_bar" parent="." instance=ExtResource("4_58xyb")]
+offset_left = -19.0
+offset_top = -21.0
+offset_right = 109.0
+offset_bottom = 107.0
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="body_entered" from="VisionField" to="." method="_on_vision_field_body_entered"]
 [connection signal="body_entered" from="VisionField" to="." method="singal_test"]
+[connection signal="body_entered" from="VisionField" to="." method="_on_vision_field_body_entered"]

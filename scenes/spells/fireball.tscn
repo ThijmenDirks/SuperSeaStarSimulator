@@ -7,13 +7,13 @@
 radius = 24.0208
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c3tof"]
-radius = 78.0064
+radius = 176.409
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0d406"]
-radius = 27.0
+radius = 37.0135
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t4vyy"]
-radius = 46.2709
+radius = 91.1373
 
 [sub_resource type="Animation" id="Animation_wn6at"]
 length = 0.001

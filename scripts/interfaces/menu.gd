@@ -1,6 +1,6 @@
 extends Node2D
 
-var testlevel2 = load("res://scenes/levels/testlevel2.tscn").instantiate()
+var testlevel2 = load("res://scenes/levels/test_level.tscn").instantiate()
 
 #"res://scenes/levels/test_level.tscn"
 # Called when the node enters the scene tree for the first time.

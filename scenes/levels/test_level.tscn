@@ -316,3 +316,36 @@ shape = SubResource("RectangleShape2D_b08o3")
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 position = Vector2(-169, 37)
 navigation_polygon = SubResource("NavigationPolygon_na4xt")
+
+[node name="CharacterBody2DG5" parent="." instance=ExtResource("3_nvebn")]
+position = Vector2(-194, -143)
+
+[node name="CharacterBody2DG6" parent="." instance=ExtResource("3_nvebn")]
+position = Vector2(241, -256)
+
+[node name="CharacterBody2DG7" parent="." instance=ExtResource("3_nvebn")]
+position = Vector2(-461, 315)
+
+[node name="CharacterBody2DG8" parent="." instance=ExtResource("3_nvebn")]
+position = Vector2(134, 154)
+
+[node name="CharacterBody2DG9" parent="." instance=ExtResource("3_nvebn")]
+position = Vector2(-367, -126)
+
+[node name="CharacterBody2DG10" parent="." instance=ExtResource("3_nvebn")]
+position = Vector2(-527, 144)
+
+[node name="CharacterBody2DG11" parent="." instance=ExtResource("3_nvebn")]
+position = Vector2(436, -114)
+
+[node name="CharacterBody2DG12" parent="." instance=ExtResource("3_nvebn")]
+position = Vector2(57, 354)
+
+[node name="CharacterBody2DG13" parent="." instance=ExtResource("3_nvebn")]
+position = Vector2(526, 164)
+
+[node name="CharacterBody2DG14" parent="." instance=ExtResource("3_nvebn")]
+position = Vector2(-236, 90)
+
+[node name="CharacterBody2DG15" parent="." instance=ExtResource("3_nvebn")]
+position = Vector2(419, 250)

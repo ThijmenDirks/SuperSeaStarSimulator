@@ -6,6 +6,7 @@ class_name Enemy extends  CharacterBody2D
 @onready var vision_field = $VisionField
 @onready var vector_wheel = $VectorWheel
 @onready var nav_agent = $NavigationAgent2D
+@onready var hp_bar = $hp_bar
 
 var speed : int
 var base_speed : int
@@ -73,6 +74,10 @@ enum STATES {
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	get_tree().create_timer(0)
+	
+	hp_bar.max_value = max_hp
+	hp_bar.value = hp
+
 	waypoint_area = Area2D.new() # gets automatically deleted when this function is done # ?
 	var waypoint_area_collision = CollisionShape2D.new()
 	waypoint_area_collision.shape = CircleShape2D.new()
@@ -172,7 +177,7 @@ func chase_state(delta, phase : String = "running"): # fpr when player is in sig
 			debug_label.set_text("CHASE")
 			if look_for_player_in_vision_field():
 				chase_target_position = chase_target.global_position
-			move(to_local(chase_target_position), delta)
+			#move(to_local(chase_target_position), delta)
 			if self.global_position.distance_to(chase_target.global_position) < 50:
 				debug_label.set_text("ATTACK!")
 				melee_attack_target = chase_target # dirty code. clean it
@@ -186,6 +191,8 @@ func chase_state(delta, phase : String = "running"): # fpr when player is in sig
 				else:
 					request_change_state(STATES.IDLE_WALK) # STATES.ALERTED ?
 			#debug_label.set_text("CHASE") # this line should be deleted
+			move(to_local(chase_target_position), delta)
+
 			print("STATES.CHASE RUNNING")
 		"exit":
 			print("STATES.CHASE EXIT")
@@ -275,10 +282,15 @@ func move(desired_walk_direction : Vector2, delta : float):
 	move_and_slide() 
 
 
+func update_hp_bar():
+	hp_bar.value = hp
+
+
 func take_damage(damage : int, damage_type : String):
 	if damage_type in resistances_and_weaknesses:
 		damage *= resistances_and_weaknesses.damage_type
 	hp -= damage
+	update_hp_bar()
 	if hp < 0:
 		die()
 
