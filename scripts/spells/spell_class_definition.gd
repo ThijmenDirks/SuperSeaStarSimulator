@@ -27,8 +27,9 @@ var caster : Object
 var origin_position: Vector2
 var direction
 var target_position : Vector2
+var ray_cast : RayCast2D
+var orb_cost : Dictionary
 
-var orb_cost : int
 var kleurenbalkje_change : int
 var texture
 var other_texture
@@ -70,6 +71,20 @@ func on_max_range():
 	pass
 
 
+func pay_mana(orb_cost : Dictionary):
+	print("nnn   ", caster)
+	var used_mana_thingies : Array
+	for child in caster.get_node("interface").get_mana_thingies():
+		if child.my_color in orb_cost:
+			used_mana_thingies.append(child)
+	for mana_thingy in used_mana_thingies:
+		if mana_thingy.filled_orbs < orb_cost.get(mana_thingy.my_color):
+			return false
+	for mana_thingy in used_mana_thingies:
+		mana_thingy.filled_orbs -= orb_cost.get(mana_thingy.my_color)
+	return true
+
+
 func change_kleurenbalkje(colors : Array):
 	var color_bar = caster.get_node("interface/Control/Kleurenbalkje/PanelContainer/HBoxContainer")
 	var used_color_bar = color_bar.get_color_bar("red")
@@ -79,22 +94,6 @@ func change_kleurenbalkje(colors : Array):
 		color_bar.keep_scales_fancy()
 	else:
 		used_color_bar.size_flags_stretch_ratio /= kleurenbalkje_change
-
-
-func pay_mana(colors : Array):
-	print("nnn   ", caster)
-	for child in caster.get_node("interface").get_children():
-		if child is ManaThingy:
-			if child.my_color == "red":
-				if orb_cost <= child.filled_orbs:
-					child.filled_orbs -= orb_cost
-					print("mana_thingy red FALSE ",child.filled_orbs)
-
-				else:
-					#print("gigantic miscast!") # wordt nu in fireball gedaan
-					return false
-	return true
-# watch out! now, for spells with multiple colors, it canhappen you pay one color but miscast because of other color
 
 
 func make_noise(noise):

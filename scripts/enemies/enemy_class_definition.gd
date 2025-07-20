@@ -102,7 +102,6 @@ func _process(delta: float) -> void:
 	var chase_target_placeholder =  look_for_player_in_vision_field()
 	if chase_target_placeholder and not state == STATES.CHASE:
 		chase_target = chase_target_placeholder
-		#print("enter") # please delete this line when done !
 		request_change_state(STATES.CHASE)
 	#if body is Player:
 		#if look_for_player_in_vision_field(body):

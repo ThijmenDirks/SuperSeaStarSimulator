@@ -1,12 +1,12 @@
 extends Spell
 
 
-@onready var ray_cast = $RayCast2D
+var has_exploded : bool = false
 
 func get_damage_by_explosion(base_damage, distance_enemy_to_center, aoe_size):
-	var distance_to_center_ratio : float =  (1 - float(distance_enemy_to_center/aoe_size)) # 1 op center, 0 op rand)
+	var distance_to_center_ratio : float =  (1 - float(float(distance_enemy_to_center)/float(aoe_size))) # 1 op center, 0 op rand)
 	print("HP   ", distance_to_center_ratio)
-	return (2 ** distance_to_center_ratio) * base_damage
+	return int((2 ** distance_to_center_ratio) * float(base_damage))
 
 
 func deal_damage(a,b):
@@ -30,6 +30,7 @@ func _ready():
 	kleurenbalkje_change = this_spell.spell_kleurenbalkje_change
 	orb_cost = this_spell.spell_orb_cost
 	speed = this_spell.spell_speed
+	ray_cast = $RayCast2D
 
 	origin_position = caster.position
 	#direction = origin_position.angle_to(get_global_mouse_position())
@@ -40,8 +41,8 @@ func _ready():
 	rotation += PI
 	print("max_range: ", max_range, "   position   ", position, "   global_position   ", global_position, "   target_position   ", target_position, "   length:   ", self.position.distance_to(origin_position))
 
-	if caster:
-		if pay_mana(["red"]):
+	if caster is Player:
+		if pay_mana(orb_cost):
 			change_kleurenbalkje(["red"])
 		else:
 			print("gigantic miscast!")
@@ -51,14 +52,12 @@ func _ready():
 func _physics_process(delta: float,) -> void:
 	#print("local ", get_local_mouse_position())
 	position = position.move_toward(target_position, speed * delta)
-	print("max_range: ", max_range, "   position   ", position, "   global_position   ", global_position, "   target_position   ", target_position, "   length:   ", self.position.distance_to(origin_position))
-	print(position, "   target_position   ", target_position)
-	print(position.length(), "   fff   ", self)
+	#print("max_range: ", max_range, "   position   ", position, "   global_position   ", global_position, "   target_position   ", target_position, "   length:   ", self.position.distance_to(origin_position))
+	#print(position, "   target_position   ", target_position)
+	#print(position.length(), "   fff   ", self)
 	if self.position.distance_to(origin_position) >= max_range or position == target_position:
 		on_max_range()
-	#if get_contact_count():
-		#print("big_explosion n")
-		#big_explosion()
+
 
 
 func on_max_range():
@@ -71,12 +70,11 @@ func _on_body_entered(body: Node) -> void:
 	explosion()
 
 
-# this gets called three times !
-# because on_max_range gets called every frame, and this thing esxists for three frames after first call
-# because of make_noise() await physics frame
-
 # porbalbly this should go to spell_class_definition
 func explosion(size : String = "big"):
+	if has_exploded:
+		return
+	has_exploded = true
 	var explosion_area
 	if size == "big":
 		explosion_area = $BigExplosion
@@ -121,8 +119,6 @@ func small_explosion():
 	#await get_tree().create_timer(1).timeout
 	queue_free()
 
-# it would be better to make one explosion(size) function...
-# with a single var explosion_area declared in an if statement based on size parameter
 
 func big_explosion():
 	var big_explosion_area = $BigExplosion
@@ -162,8 +158,8 @@ func cast_this_spell(caster):
 	
 	#self.position = caster.position # JUST FOR DEBUGING  PURPOSES! REMOVE ASAP !
 #------- hierzo kijken of je kan betalen
-	if caster: # == player	#CharacterBody2D/interface/kleurenalbkje/PanelContainer/HBoxContainer/@Panel@2
-		pay_mana(["red"])
+	#if caster: # == player	#CharacterBody2D/interface/kleurenalbkje/PanelContainer/HBoxContainer/@Panel@2
+		#pay_mana(["red"])
 #-------
 	print("boom")
 	print(this_spell)

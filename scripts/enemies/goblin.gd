@@ -9,7 +9,7 @@ const JUMP_VELOCITY = -400.0
 
 func _ready() -> void:
 	
-	base_speed = 1 # 50
+	base_speed = 50 # 50
 	speed = base_speed
 	look_for_player_area = $LookForPlayerArea
 	timer.start(1)
