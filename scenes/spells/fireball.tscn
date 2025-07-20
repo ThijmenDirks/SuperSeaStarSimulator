@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://cunitmhjmor4t"]
 
 [ext_resource type="Script" path="res://scripts/spells/fireball_func.gd" id="1_xhdr4"]
-[ext_resource type="Texture2D" uid="uid://b1360w2r0anxr" path="res://art/fireball anim.png" id="2_6cebx"]
+[ext_resource type="Texture2D" uid="uid://b1360w2r0anxr" path="res://art/fireball_anim.png" id="2_6cebx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bmfga"]
 radius = 24.0208
@@ -10,7 +10,7 @@ radius = 24.0208
 radius = 176.409
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0d406"]
-radius = 37.0135
+radius = 114.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t4vyy"]
 radius = 91.1373
@@ -76,6 +76,7 @@ shape = SubResource("CircleShape2D_bmfga")
 [node name="NoiseArea" type="Area2D" parent="."]
 
 [node name="NoiseAreaCollision" type="CollisionShape2D" parent="NoiseArea"]
+visible = false
 shape = SubResource("CircleShape2D_c3tof")
 
 [node name="SmallExplosion" type="Area2D" parent="."]
@@ -86,6 +87,7 @@ collision_mask = 11
 shape = SubResource("CircleShape2D_0d406")
 
 [node name="BigExplosion" type="Area2D" parent="."]
+visible = false
 collision_layer = 32
 collision_mask = 4
 
@@ -108,5 +110,9 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_to3ae")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+visible = false
+collision_mask = 2
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

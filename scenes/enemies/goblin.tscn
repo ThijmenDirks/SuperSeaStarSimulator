@@ -889,6 +889,7 @@ shape = SubResource("CircleShape2D_agn4q")
 one_shot = true
 
 [node name="VisionField" type="Area2D" parent="."]
+visible = false
 collision_mask = 64
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VisionField"]
@@ -910,7 +911,6 @@ visible = false
 shape = SubResource("CircleShape2D_st8s6")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-debug_enabled = true
 debug_use_custom = true
 debug_path_custom_color = Color(1, 0, 0, 1)
 debug_path_custom_line_width = 1.0
@@ -930,5 +930,5 @@ offset_right = 109.0
 offset_bottom = 107.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="body_entered" from="VisionField" to="." method="singal_test"]
 [connection signal="body_entered" from="VisionField" to="." method="_on_vision_field_body_entered"]
+[connection signal="body_entered" from="VisionField" to="." method="singal_test"]

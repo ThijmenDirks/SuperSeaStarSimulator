@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pjcout05nvww"
-path="res://.godot/imported/slime jump 2.png-78d93b868736233b717068b855237076.ctex"
+uid="uid://dr304t324bssf"
+path="res://.godot/imported/forest_base_tilesetv2.png-ad2015fb419f9b46e7796290aa4aaab8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/slime jump 2.png"
-dest_files=["res://.godot/imported/slime jump 2.png-78d93b868736233b717068b855237076.ctex"]
+source_file="res://art/forest_base_tilesetv2.png"
+dest_files=["res://.godot/imported/forest_base_tilesetv2.png-ad2015fb419f9b46e7796290aa4aaab8.ctex"]
 
 [params]
 

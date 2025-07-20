@@ -101,6 +101,9 @@ func make_noise(noise):
 	#is_making_noise = true
 	var noise_area = Area2D.new() # gets automatically eleted when this function is done # or do they?
 	var noise_area_collision = CollisionShape2D.new()
+	
+	noise_area.visible = false # 19-07 for debuging,pleace delete !
+	
 	noise_area_collision.shape = CircleShape2D.new()
 	#print("spell_area ", noise_area_collision.shape)
 	noise_area_collision.shape.radius = noise

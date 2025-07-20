@@ -170,7 +170,7 @@ func take_damage(damage : int, damage_type : String):
 	hp -= damage
 	update_hp_bar()
 	print("player hp: ", hp)
-	if hp < 0:
+	if hp <= 0:
 		die()
 
 
@@ -180,8 +180,8 @@ func die():
 	get_tree().paused = true
 
 
-
-
+func is_on_z_height(z : int, digit : int = 4):
+	return int((self.z_index / 10 ** (digit - 1)) % 10) == int((z / 10 ** (digit - 1)) % 10)
 
 
 

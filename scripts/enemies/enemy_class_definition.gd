@@ -343,12 +343,12 @@ func on_noise_heard(noise_source):
 
 
 func has_line_of_sight(from, to):
-	var raycast = $RayCast  # Reuse one raycast node
-	raycast.global_position = from
-	raycast.target_position = to
-	raycast.force_raycast_update()
+	var ray_cast = $RayCast  # Reuse one raycast node
+	ray_cast.global_position = from
+	ray_cast.target_position = to
+	ray_cast.force_raycast_update()
 	# if get_collider == to: return true else: false
-	return not raycast.is_colliding()
+	return not ray_cast.is_colliding()
 
 
 func look_for_player_in_vision_field():

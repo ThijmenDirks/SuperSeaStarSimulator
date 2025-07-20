@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=4 uid="uid://dbifjqhl4pa28"]
 
-[ext_resource type="Texture2D" uid="uid://dr304t324bssf" path="res://art/forest base tilesetv2.png" id="1_a526s"]
+[ext_resource type="Texture2D" uid="uid://dr304t324bssf" path="res://art/forest_base_tilesetv2.png" id="1_a526s"]
 [ext_resource type="PackedScene" uid="uid://bqhlp5wv10xgg" path="res://scenes/other/player.tscn" id="2_ao355"]
 [ext_resource type="PackedScene" uid="uid://cx7gamb5b8mx3" path="res://scenes/enemies/goblin.tscn" id="3_nvebn"]
 [ext_resource type="PackedScene" uid="uid://reit1f4jthf3" path="res://scenes/enemies/green_slime.tscn" id="4_vsvhc"]
@@ -319,33 +319,3 @@ navigation_polygon = SubResource("NavigationPolygon_na4xt")
 
 [node name="CharacterBody2DG5" parent="." instance=ExtResource("3_nvebn")]
 position = Vector2(-194, -143)
-
-[node name="CharacterBody2DG6" parent="." instance=ExtResource("3_nvebn")]
-position = Vector2(241, -256)
-
-[node name="CharacterBody2DG7" parent="." instance=ExtResource("3_nvebn")]
-position = Vector2(-461, 315)
-
-[node name="CharacterBody2DG8" parent="." instance=ExtResource("3_nvebn")]
-position = Vector2(134, 154)
-
-[node name="CharacterBody2DG9" parent="." instance=ExtResource("3_nvebn")]
-position = Vector2(-367, -126)
-
-[node name="CharacterBody2DG10" parent="." instance=ExtResource("3_nvebn")]
-position = Vector2(-527, 144)
-
-[node name="CharacterBody2DG11" parent="." instance=ExtResource("3_nvebn")]
-position = Vector2(436, -114)
-
-[node name="CharacterBody2DG12" parent="." instance=ExtResource("3_nvebn")]
-position = Vector2(57, 354)
-
-[node name="CharacterBody2DG13" parent="." instance=ExtResource("3_nvebn")]
-position = Vector2(526, 164)
-
-[node name="CharacterBody2DG14" parent="." instance=ExtResource("3_nvebn")]
-position = Vector2(-236, 90)
-
-[node name="CharacterBody2DG15" parent="." instance=ExtResource("3_nvebn")]
-position = Vector2(419, 250)

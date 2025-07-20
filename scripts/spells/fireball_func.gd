@@ -1,7 +1,7 @@
 extends Spell
 
 
-@onready var small_explosion_area = $SmallExplosion
+@onready var ray_cast = $RayCast2D
 
 func get_damage_by_explosion(base_damage, distance_enemy_to_center, aoe_size):
 	var distance_to_center_ratio : float =  (1 - float(distance_enemy_to_center/aoe_size)) # 1 op center, 0 op rand)
@@ -60,9 +60,44 @@ func _physics_process(delta: float,) -> void:
 		#print("big_explosion n")
 		#big_explosion()
 
+
 func on_max_range():
 	print("on_max_range")
-	small_explosion()
+	explosion("small")
+
+
+func _on_body_entered(body: Node) -> void:
+	print("big_explosion")
+	explosion()
+
+
+# this gets called three times !
+# because on_max_range gets called every frame, and this thing esxists for three frames after first call
+# because of make_noise() await physics frame
+
+# porbalbly this should go to spell_class_definition
+func explosion(size : String = "big"):
+	var explosion_area
+	if size == "big":
+		explosion_area = $BigExplosion
+	else:
+		explosion_area = $SmallExplosion
+	var hit_targets = explosion_area.get_overlapping_bodies()
+	for target in hit_targets:
+		if target is Enemy or target is Player:
+			#var ray_cast = RayCast2D.new() # uiteindeijk wil ik wel weer gewoon terug naar een raycast hergebruiken
+			ray_cast.set_collision_mask_value(1, false)
+			ray_cast.set_collision_mask_value(2, true)
+			add_child(ray_cast)
+			ray_cast.target_position = to_local(target.global_position)
+			#ray_cast.rotation -= rotation + PI
+			ray_cast.force_raycast_update()
+			print("coll   ", ray_cast.get_collider(), rotation_degrees)
+			if not ray_cast.is_colliding():
+				print("hit an enemy  ", target, "   damage:   ", get_damage_by_explosion(base_damage, self.global_position.distance_to(target.global_position) , aoe_size), damage_type)
+				target.take_damage(get_damage_by_explosion(base_damage, self.global_position.distance_to(target.global_position) , aoe_size), damage_type)
+	await make_noise(noise)
+	queue_free()
 
 
 func small_explosion():
@@ -71,25 +106,44 @@ func small_explosion():
 	var hit_enemies = small_explosion_area.get_overlapping_bodies()
 	for enemy in hit_enemies:
 		if enemy is Enemy or enemy is Player:
-			print("hit an enemy  ", enemy)
-			enemy.take_damage(get_damage_by_explosion(base_damage, self.global_position.distance_to(enemy.global_position) , aoe_size), damage_type)
+			var ray_cast = RayCast2D.new() # uiteindeijk wil ik wel weer gewoon terug naar een raycast hergebruiken
+			ray_cast.set_collision_mask_value(1, false)
+			ray_cast.set_collision_mask_value(2, true)
+			add_child(ray_cast)
+			ray_cast.target_position = to_local(enemy.global_position)
+			#ray_cast.rotation -= rotation + PI
+			ray_cast.force_raycast_update()
+			print("coll   ", ray_cast.get_collider(), rotation_degrees)
+			if not ray_cast.is_colliding():
+				print("hit an enemy  ", enemy)
+				enemy.take_damage(get_damage_by_explosion(base_damage, self.global_position.distance_to(enemy.global_position) , aoe_size), damage_type)
 	await make_noise(noise)
+	#await get_tree().create_timer(1).timeout
 	queue_free()
 
+# it would be better to make one explosion(size) function...
+# with a single var explosion_area declared in an if statement based on size parameter
 
 func big_explosion():
 	var big_explosion_area = $BigExplosion
 	var hit_enemies = big_explosion_area.get_overlapping_bodies()
+	print("coll   ", hit_enemies)
 	for enemy in hit_enemies:
-		if enemy is Enemy or Player:
-			print("hit an enemy  ", enemy)
-			enemy.take_damage(get_damage_by_explosion(base_damage, self.global_position.distance_to(enemy.global_position) , aoe_size), damage_type)
+		if enemy is Enemy or enemy is Player:
+			var ray_cast = RayCast2D.new()
+			ray_cast.set_collision_mask_value(1, false)
+			ray_cast.set_collision_mask_value(2, true)
+			add_child(ray_cast)
+			ray_cast.target_position = to_local(enemy.global_position)
+			#ray_cast.rotation -= rotation + PI
+			ray_cast.force_raycast_update()
+			print("collider   ", ray_cast.get_collider())
+			if not ray_cast.is_colliding():
+				print("hit an enemy  ", enemy)
+				enemy.take_damage(get_damage_by_explosion(base_damage, self.global_position.distance_to(enemy.global_position) , aoe_size), damage_type)
 	await make_noise(noise)
+	#await get_tree().create_timer(1).timeout
 	queue_free()
-
-func _on_body_entered(body: Node) -> void:
-	print("big_explosion")
-	big_explosion()
 
 
 func cast_this_spell(caster):

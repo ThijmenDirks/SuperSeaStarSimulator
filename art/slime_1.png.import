@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dr304t324bssf"
-path="res://.godot/imported/forest base tilesetv2.png-8c4f7b5125d2bdf7c38babcad16e3ad4.ctex"
+uid="uid://c2ir4uvppn44l"
+path="res://.godot/imported/slime_1.png-5e178c293c5871593bee284473d28bd8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/forest base tilesetv2.png"
-dest_files=["res://.godot/imported/forest base tilesetv2.png-8c4f7b5125d2bdf7c38babcad16e3ad4.ctex"]
+source_file="res://art/slime_1.png"
+dest_files=["res://.godot/imported/slime_1.png-5e178c293c5871593bee284473d28bd8.ctex"]
 
 [params]
 
