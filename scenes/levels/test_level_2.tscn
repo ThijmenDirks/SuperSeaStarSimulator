@@ -368,7 +368,7 @@ terrain_set_0/terrain_1/color = Color(0.210527, 0.502509, 0.423039, 1)
 sources/0 = SubResource("TileSetAtlasSource_78h7i")
 sources/1 = SubResource("TileSetAtlasSource_5ope2")
 
-[node name="Testlevel2" type="Node2D"]
+[node name="TestLevel2" type="Node2D"]
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 position = Vector2(66, 1.99999)

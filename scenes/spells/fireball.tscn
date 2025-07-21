@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://cunitmhjmor4t"]
 
-[ext_resource type="Script" path="res://scripts/spells/fireball_func.gd" id="1_xhdr4"]
+[ext_resource type="Script" path="res://scripts/spells/fireball.gd" id="1_xhdr4"]
 [ext_resource type="Texture2D" uid="uid://b1360w2r0anxr" path="res://art/fireball_anim.png" id="2_6cebx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bmfga"]

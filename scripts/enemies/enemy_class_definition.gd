@@ -112,6 +112,8 @@ func _process(delta: float) -> void:
 
 func update_state(delta):
 	match(state):
+		STATES.IDLE_STAND:
+			idle_stand(delta)
 		STATES.IDLE_WALK:
 			idle_walk(delta)
 		STATES.PATHFIND:
@@ -126,7 +128,7 @@ func request_change_state(new_state):
 	pass
 
 
-func state_template(phase = "running"):
+func state_template(phase : String = "running"):
 	match phase:
 		"enter":
 			pass
@@ -136,26 +138,30 @@ func state_template(phase = "running"):
 			pass
 
 
-func idle_stand(phase = "running"):
+func idle_stand(time : float = 0.0, phase : String = "running"):
 	match phase:
 		"enter":
 			velocity = Vector2.ZERO
+			await get_tree().create_timer(time).timeout
+			request_change_state(STATES.IDLE_WALK)
+			#debug_label.set_text("IDLE.STAND")
 		"running":
-			debug_label.set_text("IDLE.STAND")
 			pass
+			debug_label.set_text("IDLE.STAND")
 		"exit":
 			pass
 
 
-func idle_walk(delta : float, phase : String = "running"):
+func idle_walk(delta : float, time : float = 0.0, phase : String = "running"):
 	match phase:
 		"enter":
-			#desired_walk_direction = Vector2(randf_range(-1, 1), randf_range(-1, 1))
+			desired_walk_direction = Vector2(randf_range(-1, 1), randf_range(-1, 1))
 			# deze line moet wel weer aan
-			print("idle_walk enter")
 			speed = base_speed
+			await get_tree().create_timer(time).timeout
+			request_change_state(STATES.IDLE_STAND)
 		"running":
-			desired_walk_direction = get_local_mouse_position()
+			#desired_walk_direction = get_local_mouse_position()
 			move(desired_walk_direction, delta)
 			#move_and_slide()
 			#print("goblinwalk ", velocity, speed)
@@ -283,6 +289,13 @@ func move(desired_walk_direction : Vector2, delta : float):
 
 func update_hp_bar():
 	hp_bar.value = hp
+
+
+func take_healing(healing : int, healing_type : String):
+	if healing_type in resistances_and_weaknesses: # should this be a thing ?
+		healing *= resistances_and_weaknesses.damage_type
+	hp += healing
+	update_hp_bar()
 
 
 func take_damage(damage : int, damage_type : String):

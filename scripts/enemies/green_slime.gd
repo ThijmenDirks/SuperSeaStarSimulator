@@ -16,6 +16,7 @@ func _ready() -> void:
 	speed = 50
 	jump_hight = 20
 	state = STATES.IDLE_WALK
+	idle_stand(randi_range(3, 3), "enter")
 	look_for_player_area = $LookForPlayerArea
 	print("slime_", state)
 	timer.start(1)
@@ -41,27 +42,27 @@ func _physics_process(delta: float) -> void:
 			pass
 
 
-func change_state():
-	if state == STATES.IDLE_STAND:
-		state = STATES.JUMP
-		#walk()
-		#jump(0.0)
-		print("slime_jumpp")
-		timer.start(jump_duration)
-		var direction_angle = randf_range(0.0, TAU) # TAU = 2 * PI
-		direction = Vector2(cos(direction_angle), sin(direction_angle)).normalized()
-		#velocity = direction * speed
-		velocity = Vector2(cos(direction_angle), sin(direction_angle)) * speed
-		velocity = Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0)).normalized() * speed
-
-
-	elif state == STATES.IDLE_WALK:
-		state = STATES.IDLE_STAND
-		print("WARNING! SOMETHING GOES WRONG")
-		#idle() # ?
-	elif state == STATES.JUMP:
-		state = STATES.IDLE_STAND
-		timer.start(3)
+#func change_state():
+	#if state == STATES.IDLE_STAND:
+		#state = STATES.JUMP
+		##walk()
+		##jump(0.0)
+		#print("slime_jumpp")
+		#timer.start(jump_duration)
+		#var direction_angle = randf_range(0.0, TAU) # TAU = 2 * PI
+		#direction = Vector2(cos(direction_angle), sin(direction_angle)).normalized()
+		##velocity = direction * speed
+		#velocity = Vector2(cos(direction_angle), sin(direction_angle)) * speed
+		#velocity = Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0)).normalized() * speed
+#
+#
+	#elif state == STATES.IDLE_WALK:
+		#state = STATES.IDLE_STAND
+		#print("WARN1NG! SOMETHING GOES WRONG")
+		##idle() # ?
+	#elif state == STATES.JUMP:
+		#state = STATES.IDLE_STAND
+		#timer.start(3)
 
 
 func update_animation_parameters():
@@ -74,9 +75,9 @@ func update_animation_parameters():
 	animation_tree["parameters/WalkCast/blend_position"] = velocity
 
 
-func _on_timer_timeout() -> void:
-	print("slime_timout")
-	change_state()
+#func _on_timer_timeout() -> void:
+	#print("slime_timout")
+	#change_state()
 #---
 	#if state == IDLE:
 		#state = JUMP

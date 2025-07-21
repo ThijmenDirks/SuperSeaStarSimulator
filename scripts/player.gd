@@ -2,12 +2,12 @@ class_name Player extends CharacterBody2D
 
 @export var speed = 100
 @export var animation_tree : AnimationTree
-@export var max_hp = 25000000
+@export var max_hp = 250
 #@export var animation_player : AnimationPlayer
 
 @onready var coyote_timer_to_cast_spell = $CTimerToCastSpell
 @onready var coyote_timer_to_press_simoultaniously = $CTimerToPressSimoultaniously
-@onready var hp_bar = $hp_bar
+@onready var hp_bar = $HPBar
 
 var hp = max_hp
 var game_over_screen = load("res://scenes/UI_and_the_like/game_over_screen.tscn").instantiate()
@@ -162,6 +162,13 @@ func get_spell_by_name(name):
 
 func update_hp_bar():
 	hp_bar.value = hp
+
+
+func take_healing(healing : int, healing_type : String):
+	if healing_type in resistances_and_weaknesses: # should this be a thing ?
+		healing *= resistances_and_weaknesses.damage_type
+	hp += healing
+	update_hp_bar()
 
 
 func take_damage(damage : int, damage_type : String):

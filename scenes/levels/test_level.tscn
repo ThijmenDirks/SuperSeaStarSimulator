@@ -258,7 +258,7 @@ vertices = PackedVector2Array(531.688, -33.9766, 1677.87, 559.063, -1038.45, 577
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 2, 4, 5), PackedInt32Array(5, 4, 6, 7), PackedInt32Array(6, 1, 0, 7)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-1107, -696, 1673, -641, 1688, 569, -1048, 588), PackedVector2Array(-160, -58, -161, -45, 521, -44, 520, -59)])
 
-[node name="test_level" type="Node2D"]
+[node name="TestLevel" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(64, 2.99999)
@@ -302,14 +302,14 @@ shape = SubResource("RectangleShape2D_kbsjh")
 [node name="Node2D" parent="Area2D" instance=ExtResource("6_jnk05")]
 position = Vector2(366, 48)
 
-[node name="temporary_wall" type="StaticBody2D" parent="."]
+[node name="TemporaryWall" type="StaticBody2D" parent="."]
 collision_layer = 67
 
-[node name="Sprite2D" type="Sprite2D" parent="temporary_wall"]
+[node name="Sprite2D" type="Sprite2D" parent="TemporaryWall"]
 position = Vector2(10.5, -14.5)
 scale = Vector2(4.25625, 0.133929)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="temporary_wall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TemporaryWall"]
 position = Vector2(12.75, -14)
 shape = SubResource("RectangleShape2D_b08o3")
 

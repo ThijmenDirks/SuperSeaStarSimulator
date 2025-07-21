@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/interfaces/hp_bar.gd" id="1_48b7a"]
 [ext_resource type="Texture2D" uid="uid://eny37osmjycx" path="res://icon.svg" id="1_klj2q"]
 
-[node name="hp_bar" type="TextureProgressBar"]
+[node name="HPBar" type="TextureProgressBar"]
 offset_right = 128.0
 offset_bottom = 128.0
 scale = Vector2(0.3, 0.05)

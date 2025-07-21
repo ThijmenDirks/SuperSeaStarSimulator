@@ -20,14 +20,25 @@ var fireball = {
 	"spell_is_targetable" = true,
 	"spell_range" = 3000,
 	"spell_speed" = 200,
-	"spell_function" = load("res://scripts/spells/fireball_func.gd"),# NIET ".BOOM()", MAAR BIJ ELKE CAST NIEUWE INSTANCE VAN FUNCTIE, ANDERS WORDT ER GEOVERWRITED BIJ SPAMMEN! + gebruik await in functie zodat de animatie niet direct weer wordt verwijderd
+	"spell_function" = load("res://scripts/spells/fireball.gd"),# NIET ".BOOM()", MAAR BIJ ELKE CAST NIEUWE INSTANCE VAN FUNCTIE, ANDERS WORDT ER GEOVERWRITED BIJ SPAMMEN! + gebruik await in functie zodat de animatie niet direct weer wordt verwijderd
 	"spell_scene" = load("res://scenes/spells/fireball.tscn")
 	}
 
 var heal = {
 	"spell_name" = "heal",
 	"spell_recipe" = ["qe"],
-}
+	"spell_type" = "healing",
+	"spell_target" = "single_target",
+	"spell_healing" = 50.0,
+	"spell_healing_type" = "bandage", # ?
+	"spell_kleurenbalkje_change" = 4,
+	"spell_orb_cost" = {"green" = 2, "blue" = 1},
+	"spell_noise" = 20, #amount of (???)(pixels?) ditance in witch enemies are warned. this, or something else, might get multyplied for some enemies.
+	"spell_is_targetable" = true,
+	"spell_range" = 300,
+	"spell_function" = load("res://scripts/spells/heal.gd"),# NIET ".BOOM()", MAAR BIJ ELKE CAST NIEUWE INSTANCE VAN FUNCTIE, ANDERS WORDT ER GEOVERWRITED BIJ SPAMMEN! + gebruik await in functie zodat de animatie niet direct weer wordt verwijderd
+	"spell_scene" = load("res://scenes/spells/heal.tscn")
+	}
 
 var iceblast = {
 	"spell_name" = "iceblast",

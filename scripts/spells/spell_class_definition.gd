@@ -29,6 +29,7 @@ var direction
 var target_position : Vector2
 var ray_cast : RayCast2D
 var orb_cost : Dictionary
+var target
 
 var kleurenbalkje_change : int
 var texture
@@ -87,13 +88,23 @@ func pay_mana(orb_cost : Dictionary):
 
 func change_kleurenbalkje(colors : Array):
 	var color_bar = caster.get_node("interface/Control/Kleurenbalkje/PanelContainer/HBoxContainer")
-	var used_color_bar = color_bar.get_color_bar("red")
-	#print("kleurkleurkl ", caster.get_node("interface/Control/Kleurenbalkje/PanelContainer/HBoxContainer").get_color_bar("red").size_flags_stretch_ratio)
-	if used_color_bar.size_flags_stretch_ratio == 1.0:
-		used_color_bar.size_flags_stretch_ratio /= kleurenbalkje_change
-		color_bar.keep_scales_fancy()
-	else:
-		used_color_bar.size_flags_stretch_ratio /= kleurenbalkje_change
+	for color in colors:
+		var used_color_bar = color_bar.get_color_bar(color)
+		if used_color_bar.size_flags_stretch_ratio == 1.0:
+			used_color_bar.size_flags_stretch_ratio /= kleurenbalkje_change
+			color_bar.keep_scales_fancy()
+		else:
+			used_color_bar.size_flags_stretch_ratio /= kleurenbalkje_change
+
+
+func get_multiplier(orb_cost):
+	var color_bar = caster.get_node("interface/Control/Kleurenbalkje/PanelContainer/HBoxContainer")
+	var total = 0
+	var amount = 0
+	for color in orb_cost:
+		total += color_bar.get_color_bar(color).size_flags_stretch_ratio * orb_cost.get(color)
+		amount += orb_cost.get(color)
+	return total / amount
 
 
 func make_noise(noise):
@@ -137,3 +148,16 @@ func make_noise(noise):
 				temporary_counter += 1
 	print("noisee ", temporary_counter)
 	temporary_counter = 0
+
+
+func get_body_at_position_with_area(position: Vector2):# -> Node2D:
+	var area = $Area2D
+	await get_tree().physics_frame
+	await get_tree().physics_frame
+	var bodies = area.get_overlapping_bodies()
+	print("hhh bodies: ", bodies)
+	if bodies.size() > 0:
+		if bodies.size() > 1:
+			print("you might want to take a look at this. spell_class_definition -> get_body_at_position_with_area")
+		return bodies[0]
+	return null

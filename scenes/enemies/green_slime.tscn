@@ -944,10 +944,9 @@ offset_right = 21.0
 offset_bottom = 13.0
 
 [node name="hp_bar" parent="." instance=ExtResource("8_n7h3g")]
-offset_left = -24.0
-offset_top = -18.0
-offset_right = 104.0
-offset_bottom = 110.0
-scale = Vector2(0.3, 0.3)
+offset_left = -22.0
+offset_top = -30.0
+offset_right = 106.0
+offset_bottom = 98.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

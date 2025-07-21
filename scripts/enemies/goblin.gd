@@ -15,9 +15,9 @@ func _ready() -> void:
 	timer.start(1)
 	attack_damage = 50
 
-	state = STATES.IDLE_WALK
-	# deze code moet wel weer weg
-	# niet gewoon deze line?
+	state = STATES.IDLE_STAND
+	idle_stand(randi_range(3, 3), "enter")
+
 
 func _physics_process(delta: float) -> void:
 	print("goblin_state: ", state)
@@ -30,6 +30,8 @@ func request_change_state(new_state):
 			change_state(STATES.CHASE)
 		STATES.PATHFIND:
 			change_state(STATES.PATHFIND)
+		STATES.IDLE_STAND:
+			change_state(STATES.IDLE_STAND)
 		STATES.IDLE_WALK:
 			change_state(STATES.IDLE_WALK)
 		STATES.MELEE_ATTACK:
@@ -37,17 +39,17 @@ func request_change_state(new_state):
 
 
 func change_state(new_state):
-# right now im changing state here, but might do that in state funcionts self because of on_stae("exit"): state = state.last
+# right now im changing state here, but might do that in state funcionts self because of on_stae("exit"): state = state.last # i dont think so..
 	if state_is_locked:
 		return
 	state_history.append(state)
 	match new_state:
 		STATES.IDLE_STAND:
 			state = STATES.IDLE_STAND
-			idle_stand("enter")
+			idle_stand(randi_range(3, 5), "enter")
 		STATES.IDLE_WALK:
 			state = STATES.IDLE_WALK
-			idle_walk(0, "enter")
+			idle_walk(0, randi_range(3, 5), "enter")
 		STATES.CHASE:
 			state = STATES.CHASE
 			chase_state(0, "enter")

@@ -904,7 +904,7 @@ visible = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_a78xc")
 
-[node name="hp_bar" parent="." instance=ExtResource("4_82o1e")]
+[node name="HPBar" parent="." instance=ExtResource("4_82o1e")]
 offset_left = -19.0
 offset_top = -26.0
 offset_right = 109.0

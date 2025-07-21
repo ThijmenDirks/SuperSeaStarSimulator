@@ -3,6 +3,7 @@ extends Spell
 
 var has_exploded : bool = false
 
+
 func get_damage_by_explosion(base_damage, distance_enemy_to_center, aoe_size):
 	var distance_to_center_ratio : float =  (1 - float(float(distance_enemy_to_center)/float(aoe_size))) # 1 op center, 0 op rand)
 	print("HP   ", distance_to_center_ratio)
@@ -17,6 +18,7 @@ func deal_damage(a,b):
 
 
 func _ready():
+	print("you cast ", self.name, " !")
 	print("nnn   ", caster)
 	texture = load("res://art/Small-8-Direction-Characters_by_AxulArt/Small-8-Direction-Characters_by_AxulArt.png")
 	other_texture = $Sprite2D
