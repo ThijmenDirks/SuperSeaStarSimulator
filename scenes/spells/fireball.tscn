@@ -112,7 +112,6 @@ advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-visible = false
 collision_mask = 2
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

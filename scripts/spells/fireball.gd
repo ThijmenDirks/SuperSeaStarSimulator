@@ -88,7 +88,7 @@ func explosion(size : String = "big"):
 			#var ray_cast = RayCast2D.new() # uiteindeijk wil ik wel weer gewoon terug naar een raycast hergebruiken
 			ray_cast.set_collision_mask_value(1, false)
 			ray_cast.set_collision_mask_value(2, true)
-			add_child(ray_cast)
+			#add_child(ray_cast)
 			ray_cast.target_position = to_local(target.global_position)
 			#ray_cast.rotation -= rotation + PI
 			ray_cast.force_raycast_update()

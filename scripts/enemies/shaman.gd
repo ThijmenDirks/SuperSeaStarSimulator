@@ -7,6 +7,8 @@ const JUMP_VELOCITY = -400.0
 
 @onready var timer = $Timer
 
+var spell_that_will_be_cast : String
+
 func _ready() -> void:
 	
 	base_speed = 30 # 50
@@ -14,6 +16,8 @@ func _ready() -> void:
 	look_for_player_area = $LookForPlayerArea
 	timer.start(1)
 	attack_damage = 50
+	spells_known = ["heal", "fireball"]
+	animation_tree = $AnimationTree
 
 	state = STATES.IDLE_STAND
 	idle_stand(randi_range(3, 3), "enter") # shuoldnt you just call change_state(IDLE_STAND) ?
@@ -22,6 +26,25 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	print("goblin_state: ", state)
 	update_animation_parameters()
+
+
+func on_something_in_vision_field(bodies : Array):
+	print("on_something_in_vision_field 1")
+	if enemy_in_vision_field:
+		print("on_something_in_vision_field 2")
+		for body in bodies:
+			print("on_something_in_vision_field 3")
+			if body is Enemy:
+				print("on_something_in_vision_field 4")
+				if body.hp < body.max_hp:
+					print($HealAbilityCooldownTimer.is_stopped(), "   HealAbilityCooldownTimer   ", $HealAbilityCooldownTimer.time_left)
+					if $HealAbilityCooldownTimer.is_stopped():
+						print("on_something_in_vision_field 5")
+						spell_target = body.global_position #+ Vector2(randi_range(-100, 100), randi_range(-100, 100))
+						spell_that_will_be_cast = "heal"
+						used_timer = $HealAbilityCooldownTimer
+						request_change_state(STATES.CAST)
+						return
 
 
 func request_change_state(new_state):
@@ -36,6 +59,10 @@ func request_change_state(new_state):
 			change_state(STATES.IDLE_WALK)
 		STATES.MELEE_ATTACK:
 			change_state(STATES.MELEE_ATTACK)
+		STATES.CHASE:
+			pass
+		STATES.CAST:
+			change_state(STATES.CAST)
 
 
 func change_state(new_state):
@@ -54,11 +81,14 @@ func change_state(new_state):
 			state = STATES.CHASE
 			chase_state(0, "enter")
 		STATES.PATHFIND:
-			pathfind_state(0, "enter")
 			state = STATES.PATHFIND
-		STATES.MELEE_ATTACK:
-			melee_attack_state(0, "enter")
+			pathfind_state(0, "enter")
+		#STATES.MELEE_ATTACK:
+			#melee_attack_state(0, "enter")
 			state = STATES.MELEE_ATTACK
+		STATES.CAST:
+			state = STATES.CAST
+			casting_state(spell_that_will_be_cast, spell_target, "enter")
 
 	#if state == STATES.IDLE_STAND:
 		#state = STATES.IDLE_WALK
@@ -79,7 +109,7 @@ func update_animation_parameters():
 	animation_tree["parameters/IdleCast/blend_position"] = velocity
 	animation_tree["parameters/WalkCast/blend_position"] = velocity
 
-# dit spul moet wel weer aan
+
 #func _on_timer_timeout() -> void:
 	#match state:
 		#STATES.IDLE_STAND:

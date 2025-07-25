@@ -1,13 +1,9 @@
-[gd_scene load_steps=91 format=3 uid="uid://reit1f4jthf3"]
+[gd_scene load_steps=87 format=3 uid="uid://dnuh18goaw1bu"]
 
-[ext_resource type="Script" path="res://scripts/enemies/green_slime.gd" id="1_kitjp"]
-[ext_resource type="Texture2D" uid="uid://eny37osmjycx" path="res://icon.svg" id="2_0sjpc"]
-[ext_resource type="Texture2D" uid="uid://b860wle2jujie" path="res://art/spridesheet_test_player_V2.png" id="2_pi5wj"]
-[ext_resource type="Texture2D" uid="uid://c2ir4uvppn44l" path="res://art/slime_1.png" id="4_537vl"]
-[ext_resource type="Texture2D" uid="uid://b0xk4atsmqnk7" path="res://art/slime_2.png" id="5_jws3e"]
-[ext_resource type="Texture2D" uid="uid://c8103cg1s0i8h" path="res://art/slime_jump_1.png" id="6_q3a81"]
-[ext_resource type="Texture2D" uid="uid://pjcout05nvww" path="res://art/slime_jump_2.png" id="7_vkmvn"]
-[ext_resource type="PackedScene" uid="uid://ccmwkars1n0na" path="res://scenes/UI_and_the_like/hp_bar.tscn" id="8_n7h3g"]
+[ext_resource type="Script" path="res://scripts/enemies/shaman.gd" id="1_3jecn"]
+[ext_resource type="Texture2D" uid="uid://b860wle2jujie" path="res://art/spridesheet_test_player_V2.png" id="2_tbssq"]
+[ext_resource type="PackedScene" uid="uid://cn2bi5uhlbamd" path="res://scenes/other/vector_wheel.tscn" id="3_3hxhx"]
+[ext_resource type="PackedScene" uid="uid://ccmwkars1n0na" path="res://scenes/UI_and_the_like/hp_bar.tscn" id="4_wbp34"]
 
 [sub_resource type="Animation" id="Animation_kx0ak"]
 length = 0.001
@@ -637,174 +633,174 @@ _data = {
 "walk_up_right": SubResource("Animation_grduc")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rbqqm"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5atum"]
 animation = &"idle_down"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f3r4d"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c43pw"]
 animation = &"idle_down_right"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4xk63"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_63mjc"]
 animation = &"idle_right"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fn1wx"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4j3nm"]
 animation = &"idle_up_right"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j6p8u"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sse68"]
 animation = &"idle_up"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l35ib"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_msjsy"]
 animation = &"idle_up_left"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c3f7v"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0p2gh"]
 animation = &"idle_left"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_e23ov"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_evlww"]
 animation = &"idle_down_left"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_w4kgv"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_rbqqm")
+blend_point_0/node = SubResource("AnimationNodeAnimation_5atum")
 blend_point_0/pos = Vector2(0, 1)
-blend_point_1/node = SubResource("AnimationNodeAnimation_f3r4d")
+blend_point_1/node = SubResource("AnimationNodeAnimation_c43pw")
 blend_point_1/pos = Vector2(0.6, 0.6)
-blend_point_2/node = SubResource("AnimationNodeAnimation_4xk63")
+blend_point_2/node = SubResource("AnimationNodeAnimation_63mjc")
 blend_point_2/pos = Vector2(1, 0)
-blend_point_3/node = SubResource("AnimationNodeAnimation_fn1wx")
+blend_point_3/node = SubResource("AnimationNodeAnimation_4j3nm")
 blend_point_3/pos = Vector2(0.6, -0.6)
-blend_point_4/node = SubResource("AnimationNodeAnimation_j6p8u")
+blend_point_4/node = SubResource("AnimationNodeAnimation_sse68")
 blend_point_4/pos = Vector2(0, -1)
-blend_point_5/node = SubResource("AnimationNodeAnimation_l35ib")
+blend_point_5/node = SubResource("AnimationNodeAnimation_msjsy")
 blend_point_5/pos = Vector2(-0.6, -0.6)
-blend_point_6/node = SubResource("AnimationNodeAnimation_c3f7v")
+blend_point_6/node = SubResource("AnimationNodeAnimation_0p2gh")
 blend_point_6/pos = Vector2(-1, 0)
-blend_point_7/node = SubResource("AnimationNodeAnimation_e23ov")
+blend_point_7/node = SubResource("AnimationNodeAnimation_evlww")
 blend_point_7/pos = Vector2(-0.6, 0.6)
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mmbxt"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6j8u8"]
 animation = &"idle_cast_down"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ombys"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7ydsb"]
 animation = &"idle_cast_left"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hcce6"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2naj4"]
 animation = &"idle_cast_up"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f4uyu"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_01swg"]
 animation = &"idle_cast_right"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1cuef"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yaran"]
 animation = &"idle_cast_down_right"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_82tpf"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4gg5p"]
 animation = &"idle_cast_up_right"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3o6ws"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_815pk"]
 animation = &"idle_cast_down_left"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gwb87"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jclep"]
 animation = &"idle_cast_up_left"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_fg0ha"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_mmbxt")
+blend_point_0/node = SubResource("AnimationNodeAnimation_6j8u8")
 blend_point_0/pos = Vector2(0, 1)
-blend_point_1/node = SubResource("AnimationNodeAnimation_ombys")
+blend_point_1/node = SubResource("AnimationNodeAnimation_7ydsb")
 blend_point_1/pos = Vector2(-1, 0)
-blend_point_2/node = SubResource("AnimationNodeAnimation_hcce6")
+blend_point_2/node = SubResource("AnimationNodeAnimation_2naj4")
 blend_point_2/pos = Vector2(0, -1)
-blend_point_3/node = SubResource("AnimationNodeAnimation_f4uyu")
+blend_point_3/node = SubResource("AnimationNodeAnimation_01swg")
 blend_point_3/pos = Vector2(1, 0)
-blend_point_4/node = SubResource("AnimationNodeAnimation_1cuef")
+blend_point_4/node = SubResource("AnimationNodeAnimation_yaran")
 blend_point_4/pos = Vector2(0.7, 0.7)
-blend_point_5/node = SubResource("AnimationNodeAnimation_82tpf")
+blend_point_5/node = SubResource("AnimationNodeAnimation_4gg5p")
 blend_point_5/pos = Vector2(0.7, -0.7)
-blend_point_6/node = SubResource("AnimationNodeAnimation_3o6ws")
+blend_point_6/node = SubResource("AnimationNodeAnimation_815pk")
 blend_point_6/pos = Vector2(-0.7, 0.7)
-blend_point_7/node = SubResource("AnimationNodeAnimation_gwb87")
+blend_point_7/node = SubResource("AnimationNodeAnimation_jclep")
 blend_point_7/pos = Vector2(-0.7, -0.7)
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nmshn"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i8w5d"]
 animation = &"walk_down"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m6fut"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qln43"]
 animation = &"walk_down_right"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fu5m5"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kmave"]
 animation = &"walk_right"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kykx8"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fbt0t"]
 animation = &"walk_up_right"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7p5ww"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g83yc"]
 animation = &"walk_up"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_elwri"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6xncx"]
 animation = &"walk_up_left"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_da1on"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yyfx6"]
 animation = &"walk_left"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t7hdp"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vgath"]
 animation = &"walk_down_left"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_yup5s"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_nmshn")
+blend_point_0/node = SubResource("AnimationNodeAnimation_i8w5d")
 blend_point_0/pos = Vector2(0, 1)
-blend_point_1/node = SubResource("AnimationNodeAnimation_m6fut")
+blend_point_1/node = SubResource("AnimationNodeAnimation_qln43")
 blend_point_1/pos = Vector2(0.6, 0.6)
-blend_point_2/node = SubResource("AnimationNodeAnimation_fu5m5")
+blend_point_2/node = SubResource("AnimationNodeAnimation_kmave")
 blend_point_2/pos = Vector2(1, 0)
-blend_point_3/node = SubResource("AnimationNodeAnimation_kykx8")
+blend_point_3/node = SubResource("AnimationNodeAnimation_fbt0t")
 blend_point_3/pos = Vector2(0.6, -0.6)
-blend_point_4/node = SubResource("AnimationNodeAnimation_7p5ww")
+blend_point_4/node = SubResource("AnimationNodeAnimation_g83yc")
 blend_point_4/pos = Vector2(0, -1)
-blend_point_5/node = SubResource("AnimationNodeAnimation_elwri")
+blend_point_5/node = SubResource("AnimationNodeAnimation_6xncx")
 blend_point_5/pos = Vector2(-0.6, -0.6)
-blend_point_6/node = SubResource("AnimationNodeAnimation_da1on")
+blend_point_6/node = SubResource("AnimationNodeAnimation_yyfx6")
 blend_point_6/pos = Vector2(-1, 0)
-blend_point_7/node = SubResource("AnimationNodeAnimation_t7hdp")
+blend_point_7/node = SubResource("AnimationNodeAnimation_vgath")
 blend_point_7/pos = Vector2(-0.6, 0.6)
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_15ddg"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_msm5u"]
 animation = &"walk_cast_down"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aupi7"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vql20"]
 animation = &"walk_cast_right"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hgu6s"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a7yma"]
 animation = &"walk_cast_up"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n3bvt"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mcvm3"]
 animation = &"walk_cast_left"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_easv4"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_55h1v"]
 animation = &"walk_cast_down_left"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_djajq"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_64ps5"]
 animation = &"walk_cast_down_right"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uedwq"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2gxu5"]
 animation = &"idle_up_right"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w6pbu"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8of1u"]
 animation = &"walk_cast_up_left"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_cdgty"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_15ddg")
+blend_point_0/node = SubResource("AnimationNodeAnimation_msm5u")
 blend_point_0/pos = Vector2(0, 1)
-blend_point_1/node = SubResource("AnimationNodeAnimation_aupi7")
+blend_point_1/node = SubResource("AnimationNodeAnimation_vql20")
 blend_point_1/pos = Vector2(1, 0)
-blend_point_2/node = SubResource("AnimationNodeAnimation_hgu6s")
+blend_point_2/node = SubResource("AnimationNodeAnimation_a7yma")
 blend_point_2/pos = Vector2(0, -1)
-blend_point_3/node = SubResource("AnimationNodeAnimation_n3bvt")
+blend_point_3/node = SubResource("AnimationNodeAnimation_mcvm3")
 blend_point_3/pos = Vector2(-1, 0)
-blend_point_4/node = SubResource("AnimationNodeAnimation_easv4")
+blend_point_4/node = SubResource("AnimationNodeAnimation_55h1v")
 blend_point_4/pos = Vector2(-0.7, 0.7)
-blend_point_5/node = SubResource("AnimationNodeAnimation_djajq")
+blend_point_5/node = SubResource("AnimationNodeAnimation_64ps5")
 blend_point_5/pos = Vector2(0.7, 0.7)
-blend_point_6/node = SubResource("AnimationNodeAnimation_uedwq")
+blend_point_6/node = SubResource("AnimationNodeAnimation_2gxu5")
 blend_point_6/pos = Vector2(0.7, -0.7)
-blend_point_7/node = SubResource("AnimationNodeAnimation_w6pbu")
+blend_point_7/node = SubResource("AnimationNodeAnimation_8of1u")
 blend_point_7/pos = Vector2(-0.7, -0.7)
 blend_mode = 1
 
@@ -859,21 +855,16 @@ graph_offset = Vector2(0, 48.0736)
 [sub_resource type="CircleShape2D" id="CircleShape2D_agn4q"]
 radius = 12.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_a7g13"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_st8s6"]
 radius = 224.377
 
 [node name="CharacterBody2DG" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree")]
 collision_layer = 541
-script = ExtResource("1_kitjp")
+script = ExtResource("1_3jecn")
 animation_tree = NodePath("AnimationTree")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(-3, 0)
-scale = Vector2(0.273438, 0.273438)
-texture = ExtResource("2_0sjpc")
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_pi5wj")
+texture = ExtResource("2_tbssq")
 hframes = 12
 vframes = 8
 
@@ -892,15 +883,14 @@ parameters/Walk/blend_position = Vector2(0, 0)
 parameters/WalkCast/blend_position = Vector2(-0.0205371, 0.931398)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-light_mask = 513
-visibility_layer = 513
 shape = SubResource("CircleShape2D_agn4q")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
 [node name="VisionField" type="Area2D" parent="."]
-collision_mask = 64
+collision_layer = 0
+collision_mask = 76
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VisionField"]
 position = Vector2(-0.178571, 0)
@@ -909,7 +899,8 @@ scale = Vector2(0.964286, 1)
 polygon = PackedVector2Array(-6.40746, 11, -189.964, 127.999, -185.814, -123.001, -8.48146, -5.00004)
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-collision_mask = 64
+target_position = Vector2(-90, 99)
+collision_mask = 2
 
 [node name="LookForPlayerArea" type="Area2D" parent="."]
 collision_layer = 0
@@ -917,25 +908,14 @@ collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LookForPlayerArea"]
 visible = false
-shape = SubResource("CircleShape2D_a7g13")
+shape = SubResource("CircleShape2D_st8s6")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_use_custom = true
+debug_path_custom_color = Color(1, 0, 0, 1)
+debug_path_custom_line_width = 1.0
 
-[node name="Slime1" type="Sprite2D" parent="."]
-position = Vector2(-21, -24)
-texture = ExtResource("4_537vl")
-
-[node name="Slime2" type="Sprite2D" parent="."]
-position = Vector2(26, -34)
-texture = ExtResource("5_jws3e")
-
-[node name="SlimeJump1" type="Sprite2D" parent="."]
-position = Vector2(-42, 8)
-texture = ExtResource("6_q3a81")
-
-[node name="SlimeJump2" type="Sprite2D" parent="."]
-position = Vector2(43, -10)
-texture = ExtResource("7_vkmvn")
+[node name="VectorWheel" parent="." instance=ExtResource("3_3hxhx")]
 
 [node name="DebugLabel" type="Label" parent="."]
 offset_left = -19.0
@@ -943,10 +923,23 @@ offset_top = -10.0
 offset_right = 21.0
 offset_bottom = 13.0
 
-[node name="HPBar" parent="." instance=ExtResource("8_n7h3g")]
-offset_left = -22.0
-offset_top = -30.0
-offset_right = 106.0
-offset_bottom = 98.0
+[node name="HPBar" parent="." instance=ExtResource("4_wbp34")]
+offset_left = -19.0
+offset_top = -21.0
+offset_right = 109.0
+offset_bottom = 107.0
+
+[node name="Label" type="Label" parent="."]
+offset_left = -35.0
+offset_top = -49.0
+offset_right = 35.0
+offset_bottom = -26.0
+text = "SHAMAN"
+
+[node name="HealAbilityCooldownTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="VisionField" to="." method="singal_test"]
+[connection signal="body_entered" from="VisionField" to="." method="_on_vision_field_body_entered"]

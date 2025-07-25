@@ -38,9 +38,9 @@ func _ready():
 			print("out of orbs miscast!")
 			return
 
-	if target_position.distance_to(to_local(caster.global_position)) > max_range:
-		print("range miscast!")
-		return
+		if target_position.distance_to(to_local(caster.global_position)) > max_range: # right now enemies are immune for this. do i want to keep it this way ?
+			print("range miscast!")
+			return
 
 	print("hhh  ", target)
 	if target:

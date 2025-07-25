@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://dbifjqhl4pa28"]
+[gd_scene load_steps=15 format=4 uid="uid://dbifjqhl4pa28"]
 
 [ext_resource type="Texture2D" uid="uid://dr304t324bssf" path="res://art/forest_base_tilesetv2.png" id="1_a526s"]
 [ext_resource type="PackedScene" uid="uid://bqhlp5wv10xgg" path="res://scenes/other/player.tscn" id="2_ao355"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://reit1f4jthf3" path="res://scenes/enemies/green_slime.tscn" id="4_vsvhc"]
 [ext_resource type="PackedScene" uid="uid://dbv11dm7ge4bt" path="res://scenes/other/moveable_block.tscn" id="5_hf8w6"]
 [ext_resource type="PackedScene" uid="uid://cw65fjbyen3ns" path="res://scenes/other/waypoint.tscn" id="6_jnk05"]
+[ext_resource type="PackedScene" uid="uid://dnuh18goaw1bu" path="res://scenes/enemies/shaman.tscn" id="7_s1mf4"]
 
 [sub_resource type="GDScript" id="GDScript_guruh"]
 script/source = "extends Sprite2D
@@ -276,12 +277,6 @@ tile_set = SubResource("TileSet_y5b3a")
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_ao355")]
 position = Vector2(2, -1)
 
-[node name="CharacterBody2DG" parent="." instance=ExtResource("3_nvebn")]
-position = Vector2(-7, -79)
-
-[node name="CharacterBody2DG2" parent="." instance=ExtResource("3_nvebn")]
-position = Vector2(-80, -93)
-
 [node name="CharacterBody2DG3" parent="." instance=ExtResource("4_vsvhc")]
 position = Vector2(38, -45)
 
@@ -318,4 +313,13 @@ position = Vector2(-169, 37)
 navigation_polygon = SubResource("NavigationPolygon_na4xt")
 
 [node name="CharacterBody2DG5" parent="." instance=ExtResource("3_nvebn")]
-position = Vector2(-194, -143)
+position = Vector2(-212, -221)
+
+[node name="CharacterBody2DG10" parent="." instance=ExtResource("7_s1mf4")]
+position = Vector2(-428, -136)
+
+[node name="CharacterBody2DG11" parent="." instance=ExtResource("7_s1mf4")]
+position = Vector2(-272, 133)
+
+[node name="CharacterBody2DG12" parent="." instance=ExtResource("3_nvebn")]
+position = Vector2(-209, 131)

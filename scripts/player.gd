@@ -11,7 +11,7 @@ class_name Player extends CharacterBody2D
 
 var hp = max_hp
 var game_over_screen = load("res://scenes/UI_and_the_like/game_over_screen.tscn").instantiate()
-var spelldata = SpellDatabase
+var spell_database = SpellDatabase
 var input : Vector2
 #var playback : AnimationNodeStateMachinePlayback
 var keys_for_spellcasting = ["q", "e", "z", "x", "c","F","shift","control","left_mouse_click","right_mouse_click","shift_left_mouse_click","shift_right_mouse_click"]
@@ -105,14 +105,15 @@ func _on_ctimer_to_press_simoultaniously_timeout() -> void:
 func _on_ctimer_to_cast_spell_timeout() -> void:
 	var spell_has_been_cast = false
 	for spell_that_is_about_to_be_cast in equiped_spells:
-		print(get_spell_by_name(spell_that_is_about_to_be_cast).spell_recipe)
+		#print(get_spell_by_name(spell_that_is_about_to_be_cast).spell_recipe)
 		print(current_spell_input)
-		if get_spell_by_name(spell_that_is_about_to_be_cast).spell_recipe == current_spell_input:
+		var spell_that_will_be_cast = spell_database.get_spell_by_name(spell_that_is_about_to_be_cast)
+		if spell_that_will_be_cast.spell_recipe == current_spell_input:
 			print("succesfully cast spell! ", (current_spell_input))
-			print("[[]]", get_spell_by_name(spell_that_is_about_to_be_cast))
-			print(get_spell_by_name(spell_that_is_about_to_be_cast)["spell_function"])
-			cast(get_spell_by_name(spell_that_is_about_to_be_cast))
-			#(get_spell_by_name(spell_that_is_about_to_be_cast)["functie"]).boom()
+			print("[[]]", spell_that_will_be_cast)#spell_that_will_be_cast)
+			print(spell_that_will_be_cast["spell_function"])
+			cast(spell_that_will_be_cast)
+			#(spell_that_will_be_cast["functie"]).boom()
 			#print("aaa", animation_tree.get("parameters/playback").get_current_node())
 			if velocity == Vector2.ZERO:
 				print("aaa")
@@ -120,12 +121,13 @@ func _on_ctimer_to_cast_spell_timeout() -> void:
 				#print("aaaa", animation_tree.get("parameters/playback").get_current_node())
 			else:
 				print("aaa")
-				#playback.travel("WalkCast")	
+				#playback.travel("WalkCast")
 				#print("aaaa", animation_tree.get("parameters/playback").get_current_node())
-			print(get_spell_by_name(spell_that_is_about_to_be_cast))
+				# ^ this part of code is quite old and most likely can bedeleted ( these 8 lines)
+			print(spell_that_will_be_cast)
 			spell_has_been_cast = true
 			is_casting = true
-			await get_tree().create_timer(0.3).timeout # for the animation
+			await get_tree().create_timer(0.3).timeout # for the animation # shouldnt this be before the actual casting?
 			is_casting = false
 	if not spell_has_been_cast:
 		print("Greater Miscast! ", (current_spell_input))
@@ -154,10 +156,10 @@ func cast(spell_that_is_being_cast):
  #NIET ".BOOM()", MAAR BIJ ELKE CAST NIEUWE INSTANCE VAN FUNCTIE, ANDERS WORDT ER GEOVERWRITED BIJ SPAMMEN! + gebruik await in functie zodat de animatie niet direct weer wordt verwijderd
 
 
-func get_spell_by_name(name):
-	for i in spelldata.get_names():
-		if i == name:
-			return spelldata[i]
+#func get_spell_by_name(name):
+	#for i in spelldata.get_names():
+		#if i == name:
+			#return spelldata[i]
 
 
 func update_hp_bar():

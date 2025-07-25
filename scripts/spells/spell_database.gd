@@ -6,6 +6,7 @@ extends Spell
 	#pass
 var test1304 = "1304"
 
+
 var fireball = {
 	"spell_name" = "fireball",
 	"spell_recipe" = ["q","z","x","x"],
@@ -29,7 +30,7 @@ var heal = {
 	"spell_recipe" = ["qe"],
 	"spell_type" = "healing",
 	"spell_target" = "single_target",
-	"spell_healing" = 50.0,
+	"spell_healing" = 50.0, # 50.0
 	"spell_healing_type" = "bandage", # ?
 	"spell_kleurenbalkje_change" = 4,
 	"spell_orb_cost" = {"green" = 2, "blue" = 1},
@@ -45,6 +46,8 @@ var iceblast = {
 	"spell_recipe" = ["c","q","x"],
 }
 
+var all_spells : Array = [fireball, heal]
+
 #func cast():
 	#print("cast ", name)
 	##explode()
@@ -55,3 +58,9 @@ func get_names():
 	#for spell in self.keys():
 		#spell_names.append(spell.name)
 	return ["fireball", "heal", "iceblast"]
+
+func get_spell_by_name(name : String):
+	for spell in all_spells:
+		if spell["spell_name"] == name:
+			return spell
+	return null

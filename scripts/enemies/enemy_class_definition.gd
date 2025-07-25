@@ -1,4 +1,5 @@
 class_name Enemy extends  CharacterBody2D
+# i shuld probably also make subclasses like casting_enemy, melee_enemy...
 
 @onready var debug_label = $DebugLabel
 
@@ -6,7 +7,7 @@ class_name Enemy extends  CharacterBody2D
 @onready var vision_field = $VisionField
 @onready var vector_wheel = $VectorWheel
 @onready var nav_agent = $NavigationAgent2D
-@onready var hp_bar = $hp_bar
+@onready var hp_bar = $HPBar
 
 var speed : int
 var base_speed : int
@@ -48,9 +49,23 @@ var pathfind_target_position : Vector2
 var chase_target
 var chase_target_position : Vector2
 var melee_attack_target
-var state_is_locked : bool = false
+var state_is_locked : bool = false # for things like melee_attack
+var spell_target : Vector2
 # at this point i should just do this with parameters (i think)
-# but then you have to constantly pass it through the state_machine
+# but then you have to constantly pass it through the state machine
+
+var spells_known : Array
+@onready var ability_cooldown_timer_1 = $AbilityCooldownTimer1 # so this wont be used anymore ?
+# ^ this mght need some proper ordening, for example: this is for buf/healing spells, ir this get s renamed to BufSpellCooldownTimer.
+# or somewheere in teh aruguments will be given whcih timer should be set
+# OR, there wlll be a new var about it !  : 
+var used_timer : Timer
+
+var player_in_vision_field : bool = false
+var enemy_in_vision_field : bool = false
+var wounded_in_vision_field : bool = false
+var spell_in_vision_field : bool = false
+var something_in_vision_field : bool = false
 
 var attack_damage : int
 var state_history : Array
@@ -99,15 +114,39 @@ func _process(delta: float) -> void:
 	#if HP != 0:
 		#print("HP", HP)
 	vision_field.rotation = velocity.angle()
-	var chase_target_placeholder =  look_for_player_in_vision_field()
-	if chase_target_placeholder and not state == STATES.CHASE:
-		chase_target = chase_target_placeholder
-		request_change_state(STATES.CHASE)
-	#if body is Player:
-		#if look_for_player_in_vision_field(body):
-			#chase_target = body
-			#change_state(STATES.CHASE)
+
+# the next for lines should get deleted because they will now be involved in on_something_in_vision_field()
+	var chase_target_placeholder =  look_for_player_in_vision_field()#
+	if chase_target_placeholder and not state == STATES.CHASE:#
+		chase_target = chase_target_placeholder#
+		request_change_state(STATES.CHASE)#
+
+	process_bodies_in_vision_field()
 	update_state(delta)
+
+
+func process_bodies_in_vision_field():
+	player_in_vision_field = false
+	enemy_in_vision_field = false
+	spell_in_vision_field = false
+	var bodies_in_vision_field = get_bodies_in_vision_field()
+	print("on_something_in_vision_field 0   ", bodies_in_vision_field)
+	for body in bodies_in_vision_field:
+		if body is Player:
+			player_in_vision_field = true
+			something_in_vision_field = true
+		if body is Enemy:
+			enemy_in_vision_field = true
+			something_in_vision_field = true
+		if body is Spell:
+			spell_in_vision_field = true
+			something_in_vision_field = true
+		if something_in_vision_field:
+			on_something_in_vision_field(bodies_in_vision_field)
+
+
+func on_something_in_vision_field(bodies : Array):
+	pass
 
 
 func update_state(delta):
@@ -122,6 +161,8 @@ func update_state(delta):
 			chase_state(delta)
 		STATES.MELEE_ATTACK:
 			melee_attack_state(delta)
+		STATES.CAST:
+			casting_state()
 
 
 func request_change_state(new_state):
@@ -141,7 +182,7 @@ func state_template(phase : String = "running"):
 func idle_stand(time : float = 0.0, phase : String = "running"):
 	match phase:
 		"enter":
-			velocity = Vector2.ZERO
+			velocity = Vector2.ZERO # this should not be necesary because move doesnt get called anyway
 			await get_tree().create_timer(time).timeout
 			request_change_state(STATES.IDLE_WALK)
 			#debug_label.set_text("IDLE.STAND")
@@ -156,12 +197,12 @@ func idle_walk(delta : float, time : float = 0.0, phase : String = "running"):
 	match phase:
 		"enter":
 			desired_walk_direction = Vector2(randf_range(-1, 1), randf_range(-1, 1))
-			# deze line moet wel weer aan
+			# ^ deze line moet wel weer aan
 			speed = base_speed
 			await get_tree().create_timer(time).timeout
 			request_change_state(STATES.IDLE_STAND)
 		"running":
-			#desired_walk_direction = get_local_mouse_position()
+			#desired_walk_direction = get_local_mouse_position() # thisl ine is just for debugging
 			move(desired_walk_direction, delta)
 			#move_and_slide()
 			#print("goblinwalk ", velocity, speed)
@@ -171,7 +212,7 @@ func idle_walk(delta : float, time : float = 0.0, phase : String = "running"):
 			pass
 
 
-func chase_state(delta, phase : String = "running"): # fpr when player is in sight
+func chase_state(delta, phase : String = "running"): # for when player is in sight
 # assuihng melee enemy:
 #run after coords were player last seen. once there, look around
 	match phase:
@@ -212,18 +253,9 @@ func pathfind_state(delta, phase : String = "running"):
 			#print("STATE.PATHFIND ENTER  ", nav_agent.target_position, "  ", pathfind_target_position)
 			speed = base_speed * 1.5
 		"running":
-			#nav_agent.target_position = pathfind_target_position#to_global(pathfind_target.position)
-			#print("STATE.PATHFIND ENTER  ", nav_agent.target_position, "  ", pathfind_target_position)
-
-			#nav_agent.target_position = target.position
-			#print("nnn ", nav_agent.get_next_path_position(), "   ", )#move(nav_agent.get_next_path_position(), delta))
 			move(nav_agent.get_next_path_position() - global_position, delta)
-			#print("LLL ", pathfind_target)
-			# ^ this line should come back
-			#velocity = nav_agent.get_next_path_position() - global_position # this line is just for debuging
 			print("STATES.PATHFIND RUNNING")
 			debug_label.set_text("PATHFIND")
-
 			# should make a function of the folowing block
 			#if self.global_position.distance_to(chase_target.global_position) < 100:
 				#debug_label.set_text("ATTACK!")
@@ -240,22 +272,11 @@ func pathfind_state(delta, phase : String = "running"):
 			pass
 
 
-#func melee_attack_state(delta, phase : String = "running"):#, target : Object = null):
-	#melee_attack_target
-	#var backup_speed = speed
-	#speed = 0
-	## await attack_animation
-	#await get_tree().create_timer(2).timeout
-	#if self.position.distance_to(melee_attack_target.position) < 50:
-		#print("enemy attacks !")
-		#melee_attack_target.take_damage(attack_damage, "physical")
-	#speed = backup_speed
-
-
 func melee_attack_state(delta, phase : String = "running"):#, target : Object = null):
 	match phase:
 		"enter":
 			print("STATES.MELEE_ATTACK ENTER")
+			debug_label.set_text("MELEE_ATTACK")
 			var backup_speed = speed
 			speed = 0
 			state_is_locked = true
@@ -266,6 +287,40 @@ func melee_attack_state(delta, phase : String = "running"):#, target : Object = 
 			speed = backup_speed
 			state_is_locked = false
 			request_change_state(get_last_state())
+		"running":
+			pass
+		"exit":
+			pass
+
+
+func casting_state(spell : String = "", target : Vector2 = Vector2.ZERO, phase : String = "running"): # do i really need a target parameter ?
+	match phase:
+		"enter":
+			debug_label.set_text("CASTING")
+
+			print("STATES.CASTING ENTER")
+			var backup_speed = speed
+			speed = 0
+			state_is_locked = true
+			print("AbilityCooldownTimer1 start")
+			used_timer.start()
+			#print("AbilityCooldownTimer1 stop")
+			await get_tree().create_timer(0.5).timeout # hiezo komt animatie
+			#print(ability_cooldown_timer_1)
+
+			var spell_that_is_about_to_be_cast = SpellDatabase.get_spell_by_name(spell)
+			var scene_of_spell_that_is_being_cast = spell_that_is_about_to_be_cast["spell_scene"].instantiate()
+			scene_of_spell_that_is_being_cast.position = spell_target
+			self.get_parent().add_child(scene_of_spell_that_is_being_cast)
+
+			speed = backup_speed
+			state_is_locked = false
+			# cooldown timer
+			print("state_history ", state_history)
+			print("on_something_in_vision_field 5 ", get_last_state())
+			request_change_state(get_last_state())
+			request_change_state(STATES.IDLE_STAND)
+
 		"running":
 			pass
 		"exit":
@@ -324,6 +379,7 @@ func drop_loot():
 
 
 func get_last_state():
+	print("state_history ", state_history)
 	if state_history[-1]:
 		return state_history[-1]
 	else:
@@ -363,9 +419,19 @@ func has_line_of_sight(from, to):
 	return not ray_cast.is_colliding()
 
 
+func get_bodies_in_vision_field():
+	var bodies_in_vision_field : Array
+	for body in vision_field.get_overlapping_bodies():
+		ray_cast.target_position = to_local(body.global_position)
+		ray_cast.force_raycast_update()
+		if not ray_cast.is_colliding():
+			bodies_in_vision_field.append(body)
+	return bodies_in_vision_field
+
+
 func look_for_player_in_vision_field():
 	for body in vision_field.get_overlapping_bodies():
-		if body == null or body is Player:
+		if body == null or body is Player: # why body == null ?
 			ray_cast.target_position = to_local(body.global_position)
 			ray_cast.force_raycast_update()
 			if ray_cast.get_collider() == body:

@@ -1,4 +1,4 @@
-extends Slime
+extends Slime # please dont forget to fix raycast collision masks !!
 
 #const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
@@ -8,7 +8,6 @@ var jump_duration = 1.0 # in sec
 @export var animation_tree : AnimationTree
 
 @onready var timer = $Timer
-
 
 func _ready() -> void:
 	max_hp= 200
