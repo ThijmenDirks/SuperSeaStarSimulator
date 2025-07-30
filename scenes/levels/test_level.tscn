@@ -322,4 +322,67 @@ position = Vector2(-428, -136)
 position = Vector2(-272, 133)
 
 [node name="CharacterBody2DG12" parent="." instance=ExtResource("3_nvebn")]
-position = Vector2(-209, 131)
+position = Vector2(-147, 197)
+
+[node name="CharacterBody2DG" parent="." instance=ExtResource("7_s1mf4")]
+position = Vector2(-435, 143)
+
+[node name="CharacterBody2DG2" parent="." instance=ExtResource("3_nvebn")]
+position = Vector2(-449, 26)
+
+[node name="CharacterBody2DG6" parent="." instance=ExtResource("3_nvebn")]
+position = Vector2(29, -201)
+
+[node name="CharacterBody2DG7" parent="." instance=ExtResource("7_s1mf4")]
+position = Vector2(-216, -122)
+
+[node name="CharacterBody2DG8" parent="." instance=ExtResource("7_s1mf4")]
+position = Vector2(-90, -164)
+
+[node name="CharacterBody2DG9" parent="." instance=ExtResource("3_nvebn")]
+position = Vector2(-341, -178)
+
+[node name="CharacterBody2DG13" parent="." instance=ExtResource("7_s1mf4")]
+position = Vector2(-383, -46)
+
+[node name="CharacterBody2DG14" parent="." instance=ExtResource("3_nvebn")]
+position = Vector2(340, 106)
+
+[node name="CharacterBody2DG15" parent="." instance=ExtResource("7_s1mf4")]
+position = Vector2(-975, -250)
+
+[node name="CharacterBody2DG16" parent="." instance=ExtResource("7_s1mf4")]
+position = Vector2(-1086, -234)
+
+[node name="CharacterBody2DG17" parent="." instance=ExtResource("7_s1mf4")]
+position = Vector2(-1036, -386)
+
+[node name="CharacterBody2DG18" parent="." instance=ExtResource("3_nvebn")]
+position = Vector2(-1165, 406)
+
+[node name="CharacterBody2DG19" parent="." instance=ExtResource("3_nvebn")]
+position = Vector2(-1183, 298)
+
+[node name="CharacterBody2DG20" parent="." instance=ExtResource("3_nvebn")]
+position = Vector2(-1101, 307)
+
+[node name="CharacterBody2DG21" parent="." instance=ExtResource("3_nvebn")]
+position = Vector2(-990, 450)
+
+[node name="CharacterBody2DG22" parent="." instance=ExtResource("3_nvebn")]
+position = Vector2(-1111, 399)
+
+[node name="CharacterBody2DG23" parent="." instance=ExtResource("7_s1mf4")]
+position = Vector2(739, -475)
+
+[node name="CharacterBody2DG24" parent="." instance=ExtResource("7_s1mf4")]
+position = Vector2(-331, 519)
+
+[node name="CharacterBody2DG25" parent="." instance=ExtResource("3_nvebn")]
+position = Vector2(998, 382)
+
+[node name="CharacterBody2DG26" parent="." instance=ExtResource("3_nvebn")]
+position = Vector2(1157, 156)
+
+[node name="CharacterBody2DG27" parent="." instance=ExtResource("3_nvebn")]
+position = Vector2(297, -542)

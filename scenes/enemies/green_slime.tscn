@@ -908,8 +908,10 @@ rotation = 3.14159
 scale = Vector2(0.964286, 1)
 polygon = PackedVector2Array(-6.40746, 11, -189.964, 127.999, -185.814, -123.001, -8.48146, -5.00004)
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="PlayerRayCast2D" type="RayCast2D" parent="."]
 collision_mask = 64
+
+[node name="WallRayCast2D2" type="RayCast2D" parent="."]
 
 [node name="LookForPlayerArea" type="Area2D" parent="."]
 collision_layer = 0

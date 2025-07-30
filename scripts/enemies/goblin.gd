@@ -8,8 +8,7 @@ const JUMP_VELOCITY = -400.0
 @onready var timer = $Timer
 
 func _ready() -> void:
-	
-	base_speed = 30 # 50
+	base_speed = 45 # 50
 	speed = base_speed
 	look_for_player_area = $LookForPlayerArea
 	timer.start(1)
@@ -20,8 +19,18 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	print("goblin_state: ", state)
+
+	#print("goblin_state: ", state)
 	update_animation_parameters()
+
+
+func on_something_in_vision_field(bodies : Array):
+	if player_in_vision_field:
+		chase_target = player_in_vision_field
+		#for body in bodies:
+			#if body is Player:
+				#chase_target = body
+		request_change_state(STATES.CHASE)
 
 
 func request_change_state(new_state):

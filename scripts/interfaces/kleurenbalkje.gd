@@ -83,8 +83,8 @@ func add_color(color):
 	new_panel.add_theme_stylebox_override("panel", custom_style)
 
 	colors_in_bar.append(new_panel)
-	print(colors_in_bar)
-	print(color, "color")
+	#print(colors_in_bar)
+	#print(color, "color")
 	self.add_child(new_panel)
 
 # functie die op basis van naam (kleur) alle informtaire van desbetreffend balkje kna halen.
@@ -105,5 +105,5 @@ func keep_scales_fancy():
 	biggest_color_size = biggest_color.size_flags_stretch_ratio
 	for color in colors_in_bar:
 		color.size_flags_stretch_ratio /= biggest_color_size
-		print("kleurkleurk", color.size_flags_stretch_ratio)
+		#print("kleurkleurk", color.size_flags_stretch_ratio)
 	biggest_color.size_flags_stretch_ratio = 1

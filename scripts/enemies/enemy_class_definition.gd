@@ -3,7 +3,8 @@ class_name Enemy extends  CharacterBody2D
 
 @onready var debug_label = $DebugLabel
 
-@onready var ray_cast = $RayCast2D
+@onready var player_ray_cast = $PlayerRayCast2D
+@onready var wall_ray_cast = $WallRayCast2D
 @onready var vision_field = $VisionField
 @onready var vector_wheel = $VectorWheel
 @onready var nav_agent = $NavigationAgent2D
@@ -14,8 +15,8 @@ var base_speed : int
 var jump_hight : int
 var direction : Vector2 #float # wil dit liever in rad of degree hebben # bij nader inzien: gewoon V2
 #@onready var timer = $Timer
-var max_hp = 100#: int# = 100
-var hp = 100#: int
+var max_hp : int = 100#: int# = 100
+var hp : int = 100#: int
 var resistances_and_weaknesses : Dictionary
 var threat_range : int
 var vision_range : int
@@ -50,7 +51,7 @@ var chase_target
 var chase_target_position : Vector2
 var melee_attack_target
 var state_is_locked : bool = false # for things like melee_attack
-var spell_target : Vector2
+var spell_target_position : Vector2
 # at this point i should just do this with parameters (i think)
 # but then you have to constantly pass it through the state machine
 
@@ -61,11 +62,11 @@ var spells_known : Array
 # OR, there wlll be a new var about it !  : 
 var used_timer : Timer
 
-var player_in_vision_field : bool = false
-var enemy_in_vision_field : bool = false
-var wounded_in_vision_field : bool = false
-var spell_in_vision_field : bool = false
-var something_in_vision_field : bool = false
+var player_in_vision_field# : bool = false
+var enemy_in_vision_field# : bool = false
+var wounded_in_vision_field# : bool = false
+var spell_in_vision_field# : bool = false
+var something_in_vision_field# : bool = false
 
 var attack_damage : int
 var state_history : Array
@@ -87,9 +88,9 @@ enum STATES {
 }
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+func _ready() -> void: # dont forget this gets overwritten in the enemies ! (probably)
 	get_tree().create_timer(0)
-	
+
 	hp_bar.max_value = max_hp
 	hp_bar.value = hp
 
@@ -125,21 +126,21 @@ func _process(delta: float) -> void:
 	update_state(delta)
 
 
-func process_bodies_in_vision_field():
+func process_bodies_in_vision_field(): # i think i just want this in every enemy.
 	player_in_vision_field = false
 	enemy_in_vision_field = false
 	spell_in_vision_field = false
 	var bodies_in_vision_field = get_bodies_in_vision_field()
-	print("on_something_in_vision_field 0   ", bodies_in_vision_field)
+	#print("on_something_in_vision_field 0   ", bodies_in_vision_field)
 	for body in bodies_in_vision_field:
 		if body is Player:
-			player_in_vision_field = true
+			player_in_vision_field = body
 			something_in_vision_field = true
 		if body is Enemy:
-			enemy_in_vision_field = true
+			enemy_in_vision_field = body
 			something_in_vision_field = true
 		if body is Spell:
-			spell_in_vision_field = true
+			spell_in_vision_field = body
 			something_in_vision_field = true
 		if something_in_vision_field:
 			on_something_in_vision_field(bodies_in_vision_field)
@@ -206,28 +207,28 @@ func idle_walk(delta : float, time : float = 0.0, phase : String = "running"):
 			move(desired_walk_direction, delta)
 			#move_and_slide()
 			#print("goblinwalk ", velocity, speed)
-			print("STATES.IDLE_WALK RUNNING")
+			#print("STATES.IDLE_WALK RUNNING")
 			debug_label.set_text("IDLE.WALK")
 		"exit":
 			pass
 
 
 func chase_state(delta, phase : String = "running"): # for when player is in sight
-# assuihng melee enemy:
-#run after coords were player last seen. once there, look around
+# assuming melee enemy:
+# run after coords were player last seen. once there, look around
 	match phase:
 		"enter":
 			print("STATES.CHASE ENTER")
 			speed = base_speed * 2
 		"running":
 			debug_label.set_text("CHASE")
-			if look_for_player_in_vision_field():
+			if look_for_player_in_vision_field(): # shoudl this change to the new version ?
 				chase_target_position = chase_target.global_position
 			#move(to_local(chase_target_position), delta)
 			if self.global_position.distance_to(chase_target.global_position) < 50:
 				debug_label.set_text("ATTACK!")
 				melee_attack_target = chase_target # dirty code. clean it
-				print("melee")
+				#print("melee")
 				request_change_state(STATES.MELEE_ATTACK)
 				#melee_attack(chase_target)
 			elif self.global_position.distance_to(chase_target_position) < 25:
@@ -239,7 +240,7 @@ func chase_state(delta, phase : String = "running"): # for when player is in sig
 			#debug_label.set_text("CHASE") # this line should be deleted
 			move(to_local(chase_target_position), delta)
 
-			print("STATES.CHASE RUNNING")
+			#print("STATES.CHASE RUNNING")
 		"exit":
 			print("STATES.CHASE EXIT")
 			pass
@@ -254,7 +255,7 @@ func pathfind_state(delta, phase : String = "running"):
 			speed = base_speed * 1.5
 		"running":
 			move(nav_agent.get_next_path_position() - global_position, delta)
-			print("STATES.PATHFIND RUNNING")
+			#print("STATES.PATHFIND RUNNING")
 			debug_label.set_text("PATHFIND")
 			# should make a function of the folowing block
 			#if self.global_position.distance_to(chase_target.global_position) < 100:
@@ -275,10 +276,10 @@ func pathfind_state(delta, phase : String = "running"):
 func melee_attack_state(delta, phase : String = "running"):#, target : Object = null):
 	match phase:
 		"enter":
-			print("STATES.MELEE_ATTACK ENTER")
+			print("STATES.MELEE_ATTACK ENTER")	
 			debug_label.set_text("MELEE_ATTACK")
 			var backup_speed = speed
-			speed = 0
+			#speed = 0 # this is not needen anymore, sice not calling move() is sufficient. # + setting speed to 0 makes enemies face right when casting, which is weird
 			state_is_locked = true
 			await get_tree().create_timer(0.5).timeout
 			if self.global_position.distance_to(melee_attack_target.global_position) < 50:
@@ -300,7 +301,7 @@ func casting_state(spell : String = "", target : Vector2 = Vector2.ZERO, phase :
 
 			print("STATES.CASTING ENTER")
 			var backup_speed = speed
-			speed = 0
+			#speed = 0 # this is not needen anymore, sice not calling move() is sufficient. # + setting speed to 0 makes enemies face right when casting, which is weird
 			state_is_locked = true
 			print("AbilityCooldownTimer1 start")
 			used_timer.start()
@@ -310,7 +311,10 @@ func casting_state(spell : String = "", target : Vector2 = Vector2.ZERO, phase :
 
 			var spell_that_is_about_to_be_cast = SpellDatabase.get_spell_by_name(spell)
 			var scene_of_spell_that_is_being_cast = spell_that_is_about_to_be_cast["spell_scene"].instantiate()
-			scene_of_spell_that_is_being_cast.position = spell_target
+			scene_of_spell_that_is_being_cast.target_position = spell_target_position
+			scene_of_spell_that_is_being_cast.caster = self
+			#scene_of_spell_that_is_being_cast.position = to_local(self.global_position)
+			scene_of_spell_that_is_being_cast.global_position = self.global_position
 			self.get_parent().add_child(scene_of_spell_that_is_being_cast)
 
 			speed = backup_speed
@@ -349,6 +353,7 @@ func update_hp_bar():
 func take_healing(healing : int, healing_type : String):
 	if healing_type in resistances_and_weaknesses: # should this be a thing ?
 		healing *= resistances_and_weaknesses.damage_type
+	healing = clamp(healing, 0 ,max_hp-hp)
 	hp += healing
 	update_hp_bar()
 
@@ -422,19 +427,19 @@ func has_line_of_sight(from, to):
 func get_bodies_in_vision_field():
 	var bodies_in_vision_field : Array
 	for body in vision_field.get_overlapping_bodies():
-		ray_cast.target_position = to_local(body.global_position)
-		ray_cast.force_raycast_update()
-		if not ray_cast.is_colliding():
+		wall_ray_cast.target_position = to_local(body.global_position)
+		wall_ray_cast.force_raycast_update()
+		if not wall_ray_cast.is_colliding():
 			bodies_in_vision_field.append(body)
 	return bodies_in_vision_field
 
 
 func look_for_player_in_vision_field():
 	for body in vision_field.get_overlapping_bodies():
-		if body == null or body is Player: # why body == null ?
-			ray_cast.target_position = to_local(body.global_position)
-			ray_cast.force_raycast_update()
-			if ray_cast.get_collider() == body:
+		if body == null or body is Player: # why body == null ? maybe for if there are no bodies in vision_field ?
+			player_ray_cast.target_position = to_local(body.global_position)
+			player_ray_cast.force_raycast_update()
+			if player_ray_cast.get_collider() == body:
 				return body
 	return false
 
@@ -453,9 +458,9 @@ func look_for_player_in_vision_circle():
 	#var look_for_player_area = Area2D.new()
 	for body in look_for_player_area.get_overlapping_bodies():
 		if body is Player:
-			ray_cast.target_position = to_local(body.position)
-			ray_cast.force_raycast_update()
-			if ray_cast.get_collider() is Player:
+			player_ray_cast.target_position = to_local(body.position)
+			player_ray_cast.force_raycast_update()
+			if player_ray_cast.get_collider() is Player:
 				#some_func() , like attacking the player,different for each enemy
 				print(self, " dddd ", "player detected! ", randf_range(-1.0, 1.0))
 				var label = Label.new()
@@ -472,9 +477,9 @@ func look_for_player_in_vision_circle():
 
 
 func look_for_sound_source(noise_source):
-	ray_cast.target_position = to_local(noise_source.position)
-	ray_cast.force_raycast_update()
-	if ray_cast.get_collider() is Spell:
+	player_ray_cast.target_position = to_local(noise_source.position)
+	player_ray_cast.force_raycast_update()
+	if player_ray_cast.get_collider() is Spell:
 		#some_func() , like attacking the player,different for each enemy
 		print("dddd ", "spell detected! ", randf_range(-1.0, 1.0))
 		#print(self, " dddd ", "player detected! ", randf_range(-1.0, 1.0))
@@ -622,8 +627,8 @@ func delteme():
 	#for i in 1000:
 		#ray_cast.force_raycast_update()
 	#if add_child(RayCast2D.new()).get_collider():
-	if ray_cast.get_collider() is Player:# or ray_cast.is_colliding():
-		print("ddd", ray_cast.get_collider())
+	if player_ray_cast.get_collider() is Player:# or ray_cast.is_colliding():
+		print("ddd", player_ray_cast.get_collider())
 		pass
 	#if ray_to_player() == player: # and thus not something like a wall:
 		#move_to_player()

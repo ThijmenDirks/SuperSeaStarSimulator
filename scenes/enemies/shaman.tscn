@@ -890,7 +890,7 @@ one_shot = true
 
 [node name="VisionField" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 76
+collision_mask = 108
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VisionField"]
 position = Vector2(-0.178571, 0)
@@ -898,13 +898,17 @@ rotation = 3.14159
 scale = Vector2(0.964286, 1)
 polygon = PackedVector2Array(-6.40746, 11, -189.964, 127.999, -185.814, -123.001, -8.48146, -5.00004)
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="PlayerRayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(-90, 99)
+collision_mask = 66
+
+[node name="WallRayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(-40, 88)
 collision_mask = 2
 
 [node name="LookForPlayerArea" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 64
+collision_mask = 108
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LookForPlayerArea"]
 visible = false

@@ -10,8 +10,7 @@ const JUMP_VELOCITY = -400.0
 var spell_that_will_be_cast : String
 
 func _ready() -> void:
-	
-	base_speed = 30 # 50
+	base_speed = 40 # 50
 	speed = base_speed
 	look_for_player_area = $LookForPlayerArea
 	timer.start(1)
@@ -29,22 +28,51 @@ func _physics_process(delta: float) -> void:
 
 
 func on_something_in_vision_field(bodies : Array):
-	print("on_something_in_vision_field 1")
-	if enemy_in_vision_field:
-		print("on_something_in_vision_field 2")
-		for body in bodies:
-			print("on_something_in_vision_field 3")
-			if body is Enemy:
-				print("on_something_in_vision_field 4")
-				if body.hp < body.max_hp:
-					print($HealAbilityCooldownTimer.is_stopped(), "   HealAbilityCooldownTimer   ", $HealAbilityCooldownTimer.time_left)
-					if $HealAbilityCooldownTimer.is_stopped():
-						print("on_something_in_vision_field 5")
-						spell_target = body.global_position #+ Vector2(randi_range(-100, 100), randi_range(-100, 100))
-						spell_that_will_be_cast = "heal"
-						used_timer = $HealAbilityCooldownTimer
-						request_change_state(STATES.CAST)
-						return
+	#print("get_bodies_in_vision_field   ", get_bodies_in_vision_field())
+
+	var player_is_in_vision_field
+	for body in get_bodies_in_vision_field():
+		if body is Enemy: # for some reason shaman onlyseas hiself
+			#print(get_bodies_in_vision_field(), "on_something_in_vision_field 1.1  ", body.hp, body.max_hp)
+			if body.hp < body.max_hp:
+				#print($HealAbilityCooldownTimer.is_stopped(), "   HealAbilityCooldownTimer   ", $HealAbilityCooldownTimer.time_left)
+				if $HealAbilityCooldownTimer.is_stopped():
+					#print("on_something_in_vision_field 2.1")
+					spell_target_position = body.global_position #+ Vector2(randi_range(-100, 100), randi_range(-100, 100))
+					spell_that_will_be_cast = "heal"
+					used_timer = $HealAbilityCooldownTimer
+					request_change_state(STATES.CAST)
+					return
+		if body is Player:
+			player_is_in_vision_field = body
+	if player_is_in_vision_field:
+		if $HealAbilityCooldownTimer.is_stopped():
+			#print("on_something_in_vision_field 2.1")
+			spell_target_position = player_is_in_vision_field.global_position #+ Vector2(randi_range(-100, 100), randi_range(-100, 100))
+			spell_that_will_be_cast = "fireball"
+			used_timer = $HealAbilityCooldownTimer
+			request_change_state(STATES.CAST)
+			return
+
+	#print("on_something_in_vision_field 1")
+	#if enemy_in_vision_field:
+		#print("on_something_in_vision_field 2")
+		#for body in bodies:
+			#print("on_something_in_vision_field 3")
+			#if body is Enemy:
+				#print("on_something_in_vision_field 4")
+				#if body.hp < body.max_hp:
+					#print($HealAbilityCooldownTimer.is_stopped(), "   HealAbilityCooldownTimer   ", $HealAbilityCooldownTimer.time_left)
+					#if $HealAbilityCooldownTimer.is_stopped():
+						#print("on_something_in_vision_field 5")
+						#spell_target = body.global_position #+ Vector2(randi_range(-100, 100), randi_range(-100, 100))
+						#spell_that_will_be_cast = "heal"
+						#used_timer = $HealAbilityCooldownTimer
+						#request_change_state(STATES.CAST)
+						#return
+	#elif player_in_vision_field:
+		#chase_target = player_in_vision_field
+		#request_change_state(STATES.CHASE)
 
 
 func request_change_state(new_state):
@@ -88,7 +116,7 @@ func change_state(new_state):
 			state = STATES.MELEE_ATTACK
 		STATES.CAST:
 			state = STATES.CAST
-			casting_state(spell_that_will_be_cast, spell_target, "enter")
+			casting_state(spell_that_will_be_cast, spell_target_position, "enter")
 
 	#if state == STATES.IDLE_STAND:
 		#state = STATES.IDLE_WALK

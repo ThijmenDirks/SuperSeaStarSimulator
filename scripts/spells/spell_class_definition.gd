@@ -30,14 +30,16 @@ var target_position : Vector2
 var ray_cast : RayCast2D
 var orb_cost : Dictionary
 var target
+#var base_damage : int
+#var damage_type : String
 
 var kleurenbalkje_change : int
 var texture
 var other_texture
 var this_spell
 var hit_enemies
-var base_damage
-var damage_type
+var base_damage : int # these two should stay ! (most likely)
+var damage_type : String # might get to be an array if multiple types
 var aoe_size
 
 # ^ this is a mess right now, most/some of it is for debugging.
