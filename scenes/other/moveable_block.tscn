@@ -54,28 +54,28 @@ shape = SubResource("RectangleShape2D_lhlw5")
 position = Vector2(0, 14)
 shape = SubResource("RectangleShape2D_f2j6w")
 
-[node name="LeftControlArea" type="Area2D" parent="."]
+[node name="UpSpaceArea" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftControlArea"]
-position = Vector2(-26, 0)
-shape = SubResource("RectangleShape2D_068xg")
-
-[node name="UpControlArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="UpControlArea"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="UpSpaceArea"]
 position = Vector2(0, -26)
 shape = SubResource("RectangleShape2D_068xg")
 
-[node name="RightControlArea" type="Area2D" parent="."]
+[node name="RightSpaceArea" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RightControlArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightSpaceArea"]
 position = Vector2(26, 0)
 shape = SubResource("RectangleShape2D_068xg")
 
-[node name="DownControlArea" type="Area2D" parent="."]
+[node name="DownSpaceArea" type="Area2D" parent="."]
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="DownControlArea"]
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="DownSpaceArea"]
 position = Vector2(0, 26)
+shape = SubResource("RectangleShape2D_068xg")
+
+[node name="LeftSpaceArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftSpaceArea"]
+position = Vector2(-26, 0)
 shape = SubResource("RectangleShape2D_068xg")
 
 [connection signal="body_entered" from="LeftPushArea" to="." method="_on_left_push_area_body_entered"]

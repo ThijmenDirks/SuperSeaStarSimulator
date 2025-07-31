@@ -41,23 +41,42 @@ var heal = {
 	"spell_scene" = load("res://scenes/spells/heal.tscn")
 	}
 
+
+var chain_lightning = {
+	"spell_name" = "chain_lightning",
+	"spell_recipe" = ["ecleft_mouse_click", "ecleft_mouse_click", "ecright_mouse_click", "z"],
+	"spell_type" = "damage",
+	"spell_target" = "multiple_target",
+	"spell_chain_range" = 500,
+	"spell_damage" = 30.0, # 30.0
+	"spell_damage_type" = "electricity", # ?
+	"spell_kleurenbalkje_change" = 4,
+	"spell_orb_cost" = {"blue" = 4},
+	"spell_noise" = 300, #amount of (???)(pixels?) ditance in witch enemies are warned. this, or something else, might get multyplied for some enemies.
+	"spell_is_targetable" = true,
+	"spell_range" = 500,
+	"spell_function" = load("res://scripts/spells/chain_lightning.gd"),# NIET ".BOOM()", MAAR BIJ ELKE CAST NIEUWE INSTANCE VAN FUNCTIE, ANDERS WORDT ER GEOVERWRITED BIJ SPAMMEN! + gebruik await in functie zodat de animatie niet direct weer wordt verwijderd
+	"spell_scene" = load("res://scenes/spells/chain_lightning.tscn")
+	}
+
+
 var iceblast = {
 	"spell_name" = "iceblast",
 	"spell_recipe" = ["c","q","x"],
 }
 
-var all_spells : Array = [fireball, heal]
+var all_spells : Array = [fireball, heal, chain_lightning]
 
 #func cast():
 	#print("cast ", name)
 	##explode()
 
 
-func get_names():
+func get_names(): # not sure wheter this func is still in use
 	#var spell_names = []
 	#for spell in self.keys():
 		#spell_names.append(spell.name)
-	return ["fireball", "heal", "iceblast"]
+	return ["fireball", "heal", "chain_lightning", "iceblast"]
 
 func get_spell_by_name(name : String):
 	for spell in all_spells:

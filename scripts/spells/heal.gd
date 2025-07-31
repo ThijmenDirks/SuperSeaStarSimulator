@@ -43,6 +43,7 @@ func _ready():
 			change_kleurenbalkje(["green","blue"])
 		else:
 			print("out of orbs miscast!")
+			queue_free()
 			return
 		print("heal test 5")
 		#print("heal test position:   ", self.position, "   caster ", caster.position, "   distance:   ", position.distance_to(caster.position))

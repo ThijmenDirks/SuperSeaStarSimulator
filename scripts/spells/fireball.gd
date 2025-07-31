@@ -10,6 +10,7 @@ func get_damage_by_explosion(base_damage, distance_enemy_to_center, aoe_size):
 	return int((2 ** distance_to_center_ratio) * float(base_damage))
 	#return 100
 
+
 func deal_damage(a,b):
 	pass
 	#anti-eroor func!
@@ -51,7 +52,8 @@ func _ready():
 		if pay_mana(orb_cost):
 			change_kleurenbalkje(["red"])
 		else:
-			print("gigantic miscast!")
+			print("out of orbs miscast!")
+			queue_free()
 			return
 
 
@@ -63,7 +65,6 @@ func _physics_process(delta: float,) -> void:
 	#print(position.length(), "   fff   ", self)
 	if self.position.distance_to(origin_position) >= max_range or position == target_position:
 		on_max_range()
-
 
 
 func on_max_range():

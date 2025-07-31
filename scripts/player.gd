@@ -18,7 +18,7 @@ var keys_for_spellcasting = ["q", "e", "z", "x", "c","F","shift","control","left
 var WASD = ["up","left","down","right"]
 var current_spell_input = []
 var input_pressed_almost_simoultaniously = ""
-var equiped_spells = ["fireball", "heal"]
+var equiped_spells = ["fireball", "heal", "chain_lightning"]
 var is_casting = false
 var resistances_and_weaknesses : Dictionary
 
@@ -45,9 +45,29 @@ func _physics_process(delta: float) -> void:
 #	print("-")
 	for i in get_slide_collision_count():
 		var c = get_slide_collision(i)
-		if c.get_collider() is RigidBody2D:
-			var push_force = 10
-			c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
+		var collider = c.get_collider()
+		if c.get_collider() is MoveableBlock:
+			#print("is to the   ", c.get_position())
+			var my_pos = global_position
+			var other_pos = c.get_position()
+			var diff = my_pos - other_pos
+
+			if abs(diff.x) > abs(diff.y):
+				if diff.x > 0:
+					print("Character is to the RIGHT of the rigidbody")
+					collider.move(Vector2(-1, 0), speed)
+				else:
+					print("Character is to the LEFT of the rigidbody")
+					collider.move(Vector2(1, 0), speed)
+			else:
+				if diff.y > 0:
+					print("Character is BELOW the rigidbody")
+					collider.move(Vector2(0, -1), speed)
+				else:
+					print("Character is ABOVE the rigidbody")
+					collider.move(Vector2(0, 1), speed)
+				#var push_force = 10
+				#c.get_collider().apply_central_impulse(-c.get_normal() * push_foararce)
 
 
 func update_animation_parameters():
@@ -135,7 +155,7 @@ func _on_ctimer_to_cast_spell_timeout() -> void:
 			await get_tree().create_timer(0.3).timeout # for the animation # shouldnt this be before the actual casting?
 			is_casting = false
 	if not spell_has_been_cast:
-		print("Greater Miscast! ", (current_spell_input))
+		print("Nonexistent spell Miscast! ", (current_spell_input))
 	current_spell_input = []
 	spell_has_been_cast = false
 	#casst spell
