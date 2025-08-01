@@ -282,7 +282,7 @@ position = Vector2(38, -45)
 position = Vector2(-57, 9)
 
 [node name="Node2D" parent="." instance=ExtResource("5_hf8w6")]
-position = Vector2(40, 30)
+position = Vector2(-200, -200)
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 512
@@ -309,3 +309,6 @@ shape = SubResource("RectangleShape2D_b08o3")
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 position = Vector2(-169, 37)
 navigation_polygon = SubResource("NavigationPolygon_na4xt")
+
+[node name="Node2D2" parent="." instance=ExtResource("5_hf8w6")]
+position = Vector2(-466, -82)

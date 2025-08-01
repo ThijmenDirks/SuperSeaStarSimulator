@@ -859,7 +859,7 @@ radius = 12.0
 radius = 34.0147
 
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree")]
-collision_layer = 325
+collision_layer = 16709
 script = ExtResource("1_60osi")
 animation_tree = NodePath("AnimationTree")
 

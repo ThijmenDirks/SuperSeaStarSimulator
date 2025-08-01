@@ -10,8 +10,8 @@ var is_moving: bool = false
 
 @onready var up_space_area = $UpSpaceArea
 @onready var right_space_area = $RightSpaceArea
-@onready var left_space_area = $DownSpaceArea
-@onready var down_space_area = $LeftSpaceArea
+@onready var down_space_area = $DownSpaceArea
+@onready var left_space_area = $LeftSpaceArea
 
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -22,26 +22,94 @@ func _process(delta: float) -> void:
 		position += direction * delta * move_speed
 		travelled_distance += abs(direction.length() * delta * move_speed)
 		print("moveable_block travelled:   ", travelled_distance, "  position:  ", position)
-		if travelled_distance >= grid_width:
-			print("movemovemovemovemovemovemovemovemovemovemovemovemovemovemovemovemovemovemovemovemovemovemovemove")
+		if travelled_distance >= grid_width:#grid_width - travelled_distance < delta * move_speed * 2: #travelled_distance >= grid_width:
+			print("movemovemovemovemovemovemovemovemovemovemovemovemovemovemovemovemovemovemovemovemovemovemovemovemovemovemovemovemovemovemovemovemovemovemovemovemovemovemovemovemovemovemovemovemovemovemovemove")
 			#print("moveable_block travelled:   ", travelled_distance, "  position:  ", position)
 			if direction == Vector2(1, 0):
+				#position.x = (grid_width - travelled_distance)
 				position.x -= (travelled_distance - grid_width)
 			else:
+				#position.y += (grid_width - travelled_distance)
 				position.y -= (travelled_distance - grid_width)
 			move_speed = 0
 			travelled_distance = 0
 			is_moving = false
+			
+			linear_velocity = Vector2.ZERO
+			#sleeping = true
+	else:
+		linear_velocity = Vector2.ZERO
+	var c = get_colliding_bodies()
+	if c:
+		c = c[0]
+		is_moving = true
+		move_speed = c.speed
+		var my_pos = global_position
+		var other_pos = c.get_position()
+		var diff = other_pos - my_pos
+
+		if abs(diff.x) > abs(diff.y):
+			if diff.x > 0:
+				print("Character is to the RIGHT of the rigidbody")
+				direction = Vector2(-1, 0)
+			else:
+				print("Character is to the LEFT of the rigidbody")
+				direction = Vector2(1, 0)
+		else:
+			if diff.y > 0:
+				print("Character is BELOW the rigidbody")
+				direction = Vector2(0, -1)
+			else:
+				print("Character is ABOVE the rigidbody")
+				direction = Vector2(0, 1)
+		#sleeping = true
+
+				#var push_force = 10
+				#c.get_collider().apply_central_impulse(-c.get_normal() * push_foararce)
 
 
-func move(to_direction: Vector2, speed : int):
+func _on_body_entered(body: Node) -> void:
+	return
+	print("Character iss")
 	if is_moving:
 		return
-	# hier nog ff kijken of er wel ruimte is
-	
-	is_moving = true
-	move_speed = speed
-	direction = to_direction
+	print("Character is")
+
+	#for i in get_slide_collision_count():
+		#var c = get_slide_collision(i)
+		#var collider = c.get_collider()
+	if body:
+		#print("is to the   ", c.get_position())
+		is_moving = true
+		move_speed = body.speed
+		var my_pos = global_position
+		var other_pos = body.get_position()
+		var diff = other_pos - my_pos
+
+		if abs(diff.x) > abs(diff.y):
+			if diff.x > 0:
+				print("Character is to the RIGHT of the rigidbody")
+				direction = Vector2(-1, 0)
+			else:
+				print("Character is to the LEFT of the rigidbody")
+				direction = Vector2(1, 0)
+		else:
+			if diff.y > 0:
+				print("Character is BELOW the rigidbody")
+				direction = Vector2(0, -1)
+			else:
+				print("Character is ABOVE the rigidbody")
+				direction = Vector2(0, 1)
+
+
+#func move(to_direction: Vector2, speed : int): # but now this func is not needed anymore
+	#if is_moving:
+		#return
+	## hier nog ff kijken of er wel ruimte is
+	#
+	#is_moving = true
+	#move_speed = speed
+	#direction = to_direction
 	#move_and#
 	#position += to_direction * speed * delta
 	#is_moving = false

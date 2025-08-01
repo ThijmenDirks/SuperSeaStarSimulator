@@ -66,7 +66,7 @@ states/Travel/position = Vector2(360.5, 101)
 transitions = ["Start", "Travel", SubResource("AnimationNodeStateMachineTransition_um3m1")]
 
 [node name="Fireball" type="RigidBody2D"]
-collision_layer = 32
+collision_layer = 16416
 collision_mask = 270
 physics_material_override = SubResource("PhysicsMaterial_roufs")
 gravity_scale = 0.0

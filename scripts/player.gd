@@ -43,29 +43,31 @@ func _physics_process(delta: float) -> void:
 		#spell_cast_funtion_one()
 	#natius()
 #	print("-")
-	for i in get_slide_collision_count():
-		var c = get_slide_collision(i)
-		var collider = c.get_collider()
-		if c.get_collider() is MoveableBlock:
-			#print("is to the   ", c.get_position())
-			var my_pos = global_position
-			var other_pos = c.get_position()
-			var diff = my_pos - other_pos
 
-			if abs(diff.x) > abs(diff.y):
-				if diff.x > 0:
-					print("Character is to the RIGHT of the rigidbody")
-					collider.move(Vector2(-1, 0), speed)
-				else:
-					print("Character is to the LEFT of the rigidbody")
-					collider.move(Vector2(1, 0), speed)
-			else:
-				if diff.y > 0:
-					print("Character is BELOW the rigidbody")
-					collider.move(Vector2(0, -1), speed)
-				else:
-					print("Character is ABOVE the rigidbody")
-					collider.move(Vector2(0, 1), speed)
+## the below part can be deleted
+	#for i in get_slide_collision_count():
+		#var c = get_slide_collision(i)
+		#var collider = c.get_collider()
+		#if c.get_collider() is MoveableBlock:
+			##print("is to the   ", c.get_position())
+			#var my_pos = global_position
+			#var other_pos = c.get_position()
+			#var diff = my_pos - other_pos
+#
+			#if abs(diff.x) > abs(diff.y):
+				#if diff.x > 0:
+					#print("Character is to the RIGHT of the rigidbody")
+					#collider.move(Vector2(-1, 0), speed)
+				#else:
+					#print("Character is to the LEFT of the rigidbody")
+					#collider.move(Vector2(1, 0), speed)
+			#else:
+				#if diff.y > 0:
+					#print("Character is BELOW the rigidbody")
+					#collider.move(Vector2(0, -1), speed)
+				#else:
+					#print("Character is ABOVE the rigidbody")
+					#collider.move(Vector2(0, 1), speed)
 				#var push_force = 10
 				#c.get_collider().apply_central_impulse(-c.get_normal() * push_foararce)
 
