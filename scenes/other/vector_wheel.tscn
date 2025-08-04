@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cn2bi5uhlbamd"]
 
-[ext_resource type="Script" path="res://scripts/vector_wheel.gd" id="1_8u1ka"]
+[ext_resource type="Script" path="res://scripts/other/vector_wheel.gd" id="1_8u1ka"]
 
 [node name="VectorWheel" type="Node2D"]
 script = ExtResource("1_8u1ka")

@@ -18,7 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 SpellDatabase="*res://scripts/spells/spell_database.gd"
-fullscreen_thingy="*res://scripts/fullscreen_thingy.gd"
+fullscreen_thingy="*res://scripts/UI_and_the_like/fullscreen_thingy.gd"
 
 [display]
 

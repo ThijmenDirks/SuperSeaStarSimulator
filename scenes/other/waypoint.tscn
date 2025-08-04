@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cw65fjbyen3ns"]
 
-[ext_resource type="Script" path="res://scripts/waypoint.gd" id="1_hyep4"]
+[ext_resource type="Script" path="res://scripts/map/waypoint.gd" id="1_hyep4"]
 [ext_resource type="Texture2D" uid="uid://eny37osmjycx" path="res://icon.svg" id="2_rwevk"]
 
 [node name="Node2D" type="Node2D"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ddx6b7cun7e4g"]
 
-[ext_resource type="Script" path="res://scripts/interfaces/interface.gd" id="1_2vce3"]
+[ext_resource type="Script" path="res://scripts/UI_and_the_like/interface.gd" id="1_2vce3"]
 [ext_resource type="PackedScene" uid="uid://cunftp8agsgen" path="res://scenes/UI_and_the_like/kleurenbalkje.tscn" id="2_n8u1q"]
 
 [node name="interface" type="CanvasLayer"]

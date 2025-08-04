@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dbv11dm7ge4bt"]
 
 [ext_resource type="Texture2D" uid="uid://eny37osmjycx" path="res://icon.svg" id="1_8qsaw"]
-[ext_resource type="Script" path="res://scripts/moveable_block.gd" id="1_bup5j"]
+[ext_resource type="Script" path="res://scripts/map/moveable_block.gd" id="1_bup5j"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7crit"]
 

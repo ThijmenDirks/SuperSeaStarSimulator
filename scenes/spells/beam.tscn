@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://d1w6wngk86xbr"]
 
-[ext_resource type="Script" path="res://temp.gd" id="1_iub1m"]
-[ext_resource type="Texture2D" uid="uid://eny37osmjycx" path="res://icon.svg" id="2_tt1l5"]
+[ext_resource type="Script" path="res://scripts/spells/beam.gd" id="1_gwm08"]
+[ext_resource type="Texture2D" uid="uid://eny37osmjycx" path="res://icon.svg" id="2_5bf75"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iaefa"]
 size = Vector2(10, 5)
@@ -10,7 +10,7 @@ size = Vector2(10, 5)
 size = Vector2(398, 41)
 
 [node name="Node2D" type="Node2D" node_paths=PackedStringArray("line_pivot")]
-script = ExtResource("1_iub1m")
+script = ExtResource("1_gwm08")
 line_pivot = NodePath("Line2D")
 
 [node name="Line2D" type="Line2D" parent="."]
@@ -25,7 +25,7 @@ position = Vector2(5, 0)
 shape = SubResource("RectangleShape2D_iaefa")
 
 [node name="Sprite2D" type="Sprite2D" parent="Line2D"]
-texture = ExtResource("2_tt1l5")
+texture = ExtResource("2_5bf75")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -36,7 +36,7 @@ shape = SubResource("RectangleShape2D_uawmp")
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
 position = Vector2(388, 308.25)
 scale = Vector2(3.10938, 0.324219)
-texture = ExtResource("2_tt1l5")
+texture = ExtResource("2_5bf75")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 enabled = false
