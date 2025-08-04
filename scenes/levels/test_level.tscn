@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=4 uid="uid://dbifjqhl4pa28"]
+[gd_scene load_steps=14 format=4 uid="uid://dbifjqhl4pa28"]
 
 [ext_resource type="Texture2D" uid="uid://dr304t324bssf" path="res://art/forest_base_tilesetv2.png" id="1_a526s"]
 [ext_resource type="PackedScene" uid="uid://bqhlp5wv10xgg" path="res://scenes/other/player.tscn" id="2_ao355"]
 [ext_resource type="PackedScene" uid="uid://reit1f4jthf3" path="res://scenes/enemies/green_slime.tscn" id="4_vsvhc"]
-[ext_resource type="PackedScene" uid="uid://dbv11dm7ge4bt" path="res://scenes/other/moveable_block.tscn" id="5_hf8w6"]
+[ext_resource type="PackedScene" uid="uid://dbv11dm7ge4bt" path="res://scenes/map/moveable_block.tscn" id="5_hf8w6"]
+[ext_resource type="PackedScene" uid="uid://cx7gamb5b8mx3" path="res://scenes/enemies/goblin.tscn" id="6_3ujuo"]
 [ext_resource type="PackedScene" uid="uid://cw65fjbyen3ns" path="res://scenes/other/waypoint.tscn" id="6_jnk05"]
 
 [sub_resource type="GDScript" id="GDScript_guruh"]
@@ -281,9 +282,6 @@ position = Vector2(38, -45)
 [node name="CharacterBody2DG4" parent="." instance=ExtResource("4_vsvhc")]
 position = Vector2(-57, 9)
 
-[node name="Node2D" parent="." instance=ExtResource("5_hf8w6")]
-position = Vector2(-200, -200)
-
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 512
 collision_mask = 512
@@ -296,7 +294,8 @@ shape = SubResource("RectangleShape2D_kbsjh")
 position = Vector2(366, 48)
 
 [node name="TemporaryWall" type="StaticBody2D" parent="."]
-collision_layer = 67
+collision_layer = 66
+collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="TemporaryWall"]
 position = Vector2(10.5, -14.5)
@@ -310,5 +309,8 @@ shape = SubResource("RectangleShape2D_b08o3")
 position = Vector2(-169, 37)
 navigation_polygon = SubResource("NavigationPolygon_na4xt")
 
-[node name="Node2D2" parent="." instance=ExtResource("5_hf8w6")]
-position = Vector2(-466, -82)
+[node name="Node2D3" parent="." instance=ExtResource("5_hf8w6")]
+position = Vector2(1, 82)
+
+[node name="CharacterBody2DG" parent="." instance=ExtResource("6_3ujuo")]
+position = Vector2(1, 120)

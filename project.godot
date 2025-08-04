@@ -123,7 +123,8 @@ F={
 2d_physics/layer_8="waypoints"
 2d_physics/layer_9="player"
 2d_physics/layer_10="noise"
-2d_physics/layer_15="moveable_block"
+2d_physics/layer_15="can_move_moveable_block"
+2d_physics/layer_16="moveable_block"
 
 [rendering]
 

@@ -1,0 +1,75 @@
+[gd_scene load_steps=7 format=3 uid="uid://c74wh7grkvhdx"]
+
+[ext_resource type="Script" path="res://scripts/moveable_block.gd" id="1_7krf1"]
+[ext_resource type="Texture2D" uid="uid://eny37osmjycx" path="res://icon.svg" id="2_h6xyw"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7crit"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_068xg"]
+size = Vector2(24, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_32xh7"]
+size = Vector2(28, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xlro3"]
+size = Vector2(30, 30)
+
+[node name="Node2D" type="StaticBody2D"]
+disable_mode = 1
+collision_layer = 32832
+collision_mask = 16384
+physics_material_override = SubResource("PhysicsMaterial_7crit")
+script = ExtResource("1_7krf1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_h6xyw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_068xg")
+
+[node name="UpSpaceCheckArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 33038
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="UpSpaceCheckArea"]
+position = Vector2(0, -26)
+shape = SubResource("RectangleShape2D_068xg")
+
+[node name="RightSpaceCheckArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 33038
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightSpaceCheckArea"]
+position = Vector2(26, 0)
+shape = SubResource("RectangleShape2D_068xg")
+
+[node name="DownSpaceCheckArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 33038
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="DownSpaceCheckArea"]
+position = Vector2(0, 26)
+shape = SubResource("RectangleShape2D_068xg")
+
+[node name="LeftSpaceCheckArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 33038
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftSpaceCheckArea"]
+position = Vector2(-26, 0)
+shape = SubResource("RectangleShape2D_068xg")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16384
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_32xh7")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_xlro3")
