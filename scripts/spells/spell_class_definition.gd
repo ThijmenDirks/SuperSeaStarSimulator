@@ -32,6 +32,8 @@ var orb_cost : Dictionary
 var target
 #var base_damage : int
 #var damage_type : String
+var damage: int # here for disintergate, though this and base_damage likely should combine into one
+#var damage_multiplier: float
 
 var kleurenbalkje_change : int
 var texture

@@ -18,7 +18,7 @@ var keys_for_spellcasting = ["q", "e", "z", "x", "c","F","shift","control","left
 var WASD = ["up","left","down","right"]
 var current_spell_input = []
 var input_pressed_almost_simoultaniously = ""
-var equiped_spells = ["fireball", "heal", "chain_lightning"]
+var equiped_spells = ["fireball", "heal", "chain_lightning", "disintegrate"]
 var is_casting = false
 var resistances_and_weaknesses : Dictionary
 

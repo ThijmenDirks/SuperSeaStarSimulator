@@ -1,25 +1,36 @@
-extends Node2D
+extends Spell # might aswell be node2D, i think
 
-var base_speed = 300
-var speed = base_speed
+var base_grow_speed = 300
+var grow_speed = base_grow_speed
 var rotation_speed : float = 0.02#(50.0/180.0) * PI
-var length : int = 100
-var hoek = 0
+#var length : int = 100
+#var hoek = 0
 var collision_point : Vector2
-var is_coliding = false
-var coliding_body : Node2D
+var is_colliding = false
+var colliding_body : Node2D
 
 @onready var raycast = $RayCast2D
 @onready var collision = $Line2D/Area2D
 @onready var collision_shape = collision.get_child(0)
 @onready var line = $Line2D
-@onready var temp_points = [line.points[0], line.points[1]]
+#@onready var temp_points = [line.points[0], line.points[1]]
+
 @export var line_pivot : Line2D
 
+signal on_hit
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	#rotation = global_position.angle_to(get_global_mouse_position())
+	#rotation = line_pivot.global_position.direction_to(get_global_mouse_position()).angle()
+	line_pivot.rotation = line_pivot.global_position.direction_to(get_global_mouse_position()).angle()
+	line.rotation = line_pivot.rotation  # Optional: also rotate the visual line if needed
+
+	max_range = 300
+	#on_hit.connect(_on_hit)
+	#on_hit.emit("8")  # only at this place for debugging
+	#print("hit 3")
+	#pass # Replace with function body.
 	#line.rotation = 360
 #---
 #@export var player: CharacterBody2D
@@ -72,34 +83,47 @@ func _process(delta: float) -> void:
 
 # ----------------------------------------------------------------------------
 
-	line.points[1].x += delta * speed
+	line.points[1].x += delta * grow_speed
 	collision_shape.shape.size.x = line.points[1].x   #delta * speed
 	collision_shape.position.x = line.points[1].x / 2
 
-	print(line.points[1].x, " ccc ", collision.get_child(0).shape.size.x)
+	#print(line.points[1].x, " ccc ", collision.get_child(0).shape.size.x)
 
-	if is_coliding:
-		#is_coliding = false
-		_on_area_2d_body_entered(coliding_body)
+	if is_colliding:
+		#is_colliding = false
+		_on_area_2d_body_entered(colliding_body)
 
-	if line.points[1].x >= get_global_mouse_position().distance_to(Vector2(0, 0)):
+	#if line.points[1].x >= get_global_mouse_position().distance_to(Vector2(0, 0)):
 	#if collision.position.distance_to(Vector2(0, 0)) >= get_global_mouse_position().distance_to(Vector2(0, 0)):
 	#if distance(end.position, Vector2(0, 0)) >= distance(get_local_mouse_position(), Vector2(0, 0)):
 	
-		print("bbb")
-		line.points[1].x = get_global_mouse_position().distance_to(Vector2(0, 0))
+		#print("bbb")
+		#line.points[1].x = get_global_mouse_position().distance_to(Vector2(0, 0))
 		# seems to be wroking
-		
-		#speed = 0
-		#is_coliding = true
+	var mouse_distance = origin.distance_to(get_global_mouse_position())
+	if line.points[1].x >= mouse_distance:
+		line.points[1].x = mouse_distance
 
+		#speed = 0
+		#is_colliding = true
+	if line.points[1].x >= max_range:
+		grow_speed = 0
+	else:
+		grow_speed = base_grow_speed
+
+#func _on_hit():
+	#__on_hit()
+#
+#func __on_hit():
+	#print("hit 4")
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	is_coliding = true
-	speed = 0
+	on_hit.emit(body)
+	is_colliding = true
+	#grow_speed = 0
 	#line.points[1].x = collision_point.distance_to(Vector2(0, 0))
 
-	coliding_body = body
+	colliding_body = body
 	#var raycast = RayCast2D.new()
 	#self.add_child(raycast)
 	#raycast.target_position.x = 9999
@@ -109,19 +133,19 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	collision_point = to_local(raycast.get_collision_point())
 	if collision_point:
 		line.points[1].x = Vector2(0, 0).distance_to(collision_point)
-		is_coliding = true
+		is_colliding = true
 	else:
-		is_coliding = false
+		is_colliding = false
 		#print("something went wrong by raycasting beam!!")
-	print("ddd ", collision_point)
+	#print("ddd ", collision_point)
 	raycast.enabled = false
 
 	#to_local(get_collision_point())
 	#speed = 0
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	is_coliding = false
-	speed = base_speed
+	is_colliding = false
+	speed = base_grow_speed
 
 
 

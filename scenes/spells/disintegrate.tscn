@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cl3vc0tyvjkxp"]
+
+[ext_resource type="Script" path="res://scripts/spells/disintegrate.gd" id="1_q7nbf"]
+[ext_resource type="PackedScene" uid="uid://d1w6wngk86xbr" path="res://scenes/spells/beam.tscn" id="2_pkxyv"]
+
+[node name="Disintegrate" type="RigidBody2D"]
+mass = 0.001
+custom_integrator = true
+script = ExtResource("1_q7nbf")
+
+[node name="Beam" parent="." instance=ExtResource("2_pkxyv")]
+
+[node name="LifeTimeTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="on_hit" from="Beam" to="." method="on_hit"]
+[connection signal="timeout" from="LifeTimeTimer" to="." method="_on_life_time_timer_timeout"]

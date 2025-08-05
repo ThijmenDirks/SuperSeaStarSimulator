@@ -12,7 +12,7 @@ size = Vector2(10, 5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uawmp"]
 size = Vector2(398, 41)
 
-[node name="Beam" type="RigidBody2D" node_paths=PackedStringArray("line_pivot")]
+[node name="Node2D" type="RigidBody2D" node_paths=PackedStringArray("line_pivot")]
 physics_material_override = SubResource("PhysicsMaterial_msydb")
 custom_integrator = true
 script = ExtResource("1_gwm08")
@@ -30,11 +30,9 @@ position = Vector2(5, 0)
 shape = SubResource("RectangleShape2D_iaefa")
 
 [node name="Sprite2D" type="Sprite2D" parent="Line2D"]
-visible = false
 texture = ExtResource("2_5bf75")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(387, 308)

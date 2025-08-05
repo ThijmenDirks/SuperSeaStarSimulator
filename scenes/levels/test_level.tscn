@@ -314,3 +314,15 @@ position = Vector2(1, 82)
 
 [node name="CharacterBody2DG" parent="." instance=ExtResource("6_3ujuo")]
 position = Vector2(1, 120)
+
+[node name="CharacterBody2DG2" parent="." instance=ExtResource("6_3ujuo")]
+position = Vector2(50, 122)
+
+[node name="CharacterBody2DG5" parent="." instance=ExtResource("6_3ujuo")]
+position = Vector2(110, 132)
+
+[node name="CharacterBody2DG6" parent="." instance=ExtResource("6_3ujuo")]
+position = Vector2(-35, 130)
+
+[node name="CharacterBody2DG7" parent="." instance=ExtResource("6_3ujuo")]
+position = Vector2(158, 127)

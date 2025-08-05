@@ -6,6 +6,7 @@ extends Spell
 	#pass
 var test1304 = "1304"
 
+# !!! DONT YOU WANT TO MAKE SPELL STATIC_BODIES OR SOMETHING ANDTHEN JUST ADD AREAS FOR COLLISION ?!?
 
 var fireball = {
 	"spell_name" = "fireball",
@@ -60,12 +61,31 @@ var chain_lightning = {
 	}
 
 
+var disintegrate = {
+	"spell_name" = "disintegrate",
+	"spell_recipe" = ["e", "e", "e"],
+	"spell_type" = "damage",
+	"spell_target" = "single_target",
+	"spell_base_grow_speed" = 300,
+	"spell_rotation_speed" = 0.02,
+	"spell_damage" = 999.0,
+	"spell_damage_type" = "true", # ?
+	"spell_kleurenbalkje_change" = 8,
+	"spell_orb_cost" = {"red" = 5, "green" = 5, "blue" = 2}, # 5, 5, 2
+	"spell_noise" = 300, #amount of (???)(pixels?) ditance in witch enemies are warned. this, or something else, might get multyplied for some enemies.
+	"spell_is_targetable" = true,
+	"spell_range" = 200,
+	"spell_function" = load("res://scripts/spells/disintegrate.gd"),# NIET ".BOOM()", MAAR BIJ ELKE CAST NIEUWE INSTANCE VAN FUNCTIE, ANDERS WORDT ER GEOVERWRITED BIJ SPAMMEN! + gebruik await in functie zodat de animatie niet direct weer wordt verwijderd
+	"spell_scene" = load("res://scenes/spells/disintegrate.tscn")
+	}
+
+
 var iceblast = {
 	"spell_name" = "iceblast",
 	"spell_recipe" = ["c","q","x"],
 }
 
-var all_spells : Array = [fireball, heal, chain_lightning]
+var all_spells : Array = [fireball, heal, chain_lightning, disintegrate]
 
 #func cast():
 	#print("cast ", name)
@@ -76,7 +96,7 @@ func get_names(): # not sure wheter this func is still in use
 	#var spell_names = []
 	#for spell in self.keys():
 		#spell_names.append(spell.name)
-	return ["fireball", "heal", "chain_lightning", "iceblast"]
+	return ["fireball", "heal", "chain_lightning", "disintegrate"]
 
 func get_spell_by_name(name : String):
 	for spell in all_spells:
