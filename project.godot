@@ -29,6 +29,13 @@ window/size/window_height_override=720
 window/stretch/mode="viewport"
 window/stretch/aspect="ignore"
 
+[file_customization]
+
+folder_colors={
+"res://art/particles/": "teal",
+"res://scripts/particles/": "teal"
+}
+
 [input]
 
 up={

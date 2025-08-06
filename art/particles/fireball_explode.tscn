@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://v0aatipnaxbi"]
+
+[ext_resource type="Material" uid="uid://bmr0lxxevmr8a" path="res://art/particles/fireball_explode.tres" id="1_akp5k"]
+
+[sub_resource type="Gradient" id="Gradient_hf224"]
+colors = PackedColorArray(0.933333, 0, 0, 0.564706, 0.921569, 1, 0, 0.54902)
+
+[sub_resource type="Gradient" id="Gradient_nt77o"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0.027451, 1)
+
+[node name="CPUParticles2D" type="CPUParticles2D"]
+top_level = true
+material = ExtResource("1_akp5k")
+emitting = false
+amount = 128
+lifetime = 0.4
+one_shot = true
+explosiveness = 0.5
+randomness = 0.11
+lifetime_randomness = 0.04
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.1
+initial_velocity_max = 80.71
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+orbit_velocity_min = -0.12
+orbit_velocity_max = 0.12
+linear_accel_min = 18.16
+linear_accel_max = 38.36
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_max = 3.0
+color_ramp = SubResource("Gradient_hf224")
+color_initial_ramp = SubResource("Gradient_nt77o")
+hue_variation_min = -0.1
+hue_variation_max = 0.1
+anim_speed_min = 78.87
+anim_speed_max = 115.3
