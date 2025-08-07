@@ -220,108 +220,15 @@
 
 
 
-# -------------------------------------------------------------------------------------------------------------------------------------------
-#
-#class_name SecondMoveableBlock extends StaticBody2D
-#
-#var move_speed: int
-#var direction: Vector2
-#var travelled_distance : float
-#var grid_width = 40
-#var is_moving: bool = false
-#var space_check_area: Area2D
-#
-#@onready var up_space_check_area = $UpSpaceCheckArea
-#@onready var right_space_check_area = $RightSpaceCheckArea
-#@onready var down_space_check_area = $DownSpaceCheckArea
-#@onready var left_space_check_area = $LeftSpaceCheckArea
-#@onready var area = $Area2D
-#@onready var static_body = $"."
-#
-#func _ready() -> void:
-	##custom_integrator = true
-#
-	#static_body.add_collision_exception_with(up_space_check_area)
-	#static_body.add_collision_exception_with(right_space_check_area)
-	#static_body.add_collision_exception_with(down_space_check_area)
-	#static_body.add_collision_exception_with(left_space_check_area)
-	## ^ is this used ?
-#
-#var last_position: Vector2 # for debugging
-#
-#func _process(delta: float) -> void:
-	#print("pposition   ", position.x)
-	#if position.x < last_position.x:
-		#print("pposition   ", position.x, "   last pposition   ", last_position.x)
-	##freeze = false
-	##static_body.set_collision_layer_value(2, false)
-	#last_position = position
-	#if is_moving:
-		#position += direction * delta * move_speed
-		#travelled_distance += abs(direction.length() * delta * move_speed)
-		#if grid_width - travelled_distance < delta * move_speed * 1:
-			#position += direction.normalized() * (grid_width - travelled_distance)
-			##position = (position + direction.normalized() * (grid_width - travelled_distance)).snapped(Vector2(grid_width, grid_width))
-#
-			#move_speed = 0
-			#travelled_distance = 0
-			#is_moving = false
-			##linear_velocity = Vector2.ZERO
-	##else:
-		##linear_velocity = Vector2.ZERO
-	## ---------------------------------------------------------------
-#
-	#var c = area.get_overlapping_bodies()
-	#if c:
-		#print("ccc   ", c)
-		#c = c[0]
-#
-		#var my_pos = global_position
-		#var other_pos = c.get_position()
-		#var diff = other_pos - my_pos
-#
-		#if abs(diff.x) > abs(diff.y):
-			#if diff.x > 0:
-				#direction = Vector2(-1, 0)
-				#space_check_area = left_space_check_area
-			#else:
-				#direction = Vector2(1, 0)
-				#space_check_area = right_space_check_area
-		#else:
-			#if diff.y > 0:
-				#direction = Vector2(0, -1)
-				#space_check_area = up_space_check_area
-			#else:
-				#direction = Vector2(0, 1)
-				#space_check_area = down_space_check_area
-#
-		##await get_tree().physics_frame
-		##await get_tree().physics_frame
-#
-		#if space_check_area.get_overlapping_bodies():
-			#print("cccc")
-			##freeze = true
-			##static_body.set_collision_layer_value(2, true)
-			#is_moving = false
-			#move_speed = 0
-			#return
-		#print("ccc   ", c)
-		##if not c is Spell:
-		#if true:
-			##linear_velocity = Vector2.ZERO
-			#is_moving = true
-			#move_speed = c.speed
 
 
- #-------------------------------------------------------------------------------------------------------------------------------------------
+class_name MoveableBlock extends RigidBody2D
 
-class_name SecondMoveableBlock extends StaticBody2D
-
-var move_speed: int = 0
-var direction: Vector2 = Vector2.ZERO
-var grid_width: int = 40
+var move_speed: int
+var direction: Vector2
+var travelled_distance : float
+var grid_width = 40
 var is_moving: bool = false
-var target_position: Vector2
 var space_check_area: Area2D
 
 @onready var up_space_check_area = $UpSpaceCheckArea
@@ -329,35 +236,46 @@ var space_check_area: Area2D
 @onready var down_space_check_area = $DownSpaceCheckArea
 @onready var left_space_check_area = $LeftSpaceCheckArea
 @onready var area = $Area2D
-@onready var static_body = $"."
+@onready var static_body = $StaticBody2D
 
 func _ready() -> void:
+	custom_integrator = true
+
 	static_body.add_collision_exception_with(up_space_check_area)
 	static_body.add_collision_exception_with(right_space_check_area)
 	static_body.add_collision_exception_with(down_space_check_area)
 	static_body.add_collision_exception_with(left_space_check_area)
 
-func _process(delta: float) -> void:
-	if is_moving:
-		var step = direction * delta * move_speed
-		global_position += step
+var last_position: Vector2 # for debugging
 
-		# Check if we passed or reached the target position
-		if (direction.x != 0 and sign(target_position.x - global_position.x) != sign(direction.x)) or \
-		   (direction.y != 0 and sign(target_position.y - global_position.y) != sign(direction.y)):
-			global_position = target_position.snapped(Vector2(grid_width, grid_width))
-			is_moving = false
-			move_speed = 0
-			global_position = target_position.snapped(Vector2(grid_width, grid_width)).ceil()
+func _process(_delta: float) -> void:
+	#print("pposition   ", position.x)
+	#if position.x < last_position.x:
+		#print("pposition   ", position.x, "   last pposition   ", last_position.x)
+	freeze = false
+	static_body.set_collision_layer_value(2, false)
+	last_position = position
+	# --- UITGESCHAKELD: handmatige position-update via _process ---
+	# if is_moving:
+	#     position += direction * delta * move_speed
+	#     travelled_distance += abs(direction.length() * delta * move_speed)
+	#     if grid_width - travelled_distance < delta * move_speed * 1.1:
+	#         position += direction.normalized() * (grid_width - travelled_distance)
+	#         move_speed = 0
+	#         travelled_distance = 0
+	#         is_moving = false
+	#         linear_velocity = Vector2.ZERO
+	# else:
+	#     linear_velocity = Vector2.ZERO
+	# ---------------------------------------------------------------
 
-
-	# Check for overlapping body
-	var overlapping = area.get_overlapping_bodies()
-	if overlapping and not is_moving:
-		var c = overlapping[0]
+	var c = area.get_overlapping_bodies()
+	if c:
+		print("ccc   ", c)
+		c = c[0]
 
 		var my_pos = global_position
-		var other_pos = c.global_position
+		var other_pos = c.get_position()
 		var diff = other_pos - my_pos
 
 		if abs(diff.x) > abs(diff.y):
@@ -375,64 +293,63 @@ func _process(delta: float) -> void:
 				direction = Vector2(0, 1)
 				space_check_area = down_space_check_area
 
-		# Don't move if there's something in the way
+		#await get_tree().physics_frame
+		#await get_tree().physics_frame
+
 		if space_check_area.get_overlapping_bodies():
+			print("cccc")
+			freeze = true
+			static_body.set_collision_layer_value(2, true)
 			is_moving = false
 			move_speed = 0
 			return
-
-		# Start movement
-		start_moving(direction, c.speed)
-
-func start_moving(dir: Vector2, speed: int) -> void:
-	is_moving = true
-	direction = dir.normalized()
-	move_speed = speed
-	target_position = (global_position + direction * grid_width).snapped(Vector2(grid_width, grid_width))
-
-
-# -------------------------------------------------------------------------------------------------------------------------------------------
+		print("ccc   ", c)
+		#if not c is Spell:
+		if true:
+			linear_velocity = Vector2.ZERO
+			is_moving = true
+			move_speed = c.speed
 
 
 # this func has been made by chatGPT
-#func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
-	##if is_moving:
-		##var delta = state.step
-		##var movement = direction * move_speed * delta
-		##state.transform.origin += movement
-		##travelled_distance += movement.length()
-##
-		##if travelled_distance >= grid_width:
-			### Snap exact naar het grid
-			##state.transform.origin = (state.transform.origin / grid_width).round() * grid_width
-			##is_moving = false
-			##travelled_distance = 0
-			##move_speed = 0
+func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	#if is_moving:
-		#print("ccc", move_speed)
 		#var delta = state.step
 		#var movement = direction * move_speed * delta
-		#var new_distance = travelled_distance + movement.length()
+		#state.transform.origin += movement
+		#travelled_distance += movement.length()
 #
-		#if new_distance >= grid_width:
-			#var overshoot = new_distance - grid_width
-			## Corrigeer de beweging zodat we exact op het grid eindigen
-			#movement -= direction.normalized() * overshoot
-			#state.transform.origin += movement
-#
+		#if travelled_distance >= grid_width:
+			## Snap exact naar het grid
+			#state.transform.origin = (state.transform.origin / grid_width).round() * grid_width
 			#is_moving = false
 			#travelled_distance = 0
 			#move_speed = 0
-#
-			## Optional: force snap naar grid voor zekerheid
-			##state.transform.origin = (state.transform.origin / grid_width).round() * grid_width
-		#else:
-			#state.transform.origin += movement
-			#travelled_distance = new_distance
-#
-#
-#func _on_body_entered(body: Node) -> void:
-	#return
+	if is_moving:
+		print("ccc", move_speed)
+		var delta = state.step
+		var movement = direction * move_speed * delta
+		var new_distance = travelled_distance + movement.length()
+
+		if new_distance >= grid_width:
+			var overshoot = new_distance - grid_width
+			# Corrigeer de beweging zodat we exact op het grid eindigen
+			movement -= direction.normalized() * overshoot
+			state.transform.origin += movement
+
+			is_moving = false
+			travelled_distance = 0
+			move_speed = 0
+
+			# Optional: force snap naar grid voor zekerheid
+			#state.transform.origin = (state.transform.origin / grid_width).round() * grid_width
+		else:
+			state.transform.origin += movement
+			travelled_distance = new_distance
+
+
+func _on_body_entered(body: Node) -> void:
+	return
 
 #hij jittert nog stees een beetje.. op het momentdat het blok aankomt en		if travelled_distance >= grid_width:
 			## Snap exact naar het grid

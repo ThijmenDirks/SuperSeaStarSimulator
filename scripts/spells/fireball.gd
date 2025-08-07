@@ -75,6 +75,8 @@ func on_max_range():
 func _on_body_entered(body: Node) -> void:
 	if body == caster:
 		return
+	#if body is MoveableBlock:
+		#body.move_speed = speed
 	print("big_explosion")
 	explosion()
 
