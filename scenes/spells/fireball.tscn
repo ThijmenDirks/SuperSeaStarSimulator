@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://cunitmhjmor4t"]
+[gd_scene load_steps=16 format=3 uid="uid://cunitmhjmor4t"]
 
 [ext_resource type="Script" path="res://scripts/spells/fireball.gd" id="1_xhdr4"]
 [ext_resource type="Texture2D" uid="uid://b1360w2r0anxr" path="res://art/fireball_anim.png" id="2_6cebx"]
+[ext_resource type="PackedScene" uid="uid://v0aatipnaxbi" path="res://art/particles/fireball_explode.tscn" id="2_rwb02"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_roufs"]
 friction = 0.0
@@ -65,6 +66,11 @@ states/Travel/node = SubResource("AnimationNodeAnimation_cnlu5")
 states/Travel/position = Vector2(360.5, 101)
 transitions = ["Start", "Travel", SubResource("AnimationNodeStateMachineTransition_um3m1")]
 
+[sub_resource type="Curve" id="Curve_ak1ps"]
+max_value = 200.0
+_data = [Vector2(0, 1), 0.0, 91.3207, 0, 1, Vector2(0.662921, 61.5385), 277.632, 277.632, 0, 0, Vector2(0.960674, 200), 465.022, 0.0, 0, 0]
+point_count = 3
+
 [node name="Fireball" type="RigidBody2D"]
 collision_layer = 16416
 collision_mask = 270
@@ -86,14 +92,15 @@ visible = false
 shape = SubResource("CircleShape2D_c3tof")
 
 [node name="SmallExplosion" type="Area2D" parent="."]
+top_level = true
 collision_layer = 33
 collision_mask = 11
 
 [node name="SmallExplosionCollision" type="CollisionShape2D" parent="SmallExplosion"]
+scale = Vector2(0.5, 0.5)
 shape = SubResource("CircleShape2D_0d406")
 
 [node name="BigExplosion" type="Area2D" parent="."]
-visible = false
 collision_layer = 32
 collision_mask = 4
 
@@ -102,7 +109,7 @@ shape = SubResource("CircleShape2D_t4vyy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(6, -1)
-scale = Vector2(4.96875, 5.1875)
+scale = Vector2(2.874, 3)
 texture = ExtResource("2_6cebx")
 hframes = 5
 vframes = 2
@@ -119,5 +126,20 @@ anim_player = NodePath("../AnimationPlayer")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 collision_mask = 2
+
+[node name="CPUParticles2D" parent="." instance=ExtResource("2_rwb02")]
+top_level = false
+visibility_layer = 1023
+z_index = 1
+lifetime = 0.6
+lifetime_randomness = 0.0
+direction = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 180.0
+linear_accel_min = 80.0
+linear_accel_max = 130.0
+scale_amount_min = 3.0
+scale_amount_max = 14.0
+anim_speed_curve = SubResource("Curve_ak1ps")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

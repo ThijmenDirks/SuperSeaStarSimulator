@@ -1,11 +1,8 @@
 extends CPUParticles2D
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _on_area_2d_body_entered(body):
+	$CPUParticles2D.position = to_local(body.global_position)
+	$CPUParticles2D.emitting = true
+	await get_tree().create_timer($CPUParticles2D.lifetime).timeout
+	$CPUParticles2D.emitting = false
+	queue_free()
