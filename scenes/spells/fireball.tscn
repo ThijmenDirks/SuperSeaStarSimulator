@@ -20,6 +20,7 @@ radius = 91.1373
 
 [sub_resource type="Animation" id="Animation_wn6at"]
 length = 0.001
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -56,13 +57,18 @@ _data = {
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cnlu5"]
 animation = &"Travel"
+use_custom_timeline = true
+timeline_length = 1.0
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_um3m1"]
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_to3ae"]
 states/Travel/node = SubResource("AnimationNodeAnimation_cnlu5")
-states/Travel/position = Vector2(360.5, 101)
+states/Travel/position = Vector2(360.5, 100.5)
 transitions = ["Start", "Travel", SubResource("AnimationNodeStateMachineTransition_um3m1")]
 
 [node name="Fireball" type="RigidBody2D"]
@@ -70,6 +76,7 @@ collision_layer = 16416
 collision_mask = 270
 physics_material_override = SubResource("PhysicsMaterial_roufs")
 gravity_scale = 0.0
+custom_integrator = true
 contact_monitor = true
 max_contacts_reported = 1
 linear_damp_mode = 1

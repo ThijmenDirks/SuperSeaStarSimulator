@@ -7,6 +7,7 @@
 
 [sub_resource type="Animation" id="Animation_kx0ak"]
 length = 0.001
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -846,7 +847,7 @@ states/IdleCast/node = SubResource("AnimationNodeBlendSpace2D_fg0ha")
 states/IdleCast/position = Vector2(339.75, 232.125)
 states/Start/position = Vector2(145.5, 101.875)
 states/Walk/node = SubResource("AnimationNodeBlendSpace2D_yup5s")
-states/Walk/position = Vector2(560.5, 99.75)
+states/Walk/position = Vector2(561.188, 99.875)
 states/WalkCast/node = SubResource("AnimationNodeBlendSpace2D_cdgty")
 states/WalkCast/position = Vector2(561.875, 226.781)
 transitions = ["Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_6nswi"), "Walk", "WalkCast", SubResource("AnimationNodeStateMachineTransition_4fj1r"), "IdleCast", "Idle", SubResource("AnimationNodeStateMachineTransition_f8il4"), "Idle", "IdleCast", SubResource("AnimationNodeStateMachineTransition_w7p60"), "WalkCast", "Walk", SubResource("AnimationNodeStateMachineTransition_0jxht"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_80vmx"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_ogua8"), "IdleCast", "WalkCast", SubResource("AnimationNodeStateMachineTransition_0a2p7"), "WalkCast", "IdleCast", SubResource("AnimationNodeStateMachineTransition_a05ju")]
@@ -934,5 +935,5 @@ offset_right = 109.0
 offset_bottom = 107.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="body_entered" from="VisionField" to="." method="_on_vision_field_body_entered"]
 [connection signal="body_entered" from="VisionField" to="." method="singal_test"]
+[connection signal="body_entered" from="VisionField" to="." method="_on_vision_field_body_entered"]
