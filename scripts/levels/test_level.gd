@@ -11,7 +11,8 @@ func _ready() -> void:
 
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("z"):
-		spawn_next_wave()
+		current_wave += 1
+		spawn_next_wave(current_wave)
 
 		#"goblins" = 3,
 		#"time" = 10,
