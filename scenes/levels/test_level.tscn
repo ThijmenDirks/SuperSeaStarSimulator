@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://dbifjqhl4pa28"]
+[gd_scene load_steps=24 format=4 uid="uid://dbifjqhl4pa28"]
 
 [ext_resource type="Script" path="res://scripts/levels/test_level.gd" id="1_4lh20"]
 [ext_resource type="Texture2D" uid="uid://dr304t324bssf" path="res://art/forest_base_tilesetv2.png" id="1_a526s"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cw65fjbyen3ns" path="res://scenes/other/waypoint.tscn" id="6_jnk05"]
 [ext_resource type="PackedScene" uid="uid://qgik2c5wtenr" path="res://scenes/map/spawn_area.tscn" id="7_pp8no"]
 [ext_resource type="PackedScene" uid="uid://c25a8toq0den5" path="res://scenes/map/moveable_block.tscn" id="7_qidrq"]
+[ext_resource type="Script" path="res://scenes/levels/day_night.gd" id="10_l10il"]
 
 [sub_resource type="Resource" id="Resource_0srgc"]
 script = ExtResource("3_wq6wp")
@@ -364,3 +365,6 @@ position = Vector2(-86, 225)
 
 [node name="SpawnArea2" parent="SpawnAreas" instance=ExtResource("7_pp8no")]
 position = Vector2(-227, 162)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+script = ExtResource("10_l10il")
