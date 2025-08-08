@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://dbifjqhl4pa28"]
+[gd_scene load_steps=23 format=4 uid="uid://dbifjqhl4pa28"]
 
 [ext_resource type="Script" path="res://scripts/levels/test_level.gd" id="1_4lh20"]
 [ext_resource type="Texture2D" uid="uid://dr304t324bssf" path="res://art/forest_base_tilesetv2.png" id="1_a526s"]
@@ -14,26 +14,40 @@
 script = ExtResource("3_wq6wp")
 name = "goblin"
 amount = 3
+time = 10.0
+spawn_area = 0
+
+[sub_resource type="Resource" id="Resource_pj0j0"]
+script = ExtResource("3_wq6wp")
+name = "shaman"
+amount = 1
 time = 5.0
-area = 0
+spawn_area = 0
 
-[sub_resource type="Resource" id="Resource_rv21w"]
+[sub_resource type="Resource" id="Resource_4apqr"]
 script = ExtResource("3_wq6wp")
-name = ""
-amount = 0
+name = "goblin"
+amount = 5
 time = 0.0
-area = 0
+spawn_area = 0
 
-[sub_resource type="Resource" id="Resource_v4eoi"]
+[sub_resource type="Resource" id="Resource_5vhd8"]
 script = ExtResource("3_wq6wp")
-name = ""
-amount = 0
+name = "shaman"
+amount = 3
+time = 30.0
+spawn_area = 0
+
+[sub_resource type="Resource" id="Resource_fihvn"]
+script = ExtResource("3_wq6wp")
+name = "goblin"
+amount = 20
 time = 0.0
-area = 0
+spawn_area = 0
 
 [sub_resource type="Resource" id="Resource_yknru"]
 script = ExtResource("2_v6og4")
-subwaves = Array[ExtResource("3_wq6wp")]([SubResource("Resource_mdq6p"), SubResource("Resource_rv21w"), SubResource("Resource_v4eoi")])
+subwaves = Array[ExtResource("3_wq6wp")]([SubResource("Resource_mdq6p"), SubResource("Resource_pj0j0"), SubResource("Resource_4apqr"), SubResource("Resource_5vhd8"), SubResource("Resource_fihvn")])
 
 [sub_resource type="GDScript" id="GDScript_guruh"]
 script/source = "extends Sprite2D
@@ -346,10 +360,10 @@ position = Vector2(74, 42)
 [node name="SpawnAreas" type="Node2D" parent="."]
 
 [node name="SpawnArea0" parent="SpawnAreas" instance=ExtResource("7_pp8no")]
-position = Vector2(548, 392)
+position = Vector2(65, 244)
 
 [node name="SpawnArea1" parent="SpawnAreas" instance=ExtResource("7_pp8no")]
-position = Vector2(-33, 407)
+position = Vector2(-86, 225)
 
 [node name="SpawnArea2" parent="SpawnAreas" instance=ExtResource("7_pp8no")]
-position = Vector2(-534, 156)
+position = Vector2(-227, 162)

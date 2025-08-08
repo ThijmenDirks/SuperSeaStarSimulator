@@ -87,7 +87,8 @@ func input_is_in_list(list):
 			return true
 	return false
 
-
+# credits
+# was it natanius ?
 func natius():
 	var potential_approved_input = []
 	var approved_input = ""

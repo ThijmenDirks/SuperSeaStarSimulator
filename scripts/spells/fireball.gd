@@ -107,11 +107,11 @@ func explosion(size : String = "big"):
 			if not ray_cast.is_colliding():
 				print("hit an enemy  ", target, "   damage:   ", get_damage_by_explosion(base_damage, self.global_position.distance_to(target.global_position) , aoe_size), damage_type)
 				target.take_damage(get_damage_by_explosion(base_damage, self.global_position.distance_to(target.global_position) , aoe_size), damage_type)
-	$CPUParticles2D.position = to_local(explosion_area.global_position)
+	#$CPUParticles2D.position = to_local(explosion_area.global_position)
 	$CPUParticles2D.emitting = true
 	await get_tree().create_timer($CPUParticles2D.lifetime).timeout
 	$CPUParticles2D.emitting = false
-	queue_free()
+	#queue_free()
 	await make_noise(noise)
 	queue_free()
 

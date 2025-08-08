@@ -91,7 +91,7 @@ func on_hit(body) -> void:
 	print("hit 7   ", body)
 	if body is Enemy or body is Player:
 		body.take_damage(damage, damage_type)
-		#queue_free()
+		queue_free()
 
 
 func _on_life_time_timer_timeout() -> void:

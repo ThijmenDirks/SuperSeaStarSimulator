@@ -6,8 +6,12 @@ func _ready() -> void:
 	spawn_areas = [$SpawnAreas/SpawnArea1, $SpawnAreas/SpawnArea2, $SpawnAreas/SpawnArea3]
 	print("all_waves", all_waves)
 
-func _physics_process(delta: float) -> void:
-	spawn_next_wave()
+#func _physics_process(delta: float) -> void:
+	#spawn_next_wave()
+
+func _unhandled_input(_event):
+	if Input.is_action_just_pressed("z"):
+		spawn_next_wave()
 
 		#"goblins" = 3,
 		#"time" = 10,

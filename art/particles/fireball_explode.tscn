@@ -20,7 +20,6 @@ randomness = 0.11
 lifetime_randomness = 0.04
 spread = 180.0
 gravity = Vector2(0, 0)
-initial_velocity_min = 20.1
 initial_velocity_max = 80.71
 angular_velocity_min = -720.0
 angular_velocity_max = 720.0
