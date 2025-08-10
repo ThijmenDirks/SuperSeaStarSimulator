@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cunitmhjmor4t"]
+[gd_scene load_steps=18 format=3 uid="uid://cunitmhjmor4t"]
 
 [ext_resource type="Script" path="res://scripts/spells/fireball.gd" id="1_xhdr4"]
 [ext_resource type="Texture2D" uid="uid://b1360w2r0anxr" path="res://art/fireball_anim.png" id="2_6cebx"]
@@ -77,6 +77,17 @@ max_value = 200.0
 _data = [Vector2(0, 1), 0.0, 91.3207, 0, 1, Vector2(0.662921, 61.5385), 277.632, 277.632, 0, 0, Vector2(0.960674, 200), 465.022, 0.0, 0, 0]
 point_count = 3
 
+[sub_resource type="Gradient" id="Gradient_kjljm"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3ctdn"]
+gradient = SubResource("Gradient_kjljm")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.1, 0.2)
+metadata/_snap_enabled = true
+
 [node name="Fireball" type="RigidBody2D"]
 collision_layer = 16416
 collision_mask = 270
@@ -147,5 +158,13 @@ linear_accel_max = 130.0
 scale_amount_min = 3.0
 scale_amount_max = 14.0
 anim_speed_curve = SubResource("Curve_ak1ps")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-1.19209e-07, 0)
+scale = Vector2(2.95313, 2.875)
+energy = 0.25
+shadow_enabled = true
+shadow_color = Color(1, 1, 1, 0.0235294)
+texture = SubResource("GradientTexture2D_3ctdn")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
