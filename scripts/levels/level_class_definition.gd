@@ -12,8 +12,8 @@ var goblin = preload("res://scenes/enemies/goblin.tscn")
 var shaman = preload("res://scenes/enemies/shaman.tscn")
 var green_slime = preload("res://scenes/enemies/green_slime.tscn")
 
-var last_subwave:bool = false
-var wave_is_ending: bool = false
+#var last_subwave:bool = false
+var wave_is_on_end: bool = false
 #var wave_active: bool = false
 var active_enemies: int = 0
 
@@ -28,8 +28,8 @@ var status: String
 
 func _physics_process(delta: float) -> void:
 	#print("spawn,enemies:   ", active_enemies, "   is last ?   ", last_subwave)
-	if active_enemies == 0 and wave_is_ending:
-		print("level   c ", current_wave, "amount   ", amount_of_waves)
+	if active_enemies == 0 and wave_is_on_end:
+		print("level   current ", current_wave, "amount   ", amount_of_waves)
 		if current_wave == amount_of_waves - 1:
 			#get_tree.paused = true
 			print("level cleared !")
@@ -44,6 +44,7 @@ func _physics_process(delta: float) -> void:
 # with thanks to alexcavadora and antimundo, https://forum.godotengine.org/t/whats-the-best-way-to-create-a-modular-wave-spawning-node/54271
 
 func spawn_next_wave(wave):
+	active_enemies = 0 # this should not be needed
 	await get_tree().create_timer(3).timeout
 	print("new wave: ", wave)
 	print("spawn_test 0")
@@ -63,20 +64,24 @@ func spawn_next_wave(wave):
 		print("spawn_test 2")
 		print("enemy   ", current_subwave)#all_waves[current_wave].subwaves)
 		#var current_subwave = all_waves[current_wave].subwaves[enemy]
-		await spawn_unit(current_subwave["name"], current_subwave["time"], current_subwave["amount"], current_subwave["spawn_area"])
+		spawn_unit(current_subwave["name"], current_subwave["time"], current_subwave["amount"], current_subwave["spawn_area"])
+		print("time   ", current_subwave["time"])
 		await get_tree().create_timer(current_subwave["time"]).timeout
 		print("spawnnn   ", current_subwave, "   end:   ", subwave_on_end, "   same?   ", current_subwave == subwave_on_end)
 		if current_subwave == subwave_on_end:
-			wave_is_ending = true
+			wave_is_on_end = true
 		else:
-			wave_is_ending = false
+			wave_is_on_end = false
 	print("spawn_test 6")
 	status = "idle"
 
 #spawnnn   <Resource -9223371988871936276>   end   <Resource-9223371988871936276>
 
+# the time is, of course, the amount of time BEFORE these nemeis spawn, not until the next subwave
+# really ?
 func spawn_unit(enemy_name: String, time, amount: int, spawn_area: int):
 	print("spawn_test 3")
+	#await
 	print("spawn_test 4")
 	for i in amount:
 		var new_enemy
