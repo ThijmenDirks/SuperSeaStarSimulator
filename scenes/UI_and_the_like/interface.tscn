@@ -16,3 +16,11 @@ grow_vertical = 2
 
 [node name="Kleurenbalkje" parent="Control" instance=ExtResource("2_n8u1q")]
 position = Vector2(121, 6)
+
+[node name="WaveNumberLabel" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 298.0
+offset_top = 49.0
+offset_right = 338.0
+offset_bottom = 72.0
+text = "label"

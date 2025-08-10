@@ -68,6 +68,7 @@ var disintegrate = {
 	"spell_target" = "single_target",
 	"spell_base_grow_speed" = 300,
 	"spell_rotation_speed" = 0.02,
+	"spell_lifetime" = 99,
 	"spell_damage" = 999.0,
 	"spell_damage_type" = "true", # ?
 	"spell_kleurenbalkje_change" = 8,

@@ -11,7 +11,7 @@ friction = 0.0
 radius = 24.0208
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c3tof"]
-radius = 176.409
+radius = 177.003
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0d406"]
 radius = 114.0
@@ -95,7 +95,6 @@ shape = SubResource("CircleShape2D_bmfga")
 [node name="NoiseArea" type="Area2D" parent="."]
 
 [node name="NoiseAreaCollision" type="CollisionShape2D" parent="NoiseArea"]
-visible = false
 shape = SubResource("CircleShape2D_c3tof")
 
 [node name="SmallExplosion" type="Area2D" parent="."]

@@ -8,15 +8,20 @@ func _ready() -> void:
 	#await get_tree().create_timer(1000).timeout
 	#current_wave += 1
 	#spawn_next_wave(current_wave)
+	await get_tree().create_timer(1).timeout
+	#if Input.is_action_just_pressed("c"):
+	current_wave += 1
+	spawn_next_wave(current_wave)
 
 #func _physics_process(delta: float) -> void:
 	#spawn_next_wave()
 
 func _unhandled_input(_event):
-	#await get_tree().create_timer(5).timeout
-	if Input.is_action_just_pressed("c"):
-		current_wave += 1
-		spawn_next_wave(current_wave)
+	pass
+	#await get_tree().create_timer(1).timeout
+	##if Input.is_action_just_pressed("c"):
+	#current_wave += 1
+	#spawn_next_wave(current_wave)
 
 		#"goblins" = 3,
 		#"time" = 10,

@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 @onready var last_screen_size = get_viewport().get_visible_rect().size
+@onready var wave_number_label = $Control/WaveNumberLabel
 #@onready var mana_thingy = load("res://scenes/other/mana_thingy.tscn").instantiate()
 
 var mana_thingies : Array
@@ -10,6 +11,7 @@ var used_colors = ["red", "green", "blue", "a"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	print("hi", wave_number_label)
 	for i in range(used_colors.size() - 1, -1, -1):
 		var color = used_colors[i]
 		var new_mana_thingy = load("res://scenes/UI_and_the_like/mana_thingy.tscn").instantiate()
@@ -22,6 +24,11 @@ func _ready() -> void:
 
 func get_mana_thingies():
 	return mana_thingies
+
+
+func update_wave_number_label(new_wave_number):
+	wave_number_label.text = "wave " + str(new_wave_number)
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta: float) -> void:

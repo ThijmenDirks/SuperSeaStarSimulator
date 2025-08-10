@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://dbifjqhl4pa28"]
+[gd_scene load_steps=27 format=4 uid="uid://dbifjqhl4pa28"]
 
 [ext_resource type="Script" path="res://scripts/levels/test_level.gd" id="1_4lh20"]
 [ext_resource type="Texture2D" uid="uid://dr304t324bssf" path="res://art/forest_base_tilesetv2.png" id="1_a526s"]
@@ -11,41 +11,60 @@
 [ext_resource type="PackedScene" uid="uid://c25a8toq0den5" path="res://scenes/map/moveable_block.tscn" id="7_qidrq"]
 [ext_resource type="Script" path="res://scenes/levels/day_night.gd" id="10_l10il"]
 
-[sub_resource type="Resource" id="Resource_0srgc"]
+[sub_resource type="Resource" id="Resource_svc0e"]
+script = ExtResource("2_v6og4")
+subwaves = Array[ExtResource("3_wq6wp")]([])
+
+[sub_resource type="Resource" id="Resource_hs8cm"]
 script = ExtResource("3_wq6wp")
 name = "goblin"
 amount = 1
-time = 1.0
+time = 3.0
 spawn_area = 0
 
-[sub_resource type="Resource" id="Resource_v556w"]
+[sub_resource type="Resource" id="Resource_44i3d"]
+script = ExtResource("2_v6og4")
+subwaves = Array[ExtResource("3_wq6wp")]([SubResource("Resource_hs8cm")])
+
+[sub_resource type="Resource" id="Resource_naj87"]
+script = ExtResource("3_wq6wp")
+name = "goblin"
+amount = 0
+time = 3.0
+spawn_area = 0
+
+[sub_resource type="Resource" id="Resource_rjxj4"]
 script = ExtResource("3_wq6wp")
 name = "goblin"
 amount = 1
-time = 1.0
+time = 3.0
 spawn_area = 0
 
-[sub_resource type="Resource" id="Resource_bjfu5"]
+[sub_resource type="Resource" id="Resource_nf3pb"]
 script = ExtResource("2_v6og4")
-subwaves = Array[ExtResource("3_wq6wp")]([SubResource("Resource_0srgc"), SubResource("Resource_v556w")])
+subwaves = Array[ExtResource("3_wq6wp")]([SubResource("Resource_naj87"), SubResource("Resource_rjxj4")])
 
-[sub_resource type="Resource" id="Resource_pe6ce"]
+[sub_resource type="Resource" id="Resource_8b0jk"]
 script = ExtResource("3_wq6wp")
-name = "shaman"
-amount = 1
-time = 1.0
+name = "goblin"
+amount = 0
+time = 3.0
 spawn_area = 0
 
-[sub_resource type="Resource" id="Resource_w43lg"]
-script = ExtResource("3_wq6wp")
-name = "shaman"
-amount = 1
-time = 1.0
-spawn_area = 0
-
-[sub_resource type="Resource" id="Resource_0wxkg"]
+[sub_resource type="Resource" id="Resource_4qjce"]
 script = ExtResource("2_v6og4")
-subwaves = Array[ExtResource("3_wq6wp")]([SubResource("Resource_pe6ce"), SubResource("Resource_w43lg")])
+subwaves = Array[ExtResource("3_wq6wp")]([SubResource("Resource_8b0jk")])
+
+[sub_resource type="Resource" id="Resource_xiklj"]
+script = ExtResource("3_wq6wp")
+name = "goblin"
+amount = 0
+time = 3.0
+spawn_area = 0
+
+[sub_resource type="Resource" id="Resource_mno7n"]
+script = ExtResource("2_v6og4")
+subwaves = Array[ExtResource("3_wq6wp")]([SubResource("Resource_xiklj")])
 
 [sub_resource type="GDScript" id="GDScript_guruh"]
 script/source = "extends Sprite2D
@@ -159,7 +178,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-1107, -696, 1673, -641
 
 [node name="TestLevel" type="Node2D" node_paths=PackedStringArray("spawn_areas")]
 script = ExtResource("1_4lh20")
-all_waves = Array[ExtResource("2_v6og4")]([null, SubResource("Resource_bjfu5"), SubResource("Resource_0wxkg")])
+all_waves = Array[ExtResource("2_v6og4")]([SubResource("Resource_svc0e"), SubResource("Resource_44i3d"), SubResource("Resource_nf3pb"), SubResource("Resource_4qjce"), SubResource("Resource_mno7n")])
 spawn_areas = [NodePath("SpawnAreas/SpawnArea0"), NodePath("SpawnAreas/SpawnArea1"), NodePath("SpawnAreas/SpawnArea2")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -182,7 +201,7 @@ position = Vector2(2, -1)
 position = Vector2(38, -45)
 
 [node name="CharacterBody2DG4" parent="." instance=ExtResource("4_vsvhc")]
-position = Vector2(-57, 9)
+position = Vector2(-57, -50)
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 512

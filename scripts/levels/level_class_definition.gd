@@ -2,12 +2,11 @@ class_name Level
 extends Node2D
 
 # wave number 0 will be empty
-# and so will subwave 0, so when the last wave is defeated, there might be a bit of time before the new one begins
+# and so will subwave 0, so when the last wave is defeated, there might be a bit of time before the new one begins. "?, not neccesarilly"
 
 @export var all_waves: Array[Wave]
 @export var spawn_areas: Array[Area2D]
 
-## ! this might be commented out, but it will be used !
 
 var goblin = preload("res://scenes/enemies/goblin.tscn")
 var shaman = preload("res://scenes/enemies/shaman.tscn")
@@ -17,7 +16,9 @@ var last_subwave:bool = false
 var wave_is_ending: bool = false
 #var wave_active: bool = false
 var active_enemies: int = 0
+
 @onready var amount_of_waves = all_waves.size()
+@onready var wave_number_label = get_node("CharacterBody2D/Interface")
 
 #var last_wave = all_waves[amount_of_waves - 0]
 
@@ -43,7 +44,10 @@ func _physics_process(delta: float) -> void:
 # with thanks to alexcavadora and antimundo, https://forum.godotengine.org/t/whats-the-best-way-to-create-a-modular-wave-spawning-node/54271
 
 func spawn_next_wave(wave):
+	await get_tree().create_timer(3).timeout
+	print("new wave: ", wave)
 	print("spawn_test 0")
+	wave_number_label.update_wave_number_label(wave)
 	#last_subwave = false
 	var subwave_on_end =  all_waves[current_wave].subwaves[-1]
 	#print("enemy   ", all_waves)
@@ -64,6 +68,8 @@ func spawn_next_wave(wave):
 		print("spawnnn   ", current_subwave, "   end:   ", subwave_on_end, "   same?   ", current_subwave == subwave_on_end)
 		if current_subwave == subwave_on_end:
 			wave_is_ending = true
+		else:
+			wave_is_ending = false
 	print("spawn_test 6")
 	status = "idle"
 

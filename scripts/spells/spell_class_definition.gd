@@ -79,7 +79,7 @@ func on_max_range():
 func pay_mana(orb_cost : Dictionary):
 	print("nnn   ", caster)
 	var used_mana_thingies : Array
-	for child in caster.get_node("interface").get_mana_thingies():
+	for child in caster.get_node("Interface").get_mana_thingies():
 		if child.my_color in orb_cost:
 			used_mana_thingies.append(child)
 	for mana_thingy in used_mana_thingies:
@@ -91,7 +91,7 @@ func pay_mana(orb_cost : Dictionary):
 
 
 func change_kleurenbalkje(colors : Array):
-	var color_bar = caster.get_node("interface/Control/Kleurenbalkje/PanelContainer/HBoxContainer")
+	var color_bar = caster.get_node("Interface/Control/Kleurenbalkje/PanelContainer/HBoxContainer")
 	for color in colors:
 		var used_color_bar = color_bar.get_color_bar(color)
 		if used_color_bar.size_flags_stretch_ratio == 1.0:
@@ -102,7 +102,7 @@ func change_kleurenbalkje(colors : Array):
 
 
 func get_multiplier(orb_cost):
-	var color_bar = caster.get_node("interface/Control/Kleurenbalkje/PanelContainer/HBoxContainer")
+	var color_bar = caster.get_node("Interface/Control/Kleurenbalkje/PanelContainer/HBoxContainer")
 	var total = 0
 	var amount = 0
 	for color in orb_cost:

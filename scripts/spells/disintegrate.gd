@@ -19,6 +19,8 @@ func _ready():
 	texture = $Sprite2D # do i need these two ?
 	ray_cast = $RayCast2D # do i need these two ?
 	max_range = this_spell.spell_range
+	life_time_timer.wait_time = this_spell.spell_lifetime
+	life_time_timer.start()
 	print("heal test 1")
 
 	beam.base_grow_speed = this_spell.spell_base_grow_speed
@@ -63,7 +65,6 @@ func _ready():
 	print("hhh  ", target)
 	if target:
 		target.take_damage(damage, damage_type)
-	# once you hit, it wont queue_free ?
 	print("heal test 7")
 	# maybe here the animantion ?
 	#queue3_free()
@@ -91,7 +92,7 @@ func on_hit(body) -> void:
 	print("hit 7   ", body)
 	if body is Enemy or body is Player:
 		body.take_damage(damage, damage_type)
-		queue_free()
+		#queue_free()
 
 
 func _on_life_time_timer_timeout() -> void:
