@@ -19,6 +19,8 @@ func deal_damage(a,b):
 
 
 func _ready():
+	position = Vector2(0,0)
+	position = caster.global_position
 	print("you cast ", self.name, " !")
 	#print("nnn   ", caster)
 	#texture = load("res://art/Small-8-Direction-Characters_by_AxulArt/Small-8-Direction-Characters_by_AxulArt.png")
@@ -29,7 +31,7 @@ func _ready():
 	noise = this_spell.spell_noise
 	speed = this_spell.spell_speed
 	ray_cast = $RayCast2D
-	origin_position = caster.position
+	origin_position = caster.global_position
 	base_damage = this_spell.spell_damage
 	damage_type = this_spell.spell_damage_type
 	print("damage_type ", damage_type)
@@ -43,10 +45,10 @@ func _ready():
 	#direction = origin_position.angle_to(get_global_mouse_position())
 	#direction = get_local_mouse_position().angle()
 
-	max_range = min(position.distance_to(target_position), this_spell.spell_range)
+	max_range = min(origin_position.distance_to(target_position), this_spell.spell_range)
 	self.look_at(target_position)
 	rotation += PI
-	print("max_range: ", max_range, "   position   ", position, "   global_position   ", global_position, "   target_position   ", target_position, "   length:   ", self.position.distance_to(origin_position))
+	print("max_range: ", max_range, "   position   ", position, "   global_position   ", global_position, "   origin_pos:  ", origin_position, "   target_position   ", target_position, "   length:   ", self.position.distance_to(origin_position), "   parent   ", get_parent().name, "   caster   ", caster.name,  "   caster_pos   ", caster.position,  "   caster_glob_pos   ", caster.global_position )
 
 	if caster is Player:
 		if pay_mana(orb_cost):
@@ -109,7 +111,7 @@ func explosion(size : String = "big"):
 				target.take_damage(get_damage_by_explosion(base_damage, self.global_position.distance_to(target.global_position) , aoe_size), damage_type)
 	#$CPUParticles2D.position = to_local(explosion_area.global_position)
 	$CPUParticles2D.emitting = true
-	await get_tree().create_timer($CPUParticles2D.lifetime).timeout
+	await get_tree().create_timer($CPUParticles2D.lifetime).timeout # WARNING because ofthis line, fireball wont queue_free until the particles are done (though it looks cool his way)
 	$CPUParticles2D.emitting = false
 	#queue_free()
 	await make_noise(noise)

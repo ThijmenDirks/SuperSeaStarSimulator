@@ -2,7 +2,7 @@ class_name Level
 extends Node2D
 
 # wave number 0 will be empty
-# and so will subwave 0, so when the last wave is dfetee, there might be a bit oftime before the nwew one begins
+# and so will subwave 0, so when the last wave is defeated, there might be a bit of time before the new one begins
 
 @export var all_waves: Array[Wave]
 @export var spawn_areas: Array[Area2D]

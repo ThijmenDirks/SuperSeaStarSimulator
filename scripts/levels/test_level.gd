@@ -5,12 +5,16 @@ extends Level
 func _ready() -> void:
 	spawn_areas = [$SpawnAreas/SpawnArea1, $SpawnAreas/SpawnArea2, $SpawnAreas/SpawnArea3]
 	print("all_waves", all_waves)
+	#await get_tree().create_timer(1000).timeout
+	#current_wave += 1
+	#spawn_next_wave(current_wave)
 
 #func _physics_process(delta: float) -> void:
 	#spawn_next_wave()
 
 func _unhandled_input(_event):
-	if Input.is_action_just_pressed("z"):
+	#await get_tree().create_timer(5).timeout
+	if Input.is_action_just_pressed("c"):
 		current_wave += 1
 		spawn_next_wave(current_wave)
 

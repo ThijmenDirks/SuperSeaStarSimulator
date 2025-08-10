@@ -315,7 +315,7 @@ func casting_state(spell : String = "", target : Vector2 = Vector2.ZERO, phase :
 			scene_of_spell_that_is_being_cast.caster = self
 			#scene_of_spell_that_is_being_cast.position = to_local(self.global_position)
 			scene_of_spell_that_is_being_cast.global_position = self.global_position
-			self.get_parent().add_child(scene_of_spell_that_is_being_cast)
+			self.get_parent().get_parent().get_parent().add_child(scene_of_spell_that_is_being_cast)
 
 			speed = backup_speed
 			state_is_locked = false

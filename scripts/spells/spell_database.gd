@@ -71,7 +71,7 @@ var disintegrate = {
 	"spell_damage" = 999.0,
 	"spell_damage_type" = "true", # ?
 	"spell_kleurenbalkje_change" = 8,
-	"spell_orb_cost" = {"red" = 0, "green" = 1, "blue" = 0}, # 5, 5, 2
+	"spell_orb_cost" = {"red" = 1, "green" = 1, "blue" = 1}, # 5, 5, 2
 	"spell_noise" = 300, #amount of (???)(pixels?) ditance in witch enemies are warned. this, or something else, might get multyplied for some enemies.
 	"spell_is_targetable" = true,
 	"spell_range" = 200,
