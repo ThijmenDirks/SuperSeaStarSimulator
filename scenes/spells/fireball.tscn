@@ -164,7 +164,7 @@ position = Vector2(-1.19209e-07, 0)
 scale = Vector2(2.95313, 2.875)
 energy = 0.25
 shadow_enabled = true
-shadow_color = Color(1, 1, 1, 0.0235294)
+shadow_color = Color(0, 0, 0, 0.184314)
 texture = SubResource("GradientTexture2D_3ctdn")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

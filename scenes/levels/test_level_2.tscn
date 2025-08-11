@@ -1,6 +1,6 @@
 [gd_scene load_steps=27 format=4 uid="uid://8kiayk7ojkou"]
 
-[ext_resource type="Texture2D" uid="uid://8ir6y5e4ctii" path="res://art/forestv4.png" id="1_78m3a"]
+[ext_resource type="Texture2D" uid="uid://8ir6y5e4ctii" path="res://art/outdated art/forestv4.png" id="1_78m3a"]
 [ext_resource type="PackedScene" uid="uid://bqhlp5wv10xgg" path="res://scenes/other/player.tscn" id="2_v4xcr"]
 
 [sub_resource type="GDScript" id="GDScript_cjhpu"]

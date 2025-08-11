@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8ir6y5e4ctii"
-path="res://.godot/imported/forestv4.png-63e8a9a2411e631cb46a367784f13b34.ctex"
+uid="uid://qreksclpirx0"
+path="res://.godot/imported/feesh.png-64c982122e80bc9efd48f5f36fc10511.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/forestv4.png"
-dest_files=["res://.godot/imported/forestv4.png-63e8a9a2411e631cb46a367784f13b34.ctex"]
+source_file="res://art/feesh.png"
+dest_files=["res://.godot/imported/feesh.png-64c982122e80bc9efd48f5f36fc10511.ctex"]
 
 [params]
 
