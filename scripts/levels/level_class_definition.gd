@@ -33,7 +33,7 @@ func _physics_process(delta: float) -> void:
 		if current_wave == amount_of_waves - 1:
 			#get_tree.paused = true
 			print("level cleared !")
-			wave_number_label.update_wave_number_label(99)
+			#wave_number_label.update_wave_number_label(99) # should go back !
 			return
 		else:
 			#print("                                            spawnn,enemies:   ", active_enemies, "   is last ?   ", last_subwave)
@@ -50,7 +50,7 @@ func spawn_next_wave(wave):
 	await get_tree().create_timer(3).timeout
 	print("new wave: ", wave)
 	print("spawn_test 0")
-	wave_number_label.update_wave_number_label(wave)
+	#wave_number_label.update_wave_number_label(wave) # should go back !
 	#last_subwave = false
 	var subwave_on_end =  all_waves[current_wave].subwaves[-1]
 	#print("enemy   ", all_waves)
@@ -100,6 +100,7 @@ func spawn_unit(enemy_name: String, time, amount: int, spawn_area: int):
 		#new_enemy.position += Vector2(randi_range(-100, 100), randi_range(-100, 100))
 		active_enemies += 1
 		print("spawn_test 5")
+		wave_number_label.update_wave_number_label(active_enemies) # please delte this line !!
 		#x.startIndex = spawner_tile_index
 	#await get_tree().create_timer(time).timeout #  this should go in spawn_next_wave()
 

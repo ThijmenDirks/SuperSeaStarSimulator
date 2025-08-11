@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=4 uid="uid://dbifjqhl4pa28"]
+[gd_scene load_steps=59 format=4 uid="uid://dbifjqhl4pa28"]
 
 [ext_resource type="Script" path="res://scripts/levels/test_level.gd" id="1_4lh20"]
 [ext_resource type="PackedScene" uid="uid://bqhlp5wv10xgg" path="res://scenes/other/player.tscn" id="2_ao355"]
@@ -9,9 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://qgik2c5wtenr" path="res://scenes/map/spawn_area.tscn" id="7_pp8no"]
 [ext_resource type="PackedScene" uid="uid://c25a8toq0den5" path="res://scenes/map/moveable_block.tscn" id="7_qidrq"]
 [ext_resource type="Texture2D" uid="uid://crb46jhgqo7sm" path="res://art/forestv6an.png" id="10_cjmc1"]
-[ext_resource type="Script" path="res://scenes/levels/day_night.gd" id="10_l10il"]
+[ext_resource type="Script" path="res://scripts/map/day_night.gd" id="10_l10il"]
 [ext_resource type="Texture2D" uid="uid://qreksclpirx0" path="res://art/feesh.png" id="11_bw2pn"]
-[ext_resource type="Script" path="res://scenes/levels/sign1.gd" id="12_wcdg4"]
+[ext_resource type="Script" path="res://scripts/map/sign.gd" id="12_wcdg4"]
+[ext_resource type="PackedScene" uid="uid://qchn08qp8wt0" path="res://scenes/map/sign.tscn" id="13_g0f83"]
 
 [sub_resource type="Resource" id="Resource_svc0e"]
 script = ExtResource("2_v6og4")
@@ -20,14 +21,14 @@ subwaves = Array[ExtResource("3_wq6wp")]([])
 [sub_resource type="Resource" id="Resource_hs8cm"]
 script = ExtResource("3_wq6wp")
 name = "goblin"
-amount = 5
-time = 3.0
+amount = 1
+time = 999.0
 spawn_area = 0
 
 [sub_resource type="Resource" id="Resource_4ov6q"]
 script = ExtResource("3_wq6wp")
 name = "goblin"
-amount = 20
+amount = 3
 time = 3.0
 spawn_area = 1
 
@@ -724,3 +725,7 @@ label_settings = SubResource("LabelSettings_3egit")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
+
+[node name="Sign" parent="." instance=ExtResource("13_g0f83")]
+position = Vector2(46, 163)
+text = "sign nr. 1"

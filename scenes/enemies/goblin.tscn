@@ -935,5 +935,5 @@ offset_right = 109.0
 offset_bottom = 107.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="body_entered" from="VisionField" to="." method="singal_test"]
 [connection signal="body_entered" from="VisionField" to="." method="_on_vision_field_body_entered"]
+[connection signal="body_entered" from="VisionField" to="." method="singal_test"]
