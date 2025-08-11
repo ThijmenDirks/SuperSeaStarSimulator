@@ -20,47 +20,75 @@ subwaves = Array[ExtResource("3_wq6wp")]([])
 [sub_resource type="Resource" id="Resource_hs8cm"]
 script = ExtResource("3_wq6wp")
 name = "goblin"
-amount = 1
+amount = 5
 time = 3.0
 spawn_area = 0
 
+[sub_resource type="Resource" id="Resource_4ov6q"]
+script = ExtResource("3_wq6wp")
+name = "goblin"
+amount = 20
+time = 3.0
+spawn_area = 1
+
+[sub_resource type="Resource" id="Resource_85hvd"]
+script = ExtResource("3_wq6wp")
+name = "goblin"
+amount = 20
+time = 0.0
+spawn_area = 2
+
 [sub_resource type="Resource" id="Resource_44i3d"]
 script = ExtResource("2_v6og4")
-subwaves = Array[ExtResource("3_wq6wp")]([SubResource("Resource_hs8cm")])
+subwaves = Array[ExtResource("3_wq6wp")]([SubResource("Resource_hs8cm"), SubResource("Resource_4ov6q"), SubResource("Resource_85hvd")])
 
 [sub_resource type="Resource" id="Resource_naj87"]
 script = ExtResource("3_wq6wp")
-name = "goblin"
-amount = 0
-time = 3.0
+name = "shaman"
+amount = 1
+time = 2.0
 spawn_area = 0
 
 [sub_resource type="Resource" id="Resource_rjxj4"]
 script = ExtResource("3_wq6wp")
 name = "goblin"
 amount = 1
-time = 3.0
+time = 2.0
 spawn_area = 0
 
 [sub_resource type="Resource" id="Resource_nf3pb"]
 script = ExtResource("2_v6og4")
 subwaves = Array[ExtResource("3_wq6wp")]([SubResource("Resource_naj87"), SubResource("Resource_rjxj4")])
 
-[sub_resource type="Resource" id="Resource_8b0jk"]
+[sub_resource type="Resource" id="Resource_bcing"]
+script = ExtResource("3_wq6wp")
+name = ""
+amount = 0
+time = 0.0
+spawn_area = 0
+
+[sub_resource type="Resource" id="Resource_ddkmb"]
+script = ExtResource("3_wq6wp")
+name = "shaman"
+amount = 1
+time = 2.0
+spawn_area = 0
+
+[sub_resource type="Resource" id="Resource_ayalh"]
 script = ExtResource("3_wq6wp")
 name = "goblin"
-amount = 0
-time = 3.0
+amount = 1
+time = 2.0
 spawn_area = 0
 
 [sub_resource type="Resource" id="Resource_4qjce"]
 script = ExtResource("2_v6og4")
-subwaves = Array[ExtResource("3_wq6wp")]([SubResource("Resource_8b0jk")])
+subwaves = Array[ExtResource("3_wq6wp")]([SubResource("Resource_bcing"), SubResource("Resource_ddkmb"), SubResource("Resource_ayalh")])
 
 [sub_resource type="Resource" id="Resource_xiklj"]
 script = ExtResource("3_wq6wp")
 name = "goblin"
-amount = 0
+amount = 1
 time = 3.0
 spawn_area = 0
 

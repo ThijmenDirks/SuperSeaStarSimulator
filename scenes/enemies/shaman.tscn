@@ -858,7 +858,7 @@ radius = 12.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_st8s6"]
 radius = 224.377
 
-[node name="CharacterBody2DG" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree")]
+[node name="CharacterBody2DG2" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree")]
 collision_layer = 541
 script = ExtResource("1_3jecn")
 animation_tree = NodePath("AnimationTree")
