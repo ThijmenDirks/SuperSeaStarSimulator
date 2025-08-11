@@ -27,12 +27,13 @@ var status: String
 
 
 func _physics_process(delta: float) -> void:
-	#print("spawn,enemies:   ", active_enemies, "   is last ?   ", last_subwave)
+	print("spawn, enemies:   ", active_enemies, "   is on_end ?   ", wave_is_on_end)
 	if active_enemies == 0 and wave_is_on_end:
-		print("level   current ", current_wave, "amount   ", amount_of_waves)
+		print("level   current ", current_wave, "  amount   ", amount_of_waves)
 		if current_wave == amount_of_waves - 1:
 			#get_tree.paused = true
 			print("level cleared !")
+			wave_number_label.update_wave_number_label(99)
 			return
 		else:
 			#print("                                            spawnn,enemies:   ", active_enemies, "   is last ?   ", last_subwave)
@@ -44,6 +45,7 @@ func _physics_process(delta: float) -> void:
 # with thanks to alexcavadora and antimundo, https://forum.godotengine.org/t/whats-the-best-way-to-create-a-modular-wave-spawning-node/54271
 
 func spawn_next_wave(wave):
+	wave_is_on_end = false
 	active_enemies = 0 # this should not be needed
 	await get_tree().create_timer(3).timeout
 	print("new wave: ", wave)
@@ -70,8 +72,8 @@ func spawn_next_wave(wave):
 		print("spawnnn   ", current_subwave, "   end:   ", subwave_on_end, "   same?   ", current_subwave == subwave_on_end)
 		if current_subwave == subwave_on_end:
 			wave_is_on_end = true
-		else:
-			wave_is_on_end = false
+		#else:
+			#wave_is_on_end = false
 	print("spawn_test 6")
 	status = "idle"
 
@@ -94,10 +96,51 @@ func spawn_unit(enemy_name: String, time, amount: int, spawn_area: int):
 				new_enemy = shaman.instantiate()
 		#get_node("SpawnAreas").get_child(spawn_area).add_child.call_deferred(new_enemy)
 		get_node("SpawnAreas").get_child(spawn_area).add_child(new_enemy)
-		new_enemy.position += Vector2(randi_range(-100, 100), randi_range(-100, 100))
+		new_enemy.position = get_random_point_in_area(get_node("SpawnAreas").get_child(spawn_area))
+		#new_enemy.position += Vector2(randi_range(-100, 100), randi_range(-100, 100))
 		active_enemies += 1
 		print("spawn_test 5")
 		#x.startIndex = spawner_tile_index
 	#await get_tree().create_timer(time).timeout #  this should go in spawn_next_wave()
-	
-	
+
+
+func get_random_point_in_area(area: Area2D) -> Vector2:
+	#var shape_node = area.get_node("CollisionShape2D")
+	var shape = area.get_node("CollisionShape2D").shape
+	print("iii   ", shape)
+	if shape is CircleShape2D:
+		return get_random_in_circle(shape)
+	match shape:
+		RectangleShape2D:
+			return get_random_in_rectangle(shape)
+		CircleShape2D:
+			return get_random_in_circle(shape)
+	print("iii")
+	return Vector2.ZERO
+
+
+#func get_random_in_rectangle(rect_shape: RectangleShape2D) -> Vector2:
+func get_random_in_rectangle(shape: Resource) -> Vector2:
+	var ext = shape.extents
+	return Vector2(
+		randf_range(-ext.x, ext.x),
+		randf_range(-ext.y, ext.y)
+	)
+
+#func get_random_in_circle(circle_shape: CircleShape2D) -> Vector2:
+func get_random_in_circle(shape: Resource) -> Vector2:
+	var r = shape.radius * sqrt(randf())  # sqrt to ensure uniform distribution
+	var angle = randf() * TAU
+	return Vector2(cos(angle), sin(angle)) * r
+
+##func get_random_in_capsule(capsule_shape: CapsuleShape2D) -> Vector2:
+#func get_random_in_capsule(area: Area2D) -> Vector2:
+	## Treat as two circles + rectangle in between
+	#var r = capsule_shape.radius
+	#var h = capsule_shape.height
+	## Generate a point in a rectangle or circle part
+	#while true:
+		#var p = Vector2(randf_range(-r, r), randf_range(-h/2 - r, h/2 + r))
+		#if p.length() <= r or abs(p.y) <= h/2:
+			#return p
+	#return Vector2.ZERO
