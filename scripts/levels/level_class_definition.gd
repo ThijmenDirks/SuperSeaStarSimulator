@@ -85,7 +85,7 @@ func spawn_unit(enemy_name: String, time, amount: int, spawn_area: int):
 	print("spawn_test 3")
 	#await
 	print("spawn_test 4")
-	for i in amount:
+	for i in range(amount):
 		var new_enemy
 		match enemy_name:
 			"slime":
