@@ -14,9 +14,12 @@ func _ready() -> void:
 	hp = 200#max_HP
 	base_speed = 30
 	speed = base_speed
+	chase_end_distance = 25
+	melee_range = 50
+
 	jump_hight = 20
 	state = STATES.IDLE_WALK
-	idle_walk(0, 3, "enter")
+	idle_walk(0, jump_duration, "enter")
 	look_for_player_area = $LookForPlayerArea
 	print("slime_", state)
 	timer.start(1)
@@ -52,8 +55,10 @@ func request_change_state(new_state):
 			change_state(STATES.IDLE_STAND)
 		STATES.IDLE_WALK:
 			change_state(STATES.IDLE_WALK)
-		STATES.MELEE_ATTACK:
-			change_state(STATES.MELEE_ATTACK)
+		STATES.JUMP_ATTACK:
+			change_state(STATES.JUMP_ATTACK)
+		STATES.ATTACK:
+			change_state(STATES.JUMP_ATTACK)
 
 
 func change_state(new_state):
@@ -75,8 +80,8 @@ func change_state(new_state):
 			#pathfind_state(0, "enter")
 			#state = STATES.PATHFIND
 		STATES.JUMP_ATTACK:
-			melee_attack_state(0, "enter")
-			state = STATES.MELEE_ATTACK
+			jump_attack_state(0, jump_duration, "enter")
+			state = STATES.JUMP_ATTACK
 
 
 

@@ -14,6 +14,8 @@ func _ready() -> void:
 	timer.wait_time = spell_cooldown_time
 	base_speed = 40 # 50
 	speed = base_speed
+	chase_end_distance = 100
+
 	look_for_player_area = $LookForPlayerArea
 	timer.start(1)
 	attack_damage = 50
@@ -87,10 +89,10 @@ func request_change_state(new_state):
 			change_state(STATES.IDLE_STAND)
 		STATES.IDLE_WALK:
 			change_state(STATES.IDLE_WALK)
-		STATES.MELEE_ATTACK:
-			change_state(STATES.MELEE_ATTACK)
-		STATES.CHASE:
-			pass
+		STATES.ATTACK:
+			change_state(STATES.CAST)
+		#STATES.CHASE:
+			#pass
 		STATES.CAST:
 			change_state(STATES.CAST)
 

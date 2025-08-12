@@ -13,6 +13,8 @@ func _ready() -> void:
 	look_for_player_area = $LookForPlayerArea
 	timer.start(1)
 	attack_damage = 50
+	chase_end_distance = 25
+	melee_range = 50
 
 	state = STATES.IDLE_STAND
 	idle_stand(randi_range(3, 3), "enter") # shuoldnt you just call change_state(IDLE_STAND) ?
@@ -44,6 +46,8 @@ func request_change_state(new_state):
 		STATES.IDLE_WALK:
 			change_state(STATES.IDLE_WALK)
 		STATES.MELEE_ATTACK:
+			change_state(STATES.MELEE_ATTACK)
+		STATES.ATTACK:
 			change_state(STATES.MELEE_ATTACK)
 
 

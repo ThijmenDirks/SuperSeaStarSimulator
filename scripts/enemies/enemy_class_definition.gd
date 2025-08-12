@@ -44,14 +44,21 @@ var waypoint_area : Area2D
 var steering_constant = 2
 var steerong_force
 var desired_walk_direction
+var chase_end_distance: int
+var melee_range: int
 
 var pathfind_target
 var pathfind_target_position : Vector2
 var chase_target
 var chase_target_position : Vector2
 var melee_attack_target
+var jump_attack_target
+var jump_attack_target_position
 var state_is_locked : bool = false # for things like melee_attack
 var spell_target_position : Vector2
+var target
+var attack_target
+
 # at this point i should just do this with parameters (i think)
 # but then you have to constantly pass it through the state machine
 
@@ -85,6 +92,7 @@ enum STATES {
 	JUMP,
 	CHASE,
 	PATHFIND,
+	ATTACK,
 }
 
 # Called when the node enters the scene tree for the first time.
@@ -110,6 +118,8 @@ func _ready() -> void: # dont forget this gets overwritten in the enemies ! (pro
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if self is Slime: # please delete this line !
+		print("slimestate:   ", state)
 	#chase()
 	#print("PPP ", get_parent())
 	#if HP != 0:
@@ -164,6 +174,8 @@ func update_state(delta):
 			melee_attack_state(delta)
 		STATES.CAST:
 			casting_state()
+		STATES.JUMP_ATTACK:
+			jump_attack_state(delta)
 
 
 func request_change_state(new_state):
@@ -225,13 +237,15 @@ func chase_state(delta, phase : String = "running"): # for when player is in sig
 			if look_for_player_in_vision_field(): # shoudl this change to the new version ?
 				chase_target_position = chase_target.global_position
 			#move(to_local(chase_target_position), delta)
-			if self.global_position.distance_to(chase_target.global_position) < 50:
-				debug_label.set_text("ATTACK!")
-				melee_attack_target = chase_target # dirty code. clean it
+			if self.global_position.distance_to(chase_target.global_position) < chase_end_distance:
+				print("slime jump_attack_state")
+				#debug_label.set_text("ATTACK!")
+				melee_attack_target = chase_target # dirty code. clean it # cleaned it. (a bit)
+				attack_target = chase_target
 				#print("melee")
-				request_change_state(STATES.MELEE_ATTACK)
+				request_change_state(STATES.ATTACK)
 				#melee_attack(chase_target)
-			elif self.global_position.distance_to(chase_target_position) < 25:
+			elif self.global_position.distance_to(chase_target_position) < 5:
 				debug_label.set_text("CHASE ENDED")
 				if look_for_player_in_vision_circle():
 					chase_target_position = chase_target.global_position
@@ -282,7 +296,7 @@ func melee_attack_state(delta, phase : String = "running"):#, target : Object = 
 			#speed = 0 # this is not needen anymore, sice not calling move() is sufficient. # + setting speed to 0 makes enemies face right when casting, which is weird
 			state_is_locked = true
 			await get_tree().create_timer(0.5).timeout
-			if self.global_position.distance_to(melee_attack_target.global_position) < 50:
+			if self.global_position.distance_to(melee_attack_target.global_position) < melee_range:
 				print("enemy attacks !  ", melee_attack_target)
 				melee_attack_target.take_damage(attack_damage, "physical")
 			speed = backup_speed
@@ -327,6 +341,31 @@ func casting_state(spell : String = "", target : Vector2 = Vector2.ZERO, phase :
 
 		"running":
 			pass
+		"exit":
+			pass
+
+
+func jump_attack_state(delta : float, time : float = 0.0, phase : String = "running"):
+	match phase:
+		"enter":
+			jump_attack_target = attack_target
+			jump_attack_target_position = jump_attack_target.global_position
+			speed = base_speed * 2
+			await get_tree().create_timer(time).timeout
+			print("slime idle")
+			request_change_state(STATES.IDLE_WALK)
+		"running":
+			print("slime is jump_attacking")
+			#desired_walk_direction = get_local_mouse_position() # thisl ine is just for debugging
+			#move(desired_walk_direction, delta)
+
+			global_position = global_position.move_toward(jump_attack_target_position, speed * delta)
+			#move(jump_attack_target_position, delta)
+			#move_and_slide()
+			#print("goblinwalk ", velocity, speed)
+			#print("STATES.IDLE_WALK RUNNING")
+			debug_label.set_text("JUMP_ATTACK")
+			#debug_label.position.x += randi_range(-5, 5)
 		"exit":
 			pass
 

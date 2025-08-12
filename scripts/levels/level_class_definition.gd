@@ -102,7 +102,7 @@ func spawn_unit(enemy_name: String, time, amount: int, spawn_area: int):
 			"shaman":
 				new_enemy = shaman.instantiate()
 		#get_node("SpawnAreas").get_child(spawn_area).add_child.call_deferred(new_enemy)
-		print("slime   ", blue_slime)
+		#print("slime   ", blue_slime)
 		get_node("SpawnAreas").get_child(spawn_area).add_child(new_enemy)
 		new_enemy.position = get_random_point_in_area(get_node("SpawnAreas").get_child(spawn_area))
 		#new_enemy.position += Vector2(randi_range(-100, 100), randi_range(-100, 100))
