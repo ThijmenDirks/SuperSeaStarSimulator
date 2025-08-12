@@ -430,6 +430,7 @@ func has_line_of_sight(from, to):
 
 
 func get_bodies_in_vision_field():
+	#print("slime   ", wall_ray_cast)
 	var bodies_in_vision_field : Array
 	for body in vision_field.get_overlapping_bodies():
 		wall_ray_cast.target_position = to_local(body.global_position)

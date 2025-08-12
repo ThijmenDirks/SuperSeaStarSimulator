@@ -10,7 +10,10 @@ extends Node2D
 
 var goblin = preload("res://scenes/enemies/goblin.tscn")
 var shaman = preload("res://scenes/enemies/shaman.tscn")
-var green_slime = preload("res://scenes/enemies/green_slime.tscn")
+var blue_slime = preload("res://scenes/enemies/slimes/blue_slime.tscn")
+var red_slime = preload("res://scenes/enemies/slimes/red_slime.tscn")
+var green_slime = preload("res://scenes/enemies/slimes/green_slime.tscn")
+
 
 #var last_subwave:bool = false
 var wave_is_on_end: bool = false
@@ -88,13 +91,18 @@ func spawn_unit(enemy_name: String, time, amount: int, spawn_area: int):
 	for i in amount:
 		var new_enemy
 		match enemy_name:
-			"slime":
+			"blue_slime":
+				new_enemy = blue_slime.instantiate()
+			"green_slime":
 				new_enemy = green_slime.instantiate()
+			"red_slime":
+				new_enemy = red_slime.instantiate()
 			"goblin":
 				new_enemy = goblin.instantiate()
 			"shaman":
 				new_enemy = shaman.instantiate()
 		#get_node("SpawnAreas").get_child(spawn_area).add_child.call_deferred(new_enemy)
+		print("slime   ", blue_slime)
 		get_node("SpawnAreas").get_child(spawn_area).add_child(new_enemy)
 		new_enemy.position = get_random_point_in_area(get_node("SpawnAreas").get_child(spawn_area))
 		#new_enemy.position += Vector2(randi_range(-100, 100), randi_range(-100, 100))

@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bqhlp5wv10xgg" path="res://scenes/other/player.tscn" id="2_ao355"]
 [ext_resource type="Script" path="res://scripts/map/wave_logics_and_the_like/wave.gd" id="2_v6og4"]
 [ext_resource type="Script" path="res://scripts/map/wave_logics_and_the_like/subwaves.gd" id="3_wq6wp"]
-[ext_resource type="PackedScene" uid="uid://reit1f4jthf3" path="res://scenes/enemies/green_slime.tscn" id="4_vsvhc"]
+[ext_resource type="PackedScene" uid="uid://reit1f4jthf3" path="res://scenes/enemies/slimes/blue_slime.tscn" id="4_vsvhc"]
 [ext_resource type="PackedScene" uid="uid://cw65fjbyen3ns" path="res://scenes/other/waypoint.tscn" id="6_jnk05"]
 [ext_resource type="PackedScene" uid="uid://qgik2c5wtenr" path="res://scenes/map/spawn_area.tscn" id="7_pp8no"]
 [ext_resource type="PackedScene" uid="uid://c25a8toq0den5" path="res://scenes/map/moveable_block.tscn" id="7_qidrq"]
@@ -20,23 +20,23 @@ subwaves = Array[ExtResource("3_wq6wp")]([])
 
 [sub_resource type="Resource" id="Resource_hs8cm"]
 script = ExtResource("3_wq6wp")
-name = "goblin"
+name = "red_slime"
 amount = 1
-time = 999.0
+time = 0.0
 spawn_area = 0
 
 [sub_resource type="Resource" id="Resource_4ov6q"]
 script = ExtResource("3_wq6wp")
-name = "goblin"
-amount = 3
-time = 3.0
+name = "green_slime"
+amount = 1
+time = 0.0
 spawn_area = 1
 
 [sub_resource type="Resource" id="Resource_85hvd"]
 script = ExtResource("3_wq6wp")
-name = "goblin"
-amount = 20
-time = 0.0
+name = "blue_slime"
+amount = 1
+time = 999.0
 spawn_area = 2
 
 [sub_resource type="Resource" id="Resource_44i3d"]
@@ -602,10 +602,9 @@ outline_size = 3
 outline_color = Color(0, 0, 1, 1)
 shadow_size = 8
 
-[node name="TestLevel" type="Node2D" node_paths=PackedStringArray("spawn_areas")]
+[node name="TestLevel" type="Node2D"]
 script = ExtResource("1_4lh20")
 all_waves = Array[ExtResource("2_v6og4")]([SubResource("Resource_svc0e"), SubResource("Resource_44i3d"), SubResource("Resource_nf3pb"), SubResource("Resource_4qjce"), SubResource("Resource_mno7n")])
-spawn_areas = [NodePath("SpawnAreas/SpawnArea0"), NodePath("SpawnAreas/SpawnArea1"), NodePath("SpawnAreas/SpawnArea2")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(64, 2.99999)

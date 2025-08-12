@@ -1,16 +1,20 @@
 class_name Slime extends Enemy
 
 
+@export var animation_tree : AnimationTree # this should go in enemy_classs_definiton
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+#func _process(delta: float) -> void:
+	#pass
 
 
+# these two are going to each slime, and will be deleteted here
 func request_change_state(new_state):
 	match new_state:
 		STATES.CHASE:
@@ -54,3 +58,13 @@ func slime_move():
 
 func slime_attack():
 	pass
+
+
+func update_animation_parameters(): # this should go in enemyclassdefintion #(or maybe that wouldnt work if some enmies have stragne animations #(then dont call it))
+	if velocity == Vector2.ZERO:
+		return
+	print("slime ", animation_tree["parameters/Walk/blend_position"], " ", velocity)
+	animation_tree["parameters/Idle/blend_position"] = velocity
+	animation_tree["parameters/Walk/blend_position"] = velocity
+	animation_tree["parameters/IdleCast/blend_position"] = velocity
+	animation_tree["parameters/WalkCast/blend_position"] = velocity
