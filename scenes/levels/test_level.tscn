@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=4 uid="uid://dbifjqhl4pa28"]
+[gd_scene load_steps=60 format=4 uid="uid://dbifjqhl4pa28"]
 
 [ext_resource type="Script" path="res://scripts/levels/test_level.gd" id="1_4lh20"]
 [ext_resource type="PackedScene" uid="uid://bqhlp5wv10xgg" path="res://scenes/other/player.tscn" id="2_ao355"]
@@ -124,6 +124,9 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-1107, -696, 1673, -641
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_vuq1w"]
 polygon = PackedVector2Array(-5.375, -3, -6.125, -0.875, -3.5, 1.125, 1.125, 1.625, 4, 0.375, 6.25, -1, 6.375, -2.875, 5.5, -4.625, 3.875, -6, 1.625, -6.375, -0.625, -5.375, -3.75, -4.125)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_rw08n"]
+polygon = PackedVector2Array(-3.125, 1.5, -6.875, -0.25, -5.375, -2.5, 3.25, -2.75, 6, -1.125, 2.125, 1.875, 1.375, 8, -2, 8)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_t6dwk"]
 polygon = PackedVector2Array(-1.375, -5.25, 8, -8, 8, 8, 0, 8)
@@ -428,6 +431,8 @@ use_texture_padding = false
 0:5/0/terrain_set = 0
 1:5/0 = 0
 1:5/0/z_index = -1
+1:5/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_rw08n")
+1:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-2.25, 2.25, -6.5, 1.25, -6.5, -1.375, -5.5, -4, 4.875, -4.25, 6.625, -1.75, 6.75, 1.75, 1.5, 2.375, 1.875, 8, -1.625, 8, -2.125, 5.125)
 2:5/0 = 0
 2:5/0/z_index = 1
 2:5/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_t6dwk")
@@ -439,6 +444,7 @@ use_texture_padding = false
 4:5/animation_mode = 1
 4:5/0 = 0
 4:5/0/z_index = -1
+4:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-1.5, -1, 1.875, -0.875, 0.625, 8, -0.875, 8)
 0:6/0 = 0
 0:6/0/z_index = 1
 0:6/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_vuq1w")
@@ -452,6 +458,7 @@ use_texture_padding = false
 3:6/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_rrkxw")
 3:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3.75, -8, -8, -8, -8, -0.875, -8, 8, 3.625, 8, -2.625, 2.75, -3.625, -0.5)
 5:5/0 = 0
+5:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-1.5, -1, 1.875, -0.875, 0.625, 8, -0.875, 8)
 
 [sub_resource type="TileSet" id="TileSet_bottu"]
 occlusion_layer_0/light_mask = 1
@@ -680,9 +687,11 @@ texture = ExtResource("11_bw2pn")
 position = Vector2(456, 136)
 scale = Vector2(5, 5)
 energy = 0.16
+range_item_cull_mask = 3
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 0.321569)
 shadow_filter_smooth = 64.0
+shadow_item_cull_mask = 3
 texture = SubResource("GradientTexture2D_a1u8x")
 
 [node name="PointLight2D3" type="PointLight2D" parent="."]

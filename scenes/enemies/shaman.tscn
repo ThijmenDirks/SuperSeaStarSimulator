@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://dnuh18goaw1bu"]
+[gd_scene load_steps=88 format=3 uid="uid://dnuh18goaw1bu"]
 
 [ext_resource type="Script" path="res://scripts/enemies/shaman.gd" id="1_3jecn"]
 [ext_resource type="Texture2D" uid="uid://b860wle2jujie" path="res://art/spridesheet_test_player_V2.png" id="2_tbssq"]
@@ -858,6 +858,10 @@ radius = 12.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_st8s6"]
 radius = 224.377
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_hggry"]
+cull_mode = 1
+polygon = PackedVector2Array(0.5, 0, 0, 0.5, -0.5, 0, 0, -0.5)
+
 [node name="CharacterBody2DG2" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree")]
 collision_layer = 541
 script = ExtResource("1_3jecn")
@@ -948,5 +952,10 @@ one_shot = true
 [node name="StateDurationTimer" type="Timer" parent="."]
 one_shot = true
 
-[connection signal="body_entered" from="VisionField" to="." method="singal_test"]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+rotation = 3.14159
+scale = Vector2(16, 16)
+occluder = SubResource("OccluderPolygon2D_hggry")
+
 [connection signal="body_entered" from="VisionField" to="." method="_on_vision_field_body_entered"]
+[connection signal="body_entered" from="VisionField" to="." method="singal_test"]

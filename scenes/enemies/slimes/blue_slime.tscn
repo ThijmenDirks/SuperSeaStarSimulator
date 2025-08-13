@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=3 uid="uid://reit1f4jthf3"]
+[gd_scene load_steps=95 format=3 uid="uid://reit1f4jthf3"]
 
 [ext_resource type="Script" path="res://scripts/enemies/slimes/blue_slime.gd" id="1_7v7xl"]
 [ext_resource type="Texture2D" uid="uid://b860wle2jujie" path="res://art/spridesheet_test_player_V2.png" id="2_xcpnu"]
@@ -904,6 +904,10 @@ radius = 224.377
 [sub_resource type="CircleShape2D" id="CircleShape2D_0cob1"]
 radius = 21.0238
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_aj5a5"]
+cull_mode = 1
+polygon = PackedVector2Array(2, 0, 1, 1, -1, 1, -2, 0, -1, -1, 1, -1)
+
 [node name="CharacterBody2DG" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree")]
 scale = Vector2(0.5, 0.5)
 collision_layer = 541
@@ -993,6 +997,11 @@ collision_mask = 256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
 shape = SubResource("CircleShape2D_0cob1")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(0, 2)
+scale = Vector2(6, 6)
+occluder = SubResource("OccluderPolygon2D_aj5a5")
 
 [connection signal="timeout" from="StateDurationTimer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]

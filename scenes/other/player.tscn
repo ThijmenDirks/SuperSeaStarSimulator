@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://bqhlp5wv10xgg"]
+[gd_scene load_steps=88 format=3 uid="uid://bqhlp5wv10xgg"]
 
 [ext_resource type="Script" path="res://scripts/other/player.gd" id="1_60osi"]
 [ext_resource type="Texture2D" uid="uid://b860wle2jujie" path="res://art/spridesheet_test_player_V2.png" id="2_jh5r6"]
@@ -858,6 +858,10 @@ size = Vector2(16, 16)
 [sub_resource type="CircleShape2D" id="CircleShape2D_a78xc"]
 radius = 34.0147
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_he6sn"]
+cull_mode = 1
+polygon = PackedVector2Array(0.5, 0, 0, 0.5, -0.5, 0, 0, -0.5)
+
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree")]
 collision_layer = 16708
 collision_mask = 2
@@ -903,11 +907,12 @@ wait_time = 0.05
 one_shot = true
 
 [node name="Area2D" type="Area2D" parent="."]
-visible = false
+light_mask = 3
 collision_layer = 0
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(0.5, 0.5)
 shape = SubResource("CircleShape2D_a78xc")
 
 [node name="HPBar" parent="." instance=ExtResource("4_82o1e")]
@@ -915,6 +920,11 @@ offset_left = -10.0
 offset_top = -15.0
 offset_right = 118.0
 offset_bottom = 113.0
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+rotation = 3.14159
+scale = Vector2(16, 16)
+occluder = SubResource("OccluderPolygon2D_he6sn")
 
 [connection signal="timeout" from="CTimerToCastSpell" to="." method="_on_ctimer_to_cast_spell_timeout"]
 [connection signal="timeout" from="CTimerToPressSimoultaniously" to="." method="_on_ctimer_to_press_simoultaniously_timeout"]
