@@ -4,8 +4,8 @@ extends HBoxContainer
 #@onready var panel2 = $Panel2
 #@onready var panel3 = $Panel3
 
-var all_colors = ["red", "blue", "green"]
-var used_colors = ["red", "green", "blue", "a"]
+var all_colors = ["red", "blue", "green", "purple"]
+var used_colors = ["red", "green", "blue", "a", "purple"]
 var colors_in_bar : Array
 var damage_multiplier = 1 # standaarddeviate tretch_ratio en nog iet <- NEE
 var mana_recharge_multiplier = 1 # size of stretch_ratio. iets met (sieze / gemiddlede)
@@ -76,7 +76,8 @@ func add_color(color):
 			box_color = Color(0, 0, 1, 1)
 		"green":
 			box_color = Color(0, 1, 0, 1)
-
+		"purple":
+			box_color = Color(1, 0, 1, 1)
 
 	#custom_style.bg_color = Color(randf_range(0.0,1.0), 0, 0, 1)
 	custom_style.bg_color = Color(box_color)

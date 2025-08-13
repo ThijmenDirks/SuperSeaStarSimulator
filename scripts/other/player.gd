@@ -18,7 +18,7 @@ var keys_for_spellcasting = ["q", "e", "z", "x", "c","F","shift","control","left
 var WASD = ["up","left","down","right"]
 var current_spell_input = []
 var input_pressed_almost_simoultaniously = ""
-var equiped_spells = ["fireball", "heal", "chain_lightning", "disintegrate"]
+var equiped_spells = ["fireball", "heal", "chain_lightning", "disintegrate", "magic_missile"]
 var is_casting = false
 var resistances_and_weaknesses : Dictionary
 
@@ -136,6 +136,8 @@ func _on_ctimer_to_cast_spell_timeout() -> void:
 		#print(get_spell_by_name(spell_that_is_about_to_be_cast).spell_recipe)
 		print(current_spell_input)
 		var spell_that_will_be_cast = spell_database.get_spell_by_name(spell_that_is_about_to_be_cast)
+		print("magic  ",spell_that_will_be_cast)
+		print("magic")
 		if spell_that_will_be_cast.spell_recipe == current_spell_input:
 			print("succesfully cast spell! ", (current_spell_input))
 			print("[[]]", spell_that_will_be_cast)#spell_that_will_be_cast)

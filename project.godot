@@ -154,6 +154,12 @@ T={
 2d_physics/layer_10="noise"
 2d_physics/layer_15="can_move_moveable_block"
 2d_physics/layer_16="moveable_block"
+2d_physics/default_linear_damp=0.0
+
+[physics]
+
+2d/default_gravity=0.0
+2d/default_gravity_vector=Vector2(0, 0)
 
 [rendering]
 

@@ -1,0 +1,102 @@
+[gd_scene load_steps=12 format=3 uid="uid://bwlk4kny0dg1x"]
+
+[ext_resource type="Script" path="res://scripts/spells/magic_missile/magic_missile_bullet.gd" id="1_4c2lc"]
+[ext_resource type="Texture2D" uid="uid://qreksclpirx0" path="res://art/feesh.png" id="2_exviv"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_roufs"]
+friction = 0.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pb4i0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c3tof"]
+radius = 177.003
+
+[sub_resource type="Animation" id="Animation_wn6at"]
+length = 0.001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8sbip"]
+resource_name = "Travel"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0), Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ekoet"]
+_data = {
+"RESET": SubResource("Animation_wn6at"),
+"Travel": SubResource("Animation_8sbip")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cnlu5"]
+animation = &"Travel"
+use_custom_timeline = true
+timeline_length = 1.0
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_um3m1"]
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_to3ae"]
+states/Travel/node = SubResource("AnimationNodeAnimation_cnlu5")
+states/Travel/position = Vector2(360.5, 100.5)
+transitions = ["Start", "Travel", SubResource("AnimationNodeStateMachineTransition_um3m1")]
+
+[node name="MagicMissileBullet" type="RigidBody2D"]
+collision_layer = 32
+collision_mask = 270
+physics_material_override = SubResource("PhysicsMaterial_roufs")
+gravity_scale = 0.0
+custom_integrator = true
+contact_monitor = true
+max_contacts_reported = 1
+linear_damp_mode = 1
+angular_damp_mode = 1
+script = ExtResource("1_4c2lc")
+
+[node name="MagicMissileCollision" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_pb4i0")
+
+[node name="NoiseArea" type="Area2D" parent="."]
+
+[node name="NoiseAreaCollision" type="CollisionShape2D" parent="NoiseArea"]
+shape = SubResource("CircleShape2D_c3tof")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.96825, 0.5)
+texture = ExtResource("2_exviv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ekoet")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_to3ae")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../AnimationPlayer")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

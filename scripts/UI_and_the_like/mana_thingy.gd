@@ -5,8 +5,8 @@ extends Node2D
 
 @onready var mana_bar = $TextureProgressBar
 
-var all_colors = ["red", "blue", "green"]
-var used_colors = ["red", "green", "blue", "a"]
+var all_colors = ["red", "blue", "green", "purple"]
+var used_colors = ["red", "green", "blue", "a", "purple"]
 var max_orbs = 7
 var filled_orbs = max_orbs
 var mana_recharge_base_speed = 100

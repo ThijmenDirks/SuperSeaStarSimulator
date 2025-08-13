@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://b13n5jbc4wi4n"]
+
+[ext_resource type="Script" path="res://scripts/spells/magic_missile/magic_missile.gd" id="1_0vqqf"]
+[ext_resource type="Texture2D" uid="uid://qreksclpirx0" path="res://art/feesh.png" id="2_h8rd8"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_roufs"]
+friction = 0.0
+
+[node name="MagicMissile" type="RigidBody2D"]
+collision_layer = 16416
+collision_mask = 270
+physics_material_override = SubResource("PhysicsMaterial_roufs")
+gravity_scale = 0.0
+custom_integrator = true
+linear_damp_mode = 1
+angular_damp_mode = 1
+script = ExtResource("1_0vqqf")
+
+[node name="Feesh" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(5.90625, 4.28125)
+texture = ExtResource("2_h8rd8")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

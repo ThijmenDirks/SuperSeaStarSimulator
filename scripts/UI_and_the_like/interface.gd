@@ -6,8 +6,8 @@ extends CanvasLayer
 
 var mana_thingies : Array
 
-var all_colors = ["red", "blue", "green"]
-var used_colors = ["red", "green", "blue", "a"]
+var all_colors = ["red", "blue", "green", "purple"]
+var used_colors = ["red", "green", "blue", "a", "purple"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

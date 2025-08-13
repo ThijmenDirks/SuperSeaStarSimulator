@@ -34,6 +34,7 @@ var target
 #var damage_type : String
 var damage: int # here for disintergate, though this and base_damage likely should combine into one
 #var damage_multiplier: float
+var amount_of_bullets: int
 
 var kleurenbalkje_change : int
 var texture
