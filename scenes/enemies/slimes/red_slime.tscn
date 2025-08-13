@@ -932,7 +932,7 @@ light_mask = 513
 visibility_layer = 513
 shape = SubResource("CircleShape2D_agn4q")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="StateDurationTimer" type="Timer" parent="."]
 one_shot = true
 
 [node name="VisionField" type="Area2D" parent="."]
@@ -991,4 +991,4 @@ collision_mask = 256
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
 shape = SubResource("CircleShape2D_wjdmk")
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="StateDurationTimer" to="." method="_on_timer_timeout"]

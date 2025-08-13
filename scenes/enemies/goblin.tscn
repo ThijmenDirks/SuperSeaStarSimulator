@@ -886,7 +886,7 @@ parameters/WalkCast/blend_position = Vector2(-0.0205371, 0.931398)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_agn4q")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="StateDurationTimer" type="Timer" parent="."]
 one_shot = true
 
 [node name="VisionField" type="Area2D" parent="."]
@@ -934,6 +934,6 @@ offset_top = -21.0
 offset_right = 109.0
 offset_bottom = 107.0
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="StateDurationTimer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="VisionField" to="." method="_on_vision_field_body_entered"]
 [connection signal="body_entered" from="VisionField" to="." method="singal_test"]

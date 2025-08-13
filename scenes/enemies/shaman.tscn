@@ -862,6 +862,7 @@ radius = 224.377
 collision_layer = 541
 script = ExtResource("1_3jecn")
 animation_tree = NodePath("AnimationTree")
+spell_cooldown_time = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_tbssq")
@@ -884,9 +885,6 @@ parameters/WalkCast/blend_position = Vector2(-0.0205371, 0.931398)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_agn4q")
-
-[node name="Timer" type="Timer" parent="."]
-one_shot = true
 
 [node name="VisionField" type="Area2D" parent="."]
 collision_layer = 0
@@ -940,10 +938,12 @@ offset_right = 35.0
 offset_bottom = -26.0
 text = "SHAMAN"
 
-[node name="HealAbilityCooldownTimer" type="Timer" parent="."]
+[node name="SpellAbilityCooldownTimer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="StateDurationTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="body_entered" from="VisionField" to="." method="_on_vision_field_body_entered"]
 [connection signal="body_entered" from="VisionField" to="." method="singal_test"]

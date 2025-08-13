@@ -6,18 +6,18 @@ const JUMP_VELOCITY = -400.0
 @export var animation_tree : AnimationTree
 @export var spell_cooldown_time: int = 3 # i might want to do this in enemy_class_def
 
-@onready var timer = $Timer
+@onready var spell_ability_cooldown_timer = $SpellAbilityCooldownTimer
 
 var spell_that_will_be_cast : String
 
 func _ready() -> void:
-	timer.wait_time = spell_cooldown_time
+	spell_ability_cooldown_timer.wait_time = spell_cooldown_time
 	base_speed = 40 # 50
 	speed = base_speed
 	chase_end_distance = 100
 
 	look_for_player_area = $LookForPlayerArea
-	timer.start(1)
+	#timer.start(1)
 	attack_damage = 50
 	spells_known = ["heal", "fireball"]
 	animation_tree = $AnimationTree
@@ -36,25 +36,25 @@ func on_something_in_vision_field(bodies : Array):
 
 	var player_is_in_vision_field
 	for body in get_bodies_in_vision_field():
-		if body is Enemy: # for some reason shaman onlyseas hiself
+		if body is Enemy: # for some reason shaman onlyseas hiself # thats (most likely) becuase hes the first body in the returnded array
 			#print(get_bodies_in_vision_field(), "on_something_in_vision_field 1.1  ", body.hp, body.max_hp)
 			if body.hp < body.max_hp:
 				#print($HealAbilityCooldownTimer.is_stopped(), "   HealAbilityCooldownTimer   ", $HealAbilityCooldownTimer.time_left)
-				if $HealAbilityCooldownTimer.is_stopped():
+				if spell_ability_cooldown_timer.is_stopped():
 					#print("on_something_in_vision_field 2.1")
 					spell_target_position = body.global_position #+ Vector2(randi_range(-100, 100), randi_range(-100, 100))
 					spell_that_will_be_cast = "heal"
-					used_timer = $HealAbilityCooldownTimer
+					used_timer = spell_ability_cooldown_timer
 					request_change_state(STATES.CAST)
 					return
 		if body is Player:
 			player_is_in_vision_field = body
 	if player_is_in_vision_field:
-		if $HealAbilityCooldownTimer.is_stopped():
+		if spell_ability_cooldown_timer.is_stopped():
 			#print("on_something_in_vision_field 2.1")
 			spell_target_position = player_is_in_vision_field.global_position #+ Vector2(randi_range(-100, 100), randi_range(-100, 100))
 			spell_that_will_be_cast = "fireball"
-			used_timer = $HealAbilityCooldownTimer
+			used_timer = spell_ability_cooldown_timer
 			request_change_state(STATES.CAST)
 			return
 
@@ -98,6 +98,7 @@ func request_change_state(new_state):
 
 
 func change_state(new_state):
+	state_duration_timer.stop()
 # right now im changing state here, but might do that in state funcionts self because of on_stae("exit"): state = state.last # i dont think so..
 	if state_is_locked:
 		return

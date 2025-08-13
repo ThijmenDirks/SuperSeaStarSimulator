@@ -9,12 +9,12 @@ class_name Enemy extends  CharacterBody2D
 @onready var vector_wheel = $VectorWheel
 @onready var nav_agent = $NavigationAgent2D
 @onready var hp_bar = $HPBar
+@onready var state_duration_timer: Timer = $StateDurationTimer
 
 var speed : int
 var base_speed : int
 var jump_hight : int
 var direction : Vector2 #float # wil dit liever in rad of degree hebben # bij nader inzien: gewoon V2
-#@onready var timer = $Timer
 var max_hp : int = 100#: int# = 100
 var hp : int = 100#: int
 var resistances_and_weaknesses : Dictionary
@@ -196,7 +196,11 @@ func idle_stand(time : float = 0.0, phase : String = "running"):
 	match phase:
 		"enter":
 			velocity = Vector2.ZERO # this should not be necesary because move doesnt get called anyway
-			await get_tree().create_timer(time).timeout
+			#state_duration_timer.wait_time = time
+			#await state_duration_timer.start(time)
+			state_duration_timer.start(time)
+			await state_duration_timer.timeout
+			#await get_tree().create_timer(time).timeout
 			request_change_state(STATES.IDLE_WALK) # i should really take a look at this one.
 			#debug_label.set_text("IDLE.STAND")
 		"running":
@@ -212,8 +216,12 @@ func idle_walk(delta : float, time : float = 0.0, phase : String = "running"):
 			desired_walk_direction = Vector2(randf_range(-1, 1), randf_range(-1, 1))
 			# ^ deze line moet wel weer aan
 			speed = base_speed
-			await get_tree().create_timer(time).timeout
-			request_change_state(STATES.IDLE_STAND) # also go fix this soon
+			#await state_duration_timer.start(time)
+			state_duration_timer.start(time)
+			await state_duration_timer.timeout
+
+			#await get_tree().create_timer(time).timeout
+			#request_change_state(STATES.IDLE_STAND) # also go fix this soon
 		"running":
 			#desired_walk_direction = get_local_mouse_position() # thisl ine is just for debugging
 			move(desired_walk_direction, delta)
@@ -295,7 +303,7 @@ func melee_attack_state(delta, phase : String = "running"):#, target : Object = 
 			var backup_speed = speed
 			#speed = 0 # this is not needen anymore, sice not calling move() is sufficient. # + setting speed to 0 makes enemies face right when casting, which is weird
 			state_is_locked = true
-			await get_tree().create_timer(0.5).timeout
+			await get_tree().create_timer(0.5).timeout # this one is okay. since the wstate is locked, it cant cause spontaneous state changing
 			if self.global_position.distance_to(melee_attack_target.global_position) < melee_range:
 				print("enemy attacks !  ", melee_attack_target)
 				melee_attack_target.take_damage(attack_damage, "physical")
@@ -348,11 +356,14 @@ func casting_state(spell : String = "", target : Vector2 = Vector2.ZERO, phase :
 func jump_attack_state(delta : float, time : float = 0.0, phase : String = "running"):
 	match phase:
 		"enter":
+			state_is_locked = true # might want to make a fancy func for this ? "statelocking" sounds cool
 			jump_attack_target = attack_target
 			jump_attack_target_position = jump_attack_target.global_position
 			speed = base_speed * 2
-			await get_tree().create_timer(time).timeout
+			state_duration_timer.start(time)
+			await state_duration_timer.timeout
 			print("slime idle")
+			state_is_locked = false
 			request_change_state(STATES.IDLE_WALK)
 		"running":
 			print("slime is jump_attacking")
@@ -370,8 +381,8 @@ func jump_attack_state(delta : float, time : float = 0.0, phase : String = "runn
 			pass
 
 
-func steering_behavior(steering_constant, delta, speed):
-	pass
+#func steering_behavior(steering_constant, delta, speed):
+	#pass
 
 
 func move(desired_walk_direction : Vector2, delta : float):

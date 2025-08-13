@@ -5,13 +5,13 @@ const JUMP_VELOCITY = -400.0
 
 @export var animation_tree : AnimationTree
 
-@onready var timer = $Timer
+#@onready var timer = $Timer
 
 func _ready() -> void:
 	base_speed = 45 # 50
 	speed = base_speed
 	look_for_player_area = $LookForPlayerArea
-	timer.start(1)
+	#timer.start(1)
 	attack_damage = 50
 	chase_end_distance = 25
 	melee_range = 50
@@ -52,6 +52,7 @@ func request_change_state(new_state):
 
 
 func change_state(new_state):
+	state_duration_timer.stop()
 # right now im changing state here, but might do that in state funcionts self because of on_stae("exit"): state = state.last # i dont think so..
 	if state_is_locked:
 		return

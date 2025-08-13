@@ -7,7 +7,7 @@ var timer_is_already_running = true
 
 #@export var animation_tree : AnimationTree
 
-@onready var timer = $Timer
+#@onready var timer = $Timer
 
 func _ready() -> void:
 	max_hp= 200
@@ -24,7 +24,7 @@ func _ready() -> void:
 	idle_walk(0, jump_duration, "enter")
 	look_for_player_area = $LookForPlayerArea
 	print("slime_", state)
-	timer.start(1)
+	#timer.start(1)
 	sprite = $Sprite2D
 	loot_table = {
 		"green_slimeball" = 50, # %
@@ -65,6 +65,7 @@ func request_change_state(new_state):
 
 
 func change_state(new_state):
+	state_duration_timer.stop()
 # right now im changing state here, but might do that in state funcionts self because of on_stae("exit"): state = state.last # i dont think so..
 	if state_is_locked:
 		return
