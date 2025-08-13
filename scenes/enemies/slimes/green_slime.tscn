@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=3 uid="uid://ciu03g4mjuxs2"]
+[gd_scene load_steps=94 format=3 uid="uid://ciu03g4mjuxs2"]
 
 [ext_resource type="Script" path="res://scripts/enemies/slimes/green_slime.gd" id="1_qbfix"]
 [ext_resource type="Texture2D" uid="uid://b860wle2jujie" path="res://art/spridesheet_test_player_V2.png" id="2_t6po2"]
@@ -900,6 +900,9 @@ radius = 183.18
 [sub_resource type="CircleShape2D" id="CircleShape2D_a7g13"]
 radius = 224.377
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_1it3l"]
+radius = 21.0238
+
 [node name="CharacterBody2DG" type="CharacterBody2D"]
 collision_layer = 541
 script = ExtResource("1_qbfix")
@@ -980,5 +983,12 @@ offset_right = 106.0
 offset_bottom = 98.0
 
 [node name="VectorWheel" parent="." instance=ExtResource("6_vombb")]
+
+[node name="DamageArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
+shape = SubResource("CircleShape2D_1it3l")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

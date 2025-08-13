@@ -3,7 +3,7 @@ extends Slime # please dont forget to fix raycast collision masks !!
 #const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 var timer_is_already_running = true
-var jump_duration = 1.0 # in sec
+#var jump_duration = 1.5 # in sec
 
 #@export var animation_tree : AnimationTree
 
@@ -14,8 +14,10 @@ func _ready() -> void:
 	hp = 200#max_HP
 	base_speed = 30
 	speed = base_speed
-	chase_end_distance = 25
+	chase_end_distance = 250
 	melee_range = 50
+	attack_damage = 2
+	angry = false
 
 	jump_hight = 20
 	state = STATES.IDLE_WALK
@@ -46,19 +48,23 @@ func _ready() -> void:
 
 
 func request_change_state(new_state):
+	print("slime angry?   ", angry)
 	match new_state:
-		STATES.CHASE:
-			change_state(STATES.CHASE)
-		STATES.PATHFIND:
-			change_state(STATES.PATHFIND)
-		STATES.IDLE_STAND:
-			change_state(STATES.IDLE_STAND)
+		STATES.CHASE: # might want to make slimes unable to chase adn use jump_attack for it instaed
+			if state != STATES.JUMP_ATTACK and angry:
+				change_state(STATES.CHASE)
+		#STATES.PATHFIND:
+			#change_state(STATES.PATHFIND)
+		#STATES.IDLE_STAND:
+			#change_state(STATES.IDLE_STAND)
 		STATES.IDLE_WALK:
 			change_state(STATES.IDLE_WALK)
 		STATES.JUMP_ATTACK:
-			change_state(STATES.JUMP_ATTACK)
+			if angry:
+				change_state(STATES.JUMP_ATTACK)
 		STATES.ATTACK:
-			change_state(STATES.JUMP_ATTACK)
+			if angry:
+				change_state(STATES.JUMP_ATTACK)
 
 
 func change_state(new_state):
@@ -85,6 +91,9 @@ func change_state(new_state):
 
 
 
+#func _on_damage_area_body_entered(body: Node2D) -> void:
+	#if body is Player:
+		#print("slime deals damage")
 
 
 
@@ -155,3 +164,7 @@ func change_state(new_state):
 # y = (z + (0.7 * y - z))/0.7
 
 # y = (z + (0.7 * y - z))/0.7
+
+
+#func _on_damage_area_body_entered(body: Node2D) -> void:
+	#pass # Replace with function body.

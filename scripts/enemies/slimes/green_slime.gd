@@ -15,7 +15,8 @@ func _ready() -> void:
 	base_speed = 30
 	speed = base_speed
 	chase_end_distance = 250
-	#melee_range = 50
+	melee_range = 50
+	attack_damage = 3
 
 	jump_hight = 20
 	state = STATES.IDLE_WALK
@@ -47,12 +48,13 @@ func _ready() -> void:
 
 func request_change_state(new_state):
 	match new_state:
-		STATES.CHASE:
-			change_state(STATES.CHASE)
-		STATES.PATHFIND:
-			change_state(STATES.PATHFIND)
-		STATES.IDLE_STAND:
-			change_state(STATES.IDLE_STAND)
+		STATES.CHASE: # might want to make slimes unable to chase adn use jump_attack for it instaed
+			if state != STATES.JUMP_ATTACK:
+				change_state(STATES.CHASE)
+		#STATES.PATHFIND:
+			#change_state(STATES.PATHFIND)
+		#STATES.IDLE_STAND:
+			#change_state(STATES.IDLE_STAND)
 		STATES.IDLE_WALK:
 			change_state(STATES.IDLE_WALK)
 		STATES.JUMP_ATTACK:

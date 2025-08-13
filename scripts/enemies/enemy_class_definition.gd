@@ -22,7 +22,7 @@ var threat_range : int
 var vision_range : int
 var loot_table : Dictionary
 var state = STATES.IDLE_STAND
-var angry = false
+var angry: bool = true # maybe it would be cool to also /give it/replace it by/ an array holding at which individuals it is angry ?
 var is_casting = null
 var jump_distance : int
 var hoever_deze_jump_al_was = 0
@@ -402,6 +402,7 @@ func take_damage(damage : int, damage_type : String):
 		damage *= resistances_and_weaknesses.damage_type
 	hp -= damage
 	update_hp_bar()
+	angry = true
 	if hp < 0:
 		die()
 

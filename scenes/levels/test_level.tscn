@@ -20,7 +20,7 @@ subwaves = Array[ExtResource("3_wq6wp")]([])
 
 [sub_resource type="Resource" id="Resource_hs8cm"]
 script = ExtResource("3_wq6wp")
-name = "red_slime"
+name = "blue_slime"
 amount = 1
 time = 0.0
 spawn_area = 0
@@ -34,7 +34,7 @@ spawn_area = 1
 
 [sub_resource type="Resource" id="Resource_85hvd"]
 script = ExtResource("3_wq6wp")
-name = "red_slime"
+name = "green_slime"
 amount = 1
 time = 999.0
 spawn_area = 2
