@@ -865,6 +865,7 @@ animation_tree = NodePath("AnimationTree")
 spell_cooldown_time = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_tbssq")
 hframes = 12
 vframes = 8
@@ -884,9 +885,11 @@ parameters/Walk/blend_position = Vector2(0, 0)
 parameters/WalkCast/blend_position = Vector2(-0.0205371, 0.931398)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.5, 0.5)
 shape = SubResource("CircleShape2D_agn4q")
 
 [node name="VisionField" type="Area2D" parent="."]
+scale = Vector2(0.5, 0.5)
 collision_layer = 0
 collision_mask = 108
 
@@ -905,11 +908,11 @@ target_position = Vector2(-40, 88)
 collision_mask = 2
 
 [node name="LookForPlayerArea" type="Area2D" parent="."]
+scale = Vector2(0.5, 0.5)
 collision_layer = 0
 collision_mask = 108
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LookForPlayerArea"]
-visible = false
 shape = SubResource("CircleShape2D_st8s6")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
@@ -926,10 +929,10 @@ offset_right = 21.0
 offset_bottom = 13.0
 
 [node name="HPBar" parent="." instance=ExtResource("4_wbp34")]
-offset_left = -19.0
-offset_top = -21.0
-offset_right = 109.0
-offset_bottom = 107.0
+offset_left = -10.0
+offset_top = -11.0
+offset_right = 118.0
+offset_bottom = 117.0
 
 [node name="Label" type="Label" parent="."]
 offset_left = -35.0
@@ -945,5 +948,5 @@ one_shot = true
 [node name="StateDurationTimer" type="Timer" parent="."]
 one_shot = true
 
-[connection signal="body_entered" from="VisionField" to="." method="_on_vision_field_body_entered"]
 [connection signal="body_entered" from="VisionField" to="." method="singal_test"]
+[connection signal="body_entered" from="VisionField" to="." method="_on_vision_field_body_entered"]

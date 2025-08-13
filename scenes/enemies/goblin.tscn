@@ -860,6 +860,7 @@ radius = 12.0
 radius = 224.377
 
 [node name="CharacterBody2DG" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree")]
+scale = Vector2(0.5, 0.5)
 collision_layer = 541
 script = ExtResource("1_ne1kd")
 animation_tree = NodePath("AnimationTree")
@@ -929,11 +930,11 @@ offset_right = 21.0
 offset_bottom = 13.0
 
 [node name="HPBar" parent="." instance=ExtResource("4_58xyb")]
-offset_left = -19.0
-offset_top = -21.0
-offset_right = 109.0
-offset_bottom = 107.0
+offset_left = -10.0
+offset_top = -22.0
+offset_right = 118.0
+offset_bottom = 106.0
 
 [connection signal="timeout" from="StateDurationTimer" to="." method="_on_timer_timeout"]
-[connection signal="body_entered" from="VisionField" to="." method="_on_vision_field_body_entered"]
 [connection signal="body_entered" from="VisionField" to="." method="singal_test"]
+[connection signal="body_entered" from="VisionField" to="." method="_on_vision_field_body_entered"]

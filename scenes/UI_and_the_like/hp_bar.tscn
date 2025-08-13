@@ -4,9 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://eny37osmjycx" path="res://icon.svg" id="1_klj2q"]
 
 [node name="HPBar" type="TextureProgressBar"]
-offset_right = 128.0
+offset_left = 0.6
+offset_right = 128.6
 offset_bottom = 128.0
-scale = Vector2(0.3, 0.05)
+scale = Vector2(0.15, 0.025)
 value = 100.0
 texture_under = ExtResource("1_klj2q")
 texture_progress = ExtResource("1_klj2q")
