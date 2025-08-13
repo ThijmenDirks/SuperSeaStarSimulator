@@ -907,6 +907,7 @@ radius = 21.0238
 radius = 72.0625
 
 [node name="CharacterBody2DG" type="CharacterBody2D"]
+scale = Vector2(0.5, 0.5)
 collision_layer = 541
 script = ExtResource("1_qbfix")
 
@@ -980,10 +981,10 @@ offset_right = 21.0
 offset_bottom = 13.0
 
 [node name="HPBar" parent="." instance=ExtResource("5_vs4kb")]
-offset_left = -22.0
-offset_top = -30.0
-offset_right = 106.0
-offset_bottom = 98.0
+offset_left = -10.0
+offset_top = -26.0
+offset_right = 118.0
+offset_bottom = 102.0
 
 [node name="VectorWheel" parent="." instance=ExtResource("6_vombb")]
 

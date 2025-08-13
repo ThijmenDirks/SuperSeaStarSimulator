@@ -852,7 +852,8 @@ states/WalkCast/position = Vector2(561.875, 226.781)
 transitions = ["Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_6nswi"), "Walk", "WalkCast", SubResource("AnimationNodeStateMachineTransition_4fj1r"), "IdleCast", "Idle", SubResource("AnimationNodeStateMachineTransition_f8il4"), "Idle", "IdleCast", SubResource("AnimationNodeStateMachineTransition_w7p60"), "WalkCast", "Walk", SubResource("AnimationNodeStateMachineTransition_0jxht"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_80vmx"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_ogua8"), "IdleCast", "WalkCast", SubResource("AnimationNodeStateMachineTransition_0a2p7"), "WalkCast", "IdleCast", SubResource("AnimationNodeStateMachineTransition_a05ju")]
 graph_offset = Vector2(0, 48.0736)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jc7ki"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w62sb"]
+size = Vector2(16, 16)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a78xc"]
 radius = 34.0147
@@ -866,6 +867,7 @@ animation_tree = NodePath("AnimationTree")
 [node name="Interface" parent="." instance=ExtResource("3_ksrdk")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_jh5r6")
 hframes = 12
 vframes = 8
@@ -885,10 +887,12 @@ parameters/Walk/blend_position = Vector2(0, 0)
 parameters/WalkCast/blend_position = Vector2(-0.0205371, 0.931398)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_jc7ki")
+shape = SubResource("RectangleShape2D_w62sb")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1, 0)
+scale = Vector2(0.7, 0.7)
+zoom = Vector2(2, 2)
 
 [node name="CTimerToCastSpell" type="Timer" parent="."]
 wait_time = 0.5
@@ -907,10 +911,10 @@ collision_mask = 0
 shape = SubResource("CircleShape2D_a78xc")
 
 [node name="HPBar" parent="." instance=ExtResource("4_82o1e")]
-offset_left = -19.0
-offset_top = -26.0
-offset_right = 109.0
-offset_bottom = 102.0
+offset_left = -10.0
+offset_top = -15.0
+offset_right = 118.0
+offset_bottom = 113.0
 
 [connection signal="timeout" from="CTimerToCastSpell" to="." method="_on_ctimer_to_cast_spell_timeout"]
 [connection signal="timeout" from="CTimerToPressSimoultaniously" to="." method="_on_ctimer_to_press_simoultaniously_timeout"]
