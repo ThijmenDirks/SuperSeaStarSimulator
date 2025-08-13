@@ -78,7 +78,7 @@ func change_state(new_state):
 			#idle_stand(randi_range(3, 5), "enter")
 		STATES.IDLE_WALK:
 			state = STATES.IDLE_WALK
-			idle_walk(0, 2, "enter") # the time given here should be the same as N jumps in the animation
+			idle_walk(0, jump_duration, "enter") # the time given here should be the same as N jumps in the animation
 		STATES.CHASE:
 			state = STATES.CHASE
 			chase_state(0, "enter")
@@ -86,8 +86,8 @@ func change_state(new_state):
 			#pathfind_state(0, "enter")
 			#state = STATES.PATHFIND
 		STATES.JUMP_ATTACK:
-			jump_attack_state(0, jump_duration, "enter")
 			state = STATES.JUMP_ATTACK
+			jump_attack_state(0, jump_duration, "enter")
 
 
 

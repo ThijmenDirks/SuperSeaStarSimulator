@@ -197,7 +197,7 @@ func idle_stand(time : float = 0.0, phase : String = "running"):
 		"enter":
 			velocity = Vector2.ZERO # this should not be necesary because move doesnt get called anyway
 			await get_tree().create_timer(time).timeout
-			request_change_state(STATES.IDLE_WALK)
+			request_change_state(STATES.IDLE_WALK) # i should really take a look at this one.
 			#debug_label.set_text("IDLE.STAND")
 		"running":
 			pass
@@ -213,7 +213,7 @@ func idle_walk(delta : float, time : float = 0.0, phase : String = "running"):
 			# ^ deze line moet wel weer aan
 			speed = base_speed
 			await get_tree().create_timer(time).timeout
-			request_change_state(STATES.IDLE_STAND)
+			request_change_state(STATES.IDLE_STAND) # also go fix this soon
 		"running":
 			#desired_walk_direction = get_local_mouse_position() # thisl ine is just for debugging
 			move(desired_walk_direction, delta)

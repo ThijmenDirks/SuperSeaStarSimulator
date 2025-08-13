@@ -17,10 +17,11 @@ func _ready() -> void:
 	chase_end_distance = 250
 	melee_range = 50
 	attack_damage = 3
+	angry = false
 
 	jump_hight = 20
-	state = STATES.IDLE_WALK
-	idle_walk(0, jump_duration, "enter")
+	state = STATES.IDLE_STAND
+	idle_stand(9999, "enter")
 	look_for_player_area = $LookForPlayerArea
 	print("slime_", state)
 	timer.start(1)
@@ -47,20 +48,24 @@ func _ready() -> void:
 
 
 func request_change_state(new_state):
+	if not angry:
+		change_state(STATES.IDLE_WALK)
 	match new_state:
 		STATES.CHASE: # might want to make slimes unable to chase adn use jump_attack for it instaed
-			if state != STATES.JUMP_ATTACK:
+			if state != STATES.JUMP_ATTACK and angry:
 				change_state(STATES.CHASE)
 		#STATES.PATHFIND:
 			#change_state(STATES.PATHFIND)
-		#STATES.IDLE_STAND:
-			#change_state(STATES.IDLE_STAND)
-		STATES.IDLE_WALK:
-			change_state(STATES.IDLE_WALK)
+		STATES.IDLE_STAND:
+			change_state(STATES.IDLE_STAND)
+		#STATES.IDLE_WALK:
+			#change_state(STATES.IDLE_WALK)
 		STATES.JUMP_ATTACK:
-			change_state(STATES.JUMP_ATTACK)
+			if angry:
+				change_state(STATES.JUMP_ATTACK)
 		STATES.ATTACK:
-			change_state(STATES.JUMP_ATTACK)
+			if angry:
+				change_state(STATES.JUMP_ATTACK)
 
 
 func change_state(new_state):
@@ -69,12 +74,12 @@ func change_state(new_state):
 		return
 	state_history.append(state)
 	match new_state:
-		#STATES.IDLE_STAND:
-			#state = STATES.IDLE_STAND
-			#idle_stand(randi_range(3, 5), "enter")
-		STATES.IDLE_WALK:
-			state = STATES.IDLE_WALK
-			idle_walk(0, 2, "enter") # the time given here should be the same as N jumps in the animation
+		STATES.IDLE_STAND:
+			state = STATES.IDLE_STAND
+			idle_stand(99, "enter")
+		#STATES.IDLE_WALK:
+			#state = STATES.IDLE_WALK
+			#idle_walk(0, jump_duration, "enter") # the time given here should be the same as N jumps in the animation
 		STATES.CHASE:
 			state = STATES.CHASE
 			chase_state(0, "enter")
@@ -82,12 +87,16 @@ func change_state(new_state):
 			#pathfind_state(0, "enter")
 			#state = STATES.PATHFIND
 		STATES.JUMP_ATTACK:
-			jump_attack_state(0, jump_duration, "enter")
 			state = STATES.JUMP_ATTACK
+			jump_attack_state(0, jump_duration, "enter")
 
 
-
-
+func _on_attack_area_body_entered(body: Node2D) -> void:
+	if body is Player:
+		print("green slime attacks !")
+		angry = true
+		attack_target = body
+		request_change_state(STATES.JUMP_ATTACK)
 
 
 #func change_state():
