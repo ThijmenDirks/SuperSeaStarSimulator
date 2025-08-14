@@ -866,7 +866,6 @@ polygon = PackedVector2Array(0.5, 0, 0, 0.5, -0.5, 0, 0, -0.5)
 collision_layer = 541
 script = ExtResource("1_3jecn")
 animation_tree = NodePath("AnimationTree")
-spell_cooldown_time = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)

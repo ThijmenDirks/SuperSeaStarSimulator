@@ -58,6 +58,7 @@ var state_is_locked : bool = false # for things like melee_attack
 var spell_target_position : Vector2
 var target
 var attack_target
+var attack_target_position
 
 # at this point i should just do this with parameters (i think)
 # but then you have to constantly pass it through the state machine
@@ -243,11 +244,13 @@ func chase_state(delta, phase : String = "running"): # for when player is in sig
 			if look_for_player_in_vision_field(): # shoudl this change to the new version ?
 				chase_target_position = chase_target.global_position
 			#move(to_local(chase_target_position), delta)
-			if self.global_position.distance_to(chase_target.global_position) < chase_end_distance:
+			#if self.global_position.distance_to(chase_target.global_position) < chase_end_distance:
+			if self.global_position.distance_to(chase_target_position) < chase_end_distance:
 				print("slime jump_attack_state")
 				#debug_label.set_text("ATTACK!")
-				melee_attack_target = chase_target # dirty code. clean it # cleaned it. (a bit)
+				#melee_attack_target = chase_target # dirty code. clean it # cleaned it. (a bit)
 				attack_target = chase_target
+				attack_target_position = attack_target.global_position
 				#print("melee")
 				request_change_state(STATES.ATTACK)
 				#melee_attack(chase_target)
@@ -317,6 +320,8 @@ func melee_attack_state(delta, phase : String = "running"):#, target : Object = 
 func casting_state(spell : String = "", target : Vector2 = Vector2.ZERO, phase : String = "running"): # do i really need a target parameter ?
 	match phase:
 		"enter":
+			#if not used_timer.is_stopped():
+				#return # should not be here
 			debug_label.set_text("CASTING")
 
 			print("STATES.CASTING ENTER")
@@ -326,6 +331,7 @@ func casting_state(spell : String = "", target : Vector2 = Vector2.ZERO, phase :
 			print("AbilityCooldownTimer1 start")
 			used_timer.start()
 			#print("AbilityCooldownTimer1 stop")
+			#used_timer.start()
 			await get_tree().create_timer(0.5).timeout # hiezo komt animatie
 			#print(ability_cooldown_timer_1)
 
@@ -342,8 +348,16 @@ func casting_state(spell : String = "", target : Vector2 = Vector2.ZERO, phase :
 			# cooldown timer
 			print("state_history ", state_history)
 			print("on_something_in_vision_field 5 ", get_last_state())
-			request_change_state(get_last_state())
-			request_change_state(STATES.IDLE_STAND)
+			chase_target = look_for_player_in_vision_circle()
+			if not chase_target:
+				chase_target_position = attack_target_position
+			#if chase_target:
+			request_change_state(STATES.CHASE)
+			#else:
+				#request_change_state(STATES.)
+			
+			#request_change_state(get_last_state())
+			#request_change_state(STATES.IDLE_STAND)
 
 		"running":
 			pass
@@ -524,10 +538,10 @@ func look_for_player_in_vision_circle():
 				label.position = Vector2(randi_range(-50, 50), randi_range(-50, 50))
 				#vision_field.rotation = old_rotation
 				return body
-	var label = Label.new()
-	self.add_child(label)
+	#var label = Label.new()
+	#self.add_child(label)
 	#label.set_text("mustvbeen a wall")  # but can go back
-	label.position = Vector2(randi_range(-50, 50), randi_range(-50, 50))
+	#label.position = Vector2(randi_range(-50, 50), randi_range(-50, 50))
 	return false
 
 

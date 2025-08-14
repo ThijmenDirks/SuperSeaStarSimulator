@@ -34,9 +34,9 @@ func _physics_process(delta: float) -> void:
 func on_something_in_vision_field(bodies : Array):
 	#print("get_bodies_in_vision_field   ", get_bodies_in_vision_field())
 
-	var player_is_in_vision_field
+	#var player_is_in_vision_field
 	for body in get_bodies_in_vision_field():
-		if body is Enemy: # for some reason shaman onlyseas hiself # thats (most likely) becuase hes the first body in the returnded array
+		if body is Enemy: # for some reason shaman onlyseas hiself # thats (most likely) becuase hes the first body in the returnded array # i think it says "seed" and not "heals"..
 			#print(get_bodies_in_vision_field(), "on_something_in_vision_field 1.1  ", body.hp, body.max_hp)
 			if body.hp < body.max_hp:
 				#print($HealAbilityCooldownTimer.is_stopped(), "   HealAbilityCooldownTimer   ", $HealAbilityCooldownTimer.time_left)
@@ -47,16 +47,49 @@ func on_something_in_vision_field(bodies : Array):
 					used_timer = spell_ability_cooldown_timer
 					request_change_state(STATES.CAST)
 					return
-		if body is Player:
-			player_is_in_vision_field = body
-	if player_is_in_vision_field:
-		if spell_ability_cooldown_timer.is_stopped():
-			#print("on_something_in_vision_field 2.1")
-			spell_target_position = player_is_in_vision_field.global_position #+ Vector2(randi_range(-100, 100), randi_range(-100, 100))
+		#if body is Player:
+			#player_is_in_vision_field = body
+	
+	#if player_is_in_vision_field:
+		#print("timer has stopped?  ", spell_ability_cooldown_timer.is_stopped())
+		#if spell_ability_cooldown_timer.is_stopped():
+			#print("timer hass")
+			##print("on_something_in_vision_field 2.1")
+			#spell_target_position = player_is_in_vision_field.global_position #+ Vector2(randi_range(-100, 100), randi_range(-100, 100))
+			#spell_that_will_be_cast = "fireball"
+			#used_timer = spell_ability_cooldown_timer
+			#request_change_state(STATES.CAST)
+			#return
+# ^ this block might have to come back
+# the problemm with this blck is that, when te enemy is in sight, first there should be chase before casting.
+# thus, casting_state should only be entered trhough chase_tate.
+# that means there must come a func holding this stuff, called when about to enter cast_state.
+# that doesnt fix healing allies, though.
+# maybe the healing part can stay? which might result in shaman stopping the chase to heal allies.
+# i think the best following steps for shamant to do would be:
+# 1. look around for player. 2. walk/chase to where the healed ally stood. 3. once there, look around for player 4. if still no player, idle.
+# so just like after casting offensive spell, but walk to ally instead of player.
+# now just the self-healing aftermath
+# get back to last_state ?
+
+
+func ready_spell() -> bool:
+	print("ready_spell test 0")
+	#print("timer has stopped?  ", spell_ability_cooldown_timer.is_stopped())
+	if spell_ability_cooldown_timer.is_stopped():
+		print("ready_spell test 1")
+		#print("timer starts now")
+		#print("on_something_in_vision_field 2.1")
+		var body = look_for_player_in_vision_field()
+		if body:
+			print("ready_spell test 2")
+			spell_target_position = body.global_position
 			spell_that_will_be_cast = "fireball"
 			used_timer = spell_ability_cooldown_timer
-			request_change_state(STATES.CAST)
-			return
+			return true
+	print("ready_spell test 3")
+	return false
+
 
 	#print("on_something_in_vision_field 1")
 	#if enemy_in_vision_field:
@@ -90,7 +123,8 @@ func request_change_state(new_state):
 		STATES.IDLE_WALK:
 			change_state(STATES.IDLE_WALK)
 		STATES.ATTACK:
-			change_state(STATES.CAST)
+			if ready_spell():
+				change_state(STATES.CAST) # gotcha !
 		#STATES.CHASE:
 			#pass
 		STATES.CAST:
@@ -118,10 +152,38 @@ func change_state(new_state):
 			pathfind_state(0, "enter")
 		#STATES.MELEE_ATTACK:
 			#melee_attack_state(0, "enter")
-			state = STATES.MELEE_ATTACK
+			#state = STATES.MELEE_ATTACK
 		STATES.CAST:
 			state = STATES.CAST
 			casting_state(spell_that_will_be_cast, spell_target_position, "enter")
+
+
+func exit_last_state(last_state): # not in use yet
+	state_duration_timer.stop()
+# right now im changing state here, but might do that in state funcionts self because of on_stae("exit"): state = state.last # i dont think so..
+	if state_is_locked:
+		return
+	state_history.append(state)
+	match last_state:
+		STATES.IDLE_STAND:
+			state = STATES.IDLE_STAND
+			idle_stand(0, "exit")
+		STATES.IDLE_WALK:
+			state = STATES.IDLE_WALK
+			idle_walk(0, 0, "exit")
+		STATES.CHASE:
+			state = STATES.CHASE
+			chase_state(0, "exit")
+		STATES.PATHFIND:
+			state = STATES.PATHFIND
+			pathfind_state(0, "exit")
+		#STATES.MELEE_ATTACK:
+			#melee_attack_state(0, "exit")
+			#state = STATES.MELEE_ATTACK
+		STATES.CAST:
+			state = STATES.CAST
+			casting_state(spell_that_will_be_cast, spell_target_position, "exit")
+
 
 	#if state == STATES.IDLE_STAND:
 		#state = STATES.IDLE_WALK
