@@ -19,7 +19,7 @@ func deal_damage(a,b):
 
 
 func _ready():
-	position = Vector2(0,0)
+	#position = Vector2(0,0)
 	position = caster.global_position
 	print("you cast ", self.name, " !")
 	#print("nnn   ", caster)

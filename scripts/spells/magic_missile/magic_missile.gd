@@ -34,7 +34,7 @@ func _ready():
 	#direction = get_local_mouse_position().angle()
 
 	#max_range = min(origin_position.distance_to(target_position), this_spell.spell_range)
-	self.look_at(target_position)
+	#self.look_at(target_position)
 	#rotation += PI
 	print("max_range: ", max_range, "   position   ", position, "   global_position   ", global_position, "   origin_pos:  ", origin_position, "   target_position   ", target_position, "   length:   ", self.position.distance_to(origin_position), "   parent   ", get_parent().name, "   caster   ", caster.name,  "   caster_pos   ", caster.position,  "   caster_glob_pos   ", caster.global_position )
 

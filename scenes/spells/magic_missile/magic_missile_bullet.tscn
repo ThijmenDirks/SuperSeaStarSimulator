@@ -1,12 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://bwlk4kny0dg1x"]
+[gd_scene load_steps=13 format=3 uid="uid://bwlk4kny0dg1x"]
 
 [ext_resource type="Script" path="res://scripts/spells/magic_missile/magic_missile_bullet.gd" id="1_4c2lc"]
 [ext_resource type="Texture2D" uid="uid://qreksclpirx0" path="res://art/feesh.png" id="2_exviv"]
+[ext_resource type="Texture2D" uid="uid://eny37osmjycx" path="res://icon.svg" id="3_q0bja"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_roufs"]
 friction = 0.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pb4i0"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_r61up"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c3tof"]
 radius = 177.003
@@ -78,7 +79,7 @@ script = ExtResource("1_4c2lc")
 
 [node name="MagicMissileCollision" type="CollisionShape2D" parent="."]
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_pb4i0")
+shape = SubResource("CircleShape2D_r61up")
 
 [node name="NoiseArea" type="Area2D" parent="."]
 
@@ -98,5 +99,10 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_to3ae")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(1.49012e-08, -1.49012e-08)
+scale = Vector2(0.230469, 0.160156)
+texture = ExtResource("3_q0bja")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -36,7 +36,7 @@ spawn_area = 2
 script = ExtResource("3_wq6wp")
 name = "red_slime"
 amount = 5
-time = 999.0
+time = 5.0
 spawn_area = 1
 
 [sub_resource type="Resource" id="Resource_44i3d"]
@@ -46,14 +46,14 @@ subwaves = Array[ExtResource("3_wq6wp")]([SubResource("Resource_hs8cm"), SubReso
 [sub_resource type="Resource" id="Resource_naj87"]
 script = ExtResource("3_wq6wp")
 name = "shaman"
-amount = 1
+amount = 5
 time = 2.0
 spawn_area = 0
 
 [sub_resource type="Resource" id="Resource_rjxj4"]
 script = ExtResource("3_wq6wp")
 name = "goblin"
-amount = 1
+amount = 5
 time = 2.0
 spawn_area = 0
 

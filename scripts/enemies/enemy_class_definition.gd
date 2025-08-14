@@ -118,8 +118,6 @@ func _ready() -> void: # dont forget this gets overwritten in the enemies ! (pro
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if self is Slime: # please delete this line !
-		print("slimestate:   ", state)
 	#chase()
 	#print("PPP ", get_parent())
 	#if HP != 0:

@@ -42,6 +42,7 @@ func _ready():
 	#rotation += PI
 	print("max_range: ", max_range, "   position   ", position, "   global_position   ", global_position, "   origin_pos:  ", origin_position, "   target_position   ", target_position, "   length:   ", self.position.distance_to(origin_position), "   parent   ", get_parent().name, "   caster   ", caster.name,  "   caster_pos   ", caster.position,  "   caster_glob_pos   ", caster.global_position )
 
+	#speed = 0 # please deltet this line !
 
 func _physics_process(delta: float,) -> void:
 	#print("local ", get_local_mouse_position())
@@ -61,6 +62,7 @@ func on_max_range():
 
 func _on_body_entered(body: Node) -> void:
 	if body == caster:
+		print("hit caster !")
 		return
 	if body is Enemy: # dirty. now shaman cant use it
 		body.take_damage(base_damage, damage_type)

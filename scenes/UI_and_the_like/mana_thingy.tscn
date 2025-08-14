@@ -1,28 +1,70 @@
-[gd_scene load_steps=3 format=3 uid="uid://q3n17mgpdknc"]
+[gd_scene load_steps=4 format=3 uid="uid://q3n17mgpdknc"]
 
 [ext_resource type="Script" path="res://scripts/UI_and_the_like/mana_thingy.gd" id="1_cygvf"]
 [ext_resource type="Texture2D" uid="uid://eny37osmjycx" path="res://icon.svg" id="1_pm13x"]
+[ext_resource type="Texture2D" uid="uid://bwag8ua6ahaco" path="res://art/mana_thingy_green_hue_tileset.png" id="3_c464s"]
 
 [node name="ManaThingy" type="Node2D"]
 script = ExtResource("1_cygvf")
 
 [node name="ManaThingyBackground" type="Sprite2D" parent="."]
-position = Vector2(23.25, 10.5)
+position = Vector2(59, 0)
 scale = Vector2(0.371093, 0.164063)
 texture = ExtResource("1_pm13x")
+
+[node name="orb1" type="Sprite2D" parent="."]
+position = Vector2(37.75, -12.5)
+scale = Vector2(0.042969, 0.0390625)
+texture = ExtResource("1_pm13x")
+
+[node name="orb2" type="Sprite2D" parent="."]
+position = Vector2(43.75, -17.5)
+scale = Vector2(0.042969, 0.0390625)
+texture = ExtResource("1_pm13x")
+
+[node name="orb3" type="Sprite2D" parent="."]
+position = Vector2(49.75, -11.5)
+scale = Vector2(0.042969, 0.0390625)
+texture = ExtResource("1_pm13x")
+
+[node name="orb4" type="Sprite2D" parent="."]
+position = Vector2(55.75, -17.5)
+scale = Vector2(0.042969, 0.0390625)
+texture = ExtResource("1_pm13x")
+
+[node name="orb5" type="Sprite2D" parent="."]
+position = Vector2(62.75, -12.5)
+scale = Vector2(0.042969, 0.0390625)
+texture = ExtResource("1_pm13x")
+
+[node name="orb6" type="Sprite2D" parent="."]
+position = Vector2(68.75, -17.5)
+scale = Vector2(0.042969, 0.0390625)
+texture = ExtResource("1_pm13x")
+
+[node name="orb7" type="Sprite2D" parent="."]
+position = Vector2(75.75, -12.5)
+scale = Vector2(0.042969, 0.0390625)
+texture = ExtResource("1_pm13x")
+
+[node name="ManaThingyGreenHueTileset" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("3_c464s")
+vframes = 3
+frame = 2
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
 custom_minimum_size = Vector2(10, 10)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 5.0
-offset_top = 6.0
-offset_right = 133.0
-offset_bottom = 134.0
+offset_left = -25.0
+offset_top = 5.0
+offset_right = 103.0
+offset_bottom = 133.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.3, 0.07)
+scale = Vector2(0.27, 0.031)
 max_value = 10000.0
 nine_patch_stretch = true
 stretch_margin_left = 64
@@ -33,38 +75,3 @@ texture_under = ExtResource("1_pm13x")
 texture_progress = ExtResource("1_pm13x")
 tint_under = Color(0, 0, 0, 1)
 tint_progress = Color(100, 100, 100, 1)
-
-[node name="orb1" type="Sprite2D" parent="."]
-position = Vector2(2, -2)
-scale = Vector2(0.042969, 0.0390625)
-texture = ExtResource("1_pm13x")
-
-[node name="orb2" type="Sprite2D" parent="."]
-position = Vector2(8, -7)
-scale = Vector2(0.042969, 0.0390625)
-texture = ExtResource("1_pm13x")
-
-[node name="orb3" type="Sprite2D" parent="."]
-position = Vector2(14, -1)
-scale = Vector2(0.042969, 0.0390625)
-texture = ExtResource("1_pm13x")
-
-[node name="orb4" type="Sprite2D" parent="."]
-position = Vector2(20, -7)
-scale = Vector2(0.042969, 0.0390625)
-texture = ExtResource("1_pm13x")
-
-[node name="orb5" type="Sprite2D" parent="."]
-position = Vector2(27, -2)
-scale = Vector2(0.042969, 0.0390625)
-texture = ExtResource("1_pm13x")
-
-[node name="orb6" type="Sprite2D" parent="."]
-position = Vector2(33, -7)
-scale = Vector2(0.042969, 0.0390625)
-texture = ExtResource("1_pm13x")
-
-[node name="orb7" type="Sprite2D" parent="."]
-position = Vector2(40, -2)
-scale = Vector2(0.042969, 0.0390625)
-texture = ExtResource("1_pm13x")

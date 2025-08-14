@@ -31,7 +31,7 @@ func slime_attack():
 func update_animation_parameters(): # this should go in enemyclassdefintion #(or maybe that wouldnt work if some enmies have stragne animations #(then dont call it))
 	if velocity == Vector2.ZERO:
 		return
-	print("slime ", animation_tree["parameters/Walk/blend_position"], " ", velocity)
+	#print("slime ", animation_tree["parameters/Walk/blend_position"], " ", velocity)
 	animation_tree["parameters/Idle/blend_position"] = velocity
 	animation_tree["parameters/Walk/blend_position"] = velocity
 	animation_tree["parameters/IdleCast/blend_position"] = velocity

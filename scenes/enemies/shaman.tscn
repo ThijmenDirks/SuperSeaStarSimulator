@@ -862,7 +862,7 @@ radius = 224.377
 cull_mode = 1
 polygon = PackedVector2Array(0.5, 0, 0, 0.5, -0.5, 0, 0, -0.5)
 
-[node name="CharacterBody2DG2" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree")]
+[node name="CharacterBody2DG3" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree")]
 collision_layer = 541
 script = ExtResource("1_3jecn")
 animation_tree = NodePath("AnimationTree")

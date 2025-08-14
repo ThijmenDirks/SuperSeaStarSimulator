@@ -23,7 +23,7 @@ func _ready() -> void:
 	state = STATES.IDLE_STAND
 	idle_stand(9999, "enter")
 	look_for_player_area = $LookForPlayerArea
-	print("slime_", state)
+	#print("slime_", state)
 	#timer.start(1)
 	sprite = $Sprite2D
 	loot_table = {
