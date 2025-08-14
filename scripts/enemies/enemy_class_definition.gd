@@ -15,7 +15,7 @@ var speed : int
 var base_speed : int
 var jump_hight : int
 var direction : Vector2 #float # wil dit liever in rad of degree hebben # bij nader inzien: gewoon V2
-var max_hp : int = 100#: int# = 100
+@export var max_hp : int = 100#: int# = 100
 var hp : int = 100#: int
 var resistances_and_weaknesses : Dictionary
 var threat_range : int
@@ -241,7 +241,7 @@ func chase_state(delta, phase : String = "running"): # for when player is in sig
 			speed = base_speed * 2
 		"running":
 			debug_label.set_text("CHASE")
-			if look_for_player_in_vision_field(): # shoudl this change to the new version ?
+			if look_for_player_in_vision_field():# and chase_target: # shoudl this change to the new version ?
 				chase_target_position = chase_target.global_position
 			#move(to_local(chase_target_position), delta)
 			#if self.global_position.distance_to(chase_target.global_position) < chase_end_distance:
@@ -272,7 +272,9 @@ func chase_state(delta, phase : String = "running"): # for when player is in sig
 func pathfind_state(delta, phase : String = "running"):
 	match phase:
 		"enter":
-			pathfind_target_position = pathfind_target.global_position
+			if is_instance_valid(pathfind_target):
+				print("pathfind_target", pathfind_target)
+				pathfind_target_position = pathfind_target.global_position
 			nav_agent.target_position = pathfind_target_position #pathfind_target.global_position#pathfind_target_position#to_global(pathfind_target.position)
 			#print("STATE.PATHFIND ENTER  ", nav_agent.target_position, "  ", pathfind_target_position)
 			speed = base_speed * 1.5
@@ -305,9 +307,9 @@ func melee_attack_state(delta, phase : String = "running"):#, target : Object = 
 			#speed = 0 # this is not needen anymore, sice not calling move() is sufficient. # + setting speed to 0 makes enemies face right when casting, which is weird
 			state_is_locked = true
 			await get_tree().create_timer(0.5).timeout # this one is okay. since the wstate is locked, it cant cause spontaneous state changing
-			if self.global_position.distance_to(melee_attack_target.global_position) < melee_range:
-				print("enemy attacks !  ", melee_attack_target)
-				melee_attack_target.take_damage(attack_damage, "physical")
+			if self.global_position.distance_to(attack_target.global_position) < melee_range:
+				print("enemy attacks !  ", attack_target)
+				attack_target.take_damage(attack_damage, "physical")
 			speed = backup_speed
 			state_is_locked = false
 			request_change_state(get_last_state())
@@ -349,10 +351,12 @@ func casting_state(spell : String = "", target : Vector2 = Vector2.ZERO, phase :
 			print("state_history ", state_history)
 			print("on_something_in_vision_field 5 ", get_last_state())
 			chase_target = look_for_player_in_vision_circle()
-			if not chase_target:
-				chase_target_position = attack_target_position
+			if chase_target:
+				request_change_state(STATES.CHASE)
+			else:
+				pathfind_target_position = spell_target_position# attack_target_position
+				request_change_state(STATES.PATHFIND)
 			#if chase_target:
-			request_change_state(STATES.CHASE)
 			#else:
 				#request_change_state(STATES.)
 			

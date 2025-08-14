@@ -33,20 +33,32 @@ func _physics_process(delta: float) -> void:
 
 func on_something_in_vision_field(bodies : Array):
 	#print("get_bodies_in_vision_field   ", get_bodies_in_vision_field())
-
+	var most_favourable_target # not self if possible
 	#var player_is_in_vision_field
 	for body in get_bodies_in_vision_field():
-		if body is Enemy: # for some reason shaman onlyseas hiself # thats (most likely) becuase hes the first body in the returnded array # i think it says "seed" and not "heals"..
+		if body is Enemy: # for some reason shaman onlyseas hiself # thats (most likely) becuase hes the first body in the returnded array # i think it says "sees" and not "heals"..
 			#print(get_bodies_in_vision_field(), "on_something_in_vision_field 1.1  ", body.hp, body.max_hp)
 			if body.hp < body.max_hp:
+				if body != self:
+					if ready_spell("heal", body):
+						request_change_state(STATES.CAST)
+						return
+	if self.hp != max_hp:
+		if ready_spell("heal", self):
+			request_change_state(STATES.CAST)
+
+				#most_favourable_target = body
 				#print($HealAbilityCooldownTimer.is_stopped(), "   HealAbilityCooldownTimer   ", $HealAbilityCooldownTimer.time_left)
-				if spell_ability_cooldown_timer.is_stopped():
+				#if spell_ability_cooldown_timer.is_stopped():
 					#print("on_something_in_vision_field 2.1")
-					spell_target_position = body.global_position #+ Vector2(randi_range(-100, 100), randi_range(-100, 100))
-					spell_that_will_be_cast = "heal"
-					used_timer = spell_ability_cooldown_timer
-					request_change_state(STATES.CAST)
-					return
+					#spell_target_position = body.global_position #+ Vector2(randi_range(-100, 100), randi_range(-100, 100))
+					#spell_that_will_be_cast = "heal"
+					#used_timer = spell_ability_cooldown_timer
+		if most_favourable_target:
+			print("zucht  ", most_favourable_target.name)
+			if ready_spell("heal", most_favourable_target):
+				request_change_state(STATES.CAST)
+						#return
 		#if body is Player:
 			#player_is_in_vision_field = body
 	
@@ -73,18 +85,19 @@ func on_something_in_vision_field(bodies : Array):
 # get back to last_state ?
 
 
-func ready_spell() -> bool:
+func ready_spell(spell = "fireball", target = null) -> bool:
 	print("ready_spell test 0")
 	#print("timer has stopped?  ", spell_ability_cooldown_timer.is_stopped())
 	if spell_ability_cooldown_timer.is_stopped():
 		print("ready_spell test 1")
 		#print("timer starts now")
 		#print("on_something_in_vision_field 2.1")
-		var body = look_for_player_in_vision_field()
-		if body:
+		if not target:
+			target = look_for_player_in_vision_field()
+		if target:
 			print("ready_spell test 2")
-			spell_target_position = body.global_position
-			spell_that_will_be_cast = "fireball"
+			spell_target_position = target.global_position
+			spell_that_will_be_cast = spell
 			used_timer = spell_ability_cooldown_timer
 			return true
 	print("ready_spell test 3")
@@ -128,6 +141,7 @@ func request_change_state(new_state):
 		#STATES.CHASE:
 			#pass
 		STATES.CAST:
+			#if ready_spell(): # cant be here becasse of parameters
 			change_state(STATES.CAST)
 
 
