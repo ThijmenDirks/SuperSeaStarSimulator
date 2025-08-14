@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://c25a8toq0den5"]
 
 [ext_resource type="Script" path="res://scripts/map/moveable_block.gd" id="1_qma3u"]
-[ext_resource type="Texture2D" uid="uid://eny37osmjycx" path="res://icon.svg" id="2_mkva3"]
+[ext_resource type="Texture2D" uid="uid://ch3c7gkijntvo" path="res://art/moveblockforest.png" id="2_wqyy1"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7crit"]
 friction = 9.22337e+18
@@ -17,6 +17,7 @@ size = Vector2(30, 30)
 
 [node name="StaticBody2D" type="StaticBody2D"]
 position = Vector2(-5, 0)
+scale = Vector2(1.25, 1.25)
 disable_mode = 1
 collision_layer = 32834
 collision_mask = 16384
@@ -24,8 +25,8 @@ physics_material_override = SubResource("PhysicsMaterial_7crit")
 script = ExtResource("1_qma3u")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_mkva3")
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_wqyy1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_068xg")
