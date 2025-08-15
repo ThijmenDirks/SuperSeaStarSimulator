@@ -13,6 +13,7 @@ var shaman = preload("res://scenes/enemies/shaman.tscn")
 var blue_slime = preload("res://scenes/enemies/slimes/blue_slime.tscn")
 var red_slime = preload("res://scenes/enemies/slimes/red_slime.tscn")
 var green_slime = preload("res://scenes/enemies/slimes/green_slime.tscn")
+var king_slime = preload("res://scenes/enemies/slimes/king_slime.tscn")
 
 
 #var last_subwave:bool = false
@@ -97,6 +98,8 @@ func spawn_unit(enemy_name: String, time, amount: int, spawn_area: int):
 				new_enemy = green_slime.instantiate()
 			"red_slime":
 				new_enemy = red_slime.instantiate()
+			"king_slime":
+				new_enemy = king_slime.instantiate()
 			"goblin":
 				new_enemy = goblin.instantiate()
 			"shaman":
