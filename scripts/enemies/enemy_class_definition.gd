@@ -46,6 +46,7 @@ var steerong_force
 var desired_walk_direction
 var chase_end_distance: int
 var melee_range: int
+var attack_speed: float
 
 var pathfind_target
 var pathfind_target_position : Vector2
@@ -84,16 +85,16 @@ var base_waypoint = {
 }
 
 enum STATES {
-	IDLE_STAND,
-	IDLE_WALK,
-	MELEE_ATTACK,
-	CAST,
-	SLIME_IDLE,
-	JUMP_ATTACK,
-	JUMP,
-	CHASE,
-	PATHFIND,
-	ATTACK,
+	IDLE_STAND, # 0
+	IDLE_WALK, # 1
+	MELEE_ATTACK, # 2
+	CAST, # 3
+	SLIME_IDLE, # 4
+	JUMP_ATTACK, # 5
+	JUMP, # 6
+	CHASE, # 7
+	PATHFIND, # 8
+	ATTACK, # 9
 }
 
 # Called when the node enters the scene tree for the first time.
@@ -238,15 +239,19 @@ func chase_state(delta, phase : String = "running"): # for when player is in sig
 	match phase:
 		"enter":
 			print("STATES.CHASE ENTER")
+			var backup_speed = speed # why was it not here ?
 			speed = base_speed * 2
 		"running":
 			debug_label.set_text("CHASE")
 			if look_for_player_in_vision_field():# and chase_target: # shoudl this change to the new version ?
+				print("goblin sees player")
+				chase_target = look_for_player_in_vision_field()
 				chase_target_position = chase_target.global_position
 			#move(to_local(chase_target_position), delta)
 			#if self.global_position.distance_to(chase_target.global_position) < chase_end_distance:
-			if self.global_position.distance_to(chase_target_position) < chase_end_distance:
-				print("slime jump_attack_state")
+			if self.global_position.distance_to(chase_target.global_position) < chase_end_distance: # since chase_target_position only gets updated when the enemy actually sees the chase_target, using  chase_target_position might by tricky. watch out.
+				print("goblin attacks!  GLobPos:  ", global_position, "   TargtGlobPos   ", chase_target_position, "  distance  ", self.global_position.distance_to(chase_target_position))
+				print("slime jump_attack_state  ", randi())
 				#debug_label.set_text("ATTACK!")
 				#melee_attack_target = chase_target # dirty code. clean it # cleaned it. (a bit)
 				attack_target = chase_target
@@ -306,13 +311,15 @@ func melee_attack_state(delta, phase : String = "running"):#, target : Object = 
 			var backup_speed = speed
 			#speed = 0 # this is not needen anymore, sice not calling move() is sufficient. # + setting speed to 0 makes enemies face right when casting, which is weird
 			state_is_locked = true
-			await get_tree().create_timer(0.5).timeout # this one is okay. since the wstate is locked, it cant cause spontaneous state changing
+			await get_tree().create_timer(attack_speed).timeout # this one is okay. since the state is locked, it cant cause spontaneous state changing
 			if self.global_position.distance_to(attack_target.global_position) < melee_range:
 				print("enemy attacks !  ", attack_target)
-				attack_target.take_damage(attack_damage, "physical")
+				attack_target.take_damage(attack_damage, "physical") # "physical" should, ofc, be replaced with some var
 			speed = backup_speed
 			state_is_locked = false
+			print("last state  ", get_last_state())
 			request_change_state(get_last_state())
+			request_change_state(STATES.CHASE)
 		"running":
 			pass
 		"exit":
