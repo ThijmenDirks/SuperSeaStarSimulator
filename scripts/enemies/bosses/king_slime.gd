@@ -1,7 +1,10 @@
 extends Slime # please dont forget to fix raycast collision masks !!
 
-#const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+@onready var blob_spawn_area_collision_circle = $BlobSpawnArea/CollisionShape2D.shape
+@onready var min_range_blob_spawn_area_collision_circle = $MinRangeBlobSpawnArea/CollisionShape2D.shape
+@onready var blob = load("res://scenes/enemies/slimes/blob.tscn")
+
+#const JUMP_VELOCITY = -400.0
 var timer_is_already_running = true
 
 var progression: float = 0.00 # up to 1.00
@@ -13,13 +16,16 @@ var progression: float = 0.00 # up to 1.00
 #@onready var timer = $Timer
 
 func _ready() -> void:
-	max_hp= 500
+	max_hp = 5000
 	hp = max_hp#max_HP
 	base_speed = 20
 	speed = base_speed
 	chase_end_distance = 250
 	melee_range = 50
-	attack_damage = 4
+	attack_damage = 5
+
+	hp_bar.max_value = max_hp
+	hp_bar.value = hp
 
 
 	jump_hight = 20
@@ -34,22 +40,12 @@ func _ready() -> void:
 		"super_legendary_drop" = 0.001,
 	}
 
+	ability_cooldown_timer_1.start()
+
 func _physics_process(delta: float) -> void:
 	progression = (max_hp-hp) / max_hp
 	scale *= (1-progression)
 	super(delta)
-
-# shouldnt this be in Enemy?
-#func _physics_process(delta: float) -> void:
-	##super(delta)
-	#print("HP ", hp)
-	#update_animation_parameters()
-	#if state == STATES.JUMP:
-		#jump(delta)
-	#if state == STATES.IDLE_STAND:
-		#if not timer_is_already_running:
-			##timer.start(1)
-			#pass
 
 
 func request_change_state(new_state):
@@ -91,3 +87,48 @@ func change_state(new_state):
 		STATES.JUMP_ATTACK:
 			state = STATES.JUMP_ATTACK
 			jump_attack_state(0, jump_duration, "enter")
+
+
+func take_damage(damage: int, damage_type: String):
+	super(damage, damage_type)
+
+
+func spawn_slime():
+	pass
+
+
+func _on_ability_cooldown_timer_1_timeout() -> void:
+	blob_attack()
+
+
+func blob_attack() -> void:
+	for i in range(500):
+		var blob_target_position = get_random_in_circle(16, blob_spawn_area_collision_circle)
+		if blob_target_position:
+			var new_blob = blob.instantiate()
+			new_blob.position = blob_target_position
+			self.get_parent().get_parent().get_parent().add_child(new_blob)
+			await get_tree().create_timer(0.01).timeout
+
+
+func get_random_in_circle(tries: int, shape: Resource):
+	for try in range(tries):
+		#var min_r = min_range_blob_spawn_area_collision_circle.radius
+		#var max_r = blob_spawn_area_collision_circle.radius
+		#var r = sqrt(randf_range((min_r / max_r) ** 2, 1.0)) * max_r
+		var r = sqrt(randf() * (blob_spawn_area_collision_circle.radius * blob_spawn_area_collision_circle.radius - min_range_blob_spawn_area_collision_circle.radius * min_range_blob_spawn_area_collision_circle.radius) + min_range_blob_spawn_area_collision_circle.radius * min_range_blob_spawn_area_collision_circle.radius)
+		#var r = shape.radius * sqrt(randf_range(min_range_blob_spawn_area_collision_circle.radius / blob_spawn_area_collision_circle.radius, 1.0))  # sqrt to ensure uniform distribution
+		var angle = randf() * TAU
+		return (Vector2(cos(angle), sin(angle)) * r) + global_position
+
+# shouldnt this be in Enemy?
+#func _physics_process(delta: float) -> void:
+	##super(delta)
+	#print("HP ", hp)
+	#update_animation_parameters()
+	#if state == STATES.JUMP:
+		#jump(delta)
+	#if state == STATES.IDLE_STAND:
+		#if not timer_is_already_running:
+			##timer.start(1)
+			#pass

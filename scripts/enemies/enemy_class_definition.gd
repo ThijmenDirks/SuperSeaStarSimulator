@@ -15,7 +15,9 @@ var speed : int
 var base_speed : int
 var jump_hight : int
 var direction : Vector2 #float # wil dit liever in rad of degree hebben # bij nader inzien: gewoon V2
-@export var max_hp : int = 100#: int# = 100
+#@export var max_hp : int = 100#: int# = 100
+#@export var hp : int = 100#: int
+var max_hp : int = 100#: int# = 100
 var hp : int = 100#: int
 var resistances_and_weaknesses : Dictionary
 var threat_range : int
@@ -99,19 +101,20 @@ enum STATES {
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void: # dont forget this gets overwritten in the enemies ! (probably)
-	get_tree().create_timer(0)
+	pass
+	#get_tree().create_timer(0)
 
-	hp_bar.max_value = max_hp
-	hp_bar.value = hp
+	#hp_bar.max_value = max_hp
+	#hp_bar.value = hp
 
-	waypoint_area = Area2D.new() # gets automatically deleted when this function is done # ?
-	var waypoint_area_collision = CollisionShape2D.new()
-	waypoint_area_collision.shape = CircleShape2D.new()
-	waypoint_area_collision.shape.radius = 300
-	waypoint_area.set_collision_mask_value(1, false)
-	waypoint_area.set_collision_mask_value(8, true)
-	waypoint_area.add_child(waypoint_area_collision)
-	waypoint_area.name = "waypoint_area"
+	#waypoint_area = Area2D.new() # gets automatically deleted when this function is done # ?
+	#var waypoint_area_collision = CollisionShape2D.new()
+	#waypoint_area_collision.shape = CircleShape2D.new()
+	#waypoint_area_collision.shape.radius = 300
+	#waypoint_area.set_collision_mask_value(1, false)
+	#waypoint_area.set_collision_mask_value(8, true)
+	#waypoint_area.add_child(waypoint_area_collision)
+	#waypoint_area.name = "waypoint_area"
 		# VERGEET DIT DING NIET OOK TE VERWIJDEREN!
 	#add_child(waypoint_area)
 

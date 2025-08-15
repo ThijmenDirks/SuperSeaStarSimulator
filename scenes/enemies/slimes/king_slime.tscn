@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=3 uid="uid://bot1dgu6rriso"]
+[gd_scene load_steps=98 format=3 uid="uid://bot1dgu6rriso"]
 
 [ext_resource type="Script" path="res://scripts/enemies/bosses/king_slime.gd" id="1_air7p"]
 [ext_resource type="Texture2D" uid="uid://b860wle2jujie" path="res://art/spridesheet_test_player_V2.png" id="2_s0gvw"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://gmaaidve2b6e" path="res://art/slime_jump_3.png" id="4_3iw58"]
 [ext_resource type="PackedScene" uid="uid://ccmwkars1n0na" path="res://scenes/UI_and_the_like/hp_bar.tscn" id="5_j2fpg"]
 [ext_resource type="PackedScene" uid="uid://cn2bi5uhlbamd" path="res://scenes/other/vector_wheel.tscn" id="6_46usb"]
+[ext_resource type="PackedScene" uid="uid://cnnq6c4eio7vy" path="res://scenes/enemies/slimes/blob.tscn" id="7_jrh71"]
 
 [sub_resource type="Animation" id="Animation_kx0ak"]
 length = 0.001
@@ -892,20 +893,26 @@ transitions = ["Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_
 graph_offset = Vector2(0, 48.0736)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_agn4q"]
-radius = 12.0
+radius = 170.012
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vlgon"]
-radius = 183.183
+radius = 738.003
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a7g13"]
-radius = 224.377
+radius = 738.043
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wjdmk"]
-radius = 21.0238
+radius = 244.008
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_8k574"]
 cull_mode = 1
 polygon = PackedVector2Array(2, 0, 1, 1, -1, 1, -2, 0, -1, -1, 1, -1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jol08"]
+radius = 402.87
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bmo8y"]
+radius = 357.435
 
 [node name="CharacterBody2DG4" type="CharacterBody2D"]
 scale = Vector2(0.5, 0.5)
@@ -968,6 +975,7 @@ texture = ExtResource("3_6exfe")
 hframes = 2
 
 [node name="SlimeJump2" type="Sprite2D" parent="."]
+position = Vector2(0, -20)
 scale = Vector2(20, 20.602)
 texture = ExtResource("4_3iw58")
 hframes = 3
@@ -999,4 +1007,22 @@ position = Vector2(0, 2)
 scale = Vector2(6, 6)
 occluder = SubResource("OccluderPolygon2D_8k574")
 
+[node name="Node2D" parent="." instance=ExtResource("7_jrh71")]
+
+[node name="AbilityCooldownTimer1" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="BlobSpawnArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlobSpawnArea"]
+shape = SubResource("CircleShape2D_jol08")
+debug_color = Color(0.560784, 0.560784, 0, 0.419608)
+
+[node name="MinRangeBlobSpawnArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MinRangeBlobSpawnArea"]
+shape = SubResource("CircleShape2D_bmo8y")
+debug_color = Color(0.561021, 0.559625, 0, 0.42)
+
 [connection signal="timeout" from="StateDurationTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="AbilityCooldownTimer1" to="." method="_on_ability_cooldown_timer_1_timeout"]
