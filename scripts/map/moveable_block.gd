@@ -319,7 +319,7 @@ class_name SecondMoveableBlock extends StaticBody2D
 
 var move_speed: int = 0
 var direction: Vector2 = Vector2.ZERO
-var grid_width: int = 32
+var grid_width: int = 16
 var is_moving: bool = false
 var target_position: Vector2
 var space_check_area: Area2D
