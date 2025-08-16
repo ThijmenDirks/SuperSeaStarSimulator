@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtlu5kac5vxvs"
-path="res://.godot/imported/angy_slime_king.png-51ff47adb00923469c5f40c19df9f4b6.ctex"
+uid="uid://pnb482oqyslo"
+path="res://.godot/imported/slime_king_idle.png-ca4881fe41129666660c2c697cb809f0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/angy_slime_king.png"
-dest_files=["res://.godot/imported/angy_slime_king.png-51ff47adb00923469c5f40c19df9f4b6.ctex"]
+source_file="res://art/enemy sprites/slime_king_idle.png"
+dest_files=["res://.godot/imported/slime_king_idle.png-ca4881fe41129666660c2c697cb809f0.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3xtpwnwgadex"
-path="res://.godot/imported/blob.png-89cc513d2f52c9ef012a8a2424691087.ctex"
+uid="uid://cgnslmscwl1s5"
+path="res://.godot/imported/blue_slime_king_jump_jump_sprite_of_zo_.png-5019faee4cf9cc7fea39f6351043e750.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/blob.png"
-dest_files=["res://.godot/imported/blob.png-89cc513d2f52c9ef012a8a2424691087.ctex"]
+source_file="res://art/enemy sprites/blue_slime_king_jump_jump_sprite_of_zo_.png"
+dest_files=["res://.godot/imported/blue_slime_king_jump_jump_sprite_of_zo_.png-5019faee4cf9cc7fea39f6351043e750.ctex"]
 
 [params]
 

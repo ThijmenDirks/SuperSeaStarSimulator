@@ -1,9 +1,10 @@
-[gd_scene load_steps=88 format=3 uid="uid://bqhlp5wv10xgg"]
+[gd_scene load_steps=89 format=3 uid="uid://b35wpfhm63gee"]
 
-[ext_resource type="Script" path="res://scripts/other/player.gd" id="1_60osi"]
-[ext_resource type="Texture2D" uid="uid://b860wle2jujie" path="res://art/spridesheet_test_player_V2.png" id="2_jh5r6"]
-[ext_resource type="PackedScene" uid="uid://ddx6b7cun7e4g" path="res://scenes/UI_and_the_like/interface.tscn" id="3_ksrdk"]
-[ext_resource type="PackedScene" uid="uid://ccmwkars1n0na" path="res://scenes/UI_and_the_like/hp_bar.tscn" id="4_82o1e"]
+[ext_resource type="Script" path="res://scripts/other/openworldplayer.gd" id="1_fepmt"]
+[ext_resource type="Texture2D" uid="uid://b860wle2jujie" path="res://art/spridesheet_test_player_V2.png" id="3_hn42m"]
+[ext_resource type="PackedScene" uid="uid://bolxhcdrbfrkx" path="res://scenes/UI_and_the_like/winterface.tscn" id="4_3s56c"]
+[ext_resource type="PackedScene" uid="uid://ccmwkars1n0na" path="res://scenes/UI_and_the_like/hp_bar.tscn" id="4_btexk"]
+[ext_resource type="Script" path="res://scripts/UI_and_the_like/winterface.gd" id="5_ch7lt"]
 
 [sub_resource type="Animation" id="Animation_kx0ak"]
 length = 0.001
@@ -862,17 +863,14 @@ radius = 34.0147
 cull_mode = 1
 polygon = PackedVector2Array(0.5, 0, 0, 0.5, -0.5, 0, 0, -0.5)
 
-[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree")]
+[node name="CharacterBody2D" type="CharacterBody2D"]
 collision_layer = 16708
 collision_mask = 2
-script = ExtResource("1_60osi")
-animation_tree = NodePath("AnimationTree")
-
-[node name="Interface" parent="." instance=ExtResource("3_ksrdk")]
+script = ExtResource("1_fepmt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_jh5r6")
+texture = ExtResource("3_hn42m")
 hframes = 12
 vframes = 8
 
@@ -915,7 +913,7 @@ collision_mask = 0
 scale = Vector2(0.5, 0.5)
 shape = SubResource("CircleShape2D_a78xc")
 
-[node name="HPBar" parent="." instance=ExtResource("4_82o1e")]
+[node name="HPBar" parent="." instance=ExtResource("4_btexk")]
 offset_left = -10.0
 offset_top = -15.0
 offset_right = 118.0
@@ -925,6 +923,9 @@ offset_bottom = 113.0
 rotation = 3.14159
 scale = Vector2(16, 16)
 occluder = SubResource("OccluderPolygon2D_he6sn")
+
+[node name="interface" parent="." instance=ExtResource("4_3s56c")]
+script = ExtResource("5_ch7lt")
 
 [connection signal="timeout" from="CTimerToCastSpell" to="." method="_on_ctimer_to_cast_spell_timeout"]
 [connection signal="timeout" from="CTimerToPressSimoultaniously" to="." method="_on_ctimer_to_press_simoultaniously_timeout"]
