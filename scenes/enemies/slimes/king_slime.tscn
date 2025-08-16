@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/enemies/bosses/king_slime.gd" id="1_air7p"]
 [ext_resource type="Texture2D" uid="uid://b860wle2jujie" path="res://art/spridesheet_test_player_V2.png" id="2_s0gvw"]
-[ext_resource type="Texture2D" uid="uid://cnwiy3wrhhxph" path="res://art/slime_3.png" id="3_6exfe"]
-[ext_resource type="Texture2D" uid="uid://gmaaidve2b6e" path="res://art/slime_jump_3.png" id="4_3iw58"]
+[ext_resource type="Texture2D" path="res://art/slime_3.png" id="3_6exfe"]
+[ext_resource type="Texture2D" path="res://art/slime_jump_3.png" id="4_3iw58"]
 [ext_resource type="PackedScene" uid="uid://ccmwkars1n0na" path="res://scenes/UI_and_the_like/hp_bar.tscn" id="5_j2fpg"]
 [ext_resource type="PackedScene" uid="uid://cn2bi5uhlbamd" path="res://scenes/other/vector_wheel.tscn" id="6_46usb"]
 [ext_resource type="PackedScene" uid="uid://cnnq6c4eio7vy" path="res://scenes/enemies/slimes/blob.tscn" id="7_jrh71"]
@@ -915,7 +915,6 @@ radius = 402.87
 radius = 357.435
 
 [node name="CharacterBody2DG4" type="CharacterBody2D"]
-scale = Vector2(0.5, 0.5)
 collision_layer = 541
 script = ExtResource("1_air7p")
 
@@ -1010,7 +1009,6 @@ occluder = SubResource("OccluderPolygon2D_8k574")
 [node name="Node2D" parent="." instance=ExtResource("7_jrh71")]
 
 [node name="AbilityCooldownTimer1" type="Timer" parent="."]
-wait_time = 5.0
 
 [node name="BlobSpawnArea" type="Area2D" parent="."]
 

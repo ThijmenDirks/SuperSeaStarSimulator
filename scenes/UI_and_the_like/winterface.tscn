@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bolxhcdrbfrkx"]
+[gd_scene load_steps=3 format=3 uid="uid://dexoiv6k58xme"]
 
 [ext_resource type="Script" path="res://scripts/UI_and_the_like/interface.gd" id="1_5asfp"]
-[ext_resource type="PackedScene" uid="uid://b3ctiima3lsmc" path="res://scenes/UI_and_the_like/openkleurenbalkje.tscn" id="2_nmrof"]
+[ext_resource type="PackedScene" uid="uid://c8nxasieug1uv" path="res://scenes/UI_and_the_like/openkleurenbalkje.tscn" id="2_nmrof"]
 
 [node name="interface" type="CanvasLayer"]
 script = ExtResource("1_5asfp")

@@ -18,7 +18,7 @@ var progression: float = 0.00 # up to 1.00
 func _ready() -> void:
 	max_hp = 5000
 	hp = max_hp#max_HP
-	base_speed = 20
+	base_speed = 0 # 20
 	speed = base_speed
 	chase_end_distance = 250
 	melee_range = 50
@@ -102,7 +102,7 @@ func _on_ability_cooldown_timer_1_timeout() -> void:
 
 
 func blob_attack() -> void:
-	for i in range(500):
+	for i in range(5):
 		var blob_target_position = get_random_in_circle(16, blob_spawn_area_collision_circle)
 		if blob_target_position:
 			var new_blob = blob.instantiate()

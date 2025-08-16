@@ -36,7 +36,7 @@ func _physics_process(delta: float) -> void:
 	#position += velocity
 	move_and_slide()
 	#select_animation()
-	#update_animation_parameters()
+	update_animation_parameters()
 #	print("hi", check_if_input_is_in_list(keys_for_spellcasting))
 	natius()
 	#if input_is_in_list(keys_for_spellcasting):
@@ -72,13 +72,14 @@ func _physics_process(delta: float) -> void:
 				#c.get_collider().apply_central_impulse(-c.get_normal() * push_foararce)
 
 
-#func update_animation_parameters():
-	#if input == Vector2.ZERO:
-		#return
-	#animation_tree["parameters/Idle/blend_position"] = input
-	#animation_tree["parameters/Walk/blend_position"] = input
-	#animation_tree["parameters/IdleCast/blend_position"] = input
-	#animation_tree["parameters/WalkCast/blend_position"] = input
+func update_animation_parameters():
+	if input == Vector2.ZERO:
+		return
+	print("input  ", input, "   tree:  ", animation_tree["parameters/Idle/blend_position"])
+	animation_tree["parameters/Idle/blend_position"] = input
+	animation_tree["parameters/Walk/blend_position"] = input
+	animation_tree["parameters/IdleCast/blend_position"] = input
+	animation_tree["parameters/WalkCast/blend_position"] = input
 
 
 func input_is_in_list(list):

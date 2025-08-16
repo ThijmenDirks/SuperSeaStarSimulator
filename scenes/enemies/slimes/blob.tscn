@@ -1,12 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://cnnq6c4eio7vy"]
+[gd_scene load_steps=4 format=3 uid="uid://cnnq6c4eio7vy"]
 
+[ext_resource type="Script" path="res://scripts/enemies/slimes/blob.gd" id="1_ehmv2"]
 [ext_resource type="Texture2D" uid="uid://ba8fbsk472myi" path="res://art/moveblockfire.png" id="1_f7vs2"]
-[ext_resource type="Texture2D" uid="uid://c3xtpwnwgadex" path="res://art/blob.png" id="1_surx8"]
+[ext_resource type="Texture2D" path="res://art/blob.png" id="1_surx8"]
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_ehmv2")
 
 [node name="WarningCross" type="Sprite2D" parent="."]
 texture = ExtResource("1_f7vs2")
 
 [node name="Blob" type="Sprite2D" parent="."]
+position = Vector2(0, -100)
 texture = ExtResource("1_surx8")

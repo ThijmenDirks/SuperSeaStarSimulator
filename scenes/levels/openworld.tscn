@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=4 uid="uid://b8gdyyhjtow4a"]
+[gd_scene load_steps=5 format=4 uid="uid://bfcbc4wvld2te"]
 
-[ext_resource type="PackedScene" uid="uid://b35wpfhm63gee" path="res://scenes/other/openworldplayer.tscn" id="1_cce3p"]
+[ext_resource type="PackedScene" uid="uid://cck4q1mcguw80" path="res://scenes/other/openworldplayer.tscn" id="1_cce3p"]
 [ext_resource type="TileSet" uid="uid://ch01sy32qq7w2" path="res://art/tilesets/flayer1.tres" id="2_05puw"]
 [ext_resource type="TileSet" uid="uid://0nc4alojvvx7" path="res://art/tilesets/flayerb.tres" id="3_rktqn"]
 [ext_resource type="Script" path="res://scripts/map/day_night.gd" id="4_awa5m"]

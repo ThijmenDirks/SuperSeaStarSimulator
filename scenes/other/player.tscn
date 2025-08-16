@@ -896,7 +896,6 @@ shape = SubResource("RectangleShape2D_w62sb")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1, 0)
 scale = Vector2(0.7, 0.7)
-zoom = Vector2(2, 2)
 
 [node name="CTimerToCastSpell" type="Timer" parent="."]
 wait_time = 0.5

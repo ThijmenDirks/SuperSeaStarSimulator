@@ -519,7 +519,7 @@ func get_bodies_in_vision_field():
 
 func look_for_player_in_vision_field():
 	for body in vision_field.get_overlapping_bodies():
-		if body == null or body is Player: # why body == null ? maybe for if there are no bodies in vision_field ?
+		if body == null or body is Player: # why body == null ? maybe for if there are no bodies in vision_field ? # michiel says i should fix this. just like "return false"
 			player_ray_cast.target_position = to_local(body.global_position)
 			player_ray_cast.force_raycast_update()
 			if player_ray_cast.get_collider() == body:
