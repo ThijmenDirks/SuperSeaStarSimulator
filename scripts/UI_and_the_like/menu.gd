@@ -1,7 +1,7 @@
 extends Node2D
 
 var testlevel2 = load("res://scenes/levels/test_level.tscn").instantiate()
-var Openworld = load("res://scenes/levels/openworld.tscn").instantiate()
+var Openworld = load("res://scenes/levels/open_world mode/forest1start/spawn1.tscn").instantiate()
 
 #"res://scenes/levels/test_level.tscn"
 # Called when the node enters the scene tree for the first time.
