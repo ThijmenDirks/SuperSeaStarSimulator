@@ -1008,6 +1008,7 @@ occluder = SubResource("OccluderPolygon2D_8k574")
 [node name="Node2D" parent="." instance=ExtResource("7_jrh71")]
 
 [node name="AbilityCooldownTimer1" type="Timer" parent="."]
+wait_time = 10.0
 
 [node name="BlobSpawnArea" type="Area2D" parent="."]
 
