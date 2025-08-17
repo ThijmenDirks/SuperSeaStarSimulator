@@ -89,8 +89,25 @@ func change_state(new_state):
 			jump_attack_state(0, jump_duration, "enter")
 
 
+var damage_taken_total: int = 0
+var damage_threshold_counter: int = 0
+
+
 func take_damage(damage: int, damage_type: String):
 	super(damage, damage_type)
+
+	damage_taken_total += damage
+
+	var thresholds_crossed = damage_taken_total / 50
+	if thresholds_crossed > damage_threshold_counter:
+	# Trigger once for each threshold crossed
+		for i in range(damage_threshold_counter, thresholds_crossed):
+			_on_damage_threshold_reached((i + 1) * 50)
+	damage_threshold_counter = thresholds_crossed
+
+
+func _on_damage_threshold_reached(total_damage: int) -> void:
+	print("Threshold reached at: %d damage taken" % total_damage)
 
 
 func spawn_slime():
