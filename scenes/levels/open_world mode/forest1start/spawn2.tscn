@@ -15,9 +15,9 @@ tile_set = ExtResource("1_5324j")
 [node name="TileMapLayer" type="TileMapLayer" parent="TileMapLayer"]
 tile_set = ExtResource("2_1bqsk")
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Spawns" type="Node2D" parent="."]
 
-[node name="spawn2_up" type="Marker2D" parent="Node2D"]
+[node name="spawn2_up" type="Marker2D" parent="Spawns"]
 position = Vector2(25, -26)
 
 [node name="Area2D" type="Area2D" parent="."]
