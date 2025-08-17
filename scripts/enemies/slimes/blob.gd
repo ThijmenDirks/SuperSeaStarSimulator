@@ -5,7 +5,7 @@ extends Node2D
 
 var slime: PackedScene = load("res://scenes/enemies/slimes/red_slime.tscn")
 
-var fall_speed = 2
+var fall_speed = 5
 var is_falling: bool = true # this var should not be needed
 var impact_damage:int = 80
 

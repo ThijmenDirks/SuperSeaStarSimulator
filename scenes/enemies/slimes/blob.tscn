@@ -14,7 +14,7 @@ script = ExtResource("1_ehmv2")
 texture = ExtResource("1_f7vs2")
 
 [node name="Blob" type="Sprite2D" parent="."]
-position = Vector2(0, -100)
+position = Vector2(0, -300)
 texture = ExtResource("1_surx8")
 
 [node name="DamageArea" type="Area2D" parent="."]

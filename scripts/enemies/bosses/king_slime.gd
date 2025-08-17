@@ -2,7 +2,8 @@ extends Slime # please dont forget to fix raycast collision masks !!
 
 @onready var blob_spawn_area_collision_circle = $BlobSpawnArea/CollisionShape2D.shape
 @onready var min_range_blob_spawn_area_collision_circle = $MinRangeBlobSpawnArea/CollisionShape2D.shape
-@onready var blob = load("res://scenes/enemies/slimes/blob.tscn")
+@onready var blob: PackedScene = load("res://scenes/enemies/slimes/blob.tscn")
+@onready var slime: PackedScene = load("res://scenes/enemies/slimes/red_slime.tscn")
 
 #const JUMP_VELOCITY = -400.0
 var timer_is_already_running = true
@@ -102,6 +103,7 @@ func take_damage(damage: int, damage_type: String):
 	if thresholds_crossed > damage_threshold_counter:
 	# Trigger once for each threshold crossed
 		for i in range(damage_threshold_counter, thresholds_crossed):
+			spawn_slime()
 			_on_damage_threshold_reached((i + 1) * 50)
 	damage_threshold_counter = thresholds_crossed
 
@@ -111,7 +113,12 @@ func _on_damage_threshold_reached(total_damage: int) -> void:
 
 
 func spawn_slime():
-	pass
+	var new_slime = slime.instantiate()
+	var x_ofset = cos(randf() * TAU)
+	var y_offset = cos(randf() * TAU)
+	new_slime.position = global_position + Vector2(x_ofset, y_offset)
+	# radius veranderd niet als lsime.scale veranderd, dus moet manual *scale
+	get_parent().get_parent().get_parent().add_child(new_slime)
 
 
 func _on_ability_cooldown_timer_1_timeout() -> void:

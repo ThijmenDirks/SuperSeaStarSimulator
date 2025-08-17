@@ -1,11 +1,10 @@
-[gd_scene load_steps=97 format=3 uid="uid://bot1dgu6rriso"]
+[gd_scene load_steps=96 format=3 uid="uid://bot1dgu6rriso"]
 
 [ext_resource type="Script" path="res://scripts/enemies/bosses/king_slime.gd" id="1_air7p"]
 [ext_resource type="Texture2D" uid="uid://b860wle2jujie" path="res://art/spridesheet_test_player_V2.png" id="2_s0gvw"]
 [ext_resource type="Texture2D" uid="uid://dtlu5kac5vxvs" path="res://art/enemy sprites/angy_slime_king.png" id="4_lyevn"]
 [ext_resource type="PackedScene" uid="uid://ccmwkars1n0na" path="res://scenes/UI_and_the_like/hp_bar.tscn" id="5_j2fpg"]
 [ext_resource type="PackedScene" uid="uid://cn2bi5uhlbamd" path="res://scenes/other/vector_wheel.tscn" id="6_46usb"]
-[ext_resource type="PackedScene" uid="uid://cnnq6c4eio7vy" path="res://scenes/enemies/slimes/blob.tscn" id="7_jrh71"]
 
 [sub_resource type="Animation" id="Animation_kx0ak"]
 length = 0.001
@@ -901,17 +900,17 @@ radius = 738.003
 radius = 738.043
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wjdmk"]
-radius = 244.008
+radius = 156.702
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_8k574"]
 cull_mode = 1
 polygon = PackedVector2Array(2, 0, 1, 1, -1, 1, -2, 0, -1, -1, 1, -1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jol08"]
-radius = 100.0
+radius = 600.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bmo8y"]
-radius = 20.0
+radius = 300.0
 
 [node name="CharacterBody2DG4" type="CharacterBody2D"]
 scale = Vector2(0.3, 0.3)
@@ -1004,8 +1003,6 @@ shape = SubResource("CircleShape2D_wjdmk")
 position = Vector2(0, 2)
 scale = Vector2(6, 6)
 occluder = SubResource("OccluderPolygon2D_8k574")
-
-[node name="Node2D" parent="." instance=ExtResource("7_jrh71")]
 
 [node name="AbilityCooldownTimer1" type="Timer" parent="."]
 wait_time = 10.0

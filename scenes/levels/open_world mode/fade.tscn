@@ -1,5 +1,23 @@
 [gd_scene load_steps=5 format=3 uid="uid://dvvt4u2odcjax"]
 
+[sub_resource type="Animation" id="Animation_gs88k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_ckibu"]
+resource_name = "fadein"
+
 [sub_resource type="Animation" id="Animation_p0rio"]
 resource_name = "fadeout"
 length = 0.8
@@ -15,24 +33,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(),
 "update": 0,
 "values": []
-}
-
-[sub_resource type="Animation" id="Animation_ckibu"]
-resource_name = "fadein"
-
-[sub_resource type="Animation" id="Animation_gs88k"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:modulate:a")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ekqv0"]
