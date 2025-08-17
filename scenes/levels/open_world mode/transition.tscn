@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpsxwlr7jvqe7"]
+
+[ext_resource type="Script" path="res://scripts/map/open_world_stuff/spawn_zones.gd" id="1_mf8rt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g5rl8"]
+
+[node name="Transition" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 2
+script = ExtResource("1_mf8rt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(4.8, 4.8)
+shape = SubResource("RectangleShape2D_g5rl8")
+
+[node name="Area2D2" type="Area2D" parent="."]
+script = ExtResource("1_mf8rt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+scale = Vector2(4.8, 4.8)
+shape = SubResource("RectangleShape2D_g5rl8")

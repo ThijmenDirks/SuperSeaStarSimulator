@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=4 uid="uid://cb85113jnwg1x"]
+
+[ext_resource type="TileSet" uid="uid://ch01sy32qq7w2" path="res://art/tilesets/flayer1.tres" id="1_5324j"]
+[ext_resource type="TileSet" uid="uid://0nc4alojvvx7" path="res://art/tilesets/flayerb.tres" id="2_1bqsk"]
+[ext_resource type="Script" path="res://scripts/map/open_world_stuff/spawn_zones.gd" id="3_kbhj4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wgv3t"]
+
+[node name="Spawn2" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD+//7/AQAAAAAAAAD+////AQAAAAAAAAD+/wAAAQAAAAAAAAD+/wEAAQAAAAAAAAD//wEAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAAAAAQAAAAAAAAAAAP//AQAAAAAAAAAAAP7/AQAAAAAAAAD///7/AQAAAAAAAAD/////AQAAAAAAAAD//wAAAQAAAAAAAAABAP//AQAAAAAAAAABAP7/AQAAAAAAAAABAAAAAQAAAAAAAAABAAEAAQAAAAAAAAD+/wIAAQAAAAAAAAD+/wMAAQAAAAAAAAD+/wQAAQAAAAAAAAD//wQAAQAAAAAAAAD//wMAAQAAAAAAAAD//wIAAQAAAAAAAAAAAAQAAQAAAAAAAAAAAAMAAQAAAAAAAAAAAAIAAQAAAAAAAAABAAIAAQAAAAAAAAABAAMAAQAAAAAAAAABAAQAAQAAAAAAAAA=")
+tile_set = ExtResource("1_5324j")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="TileMapLayer"]
+tile_set = ExtResource("2_1bqsk")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="spawn2_up" type="Marker2D" parent="Node2D"]
+position = Vector2(25, -26)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 2
+script = ExtResource("3_kbhj4")
+target_map = "spawn1"
+target_entrance = "spawn1_down"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-6, 133)
+scale = Vector2(4.8, 4.8)
+shape = SubResource("RectangleShape2D_wgv3t")

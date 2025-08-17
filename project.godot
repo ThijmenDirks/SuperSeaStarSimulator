@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 SpellDatabase="*res://scripts/spells/spell_database.gd"
 fullscreen_thingy="*res://scripts/UI_and_the_like/fullscreen_thingy.gd"
+Spawnstates="*res://scripts/map/open_world_stuff/spawnstates.gd"
 
 [display]
 
@@ -33,6 +34,8 @@ window/stretch/aspect="ignore"
 
 folder_colors={
 "res://art/particles/": "teal",
+"res://scenes/levels/open_world mode/forest1start/": "green",
+"res://scripts/map/open_world_stuff/": "teal",
 "res://scripts/particles/": "teal"
 }
 
