@@ -448,7 +448,8 @@ func die():
 	#drop_loot()
 	#if get_parent().get_parent().get_parent() is Level:
 		#print("spawn")
-	get_parent().get_parent().get_parent().active_enemies -= 1
+	if get_parent() is Area2D:
+		get_parent().get_parent().get_parent().active_enemies -= 1
 	#else:
 		#print("spawnnn")
 	self.queue_free()

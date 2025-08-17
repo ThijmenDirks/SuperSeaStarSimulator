@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/enemies/slimes/green_slime.gd" id="1_qbfix"]
 [ext_resource type="Texture2D" uid="uid://b860wle2jujie" path="res://art/spridesheet_test_player_V2.png" id="2_t6po2"]
-[ext_resource type="Texture2D" path="res://art/slime_1.png" id="3_cf5uk"]
-[ext_resource type="Texture2D" path="res://art/slime_jump_1.png" id="4_vgjvf"]
+[ext_resource type="Texture2D" uid="uid://c2ir4uvppn44l" path="res://art/enemy sprites/slime_1.png" id="3_cf5uk"]
+[ext_resource type="Texture2D" uid="uid://c8103cg1s0i8h" path="res://art/enemy sprites/slime_jump_1.png" id="4_vgjvf"]
 [ext_resource type="PackedScene" uid="uid://ccmwkars1n0na" path="res://scenes/UI_and_the_like/hp_bar.tscn" id="5_vs4kb"]
 [ext_resource type="PackedScene" uid="uid://cn2bi5uhlbamd" path="res://scenes/other/vector_wheel.tscn" id="6_vombb"]
 

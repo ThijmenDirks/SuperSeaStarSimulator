@@ -119,9 +119,10 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.1, 0.2)
 metadata/_snap_enabled = true
 
-[node name="TestLevel" type="Node2D"]
+[node name="TestLevel" type="Node2D" node_paths=PackedStringArray("spawn_areas")]
 script = ExtResource("1_4lh20")
 all_waves = Array[ExtResource("2_v6og4")]([SubResource("Resource_svc0e"), SubResource("Resource_44i3d"), SubResource("Resource_nf3pb"), SubResource("Resource_4qjce"), SubResource("Resource_mno7n")])
+spawn_areas = [NodePath("SpawnAreas/SpawnArea0"), NodePath("SpawnAreas/SpawnArea1"), NodePath("SpawnAreas/SpawnArea2")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(64, 2.99999)
@@ -130,12 +131,6 @@ script = SubResource("GDScript_guruh")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_ao355")]
 position = Vector2(2, -1)
-
-[node name="CharacterBody2DG3" parent="." instance=ExtResource("4_vsvhc")]
-position = Vector2(38, -45)
-
-[node name="CharacterBody2DG4" parent="." instance=ExtResource("4_vsvhc")]
-position = Vector2(-57, -50)
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 512
@@ -171,6 +166,12 @@ position = Vector2(160, 32)
 
 [node name="SpawnArea0" parent="SpawnAreas" instance=ExtResource("7_pp8no")]
 position = Vector2(65, 244)
+
+[node name="CharacterBody2DG3" parent="SpawnAreas/SpawnArea0" instance=ExtResource("4_vsvhc")]
+position = Vector2(-27, -289)
+
+[node name="CharacterBody2DG4" parent="SpawnAreas/SpawnArea0" instance=ExtResource("4_vsvhc")]
+position = Vector2(-122, -294)
 
 [node name="SpawnArea1" parent="SpawnAreas" instance=ExtResource("7_pp8no")]
 position = Vector2(-86, 225)
