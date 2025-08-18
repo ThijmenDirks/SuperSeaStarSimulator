@@ -34,7 +34,7 @@ window/stretch/aspect="ignore"
 
 folder_colors={
 "res://art/particles/": "teal",
-"res://scenes/levels/open_world mode/forest1start/": "green",
+"res://scenes/levels/open_world_mode/forest1start/": "green",
 "res://scripts/map/open_world_stuff/": "teal",
 "res://scripts/particles/": "teal"
 }
