@@ -12,14 +12,16 @@ var blue_slime = preload("res://scenes/enemies/slimes/blue_slime.tscn")
 var red_slime = preload("res://scenes/enemies/slimes/red_slime.tscn")
 var green_slime = preload("res://scenes/enemies/slimes/green_slime.tscn")
 var king_slime = preload("res://scenes/enemies/slimes/king_slime.tscn")
+var ogre = preload("res://scenes/enemies/ogre.tscn")
 
 var enemy_map = {
 	"goblin": goblin,
 	"shaman": shaman,
+	"ogre": ogre,
 	"blue_slime": blue_slime,
 	"green_slime": green_slime,
 	"red_slime": red_slime,
-	"king_slime": king_slime
+	"king_slime": king_slime,
 }
 
 #enemy_map[all_enemies[]]
@@ -27,10 +29,11 @@ var enemy_map = {
 var all_enemies = [
 	"goblin",
 	"shaman",
+	"ogre",
 	"blue_slime",
 	"green_slime",
 	"red_slime",
-	"king_slime"
+	"king_slime",
 ]
 
 var wave_has_fully_spawned: bool = false

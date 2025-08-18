@@ -17,6 +17,7 @@ func _ready() -> void:
 	chase_end_distance = 250
 	melee_range = 50
 	attack_damage = 4
+	super()
 
 
 	jump_hight = 20

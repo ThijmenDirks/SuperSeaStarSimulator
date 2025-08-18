@@ -2,13 +2,13 @@ class_name Player extends CharacterBody2D
 
 @export var speed = 100
 @export var animation_tree : AnimationTree
-@export var max_hp = 250_
+@export var max_hp = 200_
 #@export var animation_player : AnimationPlayer
 
 @onready var coyote_timer_to_cast_spell = $CTimerToCastSpell
 @onready var coyote_timer_to_press_simoultaniously = $CTimerToPressSimoultaniously
-#@onready var hp_bar = get_parent().get_node("Interface/Control/HPStars/StarTemphealthSprite")
-@onready var hp_bar = $HPBar
+@onready var hp_stars = get_node("Interface/Control/HPStars")
+#@onready var hp_bar = $HPBar
 
 var hp = max_hp
 var game_over_screen = load("res://scenes/UI_and_the_like/game_over_screen.tscn").instantiate()
@@ -25,8 +25,9 @@ var resistances_and_weaknesses : Dictionary
 
 
 func _ready():
-	hp_bar.max_value = max_hp
-	hp_bar.value = hp
+	pass
+	#hp_bar.max_value = max_hp
+	#hp_bar.value = hp
 	#playback = animation_tree["parameters/playback"]
 	#get_viewport().size = DisplayServer.screen_get_size()
 
@@ -193,9 +194,40 @@ func cast(spell_that_is_being_cast):
 			#return spelldata[i]
 
 
+#func update_hp_bar():
+	#var times: int = 0
+	#var critical_star_reached: bool = false
+	#for star in hp_stars.get_children():
+		#times += 1
+		##if critical_star_reached:
+			##star.frame = 0
+		#if times * 40 >= hp:
+			#star.frame = 8
+		#else:
+			#critical_star_reached = true
+			#star.frame = ceil(times * 40 - hp) / float(5)
+		##star.frame = randi_range(0, 8)
+			#print("player hp  ", star.frame)
+#func update_hp_bar():
+	#var star_index: int = 0
+	#for star in hp_stars.get_children():
+		#star_index += 1
+		#var star_hp = clamp(hp - (star_index - 1) * 40, 0, 40)
+		#var fill = int(round((star_hp / 40.0) * 8))
+		#star.frame = fill
+		#print("Star %s: hp=%s, frame=%s" % [star_index, star_hp, fill])
 func update_hp_bar():
-	pass
-	#hp_bar.value = hp
+	var star_index: int = 0
+	for star in hp_stars.get_children():
+		star_index += 1
+		# Bereken hoeveel "damage" in deze ster past
+		var star_damage = clamp(max_hp - hp - (star_index - 1) * 40, 0, 40)
+		
+		# Bepaal vulgraad (0 = leeg, 8 = vol)
+		var fill = int(round((star_damage / 40.0) * 8))
+		star.frame = fill
+		
+		print("Star %s: damage=%s, frame=%s" % [star_index, star_damage, fill])
 
 
 func take_healing(healing : int, healing_type : String):

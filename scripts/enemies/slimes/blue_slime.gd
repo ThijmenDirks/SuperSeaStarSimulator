@@ -30,6 +30,7 @@ func _ready() -> void:
 		"green_slimeball" = 50, # %
 		"super_legendary_drop" = 0.001,
 	}
+	super()
 
 #func _process(delta: float) -> void:
 	#super(delta)

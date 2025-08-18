@@ -101,7 +101,9 @@ enum STATES {
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void: # dont forget this gets overwritten in the enemies ! (probably)
-	pass
+	hp_bar.max_value = max_hp
+	hp_bar.value = hp
+
 	#get_tree().create_timer(0)
 
 	#hp_bar.max_value = max_hp

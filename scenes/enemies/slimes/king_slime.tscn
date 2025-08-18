@@ -912,9 +912,10 @@ radius = 300.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_bmo8y"]
 radius = 100.0
 
-[node name="CharacterBody2DG4" type="CharacterBody2D"]
+[node name="CharacterBody2DG4" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree")]
 collision_layer = 541
 script = ExtResource("1_air7p")
+animation_tree = NodePath("AnimationTree")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false

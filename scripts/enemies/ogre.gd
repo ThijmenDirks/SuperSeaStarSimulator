@@ -21,6 +21,7 @@ func _ready() -> void:
 
 	state = STATES.IDLE_STAND
 	idle_stand(randi_range(3, 3), "enter") # shuoldnt you just call change_state(IDLE_STAND) ?
+	super()
 
 
 func _physics_process(delta: float) -> void:
