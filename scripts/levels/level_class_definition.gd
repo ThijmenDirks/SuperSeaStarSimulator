@@ -13,16 +13,18 @@ var red_slime = preload("res://scenes/enemies/slimes/red_slime.tscn")
 var green_slime = preload("res://scenes/enemies/slimes/green_slime.tscn")
 var king_slime = preload("res://scenes/enemies/slimes/king_slime.tscn")
 
-#var enemy_map = {
-	#"goblin": goblin,
-	#"shaman": shaman,
-	#"blue_slime": blue_slime,
-	#"green_slime": green_slime,
-	#"red_slime": red_slime,
-	#"king_slime": king_slime
-#}
+var enemy_map = {
+	"goblin": goblin,
+	"shaman": shaman,
+	"blue_slime": blue_slime,
+	"green_slime": green_slime,
+	"red_slime": red_slime,
+	"king_slime": king_slime
+}
 
-var enemy_map = [
+#enemy_map[all_enemies[]]
+
+var all_enemies = [
 	"goblin",
 	"shaman",
 	"blue_slime",
@@ -59,7 +61,7 @@ func spawn_next_wave(wave):
 	wave_number_label.update_wave_number_label(wave) # should go back !
 	var final_subwave = all_waves[wave].subwaves.back()
 	for current_subwave in all_waves[wave].subwaves:
-		spawn_enemies(enemy_map[current_subwave["enemy"]], current_subwave["amount"], current_subwave["spawn_area"])
+		spawn_enemies(all_enemies[current_subwave["enemy"]], current_subwave["amount"], current_subwave["spawn_area"])
 		if current_subwave == final_subwave:
 			wave_has_fully_spawned = true
 		print("Subwave has spawned, next wave will spawn in: ", current_subwave["time"])
