@@ -12,6 +12,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = 10.0
+offset_right = -2.0
+offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -29,3 +33,15 @@ text = "label"
 [node name="HPStars" type="Node2D" parent="Control"]
 
 [node name="StarTemphealthSprite" parent="Control/HPStars" instance=ExtResource("3_epcvx")]
+
+[node name="StarTemphealthSprite2" parent="Control/HPStars" instance=ExtResource("3_epcvx")]
+position = Vector2(617, 59)
+
+[node name="StarTemphealthSprite3" parent="Control/HPStars" instance=ExtResource("3_epcvx")]
+position = Vector2(617, 15)
+
+[node name="StarTemphealthSprite4" parent="Control/HPStars" instance=ExtResource("3_epcvx")]
+position = Vector2(570, 17)
+
+[node name="StarTemphealthSprite5" parent="Control/HPStars" instance=ExtResource("3_epcvx")]
+position = Vector2(568, 58)

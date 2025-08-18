@@ -863,10 +863,11 @@ radius = 224.377
 cull_mode = 1
 polygon = PackedVector2Array(0.5, 0, 0, 0.5, -0.5, 0, 0, -0.5)
 
-[node name="CharacterBody2DG" type="CharacterBody2D"]
+[node name="CharacterBody2DG" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree")]
 scale = Vector2(2, 2)
 collision_layer = 541
 script = ExtResource("1_7g7vh")
+animation_tree = NodePath("AnimationTree")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_sa31f")
