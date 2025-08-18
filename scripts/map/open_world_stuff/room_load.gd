@@ -1,21 +1,23 @@
 extends Node
 
+
 var player_scene = preload("res://scenes/other/player.tscn")
 var player_instance: Node2D
 
 func load_room(room_path: String, entrance_name: String):
-	# Remove current scene
+	# Remove current scene if one exists
 	if get_tree().current_scene:
 		get_tree().current_scene.queue_free()
 
-	# Load new room
+	# Load and instantiate the new room
 	var new_room = load(room_path).instantiate()
 	get_tree().root.add_child(new_room)
 	get_tree().current_scene = new_room
 
-	# Find entrance and spawn player
+	 # Find the entrance point
 	var entrance = new_room.get_node_or_null("Spawns/" + entrance_name)
 	if entrance:
+		# Spawn or move the player
 		if player_instance:
 			player_instance.queue_free()
 		player_instance = player_scene.instantiate()

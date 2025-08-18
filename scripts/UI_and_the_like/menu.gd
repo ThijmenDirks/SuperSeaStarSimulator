@@ -25,6 +25,7 @@ func _on_play_button_button_down() -> void:
 func _on_button_button_down():
 	pass # Replace with function body.
 	print("hi")
-	get_tree().root.add_child(Openworld)
-	self.add_child(Openworld)
-	self.visible = false
+	RoomLoad.load_room("res://scenes/levels/open_world_mode/forest1start/spawn1.tscn", "Start")
+	#Spawnstates.next_map_path = "res://scenes/levels/open_world_mode_forest1start/spawn1.tscn"
+	#Spawnstates.next_entrance_name = "Start"
+	#load_room(Spawnstates.next_map_path, Spawnstates.next_entrance_name)

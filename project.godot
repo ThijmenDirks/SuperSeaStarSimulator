@@ -20,6 +20,8 @@ config/icon="res://icon.svg"
 SpellDatabase="*res://scripts/spells/spell_database.gd"
 fullscreen_thingy="*res://scripts/UI_and_the_like/fullscreen_thingy.gd"
 Spawnstates="*res://scripts/map/open_world_stuff/spawnstates.gd"
+Playerglob="*res://scripts/map/open_world_stuff/playerglob.gd"
+RoomLoad="*res://scripts/map/open_world_stuff/room_load.gd"
 
 [display]
 
