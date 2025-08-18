@@ -891,7 +891,7 @@ transitions = ["Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_
 graph_offset = Vector2(0, 48.0736)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_agn4q"]
-radius = 117.958
+radius = 55.0091
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vlgon"]
 radius = 738.003
@@ -900,20 +900,19 @@ radius = 738.003
 radius = 738.043
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wjdmk"]
-radius = 156.702
+radius = 74.108
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_8k574"]
 cull_mode = 1
 polygon = PackedVector2Array(2, 0, 1, 1, -1, 1, -2, 0, -1, -1, 1, -1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jol08"]
-radius = 600.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_bmo8y"]
 radius = 300.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_bmo8y"]
+radius = 100.0
+
 [node name="CharacterBody2DG4" type="CharacterBody2D"]
-scale = Vector2(0.3, 0.3)
 collision_layer = 541
 script = ExtResource("1_air7p")
 
@@ -938,6 +937,7 @@ parameters/Walk/blend_position = Vector2(0, 0)
 parameters/WalkCast/blend_position = Vector2(-0.0205371, 0.931398)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 light_mask = 513
 visibility_layer = 513
 shape = SubResource("CircleShape2D_agn4q")
@@ -946,6 +946,7 @@ shape = SubResource("CircleShape2D_agn4q")
 one_shot = true
 
 [node name="VisionField" type="Area2D" parent="."]
+visible = false
 collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VisionField"]
@@ -962,18 +963,20 @@ collision_layer = 0
 collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LookForPlayerArea"]
+visible = false
 shape = SubResource("CircleShape2D_a7g13")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
 [node name="Slime2" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(26, -34)
+position = Vector2(0, -10)
+scale = Vector2(3, 3)
 hframes = 2
 
 [node name="SlimeJump2" type="Sprite2D" parent="."]
-position = Vector2(0, -20)
-scale = Vector2(6.795, 7)
+position = Vector2(0, -10)
+scale = Vector2(3, 3)
 texture = ExtResource("4_lyevn")
 hframes = 3
 vframes = 2
@@ -993,6 +996,7 @@ offset_bottom = 102.0
 [node name="VectorWheel" parent="." instance=ExtResource("6_46usb")]
 
 [node name="DamageArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 256
 

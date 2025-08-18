@@ -10,6 +10,8 @@ var timer_is_already_running = true
 
 var progression: float = 0.00 # up to 1.00
 
+var is_beast_mode: bool = false
+
 #var jump_duration = 1.0 # in sec
 
 #@export var animation_tree : AnimationTree
@@ -19,7 +21,7 @@ var progression: float = 0.00 # up to 1.00
 func _ready() -> void:
 	max_hp = 5000
 	hp = max_hp#max_HP
-	base_speed = 0 # 20
+	base_speed = 20 # 20
 	speed = base_speed
 	chase_end_distance = 250
 	melee_range = 50
@@ -45,7 +47,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	progression = (max_hp-hp) / max_hp
-	scale *= (1-progression)
+	#scale *= 1.1 # right here is the jumpscare line ! dont even think about delteing this line !
+	#scale *= (1-progression)
 	super(delta)
 
 
@@ -96,6 +99,11 @@ var damage_threshold_counter: int = 0
 
 func take_damage(damage: int, damage_type: String):
 	super(damage, damage_type)
+	scale .x = (1 - (max_hp-hp) / float(max_hp))
+	scale .y = (1 - (max_hp-hp) / float(max_hp))
+	if scale.x >= 0.2:
+		is_beast_mode = true
+		enter_beast_mode()
 
 	damage_taken_total += damage
 
@@ -107,6 +115,9 @@ func take_damage(damage: int, damage_type: String):
 			_on_damage_threshold_reached((i + 1) * 50)
 	damage_threshold_counter = thresholds_crossed
 
+
+func enter_beast_mode():
+	pass
 
 func _on_damage_threshold_reached(total_damage: int) -> void:
 	print("Threshold reached at: %d damage taken" % total_damage)
@@ -126,7 +137,7 @@ func _on_ability_cooldown_timer_1_timeout() -> void:
 
 
 func blob_attack() -> void:
-	for i in range(5):
+	for i in range(15):
 		var blob_target_position = get_random_in_circle(16, blob_spawn_area_collision_circle)
 		if blob_target_position:
 			var new_blob = blob.instantiate()
@@ -144,6 +155,8 @@ func get_random_in_circle(tries: int, shape: Resource):
 		#var r = shape.radius * sqrt(randf_range(min_range_blob_spawn_area_collision_circle.radius / blob_spawn_area_collision_circle.radius, 1.0))  # sqrt to ensure uniform distribution
 		var angle = randf() * TAU
 		return (Vector2(cos(angle), sin(angle)) * r) + global_position
+
+
 
 # shouldnt this be in Enemy?
 #func _physics_process(delta: float) -> void:
