@@ -35,6 +35,7 @@ window/stretch/aspect="ignore"
 [file_customization]
 
 folder_colors={
+"res://art/particle textures/": "blue",
 "res://art/particles/": "teal",
 "res://scenes/levels/open_world_mode/forest1start/": "green",
 "res://scripts/map/open_world_stuff/": "teal",

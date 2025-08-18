@@ -122,12 +122,12 @@ vertices = PackedVector2Array(531.688, -33.9766, 1677.87, 559.063, -1038.45, 577
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 2, 4, 5), PackedInt32Array(5, 4, 6, 7), PackedInt32Array(6, 1, 0, 7)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-1107, -696, 1673, -641, 1688, 569, -1048, 588), PackedVector2Array(-160, -58, -161, -45, 521, -44, 520, -59)])
 
-[sub_resource type="Gradient" id="Gradient_edn0o"]
+[sub_resource type="Gradient" id="Gradient_mgjv1"]
 interpolation_mode = 2
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_a1u8x"]
-gradient = SubResource("Gradient_edn0o")
+gradient = SubResource("Gradient_mgjv1")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.1, 0.2)
