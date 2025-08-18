@@ -5,3 +5,5 @@
 [node name="StarTemphealthSprite" type="Sprite2D"]
 position = Vector2(592, 37)
 texture = ExtResource("1_82lk3")
+hframes = 3
+vframes = 3

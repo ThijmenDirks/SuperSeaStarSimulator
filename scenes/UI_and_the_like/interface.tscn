@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://ddx6b7cun7e4g"]
+[gd_scene load_steps=4 format=3 uid="uid://ddx6b7cun7e4g"]
 
 [ext_resource type="Script" path="res://scripts/UI_and_the_like/interface.gd" id="1_2vce3"]
 [ext_resource type="PackedScene" uid="uid://cunftp8agsgen" path="res://scenes/UI_and_the_like/kleurenbalkje.tscn" id="2_n8u1q"]
+[ext_resource type="PackedScene" uid="uid://ru6tajmrjcet" path="res://scenes/UI_and_the_like/star_temphealth_sprite.tscn" id="3_epcvx"]
 
-[node name="interface" type="CanvasLayer"]
+[node name="Interface" type="CanvasLayer"]
 script = ExtResource("1_2vce3")
 
 [node name="Control" type="Control" parent="."]
@@ -24,3 +25,7 @@ offset_top = 49.0
 offset_right = 338.0
 offset_bottom = 72.0
 text = "label"
+
+[node name="HPStars" type="Node2D" parent="Control"]
+
+[node name="StarTemphealthSprite" parent="Control/HPStars" instance=ExtResource("3_epcvx")]

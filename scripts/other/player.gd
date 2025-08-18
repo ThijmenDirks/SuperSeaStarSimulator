@@ -7,6 +7,7 @@ class_name Player extends CharacterBody2D
 
 @onready var coyote_timer_to_cast_spell = $CTimerToCastSpell
 @onready var coyote_timer_to_press_simoultaniously = $CTimerToPressSimoultaniously
+#@onready var hp_bar = get_parent().get_node("Interface/Control/HPStars/StarTemphealthSprite")
 @onready var hp_bar = $HPBar
 
 var hp = max_hp
@@ -193,7 +194,8 @@ func cast(spell_that_is_being_cast):
 
 
 func update_hp_bar():
-	hp_bar.value = hp
+	pass
+	#hp_bar.value = hp
 
 
 func take_healing(healing : int, healing_type : String):
