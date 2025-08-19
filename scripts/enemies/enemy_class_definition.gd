@@ -398,7 +398,9 @@ func jump_attack_state(delta : float, time : float = 0.0, phase : String = "runn
 			#desired_walk_direction = get_local_mouse_position() # thisl ine is just for debugging
 			#move(desired_walk_direction, delta)
 
-			global_position = global_position.move_toward(jump_attack_target_position, speed * delta)
+			velocity = global_position.direction_to(jump_attack_target_position) * speed
+			move_and_slide()
+			#global_position = global_position.move_toward(jump_attack_target_position, speed * delta)
 			#move(jump_attack_target_position, delta)
 			#move_and_slide()
 			#print("goblinwalk ", velocity, speed)
@@ -475,7 +477,7 @@ func get_last_state():
 	else:
 		print("won't work, sorry")
 
-#anti-error placeholder, altough it might get to be used.
+#anti-error placeholder
 func attack(target):
 	pass
 
@@ -544,7 +546,7 @@ func look_for_player_in_vision_circle():
 	#var look_for_player_area = Area2D.new()
 	for body in look_for_player_area.get_overlapping_bodies():
 		if body is Player:
-			player_ray_cast.target_position = to_local(body.position)
+			player_ray_cast.target_position = to_local(body.position) # wouldnt you makeit body.global_position ?
 			player_ray_cast.force_raycast_update()
 			if player_ray_cast.get_collider() is Player:
 				#some_func() , like attacking the player,different for each enemy

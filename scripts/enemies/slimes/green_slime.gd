@@ -12,7 +12,7 @@ var timer_is_already_running = true
 func _ready() -> void:
 	max_hp= 200
 	hp = 200#max_HP
-	base_speed = 30
+	base_speed = 60
 	speed = base_speed
 	chase_end_distance = 250
 	melee_range = 50

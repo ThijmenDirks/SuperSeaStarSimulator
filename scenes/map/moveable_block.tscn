@@ -39,7 +39,6 @@ texture = ExtResource("2_wqyy1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-7.15256e-07, 5.72204e-07)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_mvvld")
 
 [node name="UpSpaceCheckArea" type="Area2D" parent="."]

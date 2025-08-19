@@ -951,6 +951,7 @@ collision_mask = 64
 
 [node name="WallRayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(103, 53)
+collision_mask = 2
 
 [node name="LookForPlayerArea" type="Area2D" parent="."]
 collision_layer = 0
