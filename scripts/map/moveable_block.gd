@@ -1,3 +1,95 @@
+
+class_name SecondMoveableBlock extends StaticBody2D
+
+var move_speed: int = 0
+var direction: Vector2 = Vector2.ZERO
+var grid_width: int = 16
+var is_moving: bool = false
+var target_position: Vector2
+var space_check_area: Area2D
+var can_move: bool = true
+
+@onready var up_space_check_area = $UpSpaceCheckArea
+@onready var right_space_check_area = $RightSpaceCheckArea
+@onready var down_space_check_area = $DownSpaceCheckArea
+@onready var left_space_check_area = $LeftSpaceCheckArea
+@onready var area = $MoveArea2D
+@onready var static_body = $"."
+
+func _ready() -> void:
+	static_body.add_collision_exception_with(up_space_check_area)
+	static_body.add_collision_exception_with(right_space_check_area)
+	static_body.add_collision_exception_with(down_space_check_area)
+	static_body.add_collision_exception_with(left_space_check_area)
+
+func _process(delta: float) -> void:
+	if is_moving:
+		var step = direction * delta * move_speed
+		global_position += step
+
+		# Check if we passed or reached the target position
+		if (direction.x != 0 and sign(target_position.x - global_position.x) != sign(direction.x)) or \
+		   (direction.y != 0 and sign(target_position.y - global_position.y) != sign(direction.y)):
+			global_position = target_position.snapped(Vector2(grid_width, grid_width))
+			is_moving = false
+			move_speed = 0
+			global_position = target_position.snapped(Vector2(grid_width, grid_width)).ceil()
+
+
+	# Check for overlapping body
+	var overlapping = area.get_overlapping_bodies()
+	#if overlapping and player_has_just_entered:
+		#player_has_just_entered = false
+	#elif overlapping:
+		#player_has_just_entered = true
+	#else:
+		#player_is_in_area = false
+	if overlapping and not is_moving and can_move:
+		var c = overlapping[0]
+
+		var my_pos = global_position
+		var other_pos = c.global_position
+		var diff = other_pos - my_pos
+
+		if abs(diff.x) > abs(diff.y):
+			if diff.x > 0:
+				direction = Vector2(-1, 0)
+				space_check_area = left_space_check_area
+			else:
+				direction = Vector2(1, 0)
+				space_check_area = right_space_check_area
+		else:
+			if diff.y > 0:
+				direction = Vector2(0, -1)
+				space_check_area = up_space_check_area
+			else:
+				direction = Vector2(0, 1)
+				space_check_area = down_space_check_area
+
+		# Don't move if there's something in the way
+		if space_check_area.get_overlapping_bodies():
+			is_moving = false
+			move_speed = 0
+			can_move = false
+			return
+
+		# Start movement
+		start_moving(direction, c.speed)
+		can_move = true
+
+
+func _on_move_area_2d_body_exited(body: Node2D) -> void:
+	can_move = true
+
+
+func start_moving(dir: Vector2, speed: int) -> void:
+	is_moving = true
+	direction = dir.normalized()
+	move_speed = speed
+	target_position = (global_position + direction * grid_width).snapped(Vector2(grid_width, grid_width))
+
+
+# -------------------------------------------------------------------------------------------------------------------------------------------
 #class_name MoveableBlock extends RigidBody2D
 ##
 ##
@@ -314,84 +406,6 @@
 
 
  #-------------------------------------------------------------------------------------------------------------------------------------------
-
-class_name SecondMoveableBlock extends StaticBody2D
-
-var move_speed: int = 0
-var direction: Vector2 = Vector2.ZERO
-var grid_width: int = 16
-var is_moving: bool = false
-var target_position: Vector2
-var space_check_area: Area2D
-
-@onready var up_space_check_area = $UpSpaceCheckArea
-@onready var right_space_check_area = $RightSpaceCheckArea
-@onready var down_space_check_area = $DownSpaceCheckArea
-@onready var left_space_check_area = $LeftSpaceCheckArea
-@onready var area = $Area2D
-@onready var static_body = $"."
-
-func _ready() -> void:
-	static_body.add_collision_exception_with(up_space_check_area)
-	static_body.add_collision_exception_with(right_space_check_area)
-	static_body.add_collision_exception_with(down_space_check_area)
-	static_body.add_collision_exception_with(left_space_check_area)
-
-func _process(delta: float) -> void:
-	if is_moving:
-		var step = direction * delta * move_speed
-		global_position += step
-
-		# Check if we passed or reached the target position
-		if (direction.x != 0 and sign(target_position.x - global_position.x) != sign(direction.x)) or \
-		   (direction.y != 0 and sign(target_position.y - global_position.y) != sign(direction.y)):
-			global_position = target_position.snapped(Vector2(grid_width, grid_width))
-			is_moving = false
-			move_speed = 0
-			global_position = target_position.snapped(Vector2(grid_width, grid_width)).ceil()
-
-
-	# Check for overlapping body
-	var overlapping = area.get_overlapping_bodies()
-	if overlapping and not is_moving:
-		var c = overlapping[0]
-
-		var my_pos = global_position
-		var other_pos = c.global_position
-		var diff = other_pos - my_pos
-
-		if abs(diff.x) > abs(diff.y):
-			if diff.x > 0:
-				direction = Vector2(-1, 0)
-				space_check_area = left_space_check_area
-			else:
-				direction = Vector2(1, 0)
-				space_check_area = right_space_check_area
-		else:
-			if diff.y > 0:
-				direction = Vector2(0, -1)
-				space_check_area = up_space_check_area
-			else:
-				direction = Vector2(0, 1)
-				space_check_area = down_space_check_area
-
-		# Don't move if there's something in the way
-		if space_check_area.get_overlapping_bodies():
-			is_moving = false
-			move_speed = 0
-			return
-
-		# Start movement
-		start_moving(direction, c.speed)
-
-func start_moving(dir: Vector2, speed: int) -> void:
-	is_moving = true
-	direction = dir.normalized()
-	move_speed = speed
-	target_position = (global_position + direction * grid_width).snapped(Vector2(grid_width, grid_width))
-
-
-# -------------------------------------------------------------------------------------------------------------------------------------------
 
 
 # this func has been made by chatGPT

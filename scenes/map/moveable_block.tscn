@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c25a8toq0den5"]
+[gd_scene load_steps=10 format=3 uid="uid://c25a8toq0den5"]
 
 [ext_resource type="Script" path="res://scripts/map/moveable_block.gd" id="1_qma3u"]
 [ext_resource type="Texture2D" uid="uid://ch3c7gkijntvo" path="res://art/moveblockforest.png" id="2_wqyy1"]
@@ -6,8 +6,14 @@
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7crit"]
 friction = 9.22337e+18
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_068xg"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mvvld"]
 size = Vector2(24, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_068xg"]
+size = Vector2(20, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jmmga"]
+size = Vector2(10, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_32xh7"]
 size = Vector2(28, 28)
@@ -18,7 +24,7 @@ size = Vector2(30, 30)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_vagr6"]
 polygon = PackedVector2Array(0, 0, 12, -12, 12, 12, -12, 12, -12, -12, 12, -12)
 
-[node name="StaticBody2D" type="StaticBody2D"]
+[node name="MoveableBlock" type="StaticBody2D"]
 position = Vector2(-5, 0)
 scale = Vector2(1.25, 1.25)
 disable_mode = 1
@@ -32,7 +38,9 @@ scale = Vector2(0.8, 0.8)
 texture = ExtResource("2_wqyy1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_068xg")
+position = Vector2(-7.15256e-07, 5.72204e-07)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_mvvld")
 
 [node name="UpSpaceCheckArea" type="Area2D" parent="."]
 collision_layer = 0
@@ -40,7 +48,6 @@ collision_mask = 33038
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="UpSpaceCheckArea"]
 position = Vector2(0, -20)
-scale = Vector2(1, 0.5)
 shape = SubResource("RectangleShape2D_068xg")
 
 [node name="RightSpaceCheckArea" type="Area2D" parent="."]
@@ -48,9 +55,8 @@ collision_layer = 0
 collision_mask = 33038
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightSpaceCheckArea"]
-position = Vector2(20, 0.8)
-scale = Vector2(0.5, 1)
-shape = SubResource("RectangleShape2D_068xg")
+position = Vector2(20, 0)
+shape = SubResource("RectangleShape2D_jmmga")
 
 [node name="DownSpaceCheckArea" type="Area2D" parent="."]
 collision_layer = 0
@@ -58,7 +64,6 @@ collision_mask = 33038
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="DownSpaceCheckArea"]
 position = Vector2(0, 20)
-scale = Vector2(1, 0.5)
 shape = SubResource("RectangleShape2D_068xg")
 
 [node name="LeftSpaceCheckArea" type="Area2D" parent="."]
@@ -67,14 +72,13 @@ collision_mask = 33038
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftSpaceCheckArea"]
 position = Vector2(-20, 0)
-scale = Vector2(0.5, 1)
-shape = SubResource("RectangleShape2D_068xg")
+shape = SubResource("RectangleShape2D_jmmga")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="MoveArea2D" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 16384
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MoveArea2D"]
 shape = SubResource("RectangleShape2D_32xh7")
 
 [node name="ExtraStaticBody2D" type="StaticBody2D" parent="."]
@@ -86,3 +90,5 @@ shape = SubResource("RectangleShape2D_xlro3")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource("OccluderPolygon2D_vagr6")
+
+[connection signal="body_exited" from="MoveArea2D" to="." method="_on_move_area_2d_body_exited"]
