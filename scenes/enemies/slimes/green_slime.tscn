@@ -1007,8 +1007,7 @@ collision_mask = 256
 shape = SubResource("CircleShape2D_ioned")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-position = Vector2(0, 2)
-scale = Vector2(6, 6)
+scale = Vector2(3, 3)
 occluder = SubResource("OccluderPolygon2D_e2bcg")
 
 [connection signal="timeout" from="StateDurationTimer" to="." method="_on_timer_timeout"]

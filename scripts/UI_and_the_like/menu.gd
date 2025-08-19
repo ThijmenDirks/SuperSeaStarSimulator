@@ -29,3 +29,8 @@ func _on_button_button_down():
 	#Spawnstates.next_map_path = "res://scenes/levels/open_world_mode_forest1start/spawn1.tscn"
 	#Spawnstates.next_entrance_name = "Start"
 	#load_room(Spawnstates.next_map_path, Spawnstates.next_entrance_name)
+
+
+func _on_button_2_pressed():
+	$Sprite2D2.visible = true
+	pass # Replace with function body.
