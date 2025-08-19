@@ -84,19 +84,19 @@ func spawn_enemies(enemy_name: String, amount: int, spawn_area: int):
 
 		spawn_area_node.add_child(new_enemy)
 		new_enemy.position = get_random_point_in_area(spawn_area_node)
+		#new_enemy.position += Vector2(randi_range(-100, 100), randi_range(-100, 100))
 		active_enemies += 1
 		#wave_number_label.update_wave_number_label(active_enemies)
 
 
 func get_random_point_in_area(area: Area2D) -> Vector2:
 	var shape = area.get_node("CollisionShape2D").shape
-	match shape:
-		RectangleShape2D:
+	if shape is RectangleShape2D:
 			return get_random_in_rectangle(shape)
-		CircleShape2D:
-			return get_random_in_circle(shape)
-		_:
-			return Vector2.ZERO
+	elif shape is CircleShape2D:
+		return get_random_in_circle(shape)
+	else:
+		return Vector2.ZERO
 
 
 func get_random_in_rectangle(shape: Resource) -> Vector2:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://dbifjqhl4pa28"]
+[gd_scene load_steps=66 format=4 uid="uid://dbifjqhl4pa28"]
 
 [ext_resource type="Script" path="res://scripts/levels/test_level.gd" id="1_4lh20"]
 [ext_resource type="PackedScene" uid="uid://bqhlp5wv10xgg" path="res://scenes/other/player.tscn" id="2_ao355"]
@@ -18,84 +18,296 @@
 script = ExtResource("2_v6og4")
 subwaves = Array[ExtResource("3_wq6wp")]([])
 
-[sub_resource type="Resource" id="Resource_hs8cm"]
+[sub_resource type="Resource" id="Resource_mx6l5"]
 script = ExtResource("3_wq6wp")
-enemy = 3
-amount = 1
+enemy = 0
+amount = 3
+time = 1.0
+spawn_area = 0
+
+[sub_resource type="Resource" id="Resource_se4yt"]
+script = ExtResource("2_v6og4")
+subwaves = Array[ExtResource("3_wq6wp")]([SubResource("Resource_mx6l5")])
+
+[sub_resource type="Resource" id="Resource_n6jt4"]
+script = ExtResource("3_wq6wp")
+enemy = 0
+amount = 5
+time = 0.0
+spawn_area = 0
+
+[sub_resource type="Resource" id="Resource_x8rn7"]
+script = ExtResource("3_wq6wp")
+enemy = 1
+amount = 2
+time = 3.0
+spawn_area = 1
+
+[sub_resource type="Resource" id="Resource_qdox6"]
+script = ExtResource("3_wq6wp")
+enemy = 0
+amount = 3
+time = 3.0
+spawn_area = 2
+
+[sub_resource type="Resource" id="Resource_vdf8a"]
+script = ExtResource("2_v6og4")
+subwaves = Array[ExtResource("3_wq6wp")]([SubResource("Resource_n6jt4"), SubResource("Resource_x8rn7"), SubResource("Resource_qdox6")])
+
+[sub_resource type="Resource" id="Resource_f36fd"]
+script = ExtResource("3_wq6wp")
+enemy = 5
+amount = 2
 time = 0.0
 spawn_area = 2
 
-[sub_resource type="Resource" id="Resource_f3gns"]
+[sub_resource type="Resource" id="Resource_ar7h8"]
 script = ExtResource("3_wq6wp")
-enemy = 2
+enemy = 5
 amount = 2
 time = 0.0
 spawn_area = 1
 
-[sub_resource type="Resource" id="Resource_yjln2"]
+[sub_resource type="Resource" id="Resource_xfbeh"]
 script = ExtResource("3_wq6wp")
-enemy = 0
+enemy = 4
 amount = 1
-time = 5.0
+time = 10.0
 spawn_area = 0
 
-[sub_resource type="Resource" id="Resource_44i3d"]
-script = ExtResource("2_v6og4")
-subwaves = Array[ExtResource("3_wq6wp")]([SubResource("Resource_hs8cm"), SubResource("Resource_f3gns"), SubResource("Resource_yjln2")])
-
-[sub_resource type="Resource" id="Resource_naj87"]
+[sub_resource type="Resource" id="Resource_cqktl"]
 script = ExtResource("3_wq6wp")
-enemy = null
-amount = 5
-time = 2.0
-spawn_area = 0
-
-[sub_resource type="Resource" id="Resource_rjxj4"]
-script = ExtResource("3_wq6wp")
-enemy = null
-amount = 5
-time = 2.0
-spawn_area = 0
-
-[sub_resource type="Resource" id="Resource_nf3pb"]
-script = ExtResource("2_v6og4")
-subwaves = Array[ExtResource("3_wq6wp")]([SubResource("Resource_naj87"), SubResource("Resource_rjxj4")])
-
-[sub_resource type="Resource" id="Resource_bcing"]
-script = ExtResource("3_wq6wp")
-enemy = null
-amount = 0
+enemy = 5
+amount = 3
 time = 0.0
 spawn_area = 0
 
-[sub_resource type="Resource" id="Resource_ddkmb"]
+[sub_resource type="Resource" id="Resource_j04bm"]
 script = ExtResource("3_wq6wp")
-enemy = null
-amount = 1
-time = 2.0
-spawn_area = 0
+enemy = 5
+amount = 3
+time = 5.0
+spawn_area = 2
 
-[sub_resource type="Resource" id="Resource_ayalh"]
+[sub_resource type="Resource" id="Resource_g1stc"]
 script = ExtResource("3_wq6wp")
-enemy = null
-amount = 1
-time = 2.0
-spawn_area = 0
+enemy = 5
+amount = 2
+time = 1.0
+spawn_area = 1
 
-[sub_resource type="Resource" id="Resource_4qjce"]
+[sub_resource type="Resource" id="Resource_ys7rw"]
 script = ExtResource("2_v6og4")
-subwaves = Array[ExtResource("3_wq6wp")]([SubResource("Resource_bcing"), SubResource("Resource_ddkmb"), SubResource("Resource_ayalh")])
+subwaves = Array[ExtResource("3_wq6wp")]([SubResource("Resource_f36fd"), SubResource("Resource_ar7h8"), SubResource("Resource_xfbeh"), SubResource("Resource_cqktl"), SubResource("Resource_j04bm"), SubResource("Resource_g1stc")])
 
-[sub_resource type="Resource" id="Resource_xiklj"]
+[sub_resource type="Resource" id="Resource_8q3gc"]
 script = ExtResource("3_wq6wp")
-enemy = null
+enemy = 2
 amount = 1
+time = 15.0
+spawn_area = 1
+
+[sub_resource type="Resource" id="Resource_j3rrk"]
+script = ExtResource("3_wq6wp")
+enemy = 0
+amount = 5
+time = 0.0
+spawn_area = 0
+
+[sub_resource type="Resource" id="Resource_7e5mg"]
+script = ExtResource("3_wq6wp")
+enemy = 1
+amount = 1
+time = 0.0
+spawn_area = 0
+
+[sub_resource type="Resource" id="Resource_7djkt"]
+script = ExtResource("3_wq6wp")
+enemy = 0
+amount = 4
+time = 5.0
+spawn_area = 2
+
+[sub_resource type="Resource" id="Resource_2ctur"]
+script = ExtResource("3_wq6wp")
+enemy = 2
+amount = 1
+time = 1.0
+spawn_area = 1
+
+[sub_resource type="Resource" id="Resource_tl61l"]
+script = ExtResource("2_v6og4")
+subwaves = Array[ExtResource("3_wq6wp")]([SubResource("Resource_8q3gc"), SubResource("Resource_j3rrk"), SubResource("Resource_7e5mg"), SubResource("Resource_7djkt"), SubResource("Resource_2ctur")])
+
+[sub_resource type="Resource" id="Resource_61m36"]
+script = ExtResource("3_wq6wp")
+enemy = 0
+amount = 2
+time = 1.0
+spawn_area = 0
+
+[sub_resource type="Resource" id="Resource_hglgo"]
+script = ExtResource("3_wq6wp")
+enemy = 0
+amount = 2
+time = 2.0
+spawn_area = 2
+
+[sub_resource type="Resource" id="Resource_r12we"]
+script = ExtResource("3_wq6wp")
+enemy = 0
+amount = 2
+time = 1.0
+spawn_area = 1
+
+[sub_resource type="Resource" id="Resource_30ajv"]
+script = ExtResource("3_wq6wp")
+enemy = 0
+amount = 3
+time = 2.0
+spawn_area = 2
+
+[sub_resource type="Resource" id="Resource_ausuq"]
+script = ExtResource("3_wq6wp")
+enemy = 0
+amount = 1
+time = 2.0
+spawn_area = 0
+
+[sub_resource type="Resource" id="Resource_eqd5j"]
+script = ExtResource("3_wq6wp")
+enemy = 0
+amount = 2
+time = 2.0
+spawn_area = 2
+
+[sub_resource type="Resource" id="Resource_e14al"]
+script = ExtResource("3_wq6wp")
+enemy = 0
+amount = 3
+time = 3.0
+spawn_area = 1
+
+[sub_resource type="Resource" id="Resource_c8nge"]
+script = ExtResource("3_wq6wp")
+enemy = 0
+amount = 2
+time = 0.0
+spawn_area = 0
+
+[sub_resource type="Resource" id="Resource_6p0gw"]
+script = ExtResource("3_wq6wp")
+enemy = 0
+amount = 2
+time = 2.0
+spawn_area = 2
+
+[sub_resource type="Resource" id="Resource_vpo0c"]
+script = ExtResource("3_wq6wp")
+enemy = 0
+amount = 2
+time = 0.0
+spawn_area = 1
+
+[sub_resource type="Resource" id="Resource_ckhsx"]
+script = ExtResource("3_wq6wp")
+enemy = 0
+amount = 3
+time = 1.0
+spawn_area = 2
+
+[sub_resource type="Resource" id="Resource_xyvkp"]
+script = ExtResource("2_v6og4")
+subwaves = Array[ExtResource("3_wq6wp")]([SubResource("Resource_61m36"), SubResource("Resource_hglgo"), SubResource("Resource_r12we"), SubResource("Resource_30ajv"), SubResource("Resource_ausuq"), SubResource("Resource_eqd5j"), SubResource("Resource_e14al"), SubResource("Resource_c8nge"), SubResource("Resource_6p0gw"), SubResource("Resource_vpo0c"), SubResource("Resource_ckhsx")])
+
+[sub_resource type="Resource" id="Resource_vptlu"]
+script = ExtResource("3_wq6wp")
+enemy = 3
+amount = 5
+time = 1.0
+spawn_area = 2
+
+[sub_resource type="Resource" id="Resource_t605k"]
+script = ExtResource("3_wq6wp")
+enemy = 3
+amount = 5
 time = 3.0
 spawn_area = 0
 
-[sub_resource type="Resource" id="Resource_mno7n"]
+[sub_resource type="Resource" id="Resource_1gn65"]
+script = ExtResource("3_wq6wp")
+enemy = 3
+amount = 7
+time = 5.0
+spawn_area = 1
+
+[sub_resource type="Resource" id="Resource_y023t"]
+script = ExtResource("3_wq6wp")
+enemy = 2
+amount = 1
+time = 1.0
+spawn_area = 1
+
+[sub_resource type="Resource" id="Resource_ausev"]
 script = ExtResource("2_v6og4")
-subwaves = Array[ExtResource("3_wq6wp")]([SubResource("Resource_xiklj")])
+subwaves = Array[ExtResource("3_wq6wp")]([SubResource("Resource_vptlu"), SubResource("Resource_t605k"), SubResource("Resource_1gn65"), SubResource("Resource_y023t")])
+
+[sub_resource type="Resource" id="Resource_fmoks"]
+script = ExtResource("3_wq6wp")
+enemy = 2
+amount = 1
+time = 0.0
+spawn_area = 0
+
+[sub_resource type="Resource" id="Resource_504kc"]
+script = ExtResource("3_wq6wp")
+enemy = 2
+amount = 1
+time = 0.0
+spawn_area = 1
+
+[sub_resource type="Resource" id="Resource_ok3cq"]
+script = ExtResource("3_wq6wp")
+enemy = 2
+amount = 1
+time = 5.0
+spawn_area = 2
+
+[sub_resource type="Resource" id="Resource_f442n"]
+script = ExtResource("3_wq6wp")
+enemy = 1
+amount = 2
+time = 0.0
+spawn_area = 0
+
+[sub_resource type="Resource" id="Resource_sm463"]
+script = ExtResource("3_wq6wp")
+enemy = 1
+amount = 2
+time = 0.0
+spawn_area = 1
+
+[sub_resource type="Resource" id="Resource_ol8ba"]
+script = ExtResource("3_wq6wp")
+enemy = 1
+amount = 2
+time = 1.0
+spawn_area = 2
+
+[sub_resource type="Resource" id="Resource_md537"]
+script = ExtResource("2_v6og4")
+subwaves = Array[ExtResource("3_wq6wp")]([SubResource("Resource_fmoks"), SubResource("Resource_504kc"), SubResource("Resource_ok3cq"), SubResource("Resource_f442n"), SubResource("Resource_sm463"), SubResource("Resource_ol8ba")])
+
+[sub_resource type="Resource" id="Resource_jy64i"]
+script = ExtResource("3_wq6wp")
+enemy = 6
+amount = 1
+time = 1.0
+spawn_area = 2
+
+[sub_resource type="Resource" id="Resource_qfl1q"]
+script = ExtResource("2_v6og4")
+subwaves = Array[ExtResource("3_wq6wp")]([SubResource("Resource_jy64i")])
 
 [sub_resource type="GDScript" id="GDScript_guruh"]
 script/source = "extends Sprite2D
@@ -135,7 +347,7 @@ metadata/_snap_enabled = true
 
 [node name="TestLevel" type="Node2D" node_paths=PackedStringArray("spawn_areas")]
 script = ExtResource("1_4lh20")
-all_waves = Array[ExtResource("2_v6og4")]([SubResource("Resource_svc0e"), SubResource("Resource_44i3d"), SubResource("Resource_nf3pb"), SubResource("Resource_4qjce"), SubResource("Resource_mno7n")])
+all_waves = Array[ExtResource("2_v6og4")]([SubResource("Resource_svc0e"), SubResource("Resource_se4yt"), SubResource("Resource_vdf8a"), SubResource("Resource_ys7rw"), SubResource("Resource_tl61l"), SubResource("Resource_xyvkp"), SubResource("Resource_ausev"), SubResource("Resource_md537"), SubResource("Resource_qfl1q")])
 spawn_areas = [NodePath("SpawnAreas/SpawnArea0"), NodePath("SpawnAreas/SpawnArea1"), NodePath("SpawnAreas/SpawnArea2")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -168,6 +380,10 @@ scale = Vector2(4.25625, 0.133929)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TemporaryWall"]
 position = Vector2(12.75, -14)
 shape = SubResource("RectangleShape2D_b08o3")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TemporaryWall"]
+position = Vector2(0, -20)
+polygon = PackedVector2Array(-311, 25, -515, 60, -654, 353, -401, 468, 478, 450, 486, 97, 338, 2, -294, 4, -297, 10, 322, 8, 468, 102, 458, 428, -399, 455, -642, 347, -511, 68, -308, 31, -297, 5, -300, 5)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 position = Vector2(-169, 37)

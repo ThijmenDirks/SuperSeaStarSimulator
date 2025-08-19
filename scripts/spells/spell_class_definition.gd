@@ -117,27 +117,27 @@ func make_noise(noise):
 	var noise_area = Area2D.new() # gets automatically eleted when this function is done # or do they?
 	var noise_area_collision = CollisionShape2D.new()
 	
-	noise_area.visible = false # 19-07 for debuging,pleace delete !
+	#noise_area.visible = false # 19-07 for debuging,pleace delete !
 	
 	noise_area_collision.shape = CircleShape2D.new()
 	#print("spell_area ", noise_area_collision.shape)
 	noise_area_collision.shape.radius = noise
 	noise_area.set_collision_mask_value(10, true)# = 10 # .bit(10,true)
-	print("spell_area_layer ", noise_area.get_collision_mask_value(10))
+	#print("spell_area_layer ", noise_area.get_collision_mask_value(10))
 	# DOE NOG IETS MET MASKS!!!
 	noise_area.add_child(noise_area_collision)
 	add_child(noise_area)
 	#noise_area# = -0
-	print("spell_area ", noise_area.get_overlapping_bodies())
+	#print("spell_area ", noise_area.get_overlapping_bodies())
 	noise_waiting = true
 
-	print("spell_area 0")
+	#print("spell_area 0")
 	await get_tree().physics_frame
-	print("spell_area 1")
+	#print("spell_area 1")
 	await get_tree().physics_frame
-	print("spell_area 2")
+	#print("spell_area 2")
 
-	var enemies : Array
+	var enemies: Array
 	var temporary_counter = 0 # just for testing, should be deleted
 	for enemy in noise_area.get_overlapping_bodies():
 		if enemy is Enemy:
@@ -149,10 +149,6 @@ func make_noise(noise):
 			if enemy in enemies:
 				enemy.on_noise_heard(self)
 				enemy.angry = true
-				print("noisee", enemy, "   ")
-				temporary_counter += 1
-	print("noisee ", temporary_counter)
-	temporary_counter = 0
 
 
 func get_body_at_position_with_area(position: Vector2):# -> Node2D:

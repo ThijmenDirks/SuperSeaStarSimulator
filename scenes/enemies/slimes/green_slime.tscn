@@ -892,7 +892,7 @@ transitions = ["Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_
 graph_offset = Vector2(0, 48.0736)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_agn4q"]
-radius = 12.0
+radius = 6.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tm6jt"]
 radius = 183.18
@@ -901,18 +901,17 @@ radius = 183.18
 radius = 224.377
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1it3l"]
-radius = 21.0238
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ioned"]
-radius = 72.0625
+radius = 36.0
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_e2bcg"]
 cull_mode = 1
 polygon = PackedVector2Array(2, 0, 1, 1, -1, 1, -2, 0, -1, -1, 1, -1)
 
 [node name="CharacterBody2DG4" type="CharacterBody2D"]
-scale = Vector2(0.5, 0.5)
 collision_layer = 541
+collision_mask = 2
 script = ExtResource("1_qbfix")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -968,12 +967,12 @@ shape = SubResource("CircleShape2D_a7g13")
 [node name="Slime2" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(26, -34)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_cf5uk")
 hframes = 2
 
 [node name="SlimeJump2" type="Sprite2D" parent="."]
 position = Vector2(0.5, -3)
-scale = Vector2(2.0625, 2.125)
 texture = ExtResource("4_vgjvf")
 hframes = 3
 vframes = 2
@@ -986,11 +985,12 @@ offset_bottom = 13.0
 
 [node name="HPBar" parent="." instance=ExtResource("5_vs4kb")]
 offset_left = -10.0
-offset_top = -26.0
+offset_top = -14.0
 offset_right = 118.0
-offset_bottom = 102.0
+offset_bottom = 114.0
 
 [node name="VectorWheel" parent="." instance=ExtResource("6_vombb")]
+scale = Vector2(0.5, 0.5)
 
 [node name="DamageArea" type="Area2D" parent="."]
 collision_layer = 0
