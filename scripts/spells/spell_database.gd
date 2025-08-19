@@ -28,7 +28,7 @@ var fireball = {
 
 var heal = {
 	"spell_name" = "heal",
-	"spell_recipe" = ["qe"],
+	"spell_recipe" = ["wr"],
 	"spell_type" = "healing",
 	"spell_target" = "single_target",
 	"spell_healing" = 50.0, # 50.0
@@ -63,7 +63,7 @@ var chain_lightning = {
 
 var disintegrate = {
 	"spell_name" = "disintegrate",
-	"spell_recipe" = ["e", "e", "e"],
+	"spell_recipe" = ["r", "r", "r"],
 	"spell_type" = "damage",
 	"spell_target" = "single_target",
 	"spell_base_grow_speed" = 300,
