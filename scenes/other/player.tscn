@@ -861,7 +861,7 @@ radius = 34.0147
 cull_mode = 1
 polygon = PackedVector2Array(0.5, 0, 0, 0.5, -0.5, 0, 0, -0.5)
 
-[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree") groups=["player"]]
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree") groups=["player", "saveables"]]
 collision_layer = 16708
 collision_mask = 2
 script = ExtResource("1_60osi")

@@ -10,7 +10,7 @@ var test1304 = "1304"
 
 var fireball = {
 	"spell_name" = "fireball",
-	"spell_recipe" = ["q","z","x","x"],
+	"spell_recipe" = ["q","w","r","r"],
 	"spell_type" = "offensive",
 	"spell_target" = "aoe",
 	"spell_aoe_size" = 75.0,

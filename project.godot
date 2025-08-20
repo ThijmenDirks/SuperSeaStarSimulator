@@ -22,6 +22,7 @@ fullscreen_thingy="*res://scripts/UI_and_the_like/fullscreen_thingy.gd"
 Spawnstates="*res://scripts/map/open_world_stuff/spawnstates.gd"
 Playerglob="*res://scripts/map/open_world_stuff/playerglob.gd"
 RoomLoad="*res://scripts/map/open_world_stuff/room_load.gd"
+SaveSystem="*res://scripts/other/save_system.gd"
 
 [display]
 
@@ -45,6 +46,7 @@ folder_colors={
 [global_group]
 
 player="this is a player"
+saveables=""
 
 [input]
 

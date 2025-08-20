@@ -45,3 +45,12 @@ position = Vector2(570, 17)
 
 [node name="StarTemphealthSprite5" parent="Control/HPStars" instance=ExtResource("3_epcvx")]
 position = Vector2(568, 58)
+
+[node name="SaveButton" type="Button" parent="."]
+offset_left = 49.0
+offset_top = 16.0
+offset_right = 107.0
+offset_bottom = 47.0
+text = "save"
+
+[connection signal="button_up" from="SaveButton" to="." method="_on_save_button_button_up"]

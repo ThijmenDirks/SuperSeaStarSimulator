@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=4 uid="uid://dbifjqhl4pa28"]
+[gd_scene load_steps=67 format=4 uid="uid://dbifjqhl4pa28"]
 
 [ext_resource type="Script" path="res://scripts/levels/test_level.gd" id="1_4lh20"]
 [ext_resource type="PackedScene" uid="uid://bqhlp5wv10xgg" path="res://scenes/other/player.tscn" id="2_ao355"]
@@ -17,17 +17,6 @@
 [sub_resource type="Resource" id="Resource_svc0e"]
 script = ExtResource("2_v6og4")
 subwaves = Array[ExtResource("3_wq6wp")]([])
-
-[sub_resource type="Resource" id="Resource_sdee1"]
-script = ExtResource("3_wq6wp")
-enemy = 5
-amount = 1
-time = 9999.0
-spawn_area = 0
-
-[sub_resource type="Resource" id="Resource_vlmq7"]
-script = ExtResource("2_v6og4")
-subwaves = Array[ExtResource("3_wq6wp")]([SubResource("Resource_sdee1")])
 
 [sub_resource type="Resource" id="Resource_mx6l5"]
 script = ExtResource("3_wq6wp")
@@ -361,7 +350,7 @@ metadata/_snap_enabled = true
 
 [node name="TestLevel" type="Node2D" node_paths=PackedStringArray("spawn_areas")]
 script = ExtResource("1_4lh20")
-all_waves = Array[ExtResource("2_v6og4")]([SubResource("Resource_svc0e"), SubResource("Resource_vlmq7"), SubResource("Resource_se4yt"), SubResource("Resource_vdf8a"), SubResource("Resource_ys7rw"), SubResource("Resource_tl61l"), SubResource("Resource_xyvkp"), SubResource("Resource_ausev"), SubResource("Resource_md537"), SubResource("Resource_qfl1q")])
+all_waves = Array[ExtResource("2_v6og4")]([SubResource("Resource_svc0e"), SubResource("Resource_se4yt"), SubResource("Resource_vdf8a"), SubResource("Resource_ys7rw"), SubResource("Resource_tl61l"), SubResource("Resource_xyvkp"), SubResource("Resource_ausev"), SubResource("Resource_md537"), SubResource("Resource_qfl1q")])
 spawn_areas = [NodePath("SpawnAreas/SpawnArea0"), NodePath("SpawnAreas/SpawnArea1"), NodePath("SpawnAreas/SpawnArea2")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -400,7 +389,7 @@ position = Vector2(0, -20)
 polygon = PackedVector2Array(-311, 25, -515, 60, -654, 353, -401, 468, 478, 450, 486, 97, 338, 2, -294, 4, -297, 10, 322, 8, 468, 102, 458, 428, -399, 455, -642, 347, -511, 68, -308, 31, -297, 5, -300, 5)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="TemporaryWall"]
-position = Vector2(-8, 200)
+position = Vector2(-8, -200)
 shape = SubResource("RectangleShape2D_paat1")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]

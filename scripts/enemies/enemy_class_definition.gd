@@ -386,7 +386,7 @@ func jump_attack_state(delta : float, time : float = 0.0, phase : String = "runn
 		"enter":
 			state_is_locked = true # might want to make a fancy func for this ? "statelocking" sounds cool
 			jump_attack_target = attack_target
-			jump_attack_target_position = jump_attack_target.global_position
+			jump_attack_target_position = jump_attack_target.global_position + Vector2(randi_range(-5, 5), randi_range(-5, 5))
 			speed = base_speed * 2
 			state_duration_timer.start(time)
 			await state_duration_timer.timeout

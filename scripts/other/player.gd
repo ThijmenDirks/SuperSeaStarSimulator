@@ -25,7 +25,7 @@ var resistances_and_weaknesses : Dictionary
 
 
 func _ready():
-	pass
+	SaveSystem.load_data()
 	#hp_bar.max_value = max_hp
 	#hp_bar.value = hp
 	#playback = animation_tree["parameters/playback"]
@@ -41,6 +41,7 @@ func _physics_process(delta: float) -> void:
 	update_animation_parameters()
 #	print("hi", check_if_input_is_in_list(keys_for_spellcasting))
 	natius()
+	update_hp_bar()
 	#if input_is_in_list(keys_for_spellcasting):
 		#spell_cast_funtion_one()
 	#natius()
@@ -257,7 +258,35 @@ func is_on_z_height(z : int, digit : int = 4):
 	return int((self.z_index / 10 ** (digit - 1)) % 10) == int((z / 10 ** (digit - 1)) % 10)
 
 
+var place: String = "forest"
 
+func get_save_stats() -> Dictionary:
+	print("data save test 1")
+	return {
+		"hp": hp,
+		"place": place
+	}
+
+
+func set_save_stats(stats: Dictionary) -> void:
+	print("data load test 1")
+	for key in stats:
+		#if has_variable(key):
+		self[key] = stats[key]
+		print(key, "  key   ", self[key])
+		print("data load test 2")
+
+
+#func get_save_stats() -> Dictionary:
+	#return {"hp": hp}
+#
+#
+#func set_save_stats(stats: Dictionary) -> void:
+	#for key in stats:
+		##if has_variable(key):
+			##self.set(key, stats[key]) # can both be used
+		#self[key] = stats[key]
+#
 
 
 

@@ -36,3 +36,7 @@ func update_wave_number_label(new_wave_number):
 		#var new_screen_size = get_viewport().get_visible_rect().size/last_screen_size
 		#scale *= new_screen_size
 		#last_screen_size = get_viewport().get_visible_rect().size
+
+
+func _on_save_button_button_up() -> void:
+	SaveSystem.save_data()
