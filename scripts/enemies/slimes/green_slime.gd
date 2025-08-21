@@ -34,33 +34,52 @@ func _ready() -> void:
 	super()
 
 
-#func _process(delta: float) -> void:
-	#super(delta)
-
-# shouldnt this be in Enemy?
-#func _physics_process(delta: float) -> void:
-	##super(delta)
-	#print("HP ", hp)
-	#update_animation_parameters()
-	#if state == STATES.JUMP:
-		#jump(delta)
-	#if state == STATES.IDLE_STAND:
-		#if not timer_is_already_running:
-			##timer.start(1)
-			#pass
+func on_something_in_vision_field(bodies : Array):
+	print("slime test 10 ", randi(), player_in_vision_field)
+	print("player visible?  ", player_in_vision_field)
+	if player_in_vision_field:
+		print("player visible?  2")
+		print("slime test 11 ", randi())
+		angry = true
+		chase_target = player_in_vision_field
+		attack_target = player_in_vision_field
+		jump_attack_target = player_in_vision_field
+		#for body in bodies:
+			#if body is Player:
+				#chase_target = body
+		request_change_state(STATES.JUMP_ATTACK)
+		print("slime test 12, state:  ", state)
+	else:
+		print("player visible?  3")
+		angry = false # but this only runs when there is something in visoin_field
 
 
 func request_change_state(new_state):
+	if state_is_locked:
+		return
+	#if look_for_player_in_vision_field():	
+		#angry = true
+	#else:
+		#angry = false
+	print("slime changes state to  ", new_state, "  angry?  ", angry, "  locked?  ", state_is_locked)
+	#if not player_is_in_attack_area():
+		#angry = false
 	if not angry:
-		change_state(STATES.IDLE_WALK)
+		change_state(STATES.IDLE_STAND)
+	else:
+		jump_attack_target = look_for_player_in_vision_field()
+		change_state(STATES.JUMP_ATTACK)
+	return
 	match new_state:
 		STATES.CHASE: # might want to make slimes unable to chase adn use jump_attack for it instaed
 			if state != STATES.JUMP_ATTACK and angry:
-				change_state(STATES.CHASE)
+				change_state(STATES.JUMP_ATTACK)
 		#STATES.PATHFIND:
 			#change_state(STATES.PATHFIND)
 		STATES.IDLE_STAND:
-			change_state(STATES.IDLE_STAND)
+			angry = false
+			if not angry:
+				change_state(STATES.IDLE_STAND)
 		#STATES.IDLE_WALK:
 			#change_state(STATES.IDLE_WALK)
 		STATES.JUMP_ATTACK:
@@ -72,15 +91,16 @@ func request_change_state(new_state):
 
 
 func change_state(new_state):
-	state_duration_timer.stop()
 # right now im changing state here, but might do that in state funcionts self because of on_stae("exit"): state = state.last # i dont think so..
 	if state_is_locked:
 		return
+	state_duration_timer.stop()
 	state_history.append(state)
 	match new_state:
 		STATES.IDLE_STAND:
 			state = STATES.IDLE_STAND
-			idle_stand(99, "enter")
+			idle_stand(9999, "enter")
+			print("green slime idle_stands !")
 		#STATES.IDLE_WALK:
 			#state = STATES.IDLE_WALK
 			#idle_walk(0, jump_duration, "enter") # the time given here should be the same as N jumps in the animation
@@ -93,11 +113,18 @@ func change_state(new_state):
 		STATES.JUMP_ATTACK:
 			state = STATES.JUMP_ATTACK
 			jump_attack_state(0, jump_duration, "enter")
+			print("green slime jump_attacks !")
 
 
-func _on_attack_area_body_entered(body: Node2D) -> void:
+func _on_trigger_attack_area_body_entered(body: Node2D) -> void:
 	if body is Player:
 		print("green slime attacks !")
 		angry = true
 		attack_target = body
 		request_change_state(STATES.JUMP_ATTACK)
+
+
+func _on_trigger_attack_area_body_exited(body: Node2D) -> void:
+	if body is Player:
+		print("green slime 'hides' !")
+		angry = false

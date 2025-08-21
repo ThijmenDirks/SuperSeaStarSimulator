@@ -895,7 +895,7 @@ graph_offset = Vector2(0, 48.0736)
 radius = 6.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tm6jt"]
-radius = 183.18
+radius = 37.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a7g13"]
 radius = 224.377
@@ -1000,11 +1000,11 @@ collision_mask = 256
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
 shape = SubResource("CircleShape2D_1it3l")
 
-[node name="AttackArea" type="Area2D" parent="."]
+[node name="TriggerAttackArea" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 256
+collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerAttackArea"]
 shape = SubResource("CircleShape2D_ioned")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
@@ -1012,4 +1012,5 @@ scale = Vector2(3, 3)
 occluder = SubResource("OccluderPolygon2D_e2bcg")
 
 [connection signal="timeout" from="StateDurationTimer" to="." method="_on_timer_timeout"]
-[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_entered" from="TriggerAttackArea" to="." method="_on_trigger_attack_area_body_entered"]
+[connection signal="body_exited" from="TriggerAttackArea" to="." method="_on_trigger_attack_area_body_exited"]

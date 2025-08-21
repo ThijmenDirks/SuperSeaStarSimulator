@@ -23,7 +23,7 @@ var noise : int
 var max_range : int
 var speed: int
 
-var caster : Object
+var caster: Object
 var origin_position: Vector2
 var direction
 var target_position : Vector2
