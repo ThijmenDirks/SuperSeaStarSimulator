@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://34s80rslfagt"]
+
+[ext_resource type="Script" path="res://scripts/UI_and_the_like/interface.gd" id="1_5asfp"]
+[ext_resource type="PackedScene" path="res://scenes/UI_and_the_like/openkleurenbalkje.tscn" id="2_nmrof"]
+
+[node name="interface" type="CanvasLayer"]
+script = ExtResource("1_5asfp")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="kleurenbalkje" parent="Control" instance=ExtResource("2_nmrof")]
