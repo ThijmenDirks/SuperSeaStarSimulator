@@ -1,3 +1,53 @@
-[gd_scene format=3 uid="uid://dft10dyd38ieo"]
+[gd_scene load_steps=8 format=3 uid="uid://cjfavrdl82vi3"]
 
-[node name="BreakableBlock" type="RigidBody2D"]
+[ext_resource type="Script" path="res://scripts/map/breakable_block.gd" id="1_d3h3u"]
+[ext_resource type="Texture2D" uid="uid://ch3c7gkijntvo" path="res://art/moveblockforest.png" id="2_wprfr"]
+[ext_resource type="Texture2D" uid="uid://b1360w2r0anxr" path="res://art/fireball_anim.png" id="3_8gygd"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7crit"]
+friction = 9.22337e+18
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mvvld"]
+size = Vector2(24, 24)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_vagr6"]
+polygon = PackedVector2Array(0, 0, 12, -12, 12, 12, -12, 12, -12, -12, 12, -12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7nhtw"]
+size = Vector2(25.6, 25.6)
+
+[node name="BreakableBlock" type="StaticBody2D"]
+position = Vector2(-5, 0)
+scale = Vector2(1.25, 1.25)
+disable_mode = 1
+collision_layer = 8200
+collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_7crit")
+script = ExtResource("1_d3h3u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_wprfr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-7.15256e-07, 5.72204e-07)
+shape = SubResource("RectangleShape2D_mvvld")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_vagr6")
+
+[node name="FireballAnim" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_8gygd")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+collision_layer = 8200
+collision_mask = 0
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(1.19209e-06, 9.53674e-07)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_7nhtw")

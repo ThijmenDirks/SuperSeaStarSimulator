@@ -64,7 +64,7 @@ func _on_body_entered(body: Node) -> void:
 	if body == caster:
 		print("hit caster !")
 		return
-	if body is Enemy: # dirty. now shaman cant use it
+	if body is Enemy or body is BreakbleBlock: # dirty. now shaman cant use it
 		body.take_damage(base_damage, damage_type)
 	#if body is MoveableBlock:
 		#body.move_speed = speed

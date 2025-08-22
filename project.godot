@@ -188,6 +188,7 @@ v={
 2d_physics/layer_8="waypoints"
 2d_physics/layer_9="player"
 2d_physics/layer_10="noise"
+2d_physics/layer_14="breakable_block"
 2d_physics/layer_15="can_move_moveable_block"
 2d_physics/layer_16="moveable_block"
 2d_physics/default_linear_damp=0.0

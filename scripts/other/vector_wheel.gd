@@ -35,7 +35,7 @@ func get_most_favourable_direction(desired_vector): # desired_vector should be t
 		if current_raycast.get_collider() is Enemy:
 			danger_array[i] += 1
 			#print("enemy detected")
-		elif current_raycast.get_collider() is Player or OpenWorldPlayer:
+		elif current_raycast.get_collider() is Player:
 			#print("player detected")
 			pass
 		if current_raycast.is_colliding(): # ALERT! must be elif
