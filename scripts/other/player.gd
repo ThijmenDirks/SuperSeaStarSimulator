@@ -2,7 +2,7 @@ class_name Player extends CharacterBody2D
 
 @export var speed = 100
 @export var animation_tree : AnimationTree
-@export var max_hp = 200_
+@export var max_hp = 200_0
 #@export var animation_player : AnimationPlayer
 
 @onready var coyote_timer_to_cast_spell = $CTimerToCastSpell
@@ -26,6 +26,8 @@ var resistances_and_weaknesses : Dictionary
 
 func _ready():
 	SaveSystem.load_data()
+	hp = max_hp # right now i undo all the saved stuff
+
 	#hp_bar.max_value = max_hp
 	#hp_bar.value = hp
 	#playback = animation_tree["parameters/playback"]

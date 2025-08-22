@@ -1,9 +1,9 @@
-[gd_scene load_steps=88 format=3 uid="uid://dvrq0jcv8ld8t"]
+[gd_scene load_steps=88 format=3 uid="uid://d36mrokfs3i2g"]
 
-[ext_resource type="Script" path="res://scripts/enemies/ogre.gd" id="1_7g7vh"]
-[ext_resource type="Texture2D" uid="uid://b860wle2jujie" path="res://art/spridesheet_test_player_V2.png" id="2_sa31f"]
-[ext_resource type="PackedScene" uid="uid://cn2bi5uhlbamd" path="res://scenes/other/vector_wheel.tscn" id="3_vh05c"]
-[ext_resource type="PackedScene" uid="uid://ccmwkars1n0na" path="res://scenes/UI_and_the_like/hp_bar.tscn" id="4_hmltm"]
+[ext_resource type="Script" path="res://scripts/enemies/blink_fey.gd" id="1_8b6yc"]
+[ext_resource type="Texture2D" uid="uid://b860wle2jujie" path="res://art/spridesheet_test_player_V2.png" id="2_lf8vg"]
+[ext_resource type="PackedScene" uid="uid://cn2bi5uhlbamd" path="res://scenes/other/vector_wheel.tscn" id="3_i4y1k"]
+[ext_resource type="PackedScene" uid="uid://ccmwkars1n0na" path="res://scenes/UI_and_the_like/hp_bar.tscn" id="4_o51dn"]
 
 [sub_resource type="Animation" id="Animation_kx0ak"]
 length = 0.001
@@ -854,7 +854,7 @@ transitions = ["Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_
 graph_offset = Vector2(0, 48.0736)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_agn4q"]
-radius = 18.0
+radius = 6.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_st8s6"]
 radius = 224.377
@@ -864,14 +864,14 @@ cull_mode = 1
 polygon = PackedVector2Array(0.5, 0, 0, 0.5, -0.5, 0, 0, -0.5)
 
 [node name="CharacterBody2DG" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree")]
-collision_layer = 541
+collision_layer = 540
 collision_mask = 2
-script = ExtResource("1_7g7vh")
+script = ExtResource("1_8b6yc")
 animation_tree = NodePath("AnimationTree")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("2_sa31f")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_lf8vg")
 hframes = 12
 vframes = 8
 
@@ -926,7 +926,8 @@ debug_use_custom = true
 debug_path_custom_color = Color(1, 0, 0, 1)
 debug_path_custom_line_width = 1.0
 
-[node name="VectorWheel" parent="." instance=ExtResource("3_vh05c")]
+[node name="VectorWheel" parent="." instance=ExtResource("3_i4y1k")]
+scale = Vector2(0.5, 0.5)
 
 [node name="DebugLabel" type="Label" parent="."]
 offset_left = -19.0
@@ -934,7 +935,7 @@ offset_top = -10.0
 offset_right = 21.0
 offset_bottom = 13.0
 
-[node name="HPBar" parent="." instance=ExtResource("4_hmltm")]
+[node name="HPBar" parent="." instance=ExtResource("4_o51dn")]
 offset_left = -10.0
 offset_top = -22.0
 offset_right = 118.0
@@ -945,6 +946,12 @@ rotation = 3.14159
 scale = Vector2(16, 16)
 occluder = SubResource("OccluderPolygon2D_4tvk2")
 
+[node name="BlinkTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
 [connection signal="timeout" from="StateDurationTimer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="VisionField" to="." method="singal_test"]
 [connection signal="body_entered" from="VisionField" to="." method="_on_vision_field_body_entered"]
+[connection signal="timeout" from="BlinkTimer" to="." method="_on_blink_timer_timeout"]

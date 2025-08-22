@@ -33,6 +33,7 @@ text = "label"
 [node name="HPStars" type="Node2D" parent="Control"]
 
 [node name="StarTemphealthSprite" parent="Control/HPStars" instance=ExtResource("3_epcvx")]
+position = Vector2(592, 37)
 
 [node name="StarTemphealthSprite2" parent="Control/HPStars" instance=ExtResource("3_epcvx")]
 position = Vector2(617, 59)

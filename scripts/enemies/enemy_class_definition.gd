@@ -318,15 +318,17 @@ func pathfind_state(delta, phase : String = "running"):
 func melee_attack_state(delta, phase : String = "running"):#, target : Object = null):
 	match phase:
 		"enter":
-			print("STATES.MELEE_ATTACK ENTER")	
+			print("STATES.MELEE_ATTACK ENTER")
 			debug_label.set_text("MELEE_ATTACK")
+			print("enemy begins attack ! for ", attack_damage,  " damage !")
 			var backup_speed = speed
 			#speed = 0 # this is not needen anymore, sice not calling move() is sufficient. # + setting speed to 0 makes enemies face right when casting, which is weird
 			state_is_locked = true
 			await get_tree().create_timer(attack_speed).timeout # this one is okay. since the state is locked, it cant cause spontaneous state changing
 			if self.global_position.distance_to(attack_target.global_position) < melee_range:
-				print("enemy attacks !  ", attack_target)
+				print("attack ! target has ", attack_target.hp, " hp !")
 				attack_target.take_damage(attack_damage, "physical") # "physical" should, ofc, be replaced with some var
+				print("enemy finished attack !  on ", attack_target, " target now has ", attack_target.hp, " hp !")
 			speed = backup_speed
 			state_is_locked = false
 			print("last state  ", get_last_state())
