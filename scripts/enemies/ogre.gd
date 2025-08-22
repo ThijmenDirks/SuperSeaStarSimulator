@@ -12,10 +12,10 @@ func _ready() -> void:
 	speed = base_speed
 	look_for_player_area = $LookForPlayerArea
 	#timer.start(1)
-	attack_damage = 50
-	chase_end_distance = 30
-	melee_range = 20
-	attack_speed = 0.5
+	attack_damage = 110
+	chase_end_distance = 40
+	melee_range = 55
+	attack_speed = 0.75
 	max_hp = 500
 	hp = max_hp
 

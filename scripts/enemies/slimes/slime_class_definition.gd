@@ -16,7 +16,7 @@ var jump_duration = 1.5 # in sec
 func _physics_process(delta: float) -> void:
 	var bodies_in_damage_area = damage_area.get_overlapping_bodies()
 	for body in bodies_in_damage_area: # right now this for loop is not really needed, cause the CollisionLayers only target player
-		if body is Player:
+		if body is Player and randi_range(1, 2) == 1 : # should make this into vars
 			body.take_damage(attack_damage, "acid") # might replace it with "damage_type", which then will be set in each slime. # or even set it here as acid andthe nin the rare few slimes that dont deal acid damage set it there again
 
 

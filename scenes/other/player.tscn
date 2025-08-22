@@ -866,6 +866,7 @@ collision_layer = 16708
 collision_mask = 2
 script = ExtResource("1_60osi")
 animation_tree = NodePath("AnimationTree")
+max_hp = 200
 
 [node name="Interface" parent="." instance=ExtResource("3_ksrdk")]
 

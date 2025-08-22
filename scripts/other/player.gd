@@ -2,7 +2,7 @@ class_name Player extends CharacterBody2D
 
 @export var speed = 100
 @export var animation_tree : AnimationTree
-@export var max_hp = 200_
+@export var max_hp = 200_0
 #@export var animation_player : AnimationPlayer
 
 @onready var coyote_timer_to_cast_spell = $CTimerToCastSpell
@@ -15,17 +15,19 @@ var game_over_screen = load("res://scenes/UI_and_the_like/game_over_screen.tscn"
 var spell_database = SpellDatabase
 var input : Vector2
 #var playback : AnimationNodeStateMachinePlayback
-var keys_for_spellcasting = ["q", "w", "r", "z", "x", "c","f","shift","control","left_mouse_click","right_mouse_click","shift_left_mouse_click","shift_right_mouse_click"]
+var keys_for_spellcasting = ["q", "w", "r", "z", "x", "c","f", "v", "shift","control","left_mouse_click","right_mouse_click","shift_left_mouse_click","shift_right_mouse_click"]
 var ESDF = ["up","left","down","right"]
 var current_spell_input = []
 var input_pressed_almost_simoultaniously = ""
-var equiped_spells = ["fireball", "heal", "chain_lightning", "disintegrate", "magic_missile"]
+var equiped_spells = ["fireball", "heal", "chain_lightning", "disintegrate", "magic_missile", "teleport"]
 var is_casting = false
 var resistances_and_weaknesses : Dictionary
 
 
 func _ready():
 	SaveSystem.load_data()
+	hp = max_hp # right now i undo all the saved stuff
+
 	#hp_bar.max_value = max_hp
 	#hp_bar.value = hp
 	#playback = animation_tree["parameters/playback"]

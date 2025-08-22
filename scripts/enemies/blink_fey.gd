@@ -3,11 +3,14 @@ extends Enemy
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
+var blink_visible_duration: int = 5
+var blink_invisible_duration: int = 3
+@onready var blink_timer: Timer = $BlinkTimer
+
 @export var animation_tree : AnimationTree
 
 #@onready var timer = $Timer
 
-# melee_range > chase_end_distance
 func _ready() -> void:
 	base_speed = 45 # 50 # 45
 	speed = base_speed
@@ -55,10 +58,10 @@ func request_change_state(new_state):
 
 
 func change_state(new_state):
+	state_duration_timer.stop()
 # right now im changing state here, but might do that in state funcionts self because of on_stae("exit"): state = state.last # i dont think so..
 	if state_is_locked:
 		return
-	state_duration_timer.stop()
 	state_history.append(state)
 	match new_state:
 		STATES.IDLE_STAND:
@@ -77,16 +80,6 @@ func change_state(new_state):
 			melee_attack_state(0, "enter")
 			state = STATES.MELEE_ATTACK
 
-	#if state == STATES.IDLE_STAND:
-		#state = STATES.IDLE_WALK
-		#idle_walk(0, "enter")
-		#rotate_vision_field()
-		#timer.start(3)
-	#elif state == STATES.IDLE_WALK:
-		#state = STATES.IDLE_STAND
-		#idle_stand() # ?
-		#timer.start(2)
-
 
 func update_animation_parameters():
 	if velocity == Vector2.ZERO:
@@ -96,20 +89,14 @@ func update_animation_parameters():
 	animation_tree["parameters/IdleCast/blend_position"] = velocity
 	animation_tree["parameters/WalkCast/blend_position"] = velocity
 
-# dit spul moet wel weer aan
-#func _on_timer_timeout() -> void:
-	#match state:
-		#STATES.IDLE_STAND:
-			#change_state(STATES.IDLE_WALK)
-		#STATES.IDLE_WALK:
-			#change_state(STATES.IDLE_STAND)
-	#timer.start(randi_range(1,5)) # dit moet eigenlijk in WALK, IDLE, ETC
 
-
-#func _on_vision_field_body_entered(body: Node2D) -> void:
-	#if body is Player:
-		#if look_for_player_in_vision_field(body):
-			#chase_target = body
-			#change_state(STATES.CHASE)
-# this does not work when the players is in visionfield but there is a wall between them,
-# casuse when the wall is gone but the player didnt left the visionField, ithis wont trigger again.
+func _on_blink_timer_timeout() -> void:
+	print("blink_fey")
+	if visible:
+		print("blink_fey goes invis")
+		visible = false
+		blink_timer.start(blink_invisible_duration)
+	else:
+		print("blink_fey goes VIS !")
+		visible = true
+		blink_timer.start(blink_visible_duration)

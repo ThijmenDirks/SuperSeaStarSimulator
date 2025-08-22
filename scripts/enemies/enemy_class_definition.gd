@@ -43,7 +43,7 @@ var rng = RandomNumberGenerator.new()
 var look_for_player_area : Area2D
 var spell_heard
 var waypoint_area : Area2D
-var steering_constant = 2
+var steering_constant = 4
 var steerong_force
 var desired_walk_direction
 var chase_end_distance: int
@@ -142,10 +142,13 @@ func _process(delta: float) -> void:
 
 
 func process_bodies_in_vision_field(): # i think i just want this in every enemy.
+	print("help")
 	player_in_vision_field = false
 	enemy_in_vision_field = false
 	spell_in_vision_field = false
+	something_in_vision_field = false
 	var bodies_in_vision_field = get_bodies_in_vision_field()
+	print("helppp ", get_bodies_in_vision_field())
 	#print("on_something_in_vision_field 0   ", bodies_in_vision_field)
 	for body in bodies_in_vision_field:
 		if body is Player:
@@ -157,8 +160,12 @@ func process_bodies_in_vision_field(): # i think i just want this in every enemy
 		if body is Spell:
 			spell_in_vision_field = body
 			something_in_vision_field = true
-		if something_in_vision_field:
-			on_something_in_vision_field(bodies_in_vision_field)
+	print("helpppp", player_in_vision_field)
+	if something_in_vision_field:
+		on_something_in_vision_field(bodies_in_vision_field)
+	else:
+		print("nothing in vision_field")
+		angry = false
 
 
 func on_something_in_vision_field(bodies : Array):
@@ -311,15 +318,17 @@ func pathfind_state(delta, phase : String = "running"):
 func melee_attack_state(delta, phase : String = "running"):#, target : Object = null):
 	match phase:
 		"enter":
-			print("STATES.MELEE_ATTACK ENTER")	
+			print("STATES.MELEE_ATTACK ENTER")
 			debug_label.set_text("MELEE_ATTACK")
+			print("enemy begins attack ! for ", attack_damage,  " damage !")
 			var backup_speed = speed
 			#speed = 0 # this is not needen anymore, sice not calling move() is sufficient. # + setting speed to 0 makes enemies face right when casting, which is weird
 			state_is_locked = true
 			await get_tree().create_timer(attack_speed).timeout # this one is okay. since the state is locked, it cant cause spontaneous state changing
 			if self.global_position.distance_to(attack_target.global_position) < melee_range:
-				print("enemy attacks !  ", attack_target)
+				print("attack ! target has ", attack_target.hp, " hp !")
 				attack_target.take_damage(attack_damage, "physical") # "physical" should, ofc, be replaced with some var
+				print("enemy finished attack !  on ", attack_target, " target now has ", attack_target.hp, " hp !")
 			speed = backup_speed
 			state_is_locked = false
 			print("last state  ", get_last_state())
@@ -384,17 +393,23 @@ func casting_state(spell : String = "", target : Vector2 = Vector2.ZERO, phase :
 func jump_attack_state(delta : float, time : float = 0.0, phase : String = "running"):
 	match phase:
 		"enter":
+			print("jump_attack test 1")
 			state_is_locked = true # might want to make a fancy func for this ? "statelocking" sounds cool
 			jump_attack_target = attack_target
 			jump_attack_target_position = jump_attack_target.global_position + Vector2(randi_range(-5, 5), randi_range(-5, 5))
 			speed = base_speed * 2
 			state_duration_timer.start(time)
+			print("jump_attack test 2")
 			await state_duration_timer.timeout
 			print("slime idle")
 			state_is_locked = false
+			print("jump_attack test 3")
 			request_change_state(STATES.IDLE_WALK)
+			print("slime is in state  ", state)
+			print("testtest")
+			print("jump_attack test 4")
 		"running":
-			print("slime is jump_attacking")
+			print("slime is jump_attacking", randf())
 			#desired_walk_direction = get_local_mouse_position() # thisl ine is just for debugging
 			#move(desired_walk_direction, delta)
 
