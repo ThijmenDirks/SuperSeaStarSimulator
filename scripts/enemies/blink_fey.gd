@@ -95,8 +95,8 @@ func _on_blink_timer_timeout() -> void:
 	if visible:
 		print("blink_fey goes invis")
 		visible = false
-		blink_timer.start(blink_invisible_duration)
+		blink_timer.start(blink_invisible_duration + randf_range(-2, 2))
 	else:
 		print("blink_fey goes VIS !")
 		visible = true
-		blink_timer.start(blink_visible_duration)
+		blink_timer.start(blink_visible_duration + randf_range(-2, 2))

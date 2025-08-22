@@ -120,8 +120,8 @@ func _on_trigger_attack_area_body_entered(body: Node2D) -> void:
 	if body is Player:
 		print("green slime attacks !")
 		angry = true
-		attack_target = body
-		request_change_state(STATES.JUMP_ATTACK)
+		#attack_target = body
+		#request_change_state(STATES.JUMP_ATTACK)
 
 
 func _on_trigger_attack_area_body_exited(body: Node2D) -> void:
