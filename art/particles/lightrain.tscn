@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://og05ime0et10"]
+
+[ext_resource type="Texture2D" uid="uid://yg15vmikl5t" path="res://art/particle textures/rainparticletexure.png" id="1_808ff"]
+
+[node name="Lightrain" type="CPUParticles2D"]
+z_index = 10
+amount = 760
+texture = ExtResource("1_808ff")
+emission_shape = 3
+emission_rect_extents = Vector2(2000, 2000)
+gravity = Vector2(-60, 730)
+angular_velocity_min = -60.0
+color = Color(0.0117647, 0.898039, 1, 0.631373)

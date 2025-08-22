@@ -32,12 +32,15 @@ window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="viewport"
 window/stretch/aspect="ignore"
+mouse_cursor/custom_image="res://art/tempcursortest.png"
+mouse_cursor/custom_image_hotspot=Vector2(8, 8)
 
 [file_customization]
 
 folder_colors={
 "res://art/particle textures/": "blue",
 "res://art/particles/": "teal",
+"res://scenes/levels/open_world_mode/desert1/": "yellow",
 "res://scenes/levels/open_world_mode/forest1start/": "green",
 "res://scripts/map/open_world_stuff/": "teal",
 "res://scripts/particles/": "teal"
