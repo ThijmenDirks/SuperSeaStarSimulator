@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://d1w6wngk86xbr"]
+[gd_scene load_steps=5 format=3 uid="uid://d1w6wngk86xbr"]
 
 [ext_resource type="Script" path="res://scripts/spells/beam.gd" id="1_gwm08"]
 [ext_resource type="Texture2D" uid="uid://eny37osmjycx" path="res://icon.svg" id="2_5bf75"]
@@ -9,10 +9,9 @@ friction = 0.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iaefa"]
 size = Vector2(10, 5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uawmp"]
-size = Vector2(398, 41)
-
 [node name="Beam" type="RigidBody2D" node_paths=PackedStringArray("line_pivot")]
+collision_layer = 0
+collision_mask = 0
 physics_material_override = SubResource("PhysicsMaterial_msydb")
 custom_integrator = true
 script = ExtResource("1_gwm08")
@@ -24,6 +23,8 @@ points = PackedVector2Array(0, 0, 10, 0)
 width = 5.0
 
 [node name="Area2D" type="Area2D" parent="Line2D"]
+collision_layer = 32
+collision_mask = 8476
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Line2D/Area2D"]
 position = Vector2(5, 0)
@@ -31,18 +32,6 @@ shape = SubResource("RectangleShape2D_iaefa")
 
 [node name="Sprite2D" type="Sprite2D" parent="Line2D"]
 visible = false
-texture = ExtResource("2_5bf75")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(387, 308)
-shape = SubResource("RectangleShape2D_uawmp")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
-position = Vector2(388, 308.25)
-scale = Vector2(3.10938, 0.324219)
 texture = ExtResource("2_5bf75")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]

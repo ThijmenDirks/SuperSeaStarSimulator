@@ -1,5 +1,5 @@
 
-class_name BreakbleBlock extends StaticBody2D
+class_name BreakableBlock extends StaticBody2D
 
 
 var resistances_and_weaknesses: Dictionary

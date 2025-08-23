@@ -20,7 +20,7 @@ size = Vector2(25.6, 25.6)
 position = Vector2(-5, 0)
 scale = Vector2(1.25, 1.25)
 disable_mode = 1
-collision_layer = 8200
+collision_layer = 8194
 collision_mask = 0
 physics_material_override = SubResource("PhysicsMaterial_7crit")
 script = ExtResource("1_d3h3u")
@@ -41,7 +41,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_8gygd")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
-collision_layer = 8200
+collision_layer = 8210
 collision_mask = 0
 gravity_scale = 0.0
 contact_monitor = true
@@ -49,5 +49,4 @@ max_contacts_reported = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 position = Vector2(1.19209e-06, 9.53674e-07)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_7nhtw")

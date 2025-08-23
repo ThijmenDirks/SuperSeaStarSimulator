@@ -90,12 +90,12 @@ metadata/_snap_enabled = true
 
 [node name="Fireball" type="RigidBody2D"]
 collision_layer = 16416
-collision_mask = 270
+collision_mask = 8462
 physics_material_override = SubResource("PhysicsMaterial_roufs")
 gravity_scale = 0.0
 custom_integrator = true
 contact_monitor = true
-max_contacts_reported = 1
+max_contacts_reported = 5
 linear_damp_mode = 1
 angular_damp_mode = 1
 script = ExtResource("1_xhdr4")

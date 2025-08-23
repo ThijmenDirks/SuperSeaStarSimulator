@@ -4,6 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://d1w6wngk86xbr" path="res://scenes/spells/beam.tscn" id="2_pkxyv"]
 
 [node name="Disintegrate" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 0
 mass = 0.001
 custom_integrator = true
 script = ExtResource("1_q7nbf")
