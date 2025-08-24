@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvlf1fq3assgd"]
+
+[ext_resource type="TileSet" uid="uid://ch01sy32qq7w2" path="res://art/tilesets/flayer1.tres" id="1_wi3py"]
+[ext_resource type="TileSet" uid="uid://0nc4alojvvx7" path="res://art/tilesets/flayerb.tres" id="2_ljypd"]
+
+[node name="CopyPasteLayers" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_set = ExtResource("1_wi3py")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="TileMapLayer"]
+tile_set = ExtResource("2_ljypd")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="TileMapLayer/TileMapLayer"]
+tile_set = ExtResource("2_ljypd")
+
+[node name="Spawns" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="Spawns"]

@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://dis72yxspt3b6"]
+
+[sub_resource type="Curve" id="Curve_pvfq1"]
+min_value = 1.49
+max_value = 7.2
+_data = [Vector2(0.325843, 1.49), 0.0, -0.587843, 0, 0, Vector2(0.617977, 1.80374), 2.90763, 2.90763, 0, 0, Vector2(0.820225, 2.61945), 2.96561, 2.96561, 0, 0, Vector2(0.938202, 2.99593), 5.75946, 5.75946, 0, 0, Vector2(0.983146, 4.18813), 0.0, 0.0, 0, 0, Vector2(0.99999, 4.87835), 0.0, 0.0, 0, 0, Vector2(1, 7.2), 0.0, 0.0, 0, 0]
+point_count = 7
+
+[sub_resource type="Gradient" id="Gradient_bpvog"]
+offsets = PackedFloat32Array(0, 0.546667, 1)
+colors = PackedColorArray(0.893653, 0.866399, 0.488468, 1, 0.704617, 0.695074, 0.441316, 1, 0.394194, 0.38285, 0.218351, 1)
+
+[node name="Sandstorm" type="CPUParticles2D"]
+amount = 50000
+lifetime = 15.0
+preprocess = 1.0
+speed_scale = 0.35
+explosiveness = 0.07
+randomness = 0.28
+emission_shape = 3
+emission_rect_extents = Vector2(5000, 5000)
+spread = 180.0
+gravity = Vector2(5600, 980)
+initial_velocity_min = 30.3
+initial_velocity_max = 101.01
+angular_velocity_min = -174.55
+angular_velocity_max = 174.55
+orbit_velocity_min = -0.01
+orbit_velocity_max = 0.01
+linear_accel_min = 10.6
+linear_accel_max = 32.82
+scale_amount_min = 3.0
+scale_amount_max = 14.0
+scale_amount_curve = SubResource("Curve_pvfq1")
+color = Color(0.577008, 0.577008, 0.577008, 1)
+color_ramp = SubResource("Gradient_bpvog")
+hue_variation_min = -0.18
+hue_variation_max = 0.22
