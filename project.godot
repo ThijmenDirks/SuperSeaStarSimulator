@@ -33,8 +33,6 @@ window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="viewport"
 window/stretch/aspect="ignore"
-mouse_cursor/custom_image="res://art/tempcursortest.png"
-mouse_cursor/custom_image_hotspot=Vector2(8, 8)
 
 [file_customization]
 

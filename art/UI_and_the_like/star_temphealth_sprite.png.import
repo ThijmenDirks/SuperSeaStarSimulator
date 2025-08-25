@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwag8ua6ahaco"
-path="res://.godot/imported/mana_thingy_green_hue_tileset.png-e2fb4f431d5d5477c6a7d7c31704e904.ctex"
+uid="uid://cqb6wp4bjrxil"
+path="res://.godot/imported/star_temphealth_sprite.png-741971b6ce88366ba0ad33a7ff451ea7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/mana_thingy_green_hue_tileset.png"
-dest_files=["res://.godot/imported/mana_thingy_green_hue_tileset.png-e2fb4f431d5d5477c6a7d7c31704e904.ctex"]
+source_file="res://art/UI_and_the_like/star_temphealth_sprite.png"
+dest_files=["res://.godot/imported/star_temphealth_sprite.png-741971b6ce88366ba0ad33a7ff451ea7.ctex"]
 
 [params]
 

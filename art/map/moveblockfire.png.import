@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckodus5b5wurl"
-path="res://.godot/imported/moveblockunderwater.png-d8b3120d1e72efdfb40b438b5d87509f.ctex"
+uid="uid://ba8fbsk472myi"
+path="res://.godot/imported/moveblockfire.png-14048e9bbca25c3aec321a1f4038baac.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/moveblockunderwater.png"
-dest_files=["res://.godot/imported/moveblockunderwater.png-d8b3120d1e72efdfb40b438b5d87509f.ctex"]
+source_file="res://art/map/moveblockfire.png"
+dest_files=["res://.godot/imported/moveblockfire.png-14048e9bbca25c3aec321a1f4038baac.ctex"]
 
 [params]
 

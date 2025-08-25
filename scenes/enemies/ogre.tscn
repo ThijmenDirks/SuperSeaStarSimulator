@@ -1,7 +1,7 @@
 [gd_scene load_steps=88 format=3 uid="uid://dvrq0jcv8ld8t"]
 
 [ext_resource type="Script" path="res://scripts/enemies/ogre.gd" id="1_7g7vh"]
-[ext_resource type="Texture2D" uid="uid://b860wle2jujie" path="res://art/spridesheet_test_player_V2.png" id="2_sa31f"]
+[ext_resource type="Texture2D" uid="uid://b860wle2jujie" path="res://art/other/spridesheet_test_player_V2.png" id="2_sa31f"]
 [ext_resource type="PackedScene" uid="uid://cn2bi5uhlbamd" path="res://scenes/other/vector_wheel.tscn" id="3_vh05c"]
 [ext_resource type="PackedScene" uid="uid://ccmwkars1n0na" path="res://scenes/UI_and_the_like/hp_bar.tscn" id="4_hmltm"]
 

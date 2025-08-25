@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://cunitmhjmor4t"]
 
 [ext_resource type="Script" path="res://scripts/spells/fireball.gd" id="1_xhdr4"]
-[ext_resource type="Texture2D" uid="uid://b1360w2r0anxr" path="res://art/fireball_anim.png" id="2_6cebx"]
+[ext_resource type="Texture2D" uid="uid://b1360w2r0anxr" path="res://art/spells/fireball_anim.png" id="2_6cebx"]
 [ext_resource type="PackedScene" uid="uid://v0aatipnaxbi" path="res://art/particles/fireball_explode.tscn" id="2_rwb02"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_roufs"]

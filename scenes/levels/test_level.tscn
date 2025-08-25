@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://scripts/map/day_night.gd" id="10_l10il"]
 [ext_resource type="TileSet" uid="uid://ch01sy32qq7w2" path="res://art/tilesets/flayer1.tres" id="10_r1s6n"]
 [ext_resource type="TileSet" uid="uid://0nc4alojvvx7" path="res://art/tilesets/flayerb.tres" id="11_6txpj"]
-[ext_resource type="Texture2D" uid="uid://qreksclpirx0" path="res://art/feesh.png" id="11_bw2pn"]
+[ext_resource type="Texture2D" uid="uid://qreksclpirx0" path="res://art/other/feesh.png" id="11_bw2pn"]
 [ext_resource type="PackedScene" uid="uid://qchn08qp8wt0" path="res://scenes/map/sign.tscn" id="13_g0f83"]
 [ext_resource type="PackedScene" uid="uid://cjfavrdl82vi3" path="res://scenes/map/breakable_block.tscn" id="13_ij83k"]
 

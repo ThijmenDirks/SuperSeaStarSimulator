@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dviqcwdfuba4q"
-path="res://.godot/imported/moveblockice.png-207597f3604e15f36d22085adca7e14d.ctex"
+uid="uid://b1360w2r0anxr"
+path="res://.godot/imported/fireball_anim.png-553f9264b5a0fb417582d26a240f6d62.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/moveblockice.png"
-dest_files=["res://.godot/imported/moveblockice.png-207597f3604e15f36d22085adca7e14d.ctex"]
+source_file="res://art/spells/fireball_anim.png"
+dest_files=["res://.godot/imported/fireball_anim.png-553f9264b5a0fb417582d26a240f6d62.ctex"]
 
 [params]
 

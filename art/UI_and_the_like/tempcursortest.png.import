@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dlq1nf6cphhon"
-path="res://.godot/imported/sign_single.png-b694deebd7308f39711d0eecd0104155.ctex"
+uid="uid://4ebmw2hsjxg1"
+path="res://.godot/imported/tempcursortest.png-1a137fc207723c2fa339cc85c4be12b9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/sign_single.png"
-dest_files=["res://.godot/imported/sign_single.png-b694deebd7308f39711d0eecd0104155.ctex"]
+source_file="res://art/UI_and_the_like/tempcursortest.png"
+dest_files=["res://.godot/imported/tempcursortest.png-1a137fc207723c2fa339cc85c4be12b9.ctex"]
 
 [params]
 

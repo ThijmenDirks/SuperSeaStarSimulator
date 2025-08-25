@@ -1,10 +1,10 @@
 [gd_scene load_steps=89 format=3 uid="uid://bolg702rb3vex"]
 
 [ext_resource type="Script" path="res://scripts/enemies/mummy.gd" id="1_gy503"]
-[ext_resource type="Texture2D" uid="uid://b860wle2jujie" path="res://art/spridesheet_test_player_V2.png" id="2_r2dus"]
+[ext_resource type="Texture2D" uid="uid://b860wle2jujie" path="res://art/other/spridesheet_test_player_V2.png" id="2_r2dus"]
 [ext_resource type="PackedScene" uid="uid://cn2bi5uhlbamd" path="res://scenes/other/vector_wheel.tscn" id="3_e3jk8"]
 [ext_resource type="PackedScene" uid="uid://ccmwkars1n0na" path="res://scenes/UI_and_the_like/hp_bar.tscn" id="4_u3yuo"]
-[ext_resource type="Texture2D" uid="uid://b1360w2r0anxr" path="res://art/fireball_anim.png" id="5_lrvo7"]
+[ext_resource type="Texture2D" uid="uid://b1360w2r0anxr" path="res://art/spells/fireball_anim.png" id="5_lrvo7"]
 
 [sub_resource type="Animation" id="Animation_kx0ak"]
 length = 0.001

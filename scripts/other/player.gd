@@ -2,7 +2,7 @@ class_name Player extends CharacterBody2D
 
 @export var speed = 100
 @export var animation_tree : AnimationTree
-@export var max_hp = 200_0
+@export var max_hp = 200_
 #@export var animation_player : AnimationPlayer
 
 @onready var coyote_timer_to_cast_spell = $CTimerToCastSpell

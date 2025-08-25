@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://bwlk4kny0dg1x"]
 
 [ext_resource type="Script" path="res://scripts/spells/magic_missile/magic_missile_bullet.gd" id="1_4c2lc"]
-[ext_resource type="Texture2D" uid="uid://qreksclpirx0" path="res://art/feesh.png" id="2_exviv"]
+[ext_resource type="Texture2D" uid="uid://qreksclpirx0" path="res://art/other/feesh.png" id="2_exviv"]
 [ext_resource type="Texture2D" uid="uid://eny37osmjycx" path="res://icon.svg" id="3_q0bja"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_roufs"]

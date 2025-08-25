@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://cjfavrdl82vi3"]
 
 [ext_resource type="Script" path="res://scripts/map/breakable_block.gd" id="1_d3h3u"]
-[ext_resource type="Texture2D" uid="uid://ch3c7gkijntvo" path="res://art/moveblockforest.png" id="2_wprfr"]
-[ext_resource type="Texture2D" uid="uid://b1360w2r0anxr" path="res://art/fireball_anim.png" id="3_8gygd"]
+[ext_resource type="Texture2D" uid="uid://ch3c7gkijntvo" path="res://art/map/moveblockforest.png" id="2_wprfr"]
+[ext_resource type="Texture2D" uid="uid://b1360w2r0anxr" path="res://art/spells/fireball_anim.png" id="3_8gygd"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7crit"]
 friction = 9.22337e+18

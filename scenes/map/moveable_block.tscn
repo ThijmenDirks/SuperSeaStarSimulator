@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://c25a8toq0den5"]
 
 [ext_resource type="Script" path="res://scripts/map/moveable_block.gd" id="1_qma3u"]
-[ext_resource type="Texture2D" uid="uid://ch3c7gkijntvo" path="res://art/moveblockforest.png" id="2_wqyy1"]
+[ext_resource type="Texture2D" uid="uid://ch3c7gkijntvo" path="res://art/map/moveblockforest.png" id="2_wqyy1"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7crit"]
 friction = 9.22337e+18

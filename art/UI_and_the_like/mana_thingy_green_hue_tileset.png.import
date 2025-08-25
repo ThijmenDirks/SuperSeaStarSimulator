@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o8r1qevqpwd8"
-path="res://.godot/imported/moveblockvoid.png-ed48588ea23a0ad1729f356b4e44f481.ctex"
+uid="uid://bwag8ua6ahaco"
+path="res://.godot/imported/mana_thingy_green_hue_tileset.png-c27bdeeccc2bd7ee2009e93012f7f84b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/moveblockvoid.png"
-dest_files=["res://.godot/imported/moveblockvoid.png-ed48588ea23a0ad1729f356b4e44f481.ctex"]
+source_file="res://art/UI_and_the_like/mana_thingy_green_hue_tileset.png"
+dest_files=["res://.godot/imported/mana_thingy_green_hue_tileset.png-c27bdeeccc2bd7ee2009e93012f7f84b.ctex"]
 
 [params]
 

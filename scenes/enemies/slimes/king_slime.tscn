@@ -1,7 +1,7 @@
 [gd_scene load_steps=96 format=3 uid="uid://bot1dgu6rriso"]
 
 [ext_resource type="Script" path="res://scripts/enemies/bosses/king_slime.gd" id="1_air7p"]
-[ext_resource type="Texture2D" uid="uid://b860wle2jujie" path="res://art/spridesheet_test_player_V2.png" id="2_s0gvw"]
+[ext_resource type="Texture2D" uid="uid://b860wle2jujie" path="res://art/other/spridesheet_test_player_V2.png" id="2_s0gvw"]
 [ext_resource type="Texture2D" uid="uid://dtlu5kac5vxvs" path="res://art/enemy sprites/angy_slime_king.png" id="4_lyevn"]
 [ext_resource type="PackedScene" uid="uid://ccmwkars1n0na" path="res://scenes/UI_and_the_like/hp_bar.tscn" id="5_j2fpg"]
 [ext_resource type="PackedScene" uid="uid://cn2bi5uhlbamd" path="res://scenes/other/vector_wheel.tscn" id="6_46usb"]

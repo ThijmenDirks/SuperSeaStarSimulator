@@ -1,7 +1,7 @@
 [gd_scene load_steps=89 format=3 uid="uid://ck2m5p8udncwb"]
 
 [ext_resource type="Script" path="res://scripts/other/openworldplayer.gd" id="1_fepmt"]
-[ext_resource type="Texture2D" uid="uid://b860wle2jujie" path="res://art/spridesheet_test_player_V2.png" id="3_hn42m"]
+[ext_resource type="Texture2D" uid="uid://b860wle2jujie" path="res://art/other/spridesheet_test_player_V2.png" id="3_hn42m"]
 [ext_resource type="PackedScene" uid="uid://34s80rslfagt" path="res://scenes/UI_and_the_like/winterface.tscn" id="4_3s56c"]
 [ext_resource type="PackedScene" uid="uid://ccmwkars1n0na" path="res://scenes/UI_and_the_like/hp_bar.tscn" id="4_btexk"]
 [ext_resource type="Script" path="res://scripts/UI_and_the_like/winterface.gd" id="5_ch7lt"]

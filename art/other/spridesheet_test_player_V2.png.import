@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ba8fbsk472myi"
-path="res://.godot/imported/moveblockfire.png-1e2cd5bcf51ea75e506130f95d439071.ctex"
+uid="uid://b860wle2jujie"
+path="res://.godot/imported/spridesheet_test_player_V2.png-dfe80c781e8c923d6cdd8be8e1ff8997.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/moveblockfire.png"
-dest_files=["res://.godot/imported/moveblockfire.png-1e2cd5bcf51ea75e506130f95d439071.ctex"]
+source_file="res://art/other/spridesheet_test_player_V2.png"
+dest_files=["res://.godot/imported/spridesheet_test_player_V2.png-dfe80c781e8c923d6cdd8be8e1ff8997.ctex"]
 
 [params]
 

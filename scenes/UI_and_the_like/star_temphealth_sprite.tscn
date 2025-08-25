@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ru6tajmrjcet"]
 
-[ext_resource type="Texture2D" uid="uid://cqb6wp4bjrxil" path="res://art/star_temphealth_sprite.png" id="1_82lk3"]
+[ext_resource type="Texture2D" uid="uid://cqb6wp4bjrxil" path="res://art/UI_and_the_like/star_temphealth_sprite.png" id="1_82lk3"]
 
 [node name="StarTemphealthSprite" type="Sprite2D"]
 texture = ExtResource("1_82lk3")

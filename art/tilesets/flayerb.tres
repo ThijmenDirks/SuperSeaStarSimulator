@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=3 format=3 uid="uid://0nc4alojvvx7"]
 
-[ext_resource type="Texture2D" uid="uid://dmr8tl7oqgbdg" path="res://art/tilesetv7_mega_update.png" id="1_mgxej"]
+[ext_resource type="Texture2D" uid="uid://dmr8tl7oqgbdg" path="res://art/tilesets/tilesetv7_mega_update.png" id="1_mgxej"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_plqtc"]
 resource_name = "background_mix"

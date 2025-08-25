@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ch3c7gkijntvo"
-path="res://.godot/imported/moveblockforest.png-862616f3da3242b3a4277814990f2521.ctex"
+uid="uid://dviqcwdfuba4q"
+path="res://.godot/imported/moveblockice.png-1942b0d64c5f61eebaf0e2cf2ce54dd3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/moveblockforest.png"
-dest_files=["res://.godot/imported/moveblockforest.png-862616f3da3242b3a4277814990f2521.ctex"]
+source_file="res://art/map/moveblockice.png"
+dest_files=["res://.godot/imported/moveblockice.png-1942b0d64c5f61eebaf0e2cf2ce54dd3.ctex"]
 
 [params]
 

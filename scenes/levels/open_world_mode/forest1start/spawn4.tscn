@@ -3,11 +3,11 @@
 [ext_resource type="Script" path="res://scripts/map/open_world_stuff/load_room.gd" id="1_2bigf"]
 [ext_resource type="TileSet" uid="uid://ch01sy32qq7w2" path="res://art/tilesets/flayer1.tres" id="1_tmypp"]
 [ext_resource type="TileSet" uid="uid://0nc4alojvvx7" path="res://art/tilesets/flayerb.tres" id="2_xx2us"]
-[ext_resource type="PackedScene" uid="uid://og05ime0et10" path="res://art/particles/lightrain.tscn" id="3_o7xps"]
+[ext_resource type="PackedScene" path="res://art/particles/lightrain.tscn" id="3_o7xps"]
 [ext_resource type="PackedScene" uid="uid://reit1f4jthf3" path="res://scenes/enemies/slimes/blue_slime.tscn" id="4_sp2xq"]
 [ext_resource type="PackedScene" uid="uid://ciu03g4mjuxs2" path="res://scenes/enemies/slimes/green_slime.tscn" id="5_psw6a"]
 [ext_resource type="Script" path="res://scripts/map/open_world_stuff/spawn_zones.gd" id="6_ra0qe"]
-[ext_resource type="Texture2D" uid="uid://qreksclpirx0" path="res://art/feesh.png" id="8_y0ye1"]
+[ext_resource type="Texture2D" uid="uid://qreksclpirx0" path="res://art/other/feesh.png" id="8_y0ye1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_opugn"]
 

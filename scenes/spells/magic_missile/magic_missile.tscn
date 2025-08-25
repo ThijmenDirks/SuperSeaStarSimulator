@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b13n5jbc4wi4n"]
 
 [ext_resource type="Script" path="res://scripts/spells/magic_missile/magic_missile.gd" id="1_0vqqf"]
-[ext_resource type="Texture2D" uid="uid://qreksclpirx0" path="res://art/feesh.png" id="2_h8rd8"]
+[ext_resource type="Texture2D" uid="uid://qreksclpirx0" path="res://art/other/feesh.png" id="2_h8rd8"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_roufs"]
 friction = 0.0

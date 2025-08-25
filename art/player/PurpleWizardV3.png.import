@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b860wle2jujie"
-path="res://.godot/imported/spridesheet_test_player_V2.png-ec611c6bfcfc4de5bed1d6dc73ebaf24.ctex"
+uid="uid://3qnner11h706"
+path="res://.godot/imported/PurpleWizardV3.png-079fcc56dc4d6b1f224dac281179d924.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/spridesheet_test_player_V2.png"
-dest_files=["res://.godot/imported/spridesheet_test_player_V2.png-ec611c6bfcfc4de5bed1d6dc73ebaf24.ctex"]
+source_file="res://art/player/PurpleWizardV3.png"
+dest_files=["res://.godot/imported/PurpleWizardV3.png-079fcc56dc4d6b1f224dac281179d924.ctex"]
 
 [params]
 

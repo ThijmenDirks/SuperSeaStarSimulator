@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqb6wp4bjrxil"
-path="res://.godot/imported/star_temphealth_sprite.png-77a438da06767979e7bfb2464b07b9b1.ctex"
+uid="uid://ch3c7gkijntvo"
+path="res://.godot/imported/moveblockforest.png-b6ab6a679b8978e3150271c24f505c17.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/star_temphealth_sprite.png"
-dest_files=["res://.godot/imported/star_temphealth_sprite.png-77a438da06767979e7bfb2464b07b9b1.ctex"]
+source_file="res://art/map/moveblockforest.png"
+dest_files=["res://.godot/imported/moveblockforest.png-b6ab6a679b8978e3150271c24f505c17.ctex"]
 
 [params]
 
