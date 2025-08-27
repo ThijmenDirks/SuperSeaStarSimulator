@@ -236,7 +236,7 @@ func update_hp_bar():
 func take_healing(healing : int, healing_type : String):
 	if healing_type in resistances_and_weaknesses: # should this be a thing ?
 		healing *= resistances_and_weaknesses.damage_type
-	hp += healing
+	hp = max(hp + healing, max_hp)
 	update_hp_bar()
 
 

@@ -20,8 +20,8 @@ subwaves = Array[ExtResource("3_wq6wp")]([])
 
 [sub_resource type="Resource" id="Resource_6cde8"]
 script = ExtResource("3_wq6wp")
-enemy = 0
-amount = 1
+enemy = 8
+amount = 3
 time = 0.0
 spawn_area = 0
 
