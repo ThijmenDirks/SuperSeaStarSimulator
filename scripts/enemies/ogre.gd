@@ -12,7 +12,7 @@ func _ready() -> void:
 	speed = base_speed
 	look_for_player_area = $LookForPlayerArea
 	#timer.start(1)
-	attack_damage = 110
+	attack_damage = 120
 	chase_end_distance = 40
 	melee_range = 55
 	attack_speed = 0.75
