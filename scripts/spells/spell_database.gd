@@ -120,12 +120,30 @@ var teleport = {
 	}
 
 
+var block_of_stone = {
+	"spell_name" = "block_of_stone",
+	"spell_recipe" = ["q", "r"],
+	"spell_type" = "utility",
+	"spell_target" = "single_target",
+	"duration" = 5,
+	#"spell_healing" = 50.0, # 50.0
+	#"spell_healing_type" = "bandage", # ?
+	"spell_kleurenbalkje_change" = 2,
+	"spell_orb_cost" = {"blue" = 1},
+	"spell_noise" = 20, #amount of (???)(pixels?) ditance in witch enemies are warned. this, or something else, might get multyplied for some enemies.
+	"spell_is_targetable" = true,
+	"spell_range" = 300,
+	"spell_function" = load("res://scripts/spells/block_of_stone.gd"),# NIET ".BOOM()", MAAR BIJ ELKE CAST NIEUWE INSTANCE VAN FUNCTIE, ANDERS WORDT ER GEOVERWRITED BIJ SPAMMEN! + gebruik await in functie zodat de animatie niet direct weer wordt verwijderd
+	"spell_scene" = load("res://scenes/spells/block_of_stone.tscn")
+	}
+
+
 var iceblast = {
 	"spell_name" = "iceblast",
 	"spell_recipe" = ["c","q","x"],
 }
 
-var all_spells : Array = [fireball, heal, chain_lightning, disintegrate, magic_missile, teleport]
+var all_spells : Array = [fireball, heal, chain_lightning, disintegrate, magic_missile, teleport, block_of_stone]
 
 #func cast():
 	#print("cast ", name)
@@ -136,7 +154,7 @@ func get_names(): # not sure wheter this func is still in use
 	#var spell_names = []
 	#for spell in self.keys():
 		#spell_names.append(spell.name)
-	return ["fireball", "heal", "chain_lightning", "disintegrate", "magic_missile", "teleport"]
+	return ["fireball", "heal", "chain_lightning", "disintegrate", "magic_missile", "teleport", "block_of_stone"]
 
 func get_spell_by_name(name : String):
 	for spell in all_spells:

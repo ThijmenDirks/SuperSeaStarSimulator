@@ -20,9 +20,18 @@ collision_mask = 0
 shape = SubResource("CircleShape2D_glycs")
 
 [node name="Icon" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(0.37, 0.37)
 texture = ExtResource("2_bie75")
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="RayCast2D1" type="RayCast2D" parent="."]
+collision_mask = 2
+hit_from_inside = true
+
+[node name="RayCast2D2" type="RayCast2D" parent="."]
+collision_mask = 2
+hit_from_inside = true
+
+[node name="RayCast2D3" type="RayCast2D" parent="."]
 collision_mask = 2
 hit_from_inside = true

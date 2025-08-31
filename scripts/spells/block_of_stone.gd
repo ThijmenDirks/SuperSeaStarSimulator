@@ -1,0 +1,82 @@
+extends Spell
+
+
+var has_exploded : bool = false
+#var duration: int = 5
+
+@onready var duration_timer: Timer = $DurationTimer
+#@onready duration_timer.wait_time = SpellDatabase.block_of_stone.duration
+
+func _ready():
+	print("heal test 0")
+	print("you cast ", self.name, " !")
+	print("nnn   ", caster)
+	this_spell = SpellDatabase.block_of_stone
+	#duration_timer.wait_time = this_spell.duration
+	duration_timer.start(this_spell.duration)
+	#var healing = this_spell.spell_healing
+	#var healing_type = this_spell.spell_healing_type
+	noise = this_spell.spell_noise
+	texture = $Sprite2D
+	#ray_cast = $RayCast2D
+	max_range = this_spell.spell_range
+	print("heal test 1")
+
+	if caster is Player:
+		orb_cost = this_spell.spell_orb_cost
+		#var healing_multiplier = get_multiplier(orb_cost)
+		#healing = this_spell.spell_healing * healing_multiplier
+		kleurenbalkje_change = this_spell.spell_kleurenbalkje_change
+		target_position = get_global_mouse_position() # when cast by an enemy, it will be simply set as : spell.position = (target_pos)
+	print("heal test 2")
+
+	position = target_position
+
+	target = await get_body_at_position_with_area(position)
+	print("heal test 3")
+
+	#direction = origin_position.angle_to(get_global_mouse_position())
+	#direction = get_local_mouse_position().angle()
+	#max_range = min(position.distance_to(target_position), this_spell.spell_range)
+	#self.look_at(target_position)
+	#rotation += PI
+	print("max_range: ", max_range, "   position   ", position, "   global_position   ", global_position, "   target_position   ", target_position, "   length:   ", self.position.distance_to(origin_position))
+	print("heal test 4")
+
+	if caster is Player: # this should be done in the above block, during making variables
+		if pay_mana(orb_cost):
+			change_kleurenbalkje(["green","blue"])
+		else:
+			print("out of orbs miscast!")
+			queue_free()
+			return
+		print("heal test 5")
+		#print("heal test position:   ", self.position, "   caster ", caster.position, "   distance:   ", position.distance_to(caster.position))
+		if position.distance_to(caster.position) > max_range: # right now enemies are immune for this. do i want to keep it this way ?
+			print("range miscast!")
+			queue_free()
+			return
+	print("heal test 6")
+
+	print("hhh  ", target)
+	if target:
+		pass
+		#target.take_healing(healing, healing_type)
+	# once you hit, it wont queue_free ?
+	print("heal test 7")
+	# maybe here the animantion ?
+	#queue_free()
+
+func _physics_process(delta: float,) -> void:
+	pass
+	#print("local ", get_local_mouse_position())
+	#position = position.move_toward(target_position, speed * delta)
+	##print("max_range: ", max_range, "   position   ", position, "   global_position   ", global_position, "   target_position   ", target_position, "   length:   ", self.position.distance_to(origin_position))
+	##print(position, "   target_position   ", target_position)
+	##print(position.length(), "   fff   ", self)
+	#if self.position.distance_to(origin_position) >= max_range or position == target_position:
+		#on_max_range()
+
+
+func _on_duration_timer_timeout() -> void:
+	queue_free()

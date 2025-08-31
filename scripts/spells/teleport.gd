@@ -13,7 +13,9 @@ func _ready():
 	#var healing_type = this_spell.spell_healing_type
 	noise = this_spell.spell_noise
 	texture = $Sprite2D
-	ray_cast = $RayCast2D
+	var ray_cast_1: RayCast2D = $RayCast2D1
+	var ray_cast_2: RayCast2D = $RayCast2D2
+	var ray_cast_3: RayCast2D = $RayCast2D3
 	max_range = this_spell.spell_range
 	print("teleport test 1")
 
@@ -28,15 +30,34 @@ func _ready():
 	position = target_position
 
 	#var area = $Area2D
-	var ray_cast = $RayCast2D # this one has already been made in spell_class_def, so actually not needed
-	ray_cast.target_position = to_local(caster.global_position)
-	ray_cast.force_raycast_update()
+	#var ray_cast = $RayCast2D # this one has already been made in spell_class_def, so actually not needed
+	#ray_cast_1.target_position = to_local(caster.global_position)
+	ray_cast_1.global_position = caster.global_position
+	ray_cast_1.target_position = -ray_cast_1.position
+	print("teleport pos: ", (target_position))
+	#ray_cast_1.target_position = Vector2(100, 100)
+	#var ray_cast_2_offset: Vector2 = Vector2(-sin(ray_cast_1.target_position.angle()), cos(ray_cast_1.target_position.angle())) * 10
+	var ray_cast_2_offset: Vector2 = Vector2(-sin(ray_cast_1.target_position.angle()), cos(ray_cast_1.target_position.angle())) * 10
+	#ray_cast_2.position += ray_cast_2_offset
+	ray_cast_2.target_position += ray_cast_1.target_position + ray_cast_2_offset
+	#ray_cast_2.position = ray_cast_1.position + ray_cast_2_offset
+	var ray_cast_3_offset: Vector2 = Vector2(sin(ray_cast_1.target_position.angle()), -cos(ray_cast_1.target_position.angle())) * 10
+	#ray_cast_3.position += ray_cast_3_offset
+	ray_cast_3.target_position += ray_cast_1.target_position + ray_cast_3_offset
+	#ray_cast_3.position = ray_cast_1.position + ray_cast_3_offset
+
+	# alert!
+	# it would just be a million times more logic tp uhm... take the nomral sin and cos but with the angle() +- 90 degree
+
+	ray_cast_1.force_raycast_update()
+	await get_tree().create_timer(5).timeout # just for debugging
+	
 	#area.get_child(1).shape.radius = caster.get_node(CollisionShaoe2D).shpae.radius # wont wrk right now cause player has square collision
 	#await get_tree().physics_frame
 	#await get_tree().physics_frame
 	#var bodies = area.get_overlapping_bodies()
 	#print("hhh bodies: ", bodies)
-	if ray_cast.get_collider() != null:
+	if ray_cast_1.get_collider() != null:
 		queue_free()
 		return
 
