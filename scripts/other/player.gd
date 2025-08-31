@@ -1,4 +1,4 @@
-class_name Player extends CharacterBody2D
+class_name Player extends Entity
 
 @export var speed = 100
 @export var animation_tree : AnimationTree
@@ -21,10 +21,12 @@ var current_spell_input = []
 var input_pressed_almost_simoultaniously = ""
 var equiped_spells = ["fireball", "heal", "chain_lightning", "disintegrate", "magic_missile", "teleport"]
 var is_casting = false
-var resistances_and_weaknesses : Dictionary
-
+#var resistances_and_weaknesses : Dictionary
+#var last_z_height: int
+#var current_z_height: int
 
 func _ready():
+	super()
 	SaveSystem.load_data()
 	hp = max_hp # right now i undo all the saved stuff
 
@@ -255,12 +257,22 @@ func die():
 	queue_free()
 	get_tree().paused = true
 
+#
+#func is_on_z_height(z : int, digit : int = 4):
+	#return int((self.z_index / 10 ** (digit - 1)) % 10) == int((z / 10 ** (digit - 1)) % 10)
+#
+#
+#func is_on_same_z_height(target: Object) -> bool:
+	#return int((self.z_index / 1000) % 10) == int((target.z_index / 1000) % 10)
 
-func is_on_z_height(z : int, digit : int = 4):
-	return int((self.z_index / 10 ** (digit - 1)) % 10) == int((z / 10 ** (digit - 1)) % 10)
+#
+#func on_z_changed():
+	#set_collision_layer_value(20 + last_z_height, false)
+	#set_collision_layer_value(20 + current_z_height, true)
 
 
 var place: String = "forest"
+
 
 func get_save_stats() -> Dictionary:
 	print("data save test 1")

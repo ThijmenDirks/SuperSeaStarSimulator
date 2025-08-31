@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1nmsy182cd4k"]
+
+[ext_resource type="Script" path="res://debug and testing/bridge.gd" id="1_lpmg5"]
+[ext_resource type="Texture2D" uid="uid://dmr8tl7oqgbdg" path="res://art/tilesets/tilesetv7_mega_update.png" id="1_mgdkp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_af5o7"]
+size = Vector2(1, 63)
+
+[node name="bridge" type="StaticBody2D" groups=["bridge"]]
+z_index = 3000
+collision_layer = 4194304
+collision_mask = 0
+script = ExtResource("1_lpmg5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 3000
+position = Vector2(-7, 7)
+shape = SubResource("RectangleShape2D_af5o7")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(9, 7)
+shape = SubResource("RectangleShape2D_af5o7")
+
+[node name="Tilesetv7MegaUpdate" type="Sprite2D" parent="."]
+position = Vector2(1, -1)
+texture = ExtResource("1_mgdkp")
+hframes = 20
+vframes = 14
+frame = 144
+
+[node name="Tilesetv7MegaUpdate2" type="Sprite2D" parent="."]
+position = Vector2(1, 31)
+texture = ExtResource("1_mgdkp")
+hframes = 20
+vframes = 14
+frame = 144
+
+[node name="Tilesetv7MegaUpdate3" type="Sprite2D" parent="."]
+position = Vector2(1, -17)
+texture = ExtResource("1_mgdkp")
+hframes = 20
+vframes = 14
+frame = 144
+
+[node name="Tilesetv7MegaUpdate4" type="Sprite2D" parent="."]
+position = Vector2(1, 15)
+texture = ExtResource("1_mgdkp")
+hframes = 20
+vframes = 14
+frame = 144

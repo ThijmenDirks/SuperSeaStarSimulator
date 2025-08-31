@@ -49,6 +49,7 @@ folder_colors={
 
 player="this is a player"
 saveables=""
+bridge=""
 
 [input]
 

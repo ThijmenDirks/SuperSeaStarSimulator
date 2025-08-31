@@ -13,27 +13,18 @@
 [ext_resource type="Texture2D" uid="uid://qreksclpirx0" path="res://art/other/feesh.png" id="11_bw2pn"]
 [ext_resource type="PackedScene" uid="uid://qchn08qp8wt0" path="res://scenes/map/sign.tscn" id="13_g0f83"]
 [ext_resource type="PackedScene" uid="uid://cjfavrdl82vi3" path="res://scenes/map/breakable_block.tscn" id="13_ij83k"]
+[ext_resource type="PackedScene" uid="uid://b1nmsy182cd4k" path="res://debug and testing/bridge.tscn" id="14_eg12w"]
+[ext_resource type="PackedScene" uid="uid://dvrq0jcv8ld8t" path="res://scenes/enemies/ogre.tscn" id="15_5f6j1"]
 
 [sub_resource type="Resource" id="Resource_svc0e"]
 script = ExtResource("2_v6og4")
 subwaves = Array[ExtResource("3_wq6wp")]([])
 
-[sub_resource type="Resource" id="Resource_6cde8"]
-script = ExtResource("3_wq6wp")
-enemy = 2
-amount = 3
-time = 0.0
-spawn_area = 0
-
-[sub_resource type="Resource" id="Resource_t22tq"]
-script = ExtResource("2_v6og4")
-subwaves = Array[ExtResource("3_wq6wp")]([SubResource("Resource_6cde8")])
-
 [sub_resource type="Resource" id="Resource_n6jt4"]
 script = ExtResource("3_wq6wp")
-enemy = 0
-amount = 5
-time = 0.0
+enemy = 9
+amount = 10
+time = 999.0
 spawn_area = 0
 
 [sub_resource type="Resource" id="Resource_x8rn7"]
@@ -375,7 +366,7 @@ metadata/_snap_enabled = true
 
 [node name="TestLevel" type="Node2D" node_paths=PackedStringArray("spawn_areas")]
 script = ExtResource("1_4lh20")
-all_waves = Array[ExtResource("2_v6og4")]([SubResource("Resource_svc0e"), SubResource("Resource_t22tq"), SubResource("Resource_vdf8a"), SubResource("Resource_ys7rw"), SubResource("Resource_tl61l"), SubResource("Resource_xyvkp"), SubResource("Resource_ausev"), SubResource("Resource_mtqq7"), SubResource("Resource_md537"), SubResource("Resource_qfl1q")])
+all_waves = Array[ExtResource("2_v6og4")]([SubResource("Resource_svc0e"), SubResource("Resource_vdf8a"), SubResource("Resource_ys7rw"), SubResource("Resource_tl61l"), SubResource("Resource_xyvkp"), SubResource("Resource_ausev"), SubResource("Resource_mtqq7"), SubResource("Resource_md537"), SubResource("Resource_qfl1q")])
 spawn_areas = [NodePath("SpawnAreas/SpawnArea0"), NodePath("SpawnAreas/SpawnArea1"), NodePath("SpawnAreas/SpawnArea2")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -493,3 +484,12 @@ text = "welcome to test_level"
 
 [node name="MoveableBlock" parent="." instance=ExtResource("13_ij83k")]
 position = Vector2(76, 82)
+
+[node name="bridge" parent="." instance=ExtResource("14_eg12w")]
+position = Vector2(-36, 49)
+
+[node name="CharacterBody2DG" parent="." instance=ExtResource("15_5f6j1")]
+position = Vector2(194, -223)
+
+[node name="CharacterBody2DG2" parent="." instance=ExtResource("15_5f6j1")]
+position = Vector2(184, -212)

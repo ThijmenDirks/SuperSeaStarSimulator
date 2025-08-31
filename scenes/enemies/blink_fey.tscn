@@ -864,6 +864,7 @@ cull_mode = 1
 polygon = PackedVector2Array(0.5, 0, 0, 0.5, -0.5, 0, 0, -0.5)
 
 [node name="CharacterBody2DG" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree")]
+y_sort_enabled = true
 collision_layer = 540
 collision_mask = 2
 script = ExtResource("1_8b6yc")
@@ -952,6 +953,6 @@ one_shot = true
 autostart = true
 
 [connection signal="timeout" from="StateDurationTimer" to="." method="_on_timer_timeout"]
-[connection signal="body_entered" from="VisionField" to="." method="singal_test"]
 [connection signal="body_entered" from="VisionField" to="." method="_on_vision_field_body_entered"]
+[connection signal="body_entered" from="VisionField" to="." method="singal_test"]
 [connection signal="timeout" from="BlinkTimer" to="." method="_on_blink_timer_timeout"]

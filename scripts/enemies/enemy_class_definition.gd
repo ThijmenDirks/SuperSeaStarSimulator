@@ -1,4 +1,4 @@
-class_name Enemy extends  CharacterBody2D
+class_name Enemy extends  Entity
 # i shuld probably also make subclasses like casting_enemy, melee_enemy...
 
 @onready var debug_label = $DebugLabel
@@ -19,7 +19,7 @@ var direction : Vector2 #float # wil dit liever in rad of degree hebben # bij na
 #@export var hp : int = 100#: int
 var max_hp : int = 100#: int# = 100
 var hp : int = 100#: int
-var resistances_and_weaknesses : Dictionary
+#var resistances_and_weaknesses : Dictionary
 var threat_range : int
 var vision_range : int
 var loot_table : Dictionary
@@ -125,6 +125,7 @@ func _ready() -> void: # dont forget this gets overwritten in the enemies ! (pro
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	super(delta)
 	#chase()
 	#print("PPP ", get_parent())
 	#if HP != 0:

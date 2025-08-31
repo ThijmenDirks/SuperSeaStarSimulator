@@ -15,6 +15,7 @@ var king_slime = preload("res://scenes/enemies/slimes/king_slime.tscn")
 var ogre = preload("res://scenes/enemies/ogre.tscn")
 var blink_fey = preload("res://scenes/enemies/blink_fey.tscn")
 var mummy = preload("res://scenes/enemies/mummy.tscn")
+var dart_fey = preload("res://scenes/enemies/dart_fey.tscn")
 
 var enemy_map = {
 	"goblin": goblin,
@@ -26,6 +27,7 @@ var enemy_map = {
 	"king_slime": king_slime,
 	"blink_fey": blink_fey,
 	"mummy": mummy,
+	"dart_fey": dart_fey,
 }
 
 #enemy_map[all_enemies[]]
@@ -40,6 +42,7 @@ var all_enemies = [
 	"king_slime",
 	"blink_fey",
 	"mummy",
+	"dart_fey"
 ]
 
 var wave_has_fully_spawned: bool = false

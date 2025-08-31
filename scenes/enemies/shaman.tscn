@@ -863,6 +863,7 @@ cull_mode = 1
 polygon = PackedVector2Array(0.5, 0, 0, 0.5, -0.5, 0, 0, -0.5)
 
 [node name="CharacterBody2DG3" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree")]
+y_sort_enabled = true
 collision_layer = 541
 collision_mask = 2
 script = ExtResource("1_3jecn")
@@ -957,5 +958,5 @@ rotation = 3.14159
 scale = Vector2(16, 16)
 occluder = SubResource("OccluderPolygon2D_hggry")
 
-[connection signal="body_entered" from="VisionField" to="." method="singal_test"]
 [connection signal="body_entered" from="VisionField" to="." method="_on_vision_field_body_entered"]
+[connection signal="body_entered" from="VisionField" to="." method="singal_test"]

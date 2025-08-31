@@ -908,6 +908,7 @@ cull_mode = 1
 polygon = PackedVector2Array(2, 0, 1, 1, -1, 1, -2, 0, -1, -1, 1, -1)
 
 [node name="CharacterBody2DG2" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree")]
+y_sort_enabled = true
 collision_layer = 541
 collision_mask = 2
 script = ExtResource("1_7v7xl")
