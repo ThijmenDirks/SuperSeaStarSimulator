@@ -3,7 +3,7 @@ extends Node
 var old_window_mode
 
 func _input(event):
-	print("iinputevent ", event)
+	#print("iinputevent ", event)
 	if event.is_action_pressed("c"):
 		set_fullscreen()
 

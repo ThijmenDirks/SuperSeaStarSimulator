@@ -54,8 +54,6 @@ color = Color(0.521569, 0.521569, 0.498039, 1)
 collision_layer = 320
 collision_mask = 256
 script = ExtResource("5_0gdtq")
-target_map = "res://scenes/levels/open_world_mode/desert1/desert_entrance.tscn"
-target_entrance = "return"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PackedVector2Array(-1, -301, -151, -199, -300, -201, -299, 300, -4000, 299, -4000, -1403, 997, -1399, 1000, -301, 500, -300, 496, -900, -698, -900, -700, -600, -2248, -603, -2246, -902, -2864, -898, -2861, 1, -2095, 3, -2099, -249, -151, -249, -151, -553, 3, -547)
@@ -64,8 +62,6 @@ polygon = PackedVector2Array(-1, -301, -151, -199, -300, -201, -299, 300, -4000,
 collision_layer = 320
 collision_mask = 256
 script = ExtResource("5_0gdtq")
-target_map = "res://scenes/levels/open_world_mode/forest1start/spawn5a.tscn"
-target_entrance = "spawn5_right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
 position = Vector2(913, 266)
@@ -76,8 +72,6 @@ shape = SubResource("RectangleShape2D_06j0w")
 collision_layer = 320
 collision_mask = 256
 script = ExtResource("5_0gdtq")
-target_map = "res://scenes/levels/open_world_mode/desert1/lower_oasis.tscn"
-target_entrance = "lower_oasis_up"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
 position = Vector2(-2542, -824)

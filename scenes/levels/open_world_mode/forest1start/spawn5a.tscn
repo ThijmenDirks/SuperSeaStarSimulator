@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://dd8f4tlc62hdt"]
+[gd_scene load_steps=12 format=4 uid="uid://dd8f4tlc62hdt"]
 
 [ext_resource type="Script" path="res://scripts/map/open_world_stuff/load_room.gd" id="1_7mlip"]
 [ext_resource type="TileSet" uid="uid://ch01sy32qq7w2" path="res://art/tilesets/flayer1.tres" id="1_27gfd"]
@@ -6,15 +6,19 @@
 [ext_resource type="Script" path="res://scripts/map/open_world_stuff/spawn_zones.gd" id="4_3hja3"]
 [ext_resource type="PackedScene" uid="uid://drpevs8n2f2li" path="res://scenes/enemies/slimes/red_slime.tscn" id="5_oip38"]
 [ext_resource type="PackedScene" uid="uid://dvrq0jcv8ld8t" path="res://scenes/enemies/ogre.tscn" id="6_pfohd"]
+[ext_resource type="PackedScene" uid="uid://bpsxwlr7jvqe7" path="res://scenes/levels/open_world_mode/transition.tscn" id="7_x7uax"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_stiix"]
+size = Vector2(161, 50.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fttis"]
+size = Vector2(9.375, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dtm4o"]
 size = Vector2(7.60417, 7.81251)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nkubt"]
 size = Vector2(3.75, 3.75)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fttis"]
-size = Vector2(9.375, 20)
 
 [node name="Spawn5a" type="Node2D"]
 script = ExtResource("1_7mlip")
@@ -64,82 +68,10 @@ position = Vector2(-120, 110)
 tile_map_data = PackedByteArray("AADN//v/AQAIAAwAAADN//z/AQAIAAwAAADN//3/AQAIAAwAAADN//7/AQAIAAwAAADN////AQAIAAwAAADN/wAAAQAIAAwAAADN/wEAAQAIAAwAAADN/wIAAQAIAAwAAADN/wMAAQAIAAwAAADN/wQAAQAIAAwAAADN/wUAAQAIAAwAAADN/wYAAQAIAAwAAADN/wcAAQAIAAwAAADN/wgAAQAIAAwAAADN/wkAAQAIAAwAAADN/woAAQAIAAwAAADP//v/AQAIAAwAAADP//z/AQAIAAwAAADP//3/AQAIAAwAAADP//7/AQAIAAwAAADP////AQAIAAwAAADP/wAAAQAIAAwAAADP/wEAAQAIAAwAAADP/wIAAQAIAAwAAADP/wMAAQAIAAwAAADP/wQAAQAIAAwAAADP/wUAAQAIAAwAAADP/wYAAQAIAAwAAADP/wcAAQAIAAwAAADP/wgAAQAIAAwAAADP/wkAAQAIAAwAAADP/woAAQAIAAwAAAAKAN7/AQAHAAcAAAALAN7/AQAFAAcAAAA=")
 tile_set = ExtResource("1_27gfd")
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 320
-collision_mask = 256
-script = ExtResource("4_3hja3")
-target_map = "res://scenes/levels/open_world_mode/forest1start/spawn5b.tscn"
-target_entrance = "below_up"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(51.75, -509.25)
-scale = Vector2(4.8, 4.8)
-shape = SubResource("RectangleShape2D_dtm4o")
-
-[node name="Area2D2" type="Area2D" parent="."]
-collision_layer = 320
-collision_mask = 256
-script = ExtResource("4_3hja3")
-target_map = "res://scenes/levels/open_world_mode/forest1start/spawn5b.tscn"
-target_entrance = "below_down"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
-position = Vector2(-62, 166)
-scale = Vector2(4.8, 4.8)
-shape = SubResource("RectangleShape2D_dtm4o")
-
-[node name="Area2D3" type="Area2D" parent="."]
-collision_layer = 320
-collision_mask = 256
-script = ExtResource("4_3hja3")
-target_map = "res://scenes/levels/open_world_mode/forest1start/spawn5b.tscn"
-target_entrance = "below_down2"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
-position = Vector2(-312, 66)
-scale = Vector2(4.8, 4.8)
-shape = SubResource("RectangleShape2D_nkubt")
-
-[node name="Area2D5" type="Area2D" parent="."]
-collision_layer = 320
-collision_mask = 256
-script = ExtResource("4_3hja3")
-target_map = "res://scenes/levels/open_world_mode/forest1start/spawn5b.tscn"
-target_entrance = "below_down3"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D5"]
-position = Vector2(-120, 70)
-scale = Vector2(4.8, 4.8)
-shape = SubResource("RectangleShape2D_nkubt")
-
-[node name="Area2D6" type="Area2D" parent="."]
-collision_layer = 320
-collision_mask = 256
-script = ExtResource("4_3hja3")
-target_map = "res://scenes/levels/open_world_mode/forest1start/spawn5b.tscn"
-target_entrance = "below_down4"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D6"]
-position = Vector2(-168, 69)
-scale = Vector2(4.8, 4.8)
-shape = SubResource("RectangleShape2D_nkubt")
-
 [node name="CanvasModulate2" type="CanvasModulate" parent="."]
 light_mask = 33
 visibility_layer = 231
 color = Color(0.881937, 0.881937, 0.881936, 1)
-
-[node name="Area2D4" type="Area2D" parent="."]
-collision_layer = 320
-collision_mask = 256
-script = ExtResource("4_3hja3")
-target_map = "res://scenes/levels/open_world_mode/desert1/desert_entrance.tscn"
-target_entrance = "desert_entrance_left"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D4"]
-position = Vector2(-1333.5, -32)
-scale = Vector2(4.8, 4.8)
-shape = SubResource("RectangleShape2D_fttis")
 
 [node name="CharacterBody2DG4" parent="." instance=ExtResource("5_oip38")]
 position = Vector2(147, -668)
@@ -150,9 +82,91 @@ position = Vector2(264, -741)
 [node name="CharacterBody2DG" parent="." instance=ExtResource("6_pfohd")]
 position = Vector2(-70, 267)
 
-[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
-[connection signal="body_entered" from="Area2D2" to="Area2D2" method="_on_body_entered"]
-[connection signal="body_entered" from="Area2D3" to="Area2D3" method="_on_body_entered"]
-[connection signal="body_entered" from="Area2D5" to="Area2D5" method="_on_body_entered"]
-[connection signal="body_entered" from="Area2D6" to="Area2D6" method="_on_body_entered"]
-[connection signal="body_entered" from="Area2D4" to="Area2D4" method="_on_body_entered"]
+[node name="Transitions" type="Node2D" parent="."]
+
+[node name="Transition" parent="Transitions" instance=ExtResource("7_x7uax")]
+position = Vector2(-1391.5, -30.25)
+shape = SubResource("RectangleShape2D_stiix")
+
+[node name="OldTransitions" type="Node" parent="."]
+
+[node name="Area2D4" type="Area2D" parent="OldTransitions"]
+collision_layer = 320
+collision_mask = 256
+script = ExtResource("4_3hja3")
+target_map = "res://scenes/levels/open_world_mode/desert1/desert_entrance.tscn"
+target_entrance = "desert_entrance_left"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OldTransitions/Area2D4"]
+position = Vector2(-1333.5, -32)
+scale = Vector2(4.8, 4.8)
+shape = SubResource("RectangleShape2D_fttis")
+
+[node name="LayerTransitions" type="Node3D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="LayerTransitions"]
+collision_layer = 320
+collision_mask = 256
+script = ExtResource("4_3hja3")
+target_map = "res://scenes/levels/open_world_mode/forest1start/spawn5b.tscn"
+target_entrance = "below_up"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LayerTransitions/Area2D"]
+position = Vector2(51.75, -509.25)
+scale = Vector2(4.8, 4.8)
+shape = SubResource("RectangleShape2D_dtm4o")
+
+[node name="Area2D2" type="Area2D" parent="LayerTransitions"]
+collision_layer = 320
+collision_mask = 256
+script = ExtResource("4_3hja3")
+target_map = "res://scenes/levels/open_world_mode/forest1start/spawn5b.tscn"
+target_entrance = "below_down"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LayerTransitions/Area2D2"]
+position = Vector2(-62, 166)
+scale = Vector2(4.8, 4.8)
+shape = SubResource("RectangleShape2D_dtm4o")
+
+[node name="Area2D3" type="Area2D" parent="LayerTransitions"]
+collision_layer = 320
+collision_mask = 256
+script = ExtResource("4_3hja3")
+target_map = "res://scenes/levels/open_world_mode/forest1start/spawn5b.tscn"
+target_entrance = "below_down2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LayerTransitions/Area2D3"]
+position = Vector2(-312, 66)
+scale = Vector2(4.8, 4.8)
+shape = SubResource("RectangleShape2D_nkubt")
+
+[node name="Area2D5" type="Area2D" parent="LayerTransitions"]
+collision_layer = 320
+collision_mask = 256
+script = ExtResource("4_3hja3")
+target_map = "res://scenes/levels/open_world_mode/forest1start/spawn5b.tscn"
+target_entrance = "below_down3"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LayerTransitions/Area2D5"]
+position = Vector2(-120, 70)
+scale = Vector2(4.8, 4.8)
+shape = SubResource("RectangleShape2D_nkubt")
+
+[node name="Area2D6" type="Area2D" parent="LayerTransitions"]
+collision_layer = 320
+collision_mask = 256
+script = ExtResource("4_3hja3")
+target_map = "res://scenes/levels/open_world_mode/forest1start/spawn5b.tscn"
+target_entrance = "below_down4"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LayerTransitions/Area2D6"]
+position = Vector2(-168, 69)
+scale = Vector2(4.8, 4.8)
+shape = SubResource("RectangleShape2D_nkubt")
+
+[connection signal="body_entered" from="OldTransitions/Area2D4" to="OldTransitions/Area2D4" method="_on_body_entered"]
+[connection signal="body_entered" from="LayerTransitions/Area2D" to="LayerTransitions/Area2D" method="_on_body_entered"]
+[connection signal="body_entered" from="LayerTransitions/Area2D2" to="LayerTransitions/Area2D2" method="_on_body_entered"]
+[connection signal="body_entered" from="LayerTransitions/Area2D3" to="LayerTransitions/Area2D3" method="_on_body_entered"]
+[connection signal="body_entered" from="LayerTransitions/Area2D5" to="LayerTransitions/Area2D5" method="_on_body_entered"]
+[connection signal="body_entered" from="LayerTransitions/Area2D6" to="LayerTransitions/Area2D6" method="_on_body_entered"]

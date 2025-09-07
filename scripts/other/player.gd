@@ -232,7 +232,7 @@ func update_hp_bar():
 		var fill = int(round((star_damage / 40.0) * 8))
 		star.frame = fill
 		
-		print("Star %s: damage=%s, frame=%s" % [star_index, star_damage, fill])
+		#print("Star %s: damage=%s, frame=%s" % [star_index, star_damage, fill])
 
 
 func take_healing(healing : int, healing_type : String):

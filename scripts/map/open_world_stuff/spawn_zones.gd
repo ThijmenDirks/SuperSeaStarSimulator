@@ -5,6 +5,8 @@ extends Area2D
 @export var target_entrance: String
 
 func _on_body_entered(body):
+	print("waaaaz")
+	return
 	if body.is_in_group("player"):
 		print("Transition triggered!")
 		print("Changing to:", target_map)

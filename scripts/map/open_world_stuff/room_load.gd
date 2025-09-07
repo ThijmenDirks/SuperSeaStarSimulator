@@ -5,6 +5,7 @@ var player_scene = preload("res://scenes/other/player.tscn")
 var player_instance: Node2D
 
 func load_room(room_path: String, entrance_name: String):
+	print("load_room 1")
 	# Remove current scene if one exists
 	if get_tree().current_scene:
 		get_tree().current_scene.queue_free()

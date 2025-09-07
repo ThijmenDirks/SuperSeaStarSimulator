@@ -20,7 +20,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		if not is_on_same_z_height(body): # this might change to body.in_on_samea_z_heigth
 			#body.add_collision_exception_with(bridge_side_collision_1)
 			#body.add_collision_exception_with(bridge_side_collision_2)
-			body.add_collision_exception_with(self)
+			body.add_collision_exception_with(self) # warning! thisl ine might be interesting !
 			print("bridge test 1  ", body.get_collision_exceptions())
 
 

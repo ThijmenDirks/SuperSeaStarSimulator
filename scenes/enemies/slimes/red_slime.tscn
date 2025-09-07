@@ -945,6 +945,7 @@ one_shot = true
 collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VisionField"]
+position = Vector2(-3, -4)
 shape = SubResource("CircleShape2D_vlgon")
 
 [node name="PlayerRayCast2D" type="RayCast2D" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://d2j6yvi38nfrv"]
+[gd_scene load_steps=12 format=4 uid="uid://d2j6yvi38nfrv"]
 
 [ext_resource type="Script" path="res://scripts/map/open_world_stuff/load_room.gd" id="1_5x23r"]
 [ext_resource type="TileSet" uid="uid://ch01sy32qq7w2" path="res://art/tilesets/flayer1.tres" id="2_2ebfm"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cx7gamb5b8mx3" path="res://scenes/enemies/goblin.tscn" id="4_7puo1"]
 [ext_resource type="PackedScene" uid="uid://d36mrokfs3i2g" path="res://scenes/enemies/blink_fey.tscn" id="5_p5mck"]
 [ext_resource type="Script" path="res://scripts/map/open_world_stuff/spawn_zones.gd" id="6_nfuip"]
+[ext_resource type="PackedScene" uid="uid://bpsxwlr7jvqe7" path="res://scenes/levels/open_world_mode/transition.tscn" id="6_v7rn7"]
 
 [sub_resource type="Gradient" id="Gradient_mgjv1"]
 interpolation_mode = 2
@@ -17,6 +18,9 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.1, 0.2)
 metadata/_snap_enabled = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8oj4f"]
+size = Vector2(58, 174)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_at2jy"]
 size = Vector2(12.0833, 3.95833)
@@ -64,16 +68,24 @@ position = Vector2(299, 177)
 [node name="CharacterBody2DG3" parent="." instance=ExtResource("5_p5mck")]
 position = Vector2(391, 280)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Transitions" type="Node2D" parent="."]
+
+[node name="Transition" parent="Transitions" instance=ExtResource("6_v7rn7")]
+position = Vector2(176, -15)
+shape = SubResource("RectangleShape2D_8oj4f")
+
+[node name="OldTransitions" type="Node" parent="."]
+
+[node name="Area2D" type="Area2D" parent="OldTransitions"]
 collision_layer = 320
 collision_mask = 256
 script = ExtResource("6_nfuip")
 target_map = "res://scenes/levels/open_world_mode/forest1start/spawn3.tscn"
 target_entrance = "spawn3_up"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OldTransitions/Area2D"]
 position = Vector2(175, 62)
 scale = Vector2(4.8, 4.8)
 shape = SubResource("RectangleShape2D_at2jy")
 
-[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="body_entered" from="OldTransitions/Area2D" to="OldTransitions/Area2D" method="_on_body_entered"]
