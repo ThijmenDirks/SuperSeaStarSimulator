@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=4 uid="uid://bfcbc4wvld2te"]
+[gd_scene load_steps=9 format=4 uid="uid://bfcbc4wvld2te"]
 
 [ext_resource type="Script" path="res://scripts/map/open_world_stuff/load_room.gd" id="1_vq155"]
 [ext_resource type="TileSet" uid="uid://ch01sy32qq7w2" path="res://art/tilesets/flayer1.tres" id="2_86y1l"]
 [ext_resource type="TileSet" uid="uid://0nc4alojvvx7" path="res://art/tilesets/flayerb.tres" id="3_7avd0"]
 [ext_resource type="PackedScene" uid="uid://bpsxwlr7jvqe7" path="res://scenes/levels/open_world_mode/transition.tscn" id="5_1gcee"]
 [ext_resource type="Script" path="res://scripts/map/open_world_stuff/spawn_zones.gd" id="6_ok71m"]
+[ext_resource type="PackedScene" uid="uid://cb85113jnwg1x" path="res://scenes/levels/open_world_mode/forest1start/spawn2.tscn" id="6_vcncf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pv047"]
 size = Vector2(8.54167, 20.2083)
@@ -51,5 +52,6 @@ shape = SubResource("RectangleShape2D_pv047")
 [node name="CollisionShape2D" parent="Transitions" instance=ExtResource("5_1gcee")]
 position = Vector2(-11, -306.25)
 shape = SubResource("RectangleShape2D_e8fg4")
+target_map = ExtResource("6_vcncf")
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

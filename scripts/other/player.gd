@@ -12,6 +12,7 @@ class_name Player extends Entity
 @export var max_hp = 200_
 #@export var animation_player : AnimationPlayer
 
+@onready var interface = $Interface
 @onready var coyote_timer_to_cast_spell = $CTimerToCastSpell
 @onready var coyote_timer_to_press_simoultaniously = $CTimerToPressSimoultaniously
 @onready var hp_stars = get_node("Interface/Control/HPStars")
@@ -33,8 +34,8 @@ var is_casting = false
 #var resistances_and_weaknesses : Dictionary
 #var last_z_height: int
 #var current_z_height: int
-var  spawn_point: Marker2D
-var saved_area: Node2D
+var saved_point: Marker2D
+var saved_map: PackedScene
 
 var selected_school = SPELL_SCHOOLS.FIRE
 var selected_spell_slot: int = 0
@@ -55,8 +56,9 @@ func _ready():
 	if false:
 		_init_spells()
 	super()
-	if get_parent() is Level:
+	if not get_parent() is Level:
 		SaveSystem.load_data()
+		print("player spawned")
 	else:
 		hp = max_hp # right now i undo all the saved stuff
 
@@ -100,9 +102,11 @@ func update_selected_school():
 	selected_school = int(floor(scroll_wheel_school_index)) % SPELL_SCHOOLS.size()
 	update_selected_spell()
 	print("wheel, school updated to ", SPELL_SCHOOLS.keys()[floor(scroll_wheel_school_index)], " on index ", scroll_wheel_school_index)
+	interface.update_selected_school_label(SPELL_SCHOOLS.keys()[selected_school])
 	visible = false
 	await get_tree().create_timer(0.2).timeout
 	visible = true
+
 
 func _physics_process(delta: float) -> void:
 	input = Input.get_vector("left", "right", "up", "down")
@@ -420,17 +424,18 @@ func get_save_stats() -> Dictionary:
 	print("data save test 1")
 	return {
 		"hp": hp,
-		"spawn_point" : spawn_point,
-		"saved_area": saved_area,
+		"saved_point" : saved_point,
+		"saved_map": saved_map,
 	}
 
+var place
 
 func set_save_stats(stats: Dictionary) -> void:
 	print("data load test 1")
 	for key in stats:
-		#if has_variable(key):
-		self[key] = stats[key]
-		print(key, "  key   ", self[key])
+		if hash(key):
+			self[key] = stats[key]
+			print(key, "  key   ", self[key])
 		print("data load test 2")
 
 

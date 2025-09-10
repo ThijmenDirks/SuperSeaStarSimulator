@@ -89,7 +89,7 @@ script = ExtResource("1_7kgj8")
 position = Vector2(1420, 397)
 scale = Vector2(4.6875, 2.5625)
 
-[node name="play_button" type="Button" parent="."]
+[node name="WaveModeButton" type="Button" parent="."]
 offset_left = 250.0
 offset_top = 127.0
 offset_right = 394.0
@@ -98,7 +98,8 @@ action_mode = 0
 text = "wave mode"
 icon_alignment = 1
 
-[node name="play_button2" type="Button" parent="."]
+[node name="PlayButton" type="Button" parent="."]
+visible = false
 offset_left = 1045.0
 offset_top = 316.0
 offset_right = 1181.0
@@ -117,14 +118,14 @@ tile_set = SubResource("TileSet_x2clg")
 script = ExtResource("4_ppu2r")
 start_time = 12.0
 
-[node name="Button" type="Button" parent="."]
+[node name="OpenWorldModeButton" type="Button" parent="."]
 offset_left = 250.0
 offset_top = 161.0
 offset_right = 394.0
 offset_bottom = 192.0
 text = "open world mode"
 
-[node name="Button2" type="Button" parent="."]
+[node name="BasicControlsButton" type="Button" parent="."]
 offset_left = 250.0
 offset_top = 194.0
 offset_right = 394.0
@@ -137,7 +138,6 @@ position = Vector2(183, 174)
 scale = Vector2(3.35417, 3.53906)
 texture = ExtResource("5_evot6")
 
-[connection signal="button_down" from="play_button" to="." method="_on_play_button_button_down"]
-[connection signal="button_down" from="play_button2" to="." method="_on_play_button_button_down"]
-[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
-[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="button_down" from="WaveModeButton" to="." method="_on_wave_mode_button_button_down"]
+[connection signal="button_down" from="OpenWorldModeButton" to="." method="_on_open_world_mode_button_button_down"]
+[connection signal="pressed" from="BasicControlsButton" to="." method="_on_basic_controls_button_pressed"]

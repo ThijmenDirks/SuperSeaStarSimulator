@@ -30,6 +30,12 @@ offset_right = 338.0
 offset_bottom = 72.0
 text = "label"
 
+[node name="SelectedSchoolLabel" type="Label" parent="Control"]
+offset_left = 586.0
+offset_top = 176.0
+offset_right = 626.0
+offset_bottom = 199.0
+
 [node name="HPStars" type="Node2D" parent="Control"]
 
 [node name="StarTemphealthSprite" parent="Control/HPStars" instance=ExtResource("3_epcvx")]

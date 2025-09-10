@@ -25,6 +25,37 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		#print("Transition triggered!")
 		#print("Changing to:", target_map)
 
+
+func switch_map():
+	print("switch_map test 0")
+	if not target_map: # this probalby wont wokr, needs some weird syntax
+		return
+	var new_map = target_map.instantiate()
+	#print("New map parent:", get_parent().get_parent().get_parent().name)
+	#print("Queue freeing:", get_parent().get_parent().name)
+	#print("switch_map test 1")
+	get_parent().get_parent().get_parent().add_child(new_map) # USER ERROR: Can't change this state while flushing queries. Use call_deferred() or set_deferred() to change monitoring state instead.[enter]at: area_set_shape_disabled (servers/physics_2d/godot_physics_server_2d.cpp:355)
+	get_parent().get_parent().get_parent().call_deferred("add_child", new_map)#.add_child(new_map)
+	#print("switch_map test 2")
+	player.get_parent().remove_child(player) # all fine
+	#print("switch_map test 3")
+	##player.free()
+	##player.reparent(new_map)
+	##player.remove_child($Camera2D)
+	##player.remove_child($Interface)
+	##new_map.add_child(load("res://scenes/other/player.tscn").instantiate())
+	#print("Is player valid?", is_instance_valid(player))
+	#print("Player name:", player.name)
+	new_map.call_deferred("add_child", player) #  here it all goes wrong # not anymore
+	#print("switch_map test 4")
+	player.position = new_map.get_node("Spawns").get_child(ID).global_position
+	player.saved_point = new_map.get_node("Spawns").get_child(ID)
+	player.saved_map = target_map
+	#print("switch_map test 5")
+	get_parent().get_parent().queue_free()
+	#print("switch_map test 6")
+
+
 #func switch_map():
 	#print("--- Switching map ---")
 #
@@ -64,32 +95,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 #
 	#print("--- Map switch complete ---")
 
-func switch_map():
-	print("switch_map test 0")
-	
-	var new_map = target_map.instantiate()
-	print("New map parent:", get_parent().get_parent().get_parent().name)
-	print("Queue freeing:", get_parent().get_parent().name)
-	print("switch_map test 1")
-	get_parent().get_parent().get_parent().add_child(new_map) # USER ERROR: Can't change this state while flushing queries. Use call_deferred() or set_deferred() to change monitoring state instead.[enter]at: area_set_shape_disabled (servers/physics_2d/godot_physics_server_2d.cpp:355)
-	get_parent().get_parent().get_parent().call_deferred("add_child", new_map)#.add_child(new_map)
-	print("switch_map test 2")
-	player.get_parent().remove_child(player) # all fine
-	print("switch_map test 3")
-	#player.free()
-	#player.reparent(new_map)
-	#player.remove_child($Camera2D)
-	#player.remove_child($Interface)
-	#new_map.add_child(load("res://scenes/other/player.tscn").instantiate())
-	print("Is player valid?", is_instance_valid(player))
-	print("Player name:", player.name)
-	#return
-	new_map.call_deferred("add_child", player) #  here it all goes wrong
-	print("switch_map test 4")
-	player.position = new_map.get_node("Spawns").get_child(0).global_position
-	print("switch_map test 5")
-	get_parent().get_parent().queue_free()
-	print("switch_map test 6")
+
 
 
 
