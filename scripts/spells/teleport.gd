@@ -50,7 +50,7 @@ func _ready():
 	# it would just be a million times more logic tp uhm... take the nomral sin and cos but with the angle() +- 90 degree
 
 	ray_cast_1.force_raycast_update()
-	await get_tree().create_timer(5).timeout # just for debugging
+	await get_tree().create_timer(0).timeout # just for debugging
 	
 	#area.get_child(1).shape.radius = caster.get_node(CollisionShaoe2D).shpae.radius # wont wrk right now cause player has square collision
 	#await get_tree().physics_frame

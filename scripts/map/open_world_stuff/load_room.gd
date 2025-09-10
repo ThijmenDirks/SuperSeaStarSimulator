@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 var player_scene = preload("res://scenes/other/player.tscn")
 var player_instance: Node2D

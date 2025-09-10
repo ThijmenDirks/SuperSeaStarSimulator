@@ -1,3 +1,10 @@
+#if event is InputEventMouseButton:
+	#if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+		#print("wheel up")
+	#elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+		#print("wheel down")
+
+
 class_name Player extends Entity
 
 @export var speed = 100
@@ -15,26 +22,87 @@ var game_over_screen = load("res://scenes/UI_and_the_like/game_over_screen.tscn"
 var spell_database = SpellDatabase
 var input : Vector2
 #var playback : AnimationNodeStateMachinePlayback
-var keys_for_spellcasting = ["q", "w", "r", "z", "x", "c","f", "v", "shift","control","left_mouse_click","right_mouse_click","shift_left_mouse_click","shift_right_mouse_click"]
+#var keys_for_spellcasting = ["q", "w", "r", "z", "x", "c","f", "v", "shift","control","left_mouse_click","right_mouse_click","shift_left_mouse_click","shift_right_mouse_click"]
+var keys_for_spellcasting = ["r"]
 var ESDF = ["up","left","down","right"]
 var current_spell_input = []
 var input_pressed_almost_simoultaniously = ""
 var equiped_spells = ["fireball", "heal", "chain_lightning", "disintegrate", "magic_missile", "teleport", "block_of_stone"]
+var spell_slot_keys: Array = ["1", "2", "3" ,"4" ,"5", "6"]
 var is_casting = false
 #var resistances_and_weaknesses : Dictionary
 #var last_z_height: int
 #var current_z_height: int
+var  spawn_point: Marker2D
+var saved_area: Node2D
+
+var selected_school = SPELL_SCHOOLS.FIRE
+var selected_spell_slot: int = 0
+#var selected_spell: int = 1 # var selected_spell: int = spellDatabse.fireball
+var selected_spell = spell_database.fireball
+var scroll_wheel_school_index: float = 0.4
+var scroll_sensitivity: float = 1
+	#if int(scroll_wheel_school_index) > SPELL_SCHOOLS.size():
+
+enum SPELL_SCHOOLS {
+	FIRE,
+	BUFF,
+	OTHER,
+}
+
 
 func _ready():
+	if false:
+		_init_spells()
 	super()
-	SaveSystem.load_data()
-	hp = max_hp # right now i undo all the saved stuff
+	if get_parent() is Level:
+		SaveSystem.load_data()
+	else:
+		hp = max_hp # right now i undo all the saved stuff
 
 	#hp_bar.max_value = max_hp
 	#hp_bar.value = hp
 	#playback = animation_tree["parameters/playback"]
 	#get_viewport().size = DisplayServer.screen_get_size()
 
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		var old_school = floor(scroll_wheel_school_index)
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			scroll_wheel_school_index += 0.2 * scroll_sensitivity
+			print("wheel up to ", scroll_wheel_school_index)
+			#if floor(scroll_wheel_school_index) > SPELL_SCHOOLS.size(): # this line and the line below, along with the other variatnt of this block within this func, should actulaay go in update_selected_school() # done !
+				#scroll_wheel_school_index = 0.0
+		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			scroll_wheel_school_index -= 0.2 * scroll_sensitivity
+			print("wheel down to ", scroll_wheel_school_index)
+			#if floor(scroll_wheel_school_index) < 0:
+				#scroll_wheel_school_index = SPELL_SCHOOLS.size()
+		#print("wheel asdf", scroll_wheel_school_index)
+		#print(floor(scroll_wheel_school_index), " wheel ", old_school)
+		if floor(scroll_wheel_school_index) != old_school:
+			update_selected_school()
+		if Input.is_action_just_pressed("left_mouse_click"):
+			print("cast")
+			cast(selected_spell)
+		#print(floor(scroll_wheel_school_index), " asdf ", floor(scroll_wheel_school_index))
+
+
+func update_selected_school():
+	if floor(scroll_wheel_school_index) > SPELL_SCHOOLS.size() - 1:
+		scroll_wheel_school_index = 0.0
+	#print("asdf ", floor(scroll_wheel_school_index))
+	if floor(scroll_wheel_school_index) < 0:
+		#print("asdf")
+		scroll_wheel_school_index = SPELL_SCHOOLS.size() - 0.2
+	#selected_school = SPELL_SCHOOLS.keys()[floor(scroll_wheel_school_index)]
+	selected_school = int(floor(scroll_wheel_school_index)) % SPELL_SCHOOLS.size()
+	update_selected_spell()
+	print("wheel, school updated to ", SPELL_SCHOOLS.keys()[floor(scroll_wheel_school_index)], " on index ", scroll_wheel_school_index)
+	visible = false
+	await get_tree().create_timer(0.2).timeout
+	visible = true
 
 func _physics_process(delta: float) -> void:
 	input = Input.get_vector("left", "right", "up", "down")
@@ -44,39 +112,14 @@ func _physics_process(delta: float) -> void:
 	#select_animation()
 	update_animation_parameters()
 #	print("hi", check_if_input_is_in_list(keys_for_spellcasting))
-	natius()
+	#natius()
+	new_natius()
 	update_hp_bar()
 	#if input_is_in_list(keys_for_spellcasting):
 		#spell_cast_funtion_one()
 	#natius()
 #	print("-")
 
-## the below part can be deleted
-	#for i in get_slide_collision_count():
-		#var c = get_slide_collision(i)
-		#var collider = c.get_collider()
-		#if c.get_collider() is MoveableBlock:
-			##print("is to the   ", c.get_position())
-			#var my_pos = global_position
-			#var other_pos = c.get_position()
-			#var diff = my_pos - other_pos
-#
-			#if abs(diff.x) > abs(diff.y):
-				#if diff.x > 0:
-					#print("Character is to the RIGHT of the rigidbody")
-					#collider.move(Vector2(-1, 0), speed)
-				#else:
-					#print("Character is to the LEFT of the rigidbody")
-					#collider.move(Vector2(1, 0), speed)
-			#else:
-				#if diff.y > 0:
-					#print("Character is BELOW the rigidbody")
-					#collider.move(Vector2(0, -1), speed)
-				#else:
-					#print("Character is ABOVE the rigidbody")
-					#collider.move(Vector2(0, 1), speed)
-				#var push_force = 10
-				#c.get_collider().apply_central_impulse(-c.get_normal() * push_foararce)
 
 
 func update_animation_parameters():
@@ -87,12 +130,86 @@ func update_animation_parameters():
 	animation_tree["parameters/IdleCast/blend_position"] = input
 	animation_tree["parameters/WalkCast/blend_position"] = input
 
+#-
+var spell_slots: Dictionary = {
+	SPELL_SCHOOLS.FIRE : [spell_database.fireball, spell_database.disintegrate],
+	SPELL_SCHOOLS.BUFF : [spell_database.heal, spell_database.teleport, spell_database.block_of_stone],
+	SPELL_SCHOOLS.OTHER : [spell_database.magic_missile],
+}
+#var learned_spells: Dictionary = {
+	#SPELL_SCHOOLS.FIRE: [spell_database.fireball, spell_database.magic_missile]
+#}
+#
+#var equipped_slots: Dictionary = {
+	#SPELL_SCHOOLS.FIRE: [null, null, null], # 3 slots
+	#SPELL_SCHOOLS.BUFF: [null, null],
+#}
+var learned_spells: Dictionary = {}
+var equipped_slots: Dictionary = {}
 
-func input_is_in_list(list):
-	for key in list:
+#func _ready():
+	#_init_spells()
+
+func _init_spells():
+	# Ensure all schools exist in dicts
+	for school in SPELL_SCHOOLS.values():
+		learned_spells[school] = []
+		equipped_slots[school] = []
+
+	# Loop over all spells in SpellDatabase
+	for spell in SpellDatabase.all_spells:
+		var school = spell["spell_school"]
+		
+		# Add to learned spells
+		learned_spells[school].append(spell)
+
+		# Expand equipped_slots until it can fit standard slot index
+		var slot_index = spell["spell_slot"]
+		while equipped_slots[school].size() <= slot_index:
+			equipped_slots[school].append(null)
+		
+		# Place spell in its standard slot
+		equipped_slots[school][slot_index] = spell
+		for i in learned_spells:
+			pass
+			#print("learned_spells ", learned_spells[i])
+			#print("")
+		for i in equipped_slots:
+			pass
+			#print("equipped_slots ", equipped_slots[i])
+			#print("")
+		#print("learned_spells ", learned_spells, "equipped_slots ", equipped_slots)
+		print(pretty_print_dict(spell_slots))
+
+
+func pretty_print_dict(d: Dictionary) -> String:
+	var result = "{ "
+	for k in d.keys():
+		result += str(k) + ": " + str(d[k]) + ", "
+	result = result.trim_suffix(", ")
+	return result + " }"
+
+#print(pretty_print_dict(equipped_slots))
+
+#-this blockis chatGPT and not ye used, though it has potential
+
+func new_natius():
+	for key in spell_slot_keys:
 		if Input.is_action_just_pressed(key):
-			return true
-	return false
+			selected_spell_slot = spell_slot_keys.find(key)
+			print("selected_spell_slot: ", selected_spell_slot)
+			update_selected_spell()
+			#if spell_slots[SPELL_SCHOOLS[selected_school]]:
+				#selected_spell = spell_slots[SPELL_SCHOOLS[selected_school]][selected_spell_slot]
+
+func update_selected_spell():
+	var spells = spell_slots.get(selected_school, [])
+	if selected_spell_slot >= 0 and selected_spell_slot < spells.size():
+		selected_spell = spells[selected_spell_slot]
+	else:
+		# fallback if index is invalid
+		selected_spell = spell_database.fireball
+
 
 # credits
 # was it natanius ?
@@ -173,18 +290,44 @@ func _on_ctimer_to_cast_spell_timeout() -> void:
 	#casst spell
 
 
-func cast(spell_that_is_being_cast):
+func pay_mana(spell : Dictionary) -> bool:
+	var orb_cost = spell.spell_orb_cost
+	var used_mana_thingies: Array
+	for child in get_node("Interface").get_mana_thingies():
+		if child.my_color in orb_cost:
+			used_mana_thingies.append(child)
+	for mana_thingy in used_mana_thingies:
+		if mana_thingy.filled_orbs < orb_cost.get(mana_thingy.my_color):
+			return false
+	for mana_thingy in used_mana_thingies:
+		mana_thingy.filled_orbs -= orb_cost.get(mana_thingy.my_color)
+	return true
+
+
+func cast(spell):
+	if is_casting:
+		return
+	if not pay_mana(spell): # WARNING pay_mana() also gets called in the spell itself. # fixed it! kinda dirty, but still
+		print("out of orbs miscast !")
+		return
+	var spell_scene = spell.spell_scene.instantiate()
+	spell_scene.caster = self
+	spell_scene.position = position
+	self.get_parent().add_child(spell_scene)
+	is_casting = true
+	await get_tree().create_timer(0.3).timeout # for the animation (and anti-spam) # shouldnt this be before the actual casting?
+	is_casting = false
+	# the selected spell is in the form of a dict in SpellDatabase.
+	# first, there should be paid, so if the player cant pay, the spell doesnt spawn at all.
+	# then the paying itself can be done. the colorbar should be postponed to after the spell is instanced, and thus done by the spell itself. (or should it?)
+
 	#var this_spell_function = spell_that_is_being_cast["spell_functie"].cast_this_spell
-	var scene_of_spell_that_is_being_cast = spell_that_is_being_cast["spell_scene"].instantiate()
-	scene_of_spell_that_is_being_cast.caster = self
 	#print("schenetree", get_tree())
 
-	scene_of_spell_that_is_being_cast.position = position
 	#print("leng  ", global_position)
 	#scene_of_spell_that_is_being_cast.global_position = global_position
 	#scene_of_spell_that_is_being_cast.position = Vector2.ZERO
 
-	self.get_parent().add_child(scene_of_spell_that_is_being_cast)
 	#if spell_that_is_being_cast["spell_is_targetable"]:
 		#move_toward(spell_that_is_being_cast.position, get_local_mouse_position(), spell_that_is_being_cast["spell_range"])
 		#spell_that_is_being_cast.position = spell_that_is_being_cast.position.move_toward(get_local_mouse_position(), spell_that_is_being_cast["spell_range"])
@@ -271,14 +414,14 @@ func die():
 	#set_collision_layer_value(20 + current_z_height, true)
 
 
-var place: String = "forest"
 
 
 func get_save_stats() -> Dictionary:
 	print("data save test 1")
 	return {
 		"hp": hp,
-		"place": place
+		"spawn_point" : spawn_point,
+		"saved_area": saved_area,
 	}
 
 
@@ -383,3 +526,37 @@ func set_save_stats(stats: Dictionary) -> void:
 		#print("yay")
 		#Input.get
 ##	if not input_is_in_list(["ui_up","a","s","d"]):
+
+
+## the below part can be deleted
+	#for i in get_slide_collision_count():
+		#var c = get_slide_collision(i)
+		#var collider = c.get_collider()
+		#if c.get_collider() is MoveableBlock:
+			##print("is to the   ", c.get_position())
+			#var my_pos = global_position
+			#var other_pos = c.get_position()
+			#var diff = my_pos - other_pos
+#
+			#if abs(diff.x) > abs(diff.y):
+				#if diff.x > 0:
+					#print("Character is to the RIGHT of the rigidbody")
+					#collider.move(Vector2(-1, 0), speed)
+				#else:
+					#print("Character is to the LEFT of the rigidbody")
+					#collider.move(Vector2(1, 0), speed)
+			#else:
+				#if diff.y > 0:
+					#print("Character is BELOW the rigidbody")
+					#collider.move(Vector2(0, -1), speed)
+				#else:
+					#print("Character is ABOVE the rigidbody")
+					#collider.move(Vector2(0, 1), speed)
+				#var push_force = 10
+				#c.get_collider().apply_central_impulse(-c.get_normal() * push_foararce)
+
+#func input_is_in_list(list):
+	#for key in list:
+		#if Input.is_action_just_pressed(key):
+			#return true
+	#return false

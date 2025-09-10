@@ -45,6 +45,12 @@ var base_damage : int # these two should stay ! (most likely)
 var damage_type : String # might get to be an array if multiple types
 var aoe_size
 
+enum SPELL_SCHOOLS {
+	FIRE,
+	BUFF,
+	OTHER,
+}
+
 # ^ this is a mess right now, most/some of it is for debugging.
 
 func _physics_process(delta: float,) -> void:
@@ -77,9 +83,10 @@ func on_max_range():
 	pass
 
 
-func pay_mana(orb_cost : Dictionary):
+func pay_mana(orb_cost : Dictionary) -> bool:
+	return true # i know this is dirty, should be fixed somewhen in the future...
 	print("nnn   ", caster)
-	var used_mana_thingies : Array
+	var used_mana_thingies: Array
 	for child in caster.get_node("Interface").get_mana_thingies():
 		if child.my_color in orb_cost:
 			used_mana_thingies.append(child)
