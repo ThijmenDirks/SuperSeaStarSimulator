@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://bbkm4uhyjl240"]
+[gd_scene load_steps=12 format=4 uid="uid://bbkm4uhyjl240"]
 
 [ext_resource type="Script" path="res://scripts/map/open_world_stuff/load_room.gd" id="1_7fk2s"]
 [ext_resource type="PackedScene" uid="uid://dis72yxspt3b6" path="res://art/particles/sandstorm.tscn" id="2_ibp28"]
@@ -6,12 +6,19 @@
 [ext_resource type="TileSet" uid="uid://0nc4alojvvx7" path="res://art/tilesets/flayerb.tres" id="4_yf7tg"]
 [ext_resource type="Script" path="res://scripts/map/open_world_stuff/spawn_zones.gd" id="5_0gdtq"]
 [ext_resource type="PackedScene" uid="uid://bolg702rb3vex" path="res://scenes/enemies/mummy.tscn" id="6_6jtdg"]
+[ext_resource type="PackedScene" uid="uid://bpsxwlr7jvqe7" path="res://scenes/levels/open_world_mode/transition.tscn" id="7_nrcjg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_06j0w"]
 size = Vector2(4.375, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uatev"]
 size = Vector2(23.75, 7.91667)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sdk0t"]
+size = Vector2(331.5, 90)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5rfcj"]
+size = Vector2(68, 491.25)
 
 [node name="DesertEntrance" type="Node2D"]
 script = ExtResource("1_7fk2s")
@@ -58,50 +65,64 @@ script = ExtResource("5_0gdtq")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PackedVector2Array(-1, -301, -151, -199, -300, -201, -299, 300, -4000, 299, -4000, -1403, 997, -1399, 1000, -301, 500, -300, 496, -900, -698, -900, -700, -600, -2248, -603, -2246, -902, -2864, -898, -2861, 1, -2095, 3, -2099, -249, -151, -249, -151, -553, 3, -547)
 
-[node name="Area2D2" type="Area2D" parent="."]
+[node name="Creatures" type="Node2D" parent="."]
+
+[node name="CharacterBody2DG" parent="Creatures" instance=ExtResource("6_6jtdg")]
+position = Vector2(-2768, -110)
+
+[node name="CharacterBody2DG2" parent="Creatures" instance=ExtResource("6_6jtdg")]
+position = Vector2(-2296, -161)
+
+[node name="CharacterBody2DG3" parent="Creatures" instance=ExtResource("6_6jtdg")]
+position = Vector2(-2772, -556)
+
+[node name="CharacterBody2DG4" parent="Creatures" instance=ExtResource("6_6jtdg")]
+position = Vector2(-2362, -646)
+
+[node name="CharacterBody2DG5" parent="Creatures" instance=ExtResource("6_6jtdg")]
+position = Vector2(-352, -314)
+
+[node name="CharacterBody2DG6" parent="Creatures" instance=ExtResource("6_6jtdg")]
+position = Vector2(-1515, -330)
+
+[node name="CharacterBody2DG7" parent="Creatures" instance=ExtResource("6_6jtdg")]
+position = Vector2(-934, -550)
+
+[node name="CharacterBody2DG8" parent="Creatures" instance=ExtResource("6_6jtdg")]
+position = Vector2(430, -832)
+
+[node name="OldTransitions" type="Node" parent="."]
+
+[node name="Area2D2" type="Area2D" parent="OldTransitions"]
 collision_layer = 320
 collision_mask = 256
 script = ExtResource("5_0gdtq")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OldTransitions/Area2D2"]
 position = Vector2(913, 266)
 scale = Vector2(4.8, 4.8)
 shape = SubResource("RectangleShape2D_06j0w")
 
-[node name="Area2D3" type="Area2D" parent="."]
+[node name="Area2D3" type="Area2D" parent="OldTransitions"]
 collision_layer = 320
 collision_mask = 256
 script = ExtResource("5_0gdtq")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OldTransitions/Area2D3"]
 position = Vector2(-2542, -824)
 scale = Vector2(4.8, 4.8)
 shape = SubResource("RectangleShape2D_uatev")
 
-[node name="CharacterBody2DG" parent="." instance=ExtResource("6_6jtdg")]
-position = Vector2(-2768, -110)
+[node name="Transitions" type="Node2D" parent="."]
 
-[node name="CharacterBody2DG2" parent="." instance=ExtResource("6_6jtdg")]
-position = Vector2(-2296, -161)
+[node name="Transition" parent="Transitions" instance=ExtResource("7_nrcjg")]
+position = Vector2(1067.75, 264)
+shape = SubResource("RectangleShape2D_sdk0t")
 
-[node name="CharacterBody2DG3" parent="." instance=ExtResource("6_6jtdg")]
-position = Vector2(-2772, -556)
-
-[node name="CharacterBody2DG4" parent="." instance=ExtResource("6_6jtdg")]
-position = Vector2(-2362, -646)
-
-[node name="CharacterBody2DG5" parent="." instance=ExtResource("6_6jtdg")]
-position = Vector2(-352, -314)
-
-[node name="CharacterBody2DG6" parent="." instance=ExtResource("6_6jtdg")]
-position = Vector2(-1515, -330)
-
-[node name="CharacterBody2DG7" parent="." instance=ExtResource("6_6jtdg")]
-position = Vector2(-934, -550)
-
-[node name="CharacterBody2DG8" parent="." instance=ExtResource("6_6jtdg")]
-position = Vector2(430, -832)
+[node name="Transition2" parent="Transitions" instance=ExtResource("7_nrcjg")]
+position = Vector2(-2545, -1050.38)
+shape = SubResource("RectangleShape2D_5rfcj")
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
-[connection signal="body_entered" from="Area2D2" to="Area2D2" method="_on_body_entered"]
-[connection signal="body_entered" from="Area2D3" to="Area2D3" method="_on_body_entered"]
+[connection signal="body_entered" from="OldTransitions/Area2D2" to="OldTransitions/Area2D2" method="_on_body_entered"]
+[connection signal="body_entered" from="OldTransitions/Area2D3" to="OldTransitions/Area2D3" method="_on_body_entered"]

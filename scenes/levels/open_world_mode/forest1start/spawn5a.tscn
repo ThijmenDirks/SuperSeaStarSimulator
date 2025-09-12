@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://dd8f4tlc62hdt"]
+[gd_scene load_steps=13 format=4 uid="uid://dd8f4tlc62hdt"]
 
 [ext_resource type="Script" path="res://scripts/map/open_world_stuff/load_room.gd" id="1_7mlip"]
 [ext_resource type="TileSet" uid="uid://ch01sy32qq7w2" path="res://art/tilesets/flayer1.tres" id="1_27gfd"]
@@ -10,6 +10,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_stiix"]
 size = Vector2(161, 50.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n37ql"]
+size = Vector2(210, 58.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fttis"]
 size = Vector2(9.375, 20)
@@ -87,6 +90,10 @@ position = Vector2(-70, 267)
 [node name="Transition" parent="Transitions" instance=ExtResource("7_x7uax")]
 position = Vector2(-1391.5, -30.25)
 shape = SubResource("RectangleShape2D_stiix")
+
+[node name="Transition2" parent="Transitions" instance=ExtResource("7_x7uax")]
+position = Vector2(631, -0.25)
+shape = SubResource("RectangleShape2D_n37ql")
 
 [node name="OldTransitions" type="Node" parent="."]
 

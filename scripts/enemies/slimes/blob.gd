@@ -1,3 +1,5 @@
+#class_name BLob
+
 extends Node2D
 
 
@@ -8,6 +10,9 @@ var slime: PackedScene = load("res://scenes/enemies/slimes/red_slime.tscn")
 var fall_speed = 5
 var is_falling: bool = true # this var should not be needed
 var impact_damage:int = 80
+
+var can_spawn_slimes: bool = true
+var king_slime
 
 # Called when the node enters the scene tree for the first time.
 #func _ready() -> void:
@@ -30,7 +35,12 @@ func on_blob_land():
 		if body is Enemy or body is Player:
 			body.take_damage(impact_damage, "falling")
 	print("blob")
-	var new_slime = slime.instantiate()
-	new_slime.position = position
-	get_parent().add_child(new_slime)
+	if can_spawn_slimes:
+		var new_slime = slime.instantiate()
+		new_slime.position = position
+		new_slime.is_spawned_by_king_slime = true
+		new_slime.king_slime = king_slime
+		king_slime.active_slimes += 1
+		
+		get_parent().add_child(new_slime)
 	queue_free()

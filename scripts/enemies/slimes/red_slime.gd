@@ -3,6 +3,9 @@ extends Slime # please dont forget to fix raycast collision masks !!
 #const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 var timer_is_already_running = true
+
+var is_spawned_by_king_slime: bool = false
+var king_slime#x = null
 #var jump_duration = 1.0 # in sec
 
 #@export var animation_tree : AnimationTree
@@ -87,3 +90,9 @@ func change_state(new_state):
 		STATES.JUMP_ATTACK:
 			state = STATES.JUMP_ATTACK
 			jump_attack_state(0, jump_duration, "enter")
+
+
+func die():
+	if is_spawned_by_king_slime and is_instance_valid(king_slime):
+		king_slime.active_slimes -= 1
+	super()

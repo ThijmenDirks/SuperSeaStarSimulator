@@ -52,6 +52,7 @@ shape = SubResource("RectangleShape2D_pv047")
 [node name="CollisionShape2D" parent="Transitions" instance=ExtResource("5_1gcee")]
 position = Vector2(-11, -306.25)
 shape = SubResource("RectangleShape2D_e8fg4")
+ID = "spawn2_up"
 target_map = ExtResource("6_vcncf")
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

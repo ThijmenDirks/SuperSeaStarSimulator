@@ -34,8 +34,8 @@ var is_casting = false
 #var resistances_and_weaknesses : Dictionary
 #var last_z_height: int
 #var current_z_height: int
-var saved_point: Marker2D
-var saved_map: PackedScene
+var saved_point: String# = "Start" # the marker ID, or child index
+var saved_map: PackedScene# = load("res://scenes/levels/open_world_mode/forest1start/spawn1.tscn")
 
 var selected_school = SPELL_SCHOOLS.FIRE
 var selected_spell_slot: int = 0
@@ -425,7 +425,7 @@ func get_save_stats() -> Dictionary:
 	return {
 		"hp": hp,
 		"saved_point" : saved_point,
-		"saved_map": saved_map,
+		"saved_map": get_parent().scene_file_path,
 	}
 
 var place

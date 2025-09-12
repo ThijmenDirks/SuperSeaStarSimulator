@@ -1,7 +1,7 @@
-# TransitionZone.gd
+ #TransitionZone.gd
 class_name Transition extends CollisionShape2D
 
-@export var ID: int
+@export var ID: String
 #@export var shapee: Shape2D
 @export var target_map: PackedScene
 #@export var player
@@ -48,8 +48,10 @@ func switch_map():
 	#print("Player name:", player.name)
 	new_map.call_deferred("add_child", player) #  here it all goes wrong # not anymore
 	#print("switch_map test 4")
-	player.position = new_map.get_node("Spawns").get_child(ID).global_position
-	player.saved_point = new_map.get_node("Spawns").get_child(ID)
+	#ID = 
+	player.position = new_map.get_node("Spawns").get_node(ID).global_position
+	#player.saved_point = new_map.get_node("Spawns").get_child(ID)
+	player.saved_point = ID
 	player.saved_map = target_map
 	#print("switch_map test 5")
 	get_parent().get_parent().queue_free()

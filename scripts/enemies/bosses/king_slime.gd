@@ -5,6 +5,10 @@ extends Slime # please dont forget to fix raycast collision masks !!
 @onready var blob: PackedScene = load("res://scenes/enemies/slimes/blob.tscn")
 @onready var slime: PackedScene = load("res://scenes/enemies/slimes/red_slime.tscn")
 
+@export var max_slimes: int = 40
+
+var active_slimes: int = 0
+
 #const JUMP_VELOCITY = -400.0
 var timer_is_already_running = true
 
@@ -46,7 +50,8 @@ func _ready() -> void:
 	ability_cooldown_timer_1.start()
 
 func _physics_process(delta: float) -> void:
-	progression = (max_hp-hp) / max_hp
+	print("active slimes: ", active_slimes)
+	progression = (max_hp-hp) / max_hp # this shouldbe in get_damage() and get_healing() ?
 	#scale *= 1.1 # right here is the jumpscare line ! dont even think about delteing this line !
 	#scale *= (1-progression)
 	super(delta)
@@ -111,16 +116,17 @@ func take_damage(damage: int, damage_type: String):
 	if thresholds_crossed > damage_threshold_counter:
 	# Trigger once for each threshold crossed
 		for i in range(damage_threshold_counter, thresholds_crossed):
-			spawn_slime()
-			_on_damage_threshold_reached((i + 1) * 50)
+			if active_slimes < max_slimes:
+				spawn_slime()
+			#_on_damage_threshold_reached((i + 1) * 50)
 	damage_threshold_counter = thresholds_crossed
 
 
 func enter_beast_mode():
-	pass
+	print("kind_slime entered beast mode !")
 
-func _on_damage_threshold_reached(total_damage: int) -> void:
-	print("Threshold reached at: %d damage taken" % total_damage)
+#func _on_damage_threshold_reached(total_damage: int) -> void:
+	#print("Threshold reached at: %d damage taken" % total_damage)
 
 
 func spawn_slime():
@@ -128,6 +134,9 @@ func spawn_slime():
 	var x_ofset = cos(randf() * TAU)
 	var y_offset = cos(randf() * TAU)
 	new_slime.position = global_position + Vector2(x_ofset, y_offset)
+	new_slime.is_spawned_by_king_slime = true
+	new_slime.king_slime = self
+	active_slimes += 1
 	# radius veranderd niet als lsime.scale veranderd, dus moet manual *scale
 	get_parent().get_parent().get_parent().add_child(new_slime)
 
@@ -142,6 +151,10 @@ func blob_attack() -> void:
 		if blob_target_position:
 			var new_blob = blob.instantiate()
 			new_blob.position = blob_target_position
+			if active_slimes >= max_slimes:
+				new_blob.can_spawn_slimes = false
+			else:
+				new_blob.king_slime = self
 			self.get_parent().get_parent().get_parent().add_child(new_blob)
 			await get_tree().create_timer(0.01).timeout
 
