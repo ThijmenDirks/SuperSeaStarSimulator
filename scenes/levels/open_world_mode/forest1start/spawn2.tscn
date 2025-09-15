@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://cb85113jnwg1x"]
+[gd_scene load_steps=15 format=4 uid="uid://cb85113jnwg1x"]
 
 [ext_resource type="Script" path="res://scripts/map/open_world_stuff/load_room.gd" id="1_ru82i"]
 [ext_resource type="TileSet" uid="uid://ch01sy32qq7w2" path="res://art/tilesets/flayer1.tres" id="2_l4uy1"]
@@ -8,8 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://c25a8toq0den5" path="res://scenes/map/moveable_block.tscn" id="6_s4oe4"]
 [ext_resource type="PackedScene" uid="uid://bpsxwlr7jvqe7" path="res://scenes/levels/open_world_mode/transition.tscn" id="7_kf4im"]
 [ext_resource type="PackedScene" uid="uid://drpevs8n2f2li" path="res://scenes/enemies/slimes/red_slime.tscn" id="7_xf8c5"]
-[ext_resource type="PackedScene" uid="uid://d34l06h3lh76c" path="res://scenes/levels/open_world_mode/forest1start/spawn3.tscn" id="8_8l1pw"]
-[ext_resource type="PackedScene" uid="uid://3j0jgbc48rj2" path="res://scenes/levels/open_world_mode/forest1start/spawn4.tscn" id="9_3xkna"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j4y1v"]
 size = Vector2(187, 40.5)
@@ -66,17 +64,19 @@ color = Color(0.881937, 0.881937, 0.881936, 1)
 position = Vector2(-466.5, -166.75)
 shape = SubResource("RectangleShape2D_j4y1v")
 ID = "spawn3_left"
-target_map = ExtResource("8_8l1pw")
+string_target_map = "res://scenes/levels/open_world_mode/forest1start/spawn3.tscn"
 
 [node name="CollisionShapeNR2" parent="Transitions" instance=ExtResource("7_kf4im")]
 position = Vector2(23.5, -334)
 shape = SubResource("RectangleShape2D_krcuk")
 ID = "spawn4_up"
-target_map = ExtResource("9_3xkna")
+string_target_map = "res://scenes/levels/open_world_mode/forest1start/spawn4.tscn"
 
 [node name="Transition" parent="Transitions" instance=ExtResource("7_kf4im")]
 position = Vector2(24, 119)
 shape = SubResource("RectangleShape2D_ny82e")
+ID = "spawn1_down"
+string_target_map = "res://scenes/levels/open_world_mode/forest1start/spawn1.tscn"
 
 [node name="Spawns" type="Node2D" parent="."]
 

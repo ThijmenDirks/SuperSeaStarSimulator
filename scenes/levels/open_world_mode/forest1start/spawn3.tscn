@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://d34l06h3lh76c"]
+[gd_scene load_steps=13 format=4 uid="uid://d34l06h3lh76c"]
 
 [ext_resource type="Script" path="res://scripts/map/open_world_stuff/load_room.gd" id="1_3uf1o"]
 [ext_resource type="TileSet" uid="uid://ch01sy32qq7w2" path="res://art/tilesets/flayer1.tres" id="1_s73jk"]
@@ -6,9 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://ciu03g4mjuxs2" path="res://scenes/enemies/slimes/green_slime.tscn" id="4_trmcp"]
 [ext_resource type="Script" path="res://scripts/map/open_world_stuff/spawn_zones.gd" id="5_di01j"]
 [ext_resource type="PackedScene" uid="uid://bpsxwlr7jvqe7" path="res://scenes/levels/open_world_mode/transition.tscn" id="5_eo1m3"]
-[ext_resource type="PackedScene" uid="uid://cb85113jnwg1x" path="res://scenes/levels/open_world_mode/forest1start/spawn2.tscn" id="6_0iu45"]
-[ext_resource type="PackedScene" uid="uid://c8x416edwxwof" path="res://scenes/levels/open_world_mode/forest1start/spawn5b.tscn" id="7_uk3lv"]
-[ext_resource type="PackedScene" uid="uid://d2j6yvi38nfrv" path="res://scenes/levels/open_world_mode/forest1start/forest1.tscn" id="8_qxeh2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_04iyh"]
 size = Vector2(196.156, 54.1563)
@@ -77,19 +74,19 @@ position = Vector2(-26, 142)
 position = Vector2(142.078, -0.078125)
 shape = SubResource("RectangleShape2D_04iyh")
 ID = "spawn2_right"
-target_map = ExtResource("6_0iu45")
+string_target_map = "spawn2_right"
 
 [node name="Transition2" parent="Transitions" instance=ExtResource("5_eo1m3")]
 position = Vector2(-577.5, 51)
 shape = SubResource("RectangleShape2D_anxrc")
 ID = "spawn5_left"
-target_map = ExtResource("7_uk3lv")
+string_target_map = "Transitions/Transition2"
 
 [node name="Transition3" parent="Transitions" instance=ExtResource("5_eo1m3")]
 position = Vector2(-185.5, 318)
 shape = SubResource("RectangleShape2D_icpee")
-ID = "Forest1_down"
-target_map = ExtResource("8_qxeh2")
+ID = "forest1_down"
+string_target_map = "res://scenes/levels/open_world_mode/forest1start/forest1.tscn"
 
 [node name="OldTransitions" type="Node" parent="."]
 

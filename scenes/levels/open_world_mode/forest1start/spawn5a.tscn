@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://dd8f4tlc62hdt"]
+[gd_scene load_steps=13 format=4 uid="uid://dd8f4tlc62hdt"]
 
 [ext_resource type="Script" path="res://scripts/map/open_world_stuff/load_room.gd" id="1_7mlip"]
 [ext_resource type="TileSet" uid="uid://ch01sy32qq7w2" path="res://art/tilesets/flayer1.tres" id="1_27gfd"]
@@ -6,9 +6,7 @@
 [ext_resource type="Script" path="res://scripts/map/open_world_stuff/spawn_zones.gd" id="4_3hja3"]
 [ext_resource type="PackedScene" uid="uid://drpevs8n2f2li" path="res://scenes/enemies/slimes/red_slime.tscn" id="5_oip38"]
 [ext_resource type="PackedScene" uid="uid://dvrq0jcv8ld8t" path="res://scenes/enemies/ogre.tscn" id="6_pfohd"]
-[ext_resource type="PackedScene" uid="uid://bbkm4uhyjl240" path="res://scenes/levels/open_world_mode/desert1/desert_entrance.tscn" id="7_8hjq2"]
 [ext_resource type="PackedScene" uid="uid://bpsxwlr7jvqe7" path="res://scenes/levels/open_world_mode/transition.tscn" id="7_x7uax"]
-[ext_resource type="PackedScene" uid="uid://d34l06h3lh76c" path="res://scenes/levels/open_world_mode/forest1start/spawn3.tscn" id="8_phnpv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_stiix"]
 size = Vector2(161, 50.5)
@@ -93,13 +91,12 @@ position = Vector2(-70, 267)
 position = Vector2(-1391.5, -30.25)
 shape = SubResource("RectangleShape2D_stiix")
 ID = "desert_entrance_left"
-target_map = ExtResource("7_8hjq2")
+string_target_map = "res://scenes/levels/open_world_mode/desert1/desert_entrance.tscn"
 
 [node name="Transition2" parent="Transitions" instance=ExtResource("7_x7uax")]
 position = Vector2(631, -0.25)
 shape = SubResource("RectangleShape2D_n37ql")
-ID = "spawn3_right"
-target_map = ExtResource("8_phnpv")
+string_target_map = "res://scenes/levels/open_world_mode/forest1start/spawn3.tscn"
 
 [node name="OldTransitions" type="Node" parent="."]
 

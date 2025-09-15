@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://bbkm4uhyjl240"]
+[gd_scene load_steps=12 format=4 uid="uid://bbkm4uhyjl240"]
 
 [ext_resource type="Script" path="res://scripts/map/open_world_stuff/load_room.gd" id="1_7fk2s"]
 [ext_resource type="PackedScene" uid="uid://dis72yxspt3b6" path="res://art/particles/sandstorm.tscn" id="2_ibp28"]
@@ -7,8 +7,6 @@
 [ext_resource type="Script" path="res://scripts/map/open_world_stuff/spawn_zones.gd" id="5_0gdtq"]
 [ext_resource type="PackedScene" uid="uid://bolg702rb3vex" path="res://scenes/enemies/mummy.tscn" id="6_6jtdg"]
 [ext_resource type="PackedScene" uid="uid://bpsxwlr7jvqe7" path="res://scenes/levels/open_world_mode/transition.tscn" id="7_nrcjg"]
-[ext_resource type="PackedScene" uid="uid://dd8f4tlc62hdt" path="res://scenes/levels/open_world_mode/forest1start/spawn5a.tscn" id="8_wfb5o"]
-[ext_resource type="PackedScene" uid="uid://chevhg0g84dyu" path="res://scenes/levels/open_world_mode/desert1/lower_oasis.tscn" id="9_f2wf1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_06j0w"]
 size = Vector2(4.375, 20)
@@ -121,13 +119,13 @@ shape = SubResource("RectangleShape2D_uatev")
 position = Vector2(1067.75, 264)
 shape = SubResource("RectangleShape2D_sdk0t")
 ID = "spawn5_right"
-target_map = ExtResource("8_wfb5o")
+string_target_map = "res://scenes/levels/open_world_mode/forest1start/spawn5a.tscn"
 
 [node name="Transition2" parent="Transitions" instance=ExtResource("7_nrcjg")]
 position = Vector2(-2545, -1050.38)
 shape = SubResource("RectangleShape2D_5rfcj")
 ID = "lower_oasis_up"
-target_map = ExtResource("9_f2wf1")
+string_target_map = "res://scenes/levels/open_world_mode/desert1/lower_oasis.tscn"
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
 [connection signal="body_entered" from="OldTransitions/Area2D2" to="OldTransitions/Area2D2" method="_on_body_entered"]
