@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=4 uid="uid://chevhg0g84dyu"]
+[gd_scene load_steps=9 format=4 uid="uid://chevhg0g84dyu"]
 
 [ext_resource type="Script" path="res://scripts/map/open_world_stuff/load_room.gd" id="1_5gj8y"]
 [ext_resource type="TileSet" uid="uid://ch01sy32qq7w2" path="res://art/tilesets/flayer1.tres" id="1_bnpod"]
 [ext_resource type="TileSet" uid="uid://0nc4alojvvx7" path="res://art/tilesets/flayerb.tres" id="2_2gteu"]
 [ext_resource type="Script" path="res://scripts/map/open_world_stuff/spawn_zones.gd" id="3_2eqgl"]
 [ext_resource type="PackedScene" uid="uid://bpsxwlr7jvqe7" path="res://scenes/levels/open_world_mode/transition.tscn" id="4_oehgu"]
+[ext_resource type="PackedScene" uid="uid://bbkm4uhyjl240" path="res://scenes/levels/open_world_mode/desert1/desert_entrance.tscn" id="5_sq4es"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ugan"]
 size = Vector2(59, 152.5)
@@ -38,6 +39,8 @@ position = Vector2(209, 267)
 [node name="Transition" parent="Transitions" instance=ExtResource("4_oehgu")]
 position = Vector2(207.5, 373.75)
 shape = SubResource("RectangleShape2D_4ugan")
+ID = "desert_entrance_down"
+target_map = ExtResource("5_sq4es")
 
 [node name="OldTransitions" type="Node" parent="."]
 
