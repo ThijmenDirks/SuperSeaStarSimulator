@@ -14,7 +14,10 @@ config/name="SuperSeaStarSimulatorV1"
 run/main_scene="res://scenes/other/menu.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 run/max_fps=120
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/image="res://art/UI_and_the_like/this_is_a_loading_screen_now.png"
 config/icon="res://icon.svg"
+boot_splash/minimum_display_time=732
 
 [autoload]
 
@@ -33,6 +36,8 @@ window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="viewport"
 window/stretch/aspect="ignore"
+mouse_cursor/custom_image="res://art/UI_and_the_like/tempcursortest.png"
+mouse_cursor/custom_image_hotspot=Vector2(16, 16)
 
 [file_customization]
 
