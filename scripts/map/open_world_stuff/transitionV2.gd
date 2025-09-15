@@ -3,14 +3,16 @@ class_name Transition extends CollisionShape2D
 
 @export var ID: String
 #@export var shapee: Shape2D
-@export var target_map: PackedScene
+@export var string_target_map: String
 #@export var player
 #@export var target_entrance: PackedScene
 var player# = load("res://scenes/other/player.tscn")
+var target_map: PackedScene
 
 func _ready() -> void:
 	await get_tree().process_frame
 	await get_tree().process_frame
+	target_map = load(string_target_map)
 	print("waah  ", get_child(0).get_child(0), "   ", self)#get_parent().get_node("Transitions").get_child(0))
 	get_child(0).get_child(0).shape = self.shape
 	#get_child(0).get_child(0).shape.size = Vector2(10, 30)

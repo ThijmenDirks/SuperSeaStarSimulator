@@ -73,12 +73,12 @@ func _input(event: InputEvent) -> void:
 		var old_school = floor(scroll_wheel_school_index)
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
 			scroll_wheel_school_index += 0.2 * scroll_sensitivity
-			print("wheel up to ", scroll_wheel_school_index)
+			#print("wheel up to ", scroll_wheel_school_index)
 			#if floor(scroll_wheel_school_index) > SPELL_SCHOOLS.size(): # this line and the line below, along with the other variatnt of this block within this func, should actulaay go in update_selected_school() # done !
 				#scroll_wheel_school_index = 0.0
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			scroll_wheel_school_index -= 0.2 * scroll_sensitivity
-			print("wheel down to ", scroll_wheel_school_index)
+			#print("wheel down to ", scroll_wheel_school_index)
 			#if floor(scroll_wheel_school_index) < 0:
 				#scroll_wheel_school_index = SPELL_SCHOOLS.size()
 		#print("wheel asdf", scroll_wheel_school_index)
@@ -101,7 +101,7 @@ func update_selected_school():
 	#selected_school = SPELL_SCHOOLS.keys()[floor(scroll_wheel_school_index)]
 	selected_school = int(floor(scroll_wheel_school_index)) % SPELL_SCHOOLS.size()
 	update_selected_spell()
-	print("wheel, school updated to ", SPELL_SCHOOLS.keys()[floor(scroll_wheel_school_index)], " on index ", scroll_wheel_school_index)
+	#print("wheel, school updated to ", SPELL_SCHOOLS.keys()[floor(scroll_wheel_school_index)], " on index ", scroll_wheel_school_index)
 	interface.update_selected_school_label(SPELL_SCHOOLS.keys()[selected_school])
 	visible = false
 	await get_tree().create_timer(0.2).timeout
@@ -213,7 +213,10 @@ func update_selected_spell():
 	else:
 		# fallback if index is invalid
 		selected_spell = spell_database.fireball
-
+	#update_selected_slot_label()
+	#update_selected_spell_label()
+	interface.update_selected_slot_label(selected_spell_slot)
+	interface.update_selected_spell_label(selected_spell.spell_name)
 
 # credits
 # was it natanius ?

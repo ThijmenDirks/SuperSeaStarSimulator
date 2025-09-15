@@ -32,10 +32,27 @@ text = "label"
 
 [node name="SelectedSchoolLabel" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 586.0
-offset_top = 176.0
-offset_right = 626.0
-offset_bottom = 199.0
+offset_left = 504.0
+offset_top = 178.0
+offset_right = 554.0
+offset_bottom = 201.0
+text = "school"
+
+[node name="SelectedSlotLabel" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 507.0
+offset_top = 210.0
+offset_right = 547.0
+offset_bottom = 233.0
+text = "slot"
+
+[node name="SelectedSpellLabel" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 507.0
+offset_top = 244.0
+offset_right = 547.0
+offset_bottom = 267.0
+text = "spell"
 
 [node name="HPStars" type="Node2D" parent="Control"]
 

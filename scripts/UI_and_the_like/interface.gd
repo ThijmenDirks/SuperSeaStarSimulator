@@ -3,6 +3,8 @@ extends CanvasLayer
 @onready var last_screen_size = get_viewport().get_visible_rect().size
 @onready var wave_number_label = $Control/WaveNumberLabel
 @onready var selected_school_label = $Control/SelectedSchoolLabel
+@onready var selected_slot_label = $Control/SelectedSlotLabel
+@onready var selected_spell_label = $Control/SelectedSpellLabel
 #@onready var mana_thingy = load("res://scenes/other/mana_thingy.tscn").instantiate()
 
 var mana_thingies : Array
@@ -32,7 +34,13 @@ func update_wave_number_label(new_wave_number):
 
 
 func update_selected_school_label(selected_school):
-	selected_school_label.text = str(selected_school)
+	selected_school_label.text = "school of " + str(selected_school)
+
+func update_selected_slot_label(selected_slot):
+	selected_slot_label.text = "slot " + str(selected_slot)
+
+func update_selected_spell_label(selected_spell):
+	selected_spell_label.text = "spell " + str(selected_spell)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -143,13 +143,13 @@ func _process(delta: float) -> void:
 
 
 func process_bodies_in_vision_field(): # i think i just want this in every enemy.
-	print("help")
+	#print("help")
 	player_in_vision_field = false
 	enemy_in_vision_field = false
 	spell_in_vision_field = false
 	something_in_vision_field = false
 	var bodies_in_vision_field = get_bodies_in_vision_field()
-	print("helppp ", get_bodies_in_vision_field())
+	#print("helppp ", get_bodies_in_vision_field())
 	#print("on_something_in_vision_field 0   ", bodies_in_vision_field)
 	for body in bodies_in_vision_field:
 		if body is Player:
@@ -161,7 +161,7 @@ func process_bodies_in_vision_field(): # i think i just want this in every enemy
 		if body is Spell:
 			spell_in_vision_field = body
 			something_in_vision_field = true
-	print("helpppp", player_in_vision_field)
+	#print("helpppp", player_in_vision_field)
 	if something_in_vision_field:
 		on_something_in_vision_field(bodies_in_vision_field)
 	else:
