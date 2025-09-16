@@ -7,7 +7,8 @@ func _input(event):
 	if event.is_action_pressed("c"):
 		set_fullscreen()
 
-
+# credits
+# _michdev
 func set_fullscreen():
 	if DisplayServer.window_get_mode() != DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN:
 		old_window_mode = DisplayServer.window_get_mode()
