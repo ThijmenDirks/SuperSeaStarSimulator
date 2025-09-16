@@ -38,7 +38,8 @@ position = Vector2(209, 267)
 [node name="Transition" parent="Transitions" instance=ExtResource("4_oehgu")]
 position = Vector2(207.5, 373.75)
 shape = SubResource("RectangleShape2D_4ugan")
-string_target_map = "Transitions/Transition"
+ID = "desert_entrance_down"
+string_target_map = "res://scenes/levels/open_world_mode/desert1/desert_entrance.tscn"
 
 [node name="OldTransitions" type="Node" parent="."]
 

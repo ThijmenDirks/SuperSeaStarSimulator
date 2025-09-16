@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://c8x416edwxwof"]
+[gd_scene load_steps=17 format=4 uid="uid://c8x416edwxwof"]
 
 [ext_resource type="TileSet" uid="uid://ch01sy32qq7w2" path="res://art/tilesets/flayer1.tres" id="1_wokhj"]
 [ext_resource type="Script" path="res://scripts/map/open_world_stuff/load_room.gd" id="1_yobf5"]
@@ -19,6 +19,20 @@ size = Vector2(161, 50.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o54wq"]
 size = Vector2(210, 58.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bs8xr"]
+size = Vector2(18, 33)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_obb0p"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ofmv"]
+size = Vector2(18, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_70llt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ieew"]
+size = Vector2(16, 30)
 
 [node name="Spawn5b" type="Node2D"]
 script = ExtResource("1_yobf5")
@@ -169,6 +183,36 @@ ID = "desert_entrance_left"
 position = Vector2(631, -0.25)
 shape = SubResource("RectangleShape2D_o54wq")
 ID = "spawn3_right"
+
+[node name="Transition3" parent="Transitions" instance=ExtResource("7_mcr8l")]
+position = Vector2(-8, -520.5)
+shape = SubResource("RectangleShape2D_bs8xr")
+ID = "above_up"
+string_target_map = "res://scenes/levels/open_world_mode/forest1start/spawn5a.tscn"
+
+[node name="Transition4" parent="Transitions" instance=ExtResource("7_mcr8l")]
+position = Vector2(-120, 120)
+shape = SubResource("RectangleShape2D_obb0p")
+ID = "above_down4"
+string_target_map = "res://scenes/levels/open_world_mode/forest1start/spawn5a.tscn"
+
+[node name="Transition5" parent="Transitions" instance=ExtResource("7_mcr8l")]
+position = Vector2(-168, 119.5)
+shape = SubResource("RectangleShape2D_6ofmv")
+ID = "above_down3"
+string_target_map = "res://scenes/levels/open_world_mode/forest1start/spawn5a.tscn"
+
+[node name="Transition6" parent="Transitions" instance=ExtResource("7_mcr8l")]
+position = Vector2(-142, 166)
+shape = SubResource("RectangleShape2D_70llt")
+ID = "above_down2"
+string_target_map = "res://scenes/levels/open_world_mode/forest1start/spawn5a.tscn"
+
+[node name="Transition7" parent="Transitions" instance=ExtResource("7_mcr8l")]
+position = Vector2(-275, 135)
+shape = SubResource("RectangleShape2D_0ieew")
+ID = "above_down"
+string_target_map = "res://scenes/levels/open_world_mode/forest1start/spawn5a.tscn"
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
 [connection signal="body_entered" from="Area2D2" to="Area2D2" method="_on_body_entered"]

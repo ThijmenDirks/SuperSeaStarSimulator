@@ -1,10 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://qchn08qp8wt0"]
+[gd_scene load_steps=7 format=3 uid="uid://qchn08qp8wt0"]
 
 [ext_resource type="Script" path="res://scripts/map/sign.gd" id="1_cs7pn"]
 [ext_resource type="Texture2D" uid="uid://dlq1nf6cphhon" path="res://art/map/sign_single.png" id="2_upxhf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_glfjs"]
 size = Vector2(14, 6)
+
+[sub_resource type="LabelSettings" id="LabelSettings_smvvf"]
+font_size = 32
+outline_size = 1
+outline_color = Color(0.0142752, 0.0142752, 0.0142752, 1)
+shadow_color = Color(0, 0, 0, 0.129412)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4sxff"]
 size = Vector2(76, 65)
@@ -13,6 +19,7 @@ size = Vector2(76, 65)
 polygon = PackedVector2Array(6, 8, 10, 8, 10, 2, 15, 1, 15, -6, 1, -6, 1, 1, 6, 2)
 
 [node name="Sign" type="StaticBody2D"]
+z_index = 4
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_cs7pn")
@@ -25,16 +32,19 @@ shape = SubResource("RectangleShape2D_glfjs")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -9.0
-offset_top = -19.0
-offset_right = 51.0
-offset_bottom = 11.0
+offset_left = -36.0
+offset_top = -54.0
+offset_right = 324.0
+offset_bottom = 159.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.3, 0.3)
+scale = Vector2(0.2, 0.2)
 text = "test"
+label_settings = SubResource("LabelSettings_smvvf")
 horizontal_alignment = 1
-max_lines_visible = 2
+vertical_alignment = 1
+autowrap_mode = 2
+max_lines_visible = 4
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 256

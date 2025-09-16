@@ -468,3 +468,7 @@ position = Vector2(194, -223)
 
 [node name="CharacterBody2DG2" parent="." instance=ExtResource("15_5f6j1")]
 position = Vector2(184, -212)
+
+[node name="Sign4" parent="." instance=ExtResource("13_g0f83")]
+position = Vector2(28, 9)
+text = "Scroll to select school 1-5 to select spell, left mouse click to cast"
