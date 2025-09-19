@@ -16,6 +16,7 @@ class_name Player extends Entity
 @onready var coyote_timer_to_cast_spell = $CTimerToCastSpell
 @onready var coyote_timer_to_press_simoultaniously = $CTimerToPressSimoultaniously
 @onready var hp_stars = get_node("Interface/Control/HPStars")
+@onready var selected_school_bar = interface.get_node("Control/SelectedSchoolBar")
 #@onready var hp_bar = $HPBar
 
 var hp = max_hp
@@ -72,12 +73,14 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		var old_school = floor(scroll_wheel_school_index)
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
-			scroll_wheel_school_index += 0.2 * scroll_sensitivity
+			scroll_wheel_school_index += 0.1 * scroll_sensitivity
+			selected_school_bar.update_scroll_bar("up", scroll_sensitivity)
 			#print("wheel up to ", scroll_wheel_school_index)
 			#if floor(scroll_wheel_school_index) > SPELL_SCHOOLS.size(): # this line and the line below, along with the other variatnt of this block within this func, should actulaay go in update_selected_school() # done !
 				#scroll_wheel_school_index = 0.0
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-			scroll_wheel_school_index -= 0.2 * scroll_sensitivity
+			scroll_wheel_school_index -= 0.1 * scroll_sensitivity
+			selected_school_bar.update_scroll_bar("down", scroll_sensitivity)
 			#print("wheel down to ", scroll_wheel_school_index)
 			#if floor(scroll_wheel_school_index) < 0:
 				#scroll_wheel_school_index = SPELL_SCHOOLS.size()

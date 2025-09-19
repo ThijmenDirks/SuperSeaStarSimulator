@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=4 uid="uid://dbifjqhl4pa28"]
+[gd_scene load_steps=79 format=4 uid="uid://dbifjqhl4pa28"]
 
 [ext_resource type="Script" path="res://scripts/levels/test_level.gd" id="1_4lh20"]
 [ext_resource type="PackedScene" uid="uid://bqhlp5wv10xgg" path="res://scenes/other/player.tscn" id="2_ao355"]
@@ -14,6 +14,17 @@
 [ext_resource type="PackedScene" uid="uid://qchn08qp8wt0" path="res://scenes/map/sign.tscn" id="13_g0f83"]
 [ext_resource type="PackedScene" uid="uid://cjfavrdl82vi3" path="res://scenes/map/breakable_block.tscn" id="13_ij83k"]
 [ext_resource type="PackedScene" uid="uid://b1nmsy182cd4k" path="res://debug and testing/bridge.tscn" id="14_eg12w"]
+
+[sub_resource type="Resource" id="Resource_tt21b"]
+script = ExtResource("3_wq6wp")
+enemy = null
+amount = 1
+time = 0.0
+spawn_area = 0
+
+[sub_resource type="Resource" id="Resource_ybm05"]
+script = ExtResource("2_v6og4")
+subwaves = Array[ExtResource("3_wq6wp")]([SubResource("Resource_tt21b")])
 
 [sub_resource type="Resource" id="Resource_om41k"]
 script = ExtResource("3_wq6wp")
@@ -411,7 +422,7 @@ size = Vector2(4, 80)
 
 [node name="TestLevel" type="Node2D" node_paths=PackedStringArray("spawn_areas")]
 script = ExtResource("1_4lh20")
-all_waves = Array[ExtResource("2_v6og4")]([SubResource("Resource_svc0e"), SubResource("Resource_ys7rw"), SubResource("Resource_tl61l"), SubResource("Resource_xyvkp"), SubResource("Resource_ausev"), SubResource("Resource_mtqq7"), SubResource("Resource_md537"), SubResource("Resource_qfl1q"), SubResource("Resource_u0c40"), SubResource("Resource_hdpy8")])
+all_waves = Array[ExtResource("2_v6og4")]([SubResource("Resource_ybm05"), SubResource("Resource_svc0e"), SubResource("Resource_ys7rw"), SubResource("Resource_tl61l"), SubResource("Resource_xyvkp"), SubResource("Resource_ausev"), SubResource("Resource_mtqq7"), SubResource("Resource_md537"), SubResource("Resource_qfl1q"), SubResource("Resource_u0c40"), SubResource("Resource_hdpy8")])
 spawn_areas = [NodePath("SpawnAreas/SpawnArea0"), NodePath("SpawnAreas/SpawnArea1"), NodePath("SpawnAreas/SpawnArea2")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -431,6 +442,7 @@ position = Vector2(32.628, 167)
 shape = SubResource("RectangleShape2D_kbsjh")
 
 [node name="Node2D" parent="Area2D" instance=ExtResource("6_jnk05")]
+visible = false
 position = Vector2(366, 48)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
