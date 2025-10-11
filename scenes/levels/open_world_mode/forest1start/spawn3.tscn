@@ -80,7 +80,6 @@ string_target_map = "res://scenes/levels/open_world_mode/forest1start/spawn2.tsc
 position = Vector2(-577.5, 51)
 shape = SubResource("RectangleShape2D_anxrc")
 ID = "spawn5_left"
-string_target_map = "res://scenes/levels/open_world_mode/forest1start/spawn5b.tscn"
 string_target_map = "res://scenes/levels/open_world_mode/forest1start/spawn5a.tscn"
 
 [node name="Transition3" parent="Transitions" instance=ExtResource("5_eo1m3")]
