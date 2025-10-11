@@ -38,6 +38,8 @@ func _ready():
 	print("max_range: ", max_range, "   position   ", position, "   global_position   ", global_position, "   target_position   ", target_position, "   length:   ", self.position.distance_to(origin_position))
 	print("heal test 4")
 
+	if not is_instance_valid(caster):
+		return
 	if caster is Player: # this should be done in the above block, during making variables
 		if pay_mana(orb_cost):
 			change_kleurenbalkje(["green","blue"])

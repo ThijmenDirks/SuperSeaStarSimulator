@@ -120,3 +120,7 @@ func get_random_in_circle(shape: Resource) -> Vector2:
 	var r = shape.radius * sqrt(randf())  # sqrt to ensure uniform distribution
 	var angle = randf() * TAU
 	return Vector2(cos(angle), sin(angle)) * r
+
+
+func generate_new_wave():
+	pass

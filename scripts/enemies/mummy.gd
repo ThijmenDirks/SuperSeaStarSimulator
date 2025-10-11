@@ -5,7 +5,8 @@ const JUMP_VELOCITY = -400.0
 
 var max_respawns: int = 5
 var amount_of_respawns: int = 0
-var is_fake_dead: bool = true
+var is_fake_dead: bool = false
+var is_respawning: bool = false
 var dead_time: int = 3
 
 @export var animation_tree : AnimationTree
@@ -21,7 +22,7 @@ func _ready() -> void:
 	attack_damage = 50
 	chase_end_distance = 20
 	melee_range = 30
-	attack_speed = 0.5
+	attack_speed = 0.05
 
 	state = STATES.IDLE_STAND
 	idle_stand(randi_range(3, 3), "enter") # shuoldnt you just call change_state(IDLE_STAND) ?
@@ -88,8 +89,8 @@ func update_animation_parameters():
 		return
 	animation_tree["parameters/Idle/blend_position"] = velocity
 	animation_tree["parameters/Walk/blend_position"] = velocity
-	animation_tree["parameters/IdleCast/blend_position"] = velocity
-	animation_tree["parameters/WalkCast/blend_position"] = velocity
+	#animation_tree["parameters/IdleCast/blend_position"] = velocity
+	#animation_tree["pardameters/WalkCast/blend_position"] = velocity
 
 
 func take_damage(damage : int, damage_type : String):
@@ -106,6 +107,7 @@ func take_damage(damage : int, damage_type : String):
 
 
 func fake_die():
+	is_fake_dead = true
 	for i in [3,4,5,10]:
 		set_collision_layer_value(i, false)
 	amount_of_respawns += 1
@@ -117,10 +119,16 @@ func fake_die():
 	state = STATES.IDLE_STAND
 	state_is_locked = true
 	await get_tree().create_timer(dead_time).timeout
+	is_fake_dead = false
 	respawn()
 
 
 func respawn():
+	is_respawning = true
+	print("mummy is respawning")
+	await get_tree().create_timer(0.45).timeout
+	print("mummy is done respawning")
+	is_respawning = false
 	for i in [3,4,5,10]:
 		set_collision_layer_value(i, true)
 	#set_collision_layer_value(3, true,)

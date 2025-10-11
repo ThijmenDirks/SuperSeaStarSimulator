@@ -25,7 +25,7 @@ var vision_range : int
 var loot_table : Dictionary
 var state = STATES.IDLE_STAND
 var angry: bool = true # maybe it would be cool to also /give it/replace it by/ an array holding at which individuals it is angry ?
-var is_casting = null
+var is_casting: bool = false
 var jump_distance : int
 var hoever_deze_jump_al_was = 0
 var s_and_x = 0
@@ -324,14 +324,18 @@ func melee_attack_state(delta, phase : String = "running"):#, target : Object = 
 			print("enemy begins attack ! for ", attack_damage,  " damage !")
 			var backup_speed = speed
 			#speed = 0 # this is not needen anymore, sice not calling move() is sufficient. # + setting speed to 0 makes enemies face right when casting, which is weird
+			speed = 0 # turns out it was needed. And it doesnt make the enemy face right
 			state_is_locked = true
+			is_casting = true
 			await get_tree().create_timer(attack_speed).timeout # this one is okay. since the state is locked, it cant cause spontaneous state changing
-			if self.global_position.distance_to(attack_target.global_position) < melee_range:
-				print("attack ! target has ", attack_target.hp, " hp !")
-				attack_target.take_damage(attack_damage, "physical") # "physical" should, ofc, be replaced with some var
-				print("enemy finished attack !  on ", attack_target, " target now has ", attack_target.hp, " hp !")
+			if is_instance_valid(attack_target): # ALERT this should also go in some other states
+				if self.global_position.distance_to(attack_target.global_position) < melee_range:
+					print("attack ! target has ", attack_target.hp, " hp !")
+					attack_target.take_damage(attack_damage, "physical") # "physical" should, ofc, be replaced with some var
+					print("enemy finished attack !  on ", attack_target, " target now has ", attack_target.hp, " hp !")
 			speed = backup_speed
 			state_is_locked = false
+			is_casting = false
 			print("last state  ", get_last_state())
 			request_change_state(get_last_state())
 			request_change_state(STATES.CHASE)
@@ -352,11 +356,13 @@ func casting_state(spell : String = "", target : Vector2 = Vector2.ZERO, phase :
 			var backup_speed = speed
 			#speed = 0 # this is not needen anymore, sice not calling move() is sufficient. # + setting speed to 0 makes enemies face right when casting, which is weird
 			state_is_locked = true
+			is_casting = true
+			print("started casting !")
 			print("AbilityCooldownTimer1 start")
 			used_timer.start()
 			#print("AbilityCooldownTimer1 stop")
 			#used_timer.start()
-			await get_tree().create_timer(0.5).timeout # hiezo komt animatie
+			await get_tree().create_timer(0.6).timeout # hiezo komt animatie
 			#print(ability_cooldown_timer_1)
 
 			var spell_that_is_about_to_be_cast = SpellDatabase.get_spell_by_name(spell)
@@ -367,6 +373,7 @@ func casting_state(spell : String = "", target : Vector2 = Vector2.ZERO, phase :
 			scene_of_spell_that_is_being_cast.global_position = self.global_position
 			self.get_parent().get_parent().get_parent().add_child(scene_of_spell_that_is_being_cast)
 
+			is_casting = false
 			speed = backup_speed
 			state_is_locked = false
 			# cooldown timer

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8vv3ye86mpa7"
-path="res://.godot/imported/MummyV1.png-8be482a7324a23a5e9b1df13835c65f9.ctex"
+uid="uid://dgfhcjmlsy4i1"
+path="res://.godot/imported/GoblinV3.png-e34e6d1b73d606c85051481497d33cf1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/enemy sprites/MummyV1.png"
-dest_files=["res://.godot/imported/MummyV1.png-8be482a7324a23a5e9b1df13835c65f9.ctex"]
+source_file="res://art/enemy sprites/GoblinV3.png"
+dest_files=["res://.godot/imported/GoblinV3.png-e34e6d1b73d606c85051481497d33cf1.ctex"]
 
 [params]
 

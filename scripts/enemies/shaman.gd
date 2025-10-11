@@ -11,6 +11,7 @@ const JUMP_VELOCITY = -400.0
 var spell_that_will_be_cast : String
 
 func _ready() -> void:
+	#is_casting = true
 	spell_ability_cooldown_timer.wait_time = spell_cooldown_time
 	base_speed = 40 # 50
 	speed = base_speed
@@ -147,6 +148,7 @@ func request_change_state(new_state):
 
 
 func change_state(new_state):
+	#is_casting = false
 	state_duration_timer.stop()
 # right now im changing state here, but might do that in state funcionts self because of on_stae("exit"): state = state.last # i dont think so..
 	if state_is_locked:
@@ -169,6 +171,7 @@ func change_state(new_state):
 			#melee_attack_state(0, "enter")
 			#state = STATES.MELEE_ATTACK
 		STATES.CAST:
+			is_casting = true
 			state = STATES.CAST
 			casting_state(spell_that_will_be_cast, spell_target_position, "enter")
 

@@ -28,7 +28,7 @@ subwaves = Array[ExtResource("3_wq6wp")]([SubResource("Resource_tt21b")])
 
 [sub_resource type="Resource" id="Resource_om41k"]
 script = ExtResource("3_wq6wp")
-enemy = 0
+enemy = 8
 amount = 2
 time = 20.0
 spawn_area = 2
@@ -551,3 +551,10 @@ polygon = PackedVector2Array(-311, 25, -515, 60, -654, 353, -401, 468, 478, 450,
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="disabled/TemporaryWall"]
 position = Vector2(-8, -200)
 shape = SubResource("RectangleShape2D_paat1")
+
+[node name="tempwalll" type="StaticBody2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="tempwalll"]
+polygon = PackedVector2Array(222, 14, 206, 352, -441, 369, -424, 3, -328, -5, -323, -3, -419, 7, -435, 351, 195, 338, 210, 6, -66, -99, 86, -33, -309, -21, -307, -30, -48, -123, 227, 7)

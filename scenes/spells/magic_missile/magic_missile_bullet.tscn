@@ -1,8 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://bwlk4kny0dg1x"]
+[gd_scene load_steps=12 format=3 uid="uid://bwlk4kny0dg1x"]
 
 [ext_resource type="Script" path="res://scripts/spells/magic_missile/magic_missile_bullet.gd" id="1_4c2lc"]
-[ext_resource type="Texture2D" uid="uid://qreksclpirx0" path="res://art/other/feesh.png" id="2_exviv"]
-[ext_resource type="Texture2D" uid="uid://eny37osmjycx" path="res://icon.svg" id="3_q0bja"]
+[ext_resource type="Texture2D" uid="uid://cashvh84q4fuc" path="res://art/spells/temp_magic_missle_better_alt_version.png" id="2_fs400"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_roufs"]
 friction = 0.0
@@ -18,7 +17,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("Feesh:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -30,10 +29,11 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_8sbip"]
 resource_name = "Travel"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("Feesh:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -58,7 +58,7 @@ start_offset = 0.0
 loop_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_um3m1"]
-advance_mode = 0
+advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_to3ae"]
 states/Travel/node = SubResource("AnimationNodeAnimation_cnlu5")
@@ -86,9 +86,10 @@ shape = SubResource("CircleShape2D_r61up")
 [node name="NoiseAreaCollision" type="CollisionShape2D" parent="NoiseArea"]
 shape = SubResource("CircleShape2D_c3tof")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.96825, 0.5)
-texture = ExtResource("2_exviv")
+[node name="Feesh" type="Sprite2D" parent="."]
+texture = ExtResource("2_fs400")
+hframes = 5
+vframes = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -99,10 +100,5 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_to3ae")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
-
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(1.49012e-08, -1.49012e-08)
-scale = Vector2(0.230469, 0.160156)
-texture = ExtResource("3_q0bja")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
