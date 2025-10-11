@@ -1,10 +1,11 @@
-[gd_scene load_steps=96 format=3 uid="uid://bot1dgu6rriso"]
+[gd_scene load_steps=97 format=3 uid="uid://bot1dgu6rriso"]
 
 [ext_resource type="Script" path="res://scripts/enemies/bosses/king_slime.gd" id="1_air7p"]
 [ext_resource type="Texture2D" uid="uid://b860wle2jujie" path="res://art/other/spridesheet_test_player_V2.png" id="2_s0gvw"]
 [ext_resource type="Texture2D" uid="uid://dtlu5kac5vxvs" path="res://art/enemy sprites/angy_slime_king.png" id="4_lyevn"]
 [ext_resource type="PackedScene" uid="uid://ccmwkars1n0na" path="res://scenes/UI_and_the_like/hp_bar.tscn" id="5_j2fpg"]
 [ext_resource type="PackedScene" uid="uid://cn2bi5uhlbamd" path="res://scenes/other/vector_wheel.tscn" id="6_46usb"]
+[ext_resource type="AudioStream" uid="uid://sw4561mae8g0" path="res://art/very basic music/king slime loop 2.wav" id="6_cvnvh"]
 
 [sub_resource type="Animation" id="Animation_kx0ak"]
 length = 0.001
@@ -1024,6 +1025,12 @@ debug_color = Color(0.560784, 0.560784, 0, 0.419608)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MinRangeBlobSpawnArea"]
 shape = SubResource("CircleShape2D_bmo8y")
 debug_color = Color(0.561021, 0.559625, 0, 0.42)
+
+[node name="KingSlimeLoop2" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(2, 1)
+stream = ExtResource("6_cvnvh")
+autoplay = true
+max_distance = 400.0
 
 [connection signal="timeout" from="StateDurationTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="AbilityCooldownTimer1" to="." method="_on_ability_cooldown_timer_1_timeout"]

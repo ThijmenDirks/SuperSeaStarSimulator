@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=4 uid="uid://dbifjqhl4pa28"]
+[gd_scene load_steps=80 format=4 uid="uid://dbifjqhl4pa28"]
 
 [ext_resource type="Script" path="res://scripts/levels/test_level.gd" id="1_4lh20"]
 [ext_resource type="PackedScene" uid="uid://bqhlp5wv10xgg" path="res://scenes/other/player.tscn" id="2_ao355"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://qchn08qp8wt0" path="res://scenes/map/sign.tscn" id="13_g0f83"]
 [ext_resource type="PackedScene" uid="uid://cjfavrdl82vi3" path="res://scenes/map/breakable_block.tscn" id="13_ij83k"]
 [ext_resource type="PackedScene" uid="uid://b1nmsy182cd4k" path="res://debug and testing/bridge.tscn" id="14_eg12w"]
+[ext_resource type="AudioStream" uid="uid://iuvkdvvgtfpd" path="res://art/very basic music/wave mode basic loop.wav" id="15_t0o6j"]
 
 [sub_resource type="Resource" id="Resource_tt21b"]
 script = ExtResource("3_wq6wp")
@@ -551,3 +552,8 @@ polygon = PackedVector2Array(-311, 25, -515, 60, -654, 353, -401, 468, 478, 450,
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="disabled/TemporaryWall"]
 position = Vector2(-8, -200)
 shape = SubResource("RectangleShape2D_paat1")
+
+[node name="WaveModeBasicLoop" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-2, -3)
+stream = ExtResource("15_t0o6j")
+autoplay = true
