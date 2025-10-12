@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://bbkm4uhyjl240"]
+[gd_scene load_steps=13 format=4 uid="uid://bbkm4uhyjl240"]
 
 [ext_resource type="Script" path="res://scripts/map/open_world_stuff/load_room.gd" id="1_7fk2s"]
 [ext_resource type="PackedScene" uid="uid://dis72yxspt3b6" path="res://art/particles/sandstorm.tscn" id="2_ibp28"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/map/open_world_stuff/spawn_zones.gd" id="5_0gdtq"]
 [ext_resource type="PackedScene" uid="uid://bolg702rb3vex" path="res://scenes/enemies/mummy.tscn" id="6_6jtdg"]
 [ext_resource type="PackedScene" uid="uid://bpsxwlr7jvqe7" path="res://scenes/levels/open_world_mode/transition.tscn" id="7_nrcjg"]
+[ext_resource type="AudioStream" uid="uid://daqn5xaeqrobm" path="res://art/very basic music/king slime loop 1.wav" id="8_c0l0r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_06j0w"]
 size = Vector2(4.375, 20)
@@ -126,6 +127,11 @@ position = Vector2(-2545, -1050.38)
 shape = SubResource("RectangleShape2D_5rfcj")
 ID = "lower_oasis_up"
 string_target_map = "res://scenes/levels/open_world_mode/desert1/lower_oasis.tscn"
+
+[node name="KingSlimeLoop1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_c0l0r")
+autoplay = true
+stream_paused = true
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
 [connection signal="body_entered" from="OldTransitions/Area2D2" to="OldTransitions/Area2D2" method="_on_body_entered"]

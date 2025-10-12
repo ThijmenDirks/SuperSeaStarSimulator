@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://dd8f4tlc62hdt"]
+[gd_scene load_steps=19 format=4 uid="uid://dd8f4tlc62hdt"]
 
 [ext_resource type="Script" path="res://scripts/map/open_world_stuff/load_room.gd" id="1_7mlip"]
 [ext_resource type="TileSet" uid="uid://ch01sy32qq7w2" path="res://art/tilesets/flayer1.tres" id="1_27gfd"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://drpevs8n2f2li" path="res://scenes/enemies/slimes/red_slime.tscn" id="5_oip38"]
 [ext_resource type="PackedScene" uid="uid://dvrq0jcv8ld8t" path="res://scenes/enemies/ogre.tscn" id="6_pfohd"]
 [ext_resource type="PackedScene" uid="uid://bpsxwlr7jvqe7" path="res://scenes/levels/open_world_mode/transition.tscn" id="7_x7uax"]
+[ext_resource type="AudioStream" uid="uid://iuvkdvvgtfpd" path="res://art/very basic music/wave mode basic loop.wav" id="8_d3ct2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_stiix"]
 size = Vector2(161, 50.5)
@@ -217,6 +218,11 @@ target_entrance = "below_down4"
 position = Vector2(-168, 69)
 scale = Vector2(4.8, 4.8)
 shape = SubResource("RectangleShape2D_nkubt")
+
+[node name="WaveModeBasicLoop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_d3ct2")
+autoplay = true
+stream_paused = true
 
 [connection signal="body_entered" from="OldTransitions/Area2D4" to="OldTransitions/Area2D4" method="_on_body_entered"]
 [connection signal="body_entered" from="LayerTransitions/Area2D" to="LayerTransitions/Area2D" method="_on_body_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://d34l06h3lh76c"]
+[gd_scene load_steps=14 format=4 uid="uid://d34l06h3lh76c"]
 
 [ext_resource type="Script" path="res://scripts/map/open_world_stuff/load_room.gd" id="1_3uf1o"]
 [ext_resource type="TileSet" uid="uid://ch01sy32qq7w2" path="res://art/tilesets/flayer1.tres" id="1_s73jk"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ciu03g4mjuxs2" path="res://scenes/enemies/slimes/green_slime.tscn" id="4_trmcp"]
 [ext_resource type="Script" path="res://scripts/map/open_world_stuff/spawn_zones.gd" id="5_di01j"]
 [ext_resource type="PackedScene" uid="uid://bpsxwlr7jvqe7" path="res://scenes/levels/open_world_mode/transition.tscn" id="5_eo1m3"]
+[ext_resource type="AudioStream" uid="uid://df6n1xh60jg7i" path="res://art/very basic music/open world mode loop.wav" id="7_l8qhs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_04iyh"]
 size = Vector2(196.156, 54.1563)
@@ -119,6 +120,11 @@ script = ExtResource("5_di01j")
 position = Vector2(-182, 279)
 scale = Vector2(4.8, 4.8)
 shape = SubResource("RectangleShape2D_frw0k")
+
+[node name="OpenWorldModeLoop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_l8qhs")
+autoplay = true
+stream_paused = true
 
 [connection signal="body_entered" from="OldTransitions/Area2D" to="OldTransitions/Area2D" method="_on_body_entered"]
 [connection signal="body_entered" from="OldTransitions/Area2D2" to="OldTransitions/Area2D2" method="_on_body_entered"]

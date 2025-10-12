@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://d2j6yvi38nfrv"]
+[gd_scene load_steps=13 format=4 uid="uid://d2j6yvi38nfrv"]
 
 [ext_resource type="Script" path="res://scripts/map/open_world_stuff/load_room.gd" id="1_5x23r"]
 [ext_resource type="TileSet" uid="uid://ch01sy32qq7w2" path="res://art/tilesets/flayer1.tres" id="2_2ebfm"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://d36mrokfs3i2g" path="res://scenes/enemies/blink_fey.tscn" id="5_p5mck"]
 [ext_resource type="Script" path="res://scripts/map/open_world_stuff/spawn_zones.gd" id="6_nfuip"]
 [ext_resource type="PackedScene" uid="uid://bpsxwlr7jvqe7" path="res://scenes/levels/open_world_mode/transition.tscn" id="6_v7rn7"]
+[ext_resource type="AudioStream" uid="uid://iuvkdvvgtfpd" path="res://art/very basic music/wave mode basic loop.wav" id="8_w34ji"]
 
 [sub_resource type="Gradient" id="Gradient_mgjv1"]
 interpolation_mode = 2
@@ -89,5 +90,10 @@ target_entrance = "spawn3_up"
 position = Vector2(175, 62)
 scale = Vector2(4.8, 4.8)
 shape = SubResource("RectangleShape2D_at2jy")
+
+[node name="WaveModeBasicLoop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_w34ji")
+autoplay = true
+stream_paused = true
 
 [connection signal="body_entered" from="OldTransitions/Area2D" to="OldTransitions/Area2D" method="_on_body_entered"]
