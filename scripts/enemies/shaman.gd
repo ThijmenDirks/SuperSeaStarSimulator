@@ -11,6 +11,7 @@ const JUMP_VELOCITY = -400.0
 var spell_that_will_be_cast : String
 
 func _ready() -> void:
+	bounty = 150
 	#is_casting = true
 	spell_ability_cooldown_timer.wait_time = spell_cooldown_time
 	base_speed = 40 # 50

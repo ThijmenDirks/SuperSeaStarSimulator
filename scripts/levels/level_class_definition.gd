@@ -48,41 +48,36 @@ var all_enemies = [
 var wave_has_fully_spawned: bool = false
 var active_enemies: int = 0
 
+var wait_time: int
+
 @onready var wave_number_label = get_node("CharacterBody2D/Interface")
 
-var current_wave: int = 0 # wave numer 0 will be empty
+#var current_wave: int = 0 # wave numer 0 will be empty
 
 
-func _process(_delta: float) -> void:
-	if active_enemies == 0 and wave_has_fully_spawned:
-		if current_wave == all_waves.size() - 1:
-			print("level cleared !")
-			wave_number_label.update_wave_number_label(99)
-			return
-		else:
-			current_wave += 1
-			spawn_next_wave(current_wave)
+func _ready() -> void:
+	spawn_next_wave()
+
 
 
 # credits
 # with thanks to alexcavadora and antimundo, https://forum.godotengine.org/t/whats-the-best-way-to-create-a-modular-wave-spawning-node/54271
-func spawn_next_wave(wave):
+func spawn_next_wave():
+	var wave = all_waves[randi_range(0, all_waves.size()-1)]
 	wave_has_fully_spawned = false
-	active_enemies = 0 # this should not be needed
-	await get_tree().create_timer(3).timeout
-	wave_number_label.update_wave_number_label(wave) # should go back !
-	var final_subwave = all_waves[wave].subwaves.back()
-	for current_subwave in all_waves[wave].subwaves:
-		spawn_enemies(all_enemies[current_subwave["enemy"]], current_subwave["amount"], current_subwave["spawn_area"])
+	var final_subwave = wave.subwaves.back()
+	for current_subwave in wave.subwaves:
+		spawn_enemies(all_enemies[current_subwave["enemy"]], randi_range(current_subwave["min_amount"], current_subwave["min_amount"]))
 		if current_subwave == final_subwave:
 			wave_has_fully_spawned = true
 		print("Subwave has spawned, next wave will spawn in: ", current_subwave["time"])
 		print("Spawned: ", current_subwave, ", this was", "not " if current_subwave != final_subwave else "", " the last wave")
 		await get_tree().create_timer(current_subwave["time"]).timeout
+	spawn_next_wave()
 
 
-func spawn_enemies(enemy_name: String, amount: int, spawn_area: int):
-	var spawn_area_node = get_node("SpawnAreas").get_child(spawn_area)
+func spawn_enemies(enemy_name: String, amount: int):
+	var spawn_area_node = get_node("SpawnAreas").get_child(randi_range(0, 2))
 	for i in amount:
 		var new_enemy
 		if enemy_name in enemy_map:
@@ -121,6 +116,55 @@ func get_random_in_circle(shape: Resource) -> Vector2:
 	var angle = randf() * TAU
 	return Vector2(cos(angle), sin(angle)) * r
 
+func select_new_wave():
+	return all_waves[randi_range(0, all_waves.size()-1)]
 
-func generate_new_wave():
-	pass
+#func generate_new_wave():
+	#pass
+#
+#var wave_composition_1: Dictionary = {
+	#
+#}
+#
+#var possible_waves: Array = [wave_composition_1]
+#func _process(_delta: float) -> void:
+	#if active_enemies == 0 and wave_has_fully_spawned:
+		#if current_wave == all_waves.size() - 1:
+			#print("level cleared !")
+			#wave_number_label.update_wave_number_label(99)
+			#return
+		#else:
+			#current_wave += 1
+			#spawn_next_wave(current_wave)
+
+
+#func spawn_next_wave(wave):
+	#wave_has_fully_spawned = false
+	#active_enemies = 0 # this should not be needed
+	#await get_tree().create_timer(3).timeout
+	#wave_number_label.update_wave_number_label(wave) # should go back !
+	#var final_subwave = all_waves[wave].subwaves.back()
+	#for current_subwave in all_waves[wave].subwaves:
+		#spawn_enemies(all_enemies[current_subwave["enemy"]], current_subwave["amount"], current_subwave["spawn_area"])
+		#if current_subwave == final_subwave:
+			#wave_has_fully_spawned = true
+		#print("Subwave has spawned, next wave will spawn in: ", current_subwave["time"])
+		#print("Spawned: ", current_subwave, ", this was", "not " if current_subwave != final_subwave else "", " the last wave")
+		#await get_tree().create_timer(current_subwave["time"]).timeout
+#
+#
+#func spawn_enemies(enemy_name: String, amount: int, spawn_area: int):
+	#var spawn_area_node = get_node("SpawnAreas").get_child(spawn_area)
+	#for i in amount:
+		#var new_enemy
+		#if enemy_name in enemy_map:
+			#new_enemy = enemy_map[enemy_name].instantiate()
+		#else:
+			#print("Unknown enemy type: ", enemy_name)
+			#continue  # Skip spawning and go to next enemy if enemy_name
+#
+		#spawn_area_node.add_child(new_enemy)
+		#new_enemy.position = get_random_point_in_area(spawn_area_node)
+		##new_enemy.position += Vector2(randi_range(-100, 100), randi_range(-100, 100))
+		#active_enemies += 1
+		##wave_number_label.update_wave_number_label(active_enemies)

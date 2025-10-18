@@ -9,6 +9,7 @@ const JUMP_VELOCITY = -400.0
 
 # melee_range > chase_end_distance
 func _ready() -> void:
+	bounty = 50
 	base_speed = 45 # 50 # 45
 	speed = base_speed
 	look_for_player_area = $LookForPlayerArea

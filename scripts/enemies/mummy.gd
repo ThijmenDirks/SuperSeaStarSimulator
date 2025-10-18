@@ -15,6 +15,7 @@ var dead_time: int = 3
 
 # melee_range > chase_end_distance
 func _ready() -> void:
+	bounty = 50
 	base_speed = 25 # 50 # 45
 	speed = base_speed
 	look_for_player_area = $LookForPlayerArea
@@ -30,6 +31,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if is_fake_dead:
+		velocity = Vector2.ZERO	
 
 	#print("goblin_state: ", state)
 	update_animation_parameters()

@@ -12,6 +12,7 @@ var blink_invisible_duration: int = 3
 #@onready var timer = $Timer
 
 func _ready() -> void:
+	bounty = 150
 	base_speed = 45 # 50 # 45
 	speed = base_speed
 	look_for_player_area = $LookForPlayerArea

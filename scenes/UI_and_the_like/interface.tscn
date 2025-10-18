@@ -24,6 +24,7 @@ grow_vertical = 2
 position = Vector2(121, 6)
 
 [node name="WaveNumberLabel" type="Label" parent="Control"]
+visible = false
 layout_mode = 0
 offset_left = 298.0
 offset_top = 49.0

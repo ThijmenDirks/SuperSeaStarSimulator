@@ -1,5 +1,6 @@
 extends Level
 
+@onready var player: Player = $CharacterBody2D # here for bounty
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -10,8 +11,9 @@ func _ready() -> void:
 	#spawn_next_wave(current_wave)
 	await get_tree().create_timer(.1).timeout
 	#if Input.is_action_just_pressed("c"):
-	current_wave += 1
-	spawn_next_wave(current_wave)
+	#current_wave += 1
+	#spawn_next_wave(current_wave)
+	super()
 
 #func _physics_process(delta: float) -> void:
 	#spawn_next_wave()

@@ -17,6 +17,7 @@ var dart_tries: int = 8
 #@onready var timer = $Timer
 
 func _ready() -> void:
+	bounty = 30
 	base_speed = 60 # 50 # 45
 	speed = base_speed
 	look_for_player_area = $LookForPlayerArea

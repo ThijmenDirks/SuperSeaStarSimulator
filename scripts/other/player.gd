@@ -46,6 +46,8 @@ var scroll_wheel_school_index: float = 0.4
 var scroll_sensitivity: float = 1
 	#if int(scroll_wheel_school_index) > SPELL_SCHOOLS.size():
 
+var score: int
+
 enum SPELL_SCHOOLS {
 	FIRE,
 	BUFF,
@@ -406,8 +408,10 @@ func take_damage(damage : int, damage_type : String):
 
 
 func die():
-	get_parent().add_child(game_over_screen)
-	queue_free()
+	add_child(game_over_screen)
+	#get_parent().add_child(game_over_screen)
+	#queue_free()
+	get_child(0).visible = false
 	get_tree().paused = true
 
 #

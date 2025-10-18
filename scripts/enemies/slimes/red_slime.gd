@@ -13,6 +13,7 @@ var king_slime#x = null
 #@onready var timer = $Timer
 
 func _ready() -> void:
+	bounty = 30
 	max_hp= 200
 	hp = 200#max_HP
 	base_speed = 30

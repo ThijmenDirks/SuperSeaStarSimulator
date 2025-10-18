@@ -8,6 +8,7 @@ const JUMP_VELOCITY = -400.0
 #@onready var timer = $Timer
 
 func _ready() -> void:
+	bounty = 300
 	base_speed = 30 # 50
 	speed = base_speed
 	look_for_player_area = $LookForPlayerArea

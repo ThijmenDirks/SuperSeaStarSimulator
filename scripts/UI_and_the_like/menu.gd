@@ -1,7 +1,7 @@
 extends Node2D
 
-var testlevel = load("res://scenes/levels/test_level.tscn").instantiate()
-var Openworld = load("res://scenes/levels/open_world_mode/forest1start/spawn1.tscn").instantiate()
+var testlevel: PackedScene = load("res://scenes/levels/test_level.tscn")
+var openworld: PackedScene = load("res://scenes/levels/open_world_mode/forest1start/spawn1.tscn")
 
 #"res://scenes/levels/test_level.tscn"
 
@@ -10,9 +10,10 @@ func _ready() -> void:
 	print("path ", scene_file_path)
 
 func _on_wave_mode_button_button_down() -> void:
-	get_tree().root.add_child(testlevel)
-	self.add_child(testlevel)
-	self.visible = false
+	get_tree().root.add_child(testlevel.instantiate())
+	#self.add_child(testlevel.instantiate())
+	#self.visible = false
+	queue_free()
 
 
 func _on_basic_controls_button_pressed() -> void:

@@ -79,6 +79,8 @@ var wounded_in_vision_field# : bool = false
 var spell_in_vision_field# : bool = false
 var something_in_vision_field# : bool = false
 
+var bounty: int
+
 var attack_damage : int
 var state_history : Array
 var base_waypoint = {
@@ -476,7 +478,7 @@ func die():
 	#if get_parent().get_parent().get_parent() is Level:
 		#print("spawn")
 	if get_parent() is Area2D:
-		get_parent().get_parent().get_parent().active_enemies -= 1
+		get_parent().get_parent().get_parent().player.score += bounty
 	#else:
 		#print("spawnnn")
 	self.queue_free()

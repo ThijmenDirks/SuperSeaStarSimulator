@@ -572,6 +572,7 @@ debug_path_custom_line_width = 1.0
 scale = Vector2(0.5, 0.5)
 
 [node name="DebugLabel" type="Label" parent="."]
+visible = false
 offset_left = -19.0
 offset_top = -10.0
 offset_right = 21.0

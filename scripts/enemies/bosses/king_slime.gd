@@ -23,6 +23,7 @@ var is_beast_mode: bool = false
 #@onready var timer = $Timer
 
 func _ready() -> void:
+	bounty = 5000
 	max_hp = 5000
 	hp = max_hp#max_HP
 	base_speed = 20 # 20
