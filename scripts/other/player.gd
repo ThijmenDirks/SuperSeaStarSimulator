@@ -56,6 +56,7 @@ enum SPELL_SCHOOLS {
 
 
 func _ready():
+	score = 0
 	if false:
 		_init_spells()
 	super()
@@ -413,6 +414,10 @@ func die():
 	#queue_free()
 	get_child(0).visible = false
 	get_tree().paused = true
+
+func update_score(bounty):
+	score += bounty
+	interface.score_label.text = "score: " + str(score)
 
 #
 #func is_on_z_height(z : int, digit : int = 4):

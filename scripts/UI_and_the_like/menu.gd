@@ -10,6 +10,7 @@ func _ready() -> void:
 	print("path ", scene_file_path)
 
 func _on_wave_mode_button_button_down() -> void:
+	print("wave_mode button down")
 	get_tree().root.add_child(testlevel.instantiate())
 	#self.add_child(testlevel.instantiate())
 	#self.visible = false
@@ -17,6 +18,7 @@ func _on_wave_mode_button_button_down() -> void:
 
 
 func _on_basic_controls_button_pressed() -> void:
+	print("basic_controls button pressed")
 	var sprite = $Sprite2D2
 	if sprite.visible == true:
 		sprite.visible = false
@@ -25,6 +27,7 @@ func _on_basic_controls_button_pressed() -> void:
 
 
 func _on_open_world_mode_button_button_down() -> void:
+	print("open_world_mode button down")
 	#Spawnstates.next_map_path = "res://scenes/levels/open_world_mode_forest1start/spawn1.tscn"
 	#Spawnstates.next_entrance_name = "Start"
 	#load_room(Spawnstates.next_map_path, Spawnstates.next_entrance_name)
@@ -33,6 +36,7 @@ func _on_open_world_mode_button_button_down() -> void:
 	spawn_map = "res://scenes/levels/open_world_mode/forest1start/spawn1.tscn" # deze line
 	spawn_position = "Start" # en deze line
 	RoomLoad.load_room(spawn_map, spawn_position)
+	queue_free()
 	#player_instance.global_position = spawn_position
 
 #func get_player_saved_point():# -> Vector2:

@@ -5,6 +5,10 @@ extends CanvasLayer
 @onready var selected_school_label = $Control/SelectedSchoolLabel
 @onready var selected_slot_label = $Control/SelectedSlotLabel
 @onready var selected_spell_label = $Control/SelectedSpellLabel
+@onready var score_label: Label = $Control/ScoreLabel
+
+@onready var pause_menu: Node2D = $PauseButton/PauseMenu
+
 #@onready var mana_thingy = load("res://scenes/other/mana_thingy.tscn").instantiate()
 
 var mana_thingies : Array
@@ -43,13 +47,23 @@ func update_selected_spell_label(selected_spell):
 	selected_spell_label.text = "spell " + str(selected_spell)
 
 
+func _on_save_button_button_up() -> void:
+	SaveSystem.save_data()
+
+
+func _on_pause_button_pressed() -> void:
+	pause_menu.visible = true
+	get_tree().paused = true
+
+
+func _on_continue_button_pressed() -> void:
+	pause_menu.visible = false
+	get_tree().paused = false
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta: float) -> void:
 	#if last_screen_size != get_viewport().get_visible_rect().size and false:
 		#var new_screen_size = get_viewport().get_visible_rect().size/last_screen_size
 		#scale *= new_screen_size
 		#last_screen_size = get_viewport().get_visible_rect().size
-
-
-func _on_save_button_button_up() -> void:
-	SaveSystem.save_data()

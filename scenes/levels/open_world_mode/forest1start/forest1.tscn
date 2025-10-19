@@ -94,6 +94,5 @@ shape = SubResource("RectangleShape2D_at2jy")
 [node name="WaveModeBasicLoop" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_w34ji")
 autoplay = true
-stream_paused = true
 
 [connection signal="body_entered" from="OldTransitions/Area2D" to="OldTransitions/Area2D" method="_on_body_entered"]

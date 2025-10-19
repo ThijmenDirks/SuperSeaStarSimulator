@@ -21,7 +21,7 @@ offset_right = 37.0
 offset_bottom = 16.0
 text = "to menu"
 
-[node name="Label" type="Label" parent="."]
+[node name="GameOverLabel" type="Label" parent="."]
 offset_left = -46.0
 offset_top = -50.0
 offset_right = 46.0
@@ -30,10 +30,10 @@ text = "GAME OVER"
 horizontal_alignment = 1
 
 [node name="ScoreLabel" type="Label" parent="."]
-offset_left = -10.0
+offset_left = -21.0
 offset_top = -30.0
-offset_right = 30.0
+offset_right = 21.0
 offset_bottom = -7.0
-text = "hi"
+text = "score"
 
 [connection signal="pressed" from="MenuButton" to="." method="_on_menu_button_pressed"]

@@ -478,7 +478,8 @@ func die():
 	#if get_parent().get_parent().get_parent() is Level:
 		#print("spawn")
 	if get_parent() is Area2D:
-		get_parent().get_parent().get_parent().player.score += bounty
+		#get_parent().get_parent().get_parent().player.score += bounty
+		get_parent().get_parent().get_parent().player.update_score(bounty * 10)
 	#else:
 		#print("spawnnn")
 	self.queue_free()
