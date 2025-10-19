@@ -50,6 +50,8 @@ var active_enemies: int = 0
 
 var wait_time: int
 
+var how_manieth_wave: int = 0
+
 @onready var wave_number_label = get_node("CharacterBody2D/Interface")
 
 #var current_wave: int = 0 # wave numer 0 will be empty
@@ -63,7 +65,12 @@ func _ready() -> void:
 # credits
 # with thanks to alexcavadora and antimundo, https://forum.godotengine.org/t/whats-the-best-way-to-create-a-modular-wave-spawning-node/54271
 func spawn_next_wave():
-	var wave = all_waves[randi_range(0, all_waves.size()-1)]
+	how_manieth_wave += 1
+	var wave
+	if how_manieth_wave % 1 == 0:
+		wave = all_waves[all_waves.size()-1]
+	else:
+		wave = all_waves[randi_range(0, all_waves.size()-2)] # not -1 cause of king_slime
 	wave_has_fully_spawned = false
 	var final_subwave = wave.subwaves.back()
 	for current_subwave in wave.subwaves:

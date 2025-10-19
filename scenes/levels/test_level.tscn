@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=4 uid="uid://dbifjqhl4pa28"]
+[gd_scene load_steps=46 format=4 uid="uid://dbifjqhl4pa28"]
 
 [ext_resource type="Script" path="res://scripts/levels/test_level.gd" id="1_4lh20"]
 [ext_resource type="PackedScene" uid="uid://bqhlp5wv10xgg" path="res://scenes/other/player.tscn" id="2_ao355"]
@@ -145,6 +145,17 @@ time = 15.0
 script = ExtResource("2_v6og4")
 subwaves = Array[ExtResource("3_wq6wp")]([SubResource("Resource_do67l"), SubResource("Resource_x6351")])
 
+[sub_resource type="Resource" id="Resource_4xd83"]
+script = ExtResource("3_wq6wp")
+enemy = 6
+min_amount = 1
+max_amount = 1
+time = 5.0
+
+[sub_resource type="Resource" id="Resource_6jc64"]
+script = ExtResource("2_v6og4")
+subwaves = Array[ExtResource("3_wq6wp")]([SubResource("Resource_4xd83")])
+
 [sub_resource type="GDScript" id="GDScript_guruh"]
 script/source = "extends Sprite2D
 
@@ -186,7 +197,7 @@ size = Vector2(4, 80)
 
 [node name="TestLevel" type="Node2D" node_paths=PackedStringArray("spawn_areas")]
 script = ExtResource("1_4lh20")
-all_waves = Array[ExtResource("2_v6og4")]([SubResource("Resource_sjvs0"), SubResource("Resource_se7nw"), SubResource("Resource_rsele"), SubResource("Resource_s5ddg"), SubResource("Resource_sywa8"), SubResource("Resource_yocej")])
+all_waves = Array[ExtResource("2_v6og4")]([SubResource("Resource_sjvs0"), SubResource("Resource_se7nw"), SubResource("Resource_rsele"), SubResource("Resource_s5ddg"), SubResource("Resource_sywa8"), SubResource("Resource_yocej"), SubResource("Resource_6jc64")])
 spawn_areas = [NodePath("SpawnAreas/SpawnArea0"), NodePath("SpawnAreas/SpawnArea1"), NodePath("SpawnAreas/SpawnArea2")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
