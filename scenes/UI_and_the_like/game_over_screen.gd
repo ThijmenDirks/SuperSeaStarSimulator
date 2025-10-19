@@ -14,9 +14,11 @@ func _process(delta: float) -> void:
 
 
 func _on_menu_button_pressed() -> void:
+	#get_tree().paused = false
 	var menu = load("res://scenes/other/menu.tscn").instantiate()
 	#get_parent().add_child(menu)
 	#queue_free()
-	get_tree().paused = false
+	#get_tree().paused = false
 	get_parent().get_parent().get_parent().add_child(menu)#"menu").visible = true
 	get_parent().get_parent().queue_free() # delete level
+	#get_tree().paused = false

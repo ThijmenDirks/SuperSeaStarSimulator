@@ -21,8 +21,8 @@ func load_room(room_path: String, entrance_name):
 	var entrance = new_room.get_node("Spawns").get_node(entrance_name)
 	if entrance:
 		# Spawn or move the player
-		if player_instance:
-			player_instance.queue_free()
+		#if player_instance:
+			#player_instance.queue_free()
 		player_instance = player_scene.instantiate()
 		new_room.add_child(player_instance)
 		player_instance.global_position = entrance.global_position

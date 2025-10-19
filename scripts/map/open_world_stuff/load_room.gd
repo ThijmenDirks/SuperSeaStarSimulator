@@ -1,5 +1,6 @@
 extends Node2D
 
+
 var player_scene = preload("res://scenes/other/player.tscn")
 var player_instance: Node2D
 
@@ -10,6 +11,7 @@ func load_room(room_path: String, entrance_name: int):
 		get_tree().current_scene.queue_free()
 
 	# Load new room
+
 	var new_room = load(room_path).instantiate()
 	get_tree().root.add_child(new_room)
 	get_tree().current_scene = new_room
@@ -18,6 +20,7 @@ func load_room(room_path: String, entrance_name: int):
 	#var entrance = new_room.get_node_or_null("Spawns/" + entrance_name)
 	var entrance = new_room.get_node("Spawns").get_node(entrance_name)
 	if entrance:
+
 		if player_instance:
 			player_instance.queue_free()
 		player_instance = player_scene.instantiate()

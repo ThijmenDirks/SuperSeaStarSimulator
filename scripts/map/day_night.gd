@@ -15,4 +15,5 @@ func _process(delta):
 	# settings night and day colors
 	var night_color = Color(0.1, 0.1, 0.3)
 	var day_color = Color(1.0, 1.0, 1.0)
-	color = night_color.lerp(day_color, t) #yay kijk een lerp (:
+	color = night_color.lerp(day_color, t) #yay kijk een lerp (: # weet je zelf wat deze code doet ? # je moet comments eigenlijk beginnen met een spatie, tezij het weggecommente code is
+	#print("zoals deze line")

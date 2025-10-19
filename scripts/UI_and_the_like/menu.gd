@@ -8,6 +8,8 @@ var openworld: PackedScene = load("res://scenes/levels/open_world_mode/forest1st
 #var x: 
 func _ready() -> void:
 	print("path ", scene_file_path)
+	get_tree().paused = false
+
 
 func _on_wave_mode_button_button_down() -> void:
 	print("wave_mode button down")
