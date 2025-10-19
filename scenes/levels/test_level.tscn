@@ -150,7 +150,7 @@ script = ExtResource("3_wq6wp")
 enemy = 6
 min_amount = 1
 max_amount = 1
-time = 5.0
+time = 120.0
 
 [sub_resource type="Resource" id="Resource_6jc64"]
 script = ExtResource("2_v6og4")

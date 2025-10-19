@@ -480,6 +480,7 @@ func die():
 	if get_parent() is Area2D:
 		#get_parent().get_parent().get_parent().player.score += bounty
 		get_parent().get_parent().get_parent().player.update_score(bounty * 10)
+		get_parent().get_parent().get_parent().current_enemies_amount -= 1
 	#else:
 		#print("spawnnn")
 	self.queue_free()

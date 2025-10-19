@@ -14,6 +14,8 @@ var jump_duration = 1.5 # in sec
 
 
 func _physics_process(delta: float) -> void:
+	if randi_range(1, 500) == 1:
+		request_change_state(STATES.IDLE_WALK)
 	var bodies_in_damage_area = damage_area.get_overlapping_bodies()
 	for body in bodies_in_damage_area: # right now this for loop is not really needed, cause the CollisionLayers only target player
 		if body is Player and randi_range(1, 2) == 1 : # should make this into vars

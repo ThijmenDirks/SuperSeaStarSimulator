@@ -51,6 +51,8 @@ var active_enemies: int = 0
 var wait_time: int
 
 var how_manieth_wave: int = 0
+var current_enemies_amount: int = 0
+var max_enemies_amount: int = 100
 
 @onready var wave_number_label = get_node("CharacterBody2D/Interface")
 
@@ -67,7 +69,7 @@ func _ready() -> void:
 func spawn_next_wave():
 	how_manieth_wave += 1
 	var wave
-	if how_manieth_wave % 1 == 0:
+	if how_manieth_wave % 20 == 0:
 		wave = all_waves[all_waves.size()-1]
 	else:
 		wave = all_waves[randi_range(0, all_waves.size()-2)] # not -1 cause of king_slime
@@ -86,17 +88,19 @@ func spawn_next_wave():
 func spawn_enemies(enemy_name: String, amount: int):
 	var spawn_area_node = get_node("SpawnAreas").get_child(randi_range(0, 2))
 	for i in amount:
-		var new_enemy
-		if enemy_name in enemy_map:
-			new_enemy = enemy_map[enemy_name].instantiate()
-		else:
-			print("Unknown enemy type: ", enemy_name)
-			continue  # Skip spawning and go to next enemy if enemy_name
+		if current_enemies_amount < max_enemies_amount:
+			var new_enemy
+			if enemy_name in enemy_map:
+				new_enemy = enemy_map[enemy_name].instantiate()
+			else:
+				print("Unknown enemy type: ", enemy_name)
+				continue  # Skip spawning and go to next enemy if enemy_name
 
-		spawn_area_node.add_child(new_enemy)
-		new_enemy.position = get_random_point_in_area(spawn_area_node)
-		#new_enemy.position += Vector2(randi_range(-100, 100), randi_range(-100, 100))
-		active_enemies += 1
+			spawn_area_node.add_child(new_enemy)
+			new_enemy.position = get_random_point_in_area(spawn_area_node)
+			#new_enemy.position += Vector2(randi_range(-100, 100), randi_range(-100, 100))
+			active_enemies += 1
+			current_enemies_amount += 1
 		#wave_number_label.update_wave_number_label(active_enemies)
 
 
