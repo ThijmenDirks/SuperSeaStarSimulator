@@ -13,9 +13,9 @@ extends Node2D
 
 @onready var scroll_bar = $Sprite2D
 
-var fire_school_logo = load("res://icon.svg")
-var buff_school_logo = load("res://icon.svg")
-var other_school_logo = load("res://icon.svg")
+var fire_school_logo = load("res://art/UI_and_the_like/FireSchoolLogoV1.png")
+var buff_school_logo = load("res://art/UI_and_the_like/BuffSchoolLogoV1.png")
+var other_school_logo = load("res://art/UI_and_the_like/MagicSchoolLogoV1.png")
 
 var used_school_logos: Array = [fire_school_logo, buff_school_logo, other_school_logo]
 
@@ -32,7 +32,7 @@ func _ready() -> void:
 		var sprite := Sprite2D.new()
 		sprite.texture = logo
 		sprite.position = Vector2(550, 250 - i * 64)
-		sprite.scale = Vector2(0.5, 0.5)
+		sprite.scale = Vector2(2, 2)
 		
 		add_child(sprite)
 		school_sprites.append(sprite) # sla sprites op i.p.v. alleen textures
@@ -50,6 +50,7 @@ func update_scroll_bar(direction: String, sensitivity: float):
 		if scroll_bar.position.y > (250+32):
 			scroll_bar.position.y = min_scroll_bar_hight
 	print("scrollbar updated")
+	return scroll_bar.position.y
 
 
 #func _ready() -> void:

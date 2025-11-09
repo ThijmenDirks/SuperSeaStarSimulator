@@ -75,37 +75,49 @@ func _ready():
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		var old_school = floor(scroll_wheel_school_index)
+		var return_value_scroll_bar: int
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
 			scroll_wheel_school_index += 0.1 * scroll_sensitivity
-			selected_school_bar.update_scroll_bar("up", scroll_sensitivity)
+			return_value_scroll_bar = selected_school_bar.update_scroll_bar("up", scroll_sensitivity)
 			#print("wheel up to ", scroll_wheel_school_index)
 			#if floor(scroll_wheel_school_index) > SPELL_SCHOOLS.size(): # this line and the line below, along with the other variatnt of this block within this func, should actulaay go in update_selected_school() # done !
 				#scroll_wheel_school_index = 0.0
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			scroll_wheel_school_index -= 0.1 * scroll_sensitivity
-			selected_school_bar.update_scroll_bar("down", scroll_sensitivity)
+			return_value_scroll_bar = selected_school_bar.update_scroll_bar("down", scroll_sensitivity)
 			#print("wheel down to ", scroll_wheel_school_index)
 			#if floor(scroll_wheel_school_index) < 0:
 				#scroll_wheel_school_index = SPELL_SCHOOLS.size()
 		#print("wheel asdf", scroll_wheel_school_index)
 		#print(floor(scroll_wheel_school_index), " wheel ", old_school)
-		if floor(scroll_wheel_school_index) != old_school:
-			update_selected_school()
+
+		if floor(scroll_wheel_school_index) != old_school or true:
+			update_selected_school(return_value_scroll_bar)
 		if Input.is_action_just_pressed("left_mouse_click"):
 			print("cast")
 			cast(selected_spell)
 		#print(floor(scroll_wheel_school_index), " asdf ", floor(scroll_wheel_school_index))
 
 
-func update_selected_school():
-	if floor(scroll_wheel_school_index) > SPELL_SCHOOLS.size() - 1:
-		scroll_wheel_school_index = 0.0
-	#print("asdf ", floor(scroll_wheel_school_index))
-	if floor(scroll_wheel_school_index) < 0:
-		#print("asdf")
-		scroll_wheel_school_index = SPELL_SCHOOLS.size() - 0.2
-	#selected_school = SPELL_SCHOOLS.keys()[floor(scroll_wheel_school_index)]
-	selected_school = int(floor(scroll_wheel_school_index)) % SPELL_SCHOOLS.size()
+func update_selected_school(return_value_scroll_bar):
+	#if floor(scroll_wheel_school_index) > SPELL_SCHOOLS.size() - 1:
+		#scroll_wheel_school_index = 0.0
+	##print("asdf ", floor(scroll_wheel_school_index))
+	#if floor(scroll_wheel_school_index) < 0:
+		##print("asdf")
+		#scroll_wheel_school_index = SPELL_SCHOOLS.size() - 0.2
+	##selected_school = SPELL_SCHOOLS.keys()[floor(scroll_wheel_school_index)]
+	#selected_school = int(floor(scroll_wheel_school_index)) % SPELL_SCHOOLS.size()
+	print("return_value_scroll_bar ", floor(((250 + 32) - return_value_scroll_bar) / 64), " ", return_value_scroll_bar, " ")
+	match floor(((250 + 32) - return_value_scroll_bar) / 64):
+		0:
+			selected_school = SPELL_SCHOOLS.FIRE
+		1:
+			selected_school = SPELL_SCHOOLS.BUFF
+		2:
+			selected_school = SPELL_SCHOOLS.OTHER
+		_:
+			print("scroll_bar does something wrong ! player.gd -> _input()")
 	update_selected_spell()
 	#print("wheel, school updated to ", SPELL_SCHOOLS.keys()[floor(scroll_wheel_school_index)], " on index ", scroll_wheel_school_index)
 	interface.update_selected_school_label(SPELL_SCHOOLS.keys()[selected_school])

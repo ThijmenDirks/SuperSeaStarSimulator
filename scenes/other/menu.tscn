@@ -84,6 +84,7 @@ texture = ExtResource("3_1068x")
 sources/1 = SubResource("TileSetAtlasSource_74ope")
 
 [node name="menu" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_7kgj8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

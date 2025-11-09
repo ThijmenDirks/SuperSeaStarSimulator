@@ -103,28 +103,49 @@ var damage_taken_total: int = 0
 var damage_threshold_counter: int = 0
 
 
+#func take_damage(damage: int, damage_type: String):
+	#super(damage, damage_type)
+	#scale .x = (1 - (max_hp-hp) / float(max_hp))
+	#scale .y = (1 - (max_hp-hp) / float(max_hp))
+	#if scale.x >= 0.2:
+		#is_beast_mode = true
+		#enter_beast_mode()
+#
+	#damage_taken_total += damage
+#
+	#var thresholds_crossed = damage_taken_total / 50
+	#if thresholds_crossed > damage_threshold_counter:
+	## Trigger once for each threshold crossed
+		#for i in range(damage_threshold_counter, thresholds_crossed):
+			#if active_slimes < max_slimes:
+				#spawn_slime()
+			##_on_damage_threshold_reached((i + 1) * 50)
+	#damage_threshold_counter = thresholds_crossed
+
 func take_damage(damage: int, damage_type: String):
 	super(damage, damage_type)
-	scale .x = (1 - (max_hp-hp) / float(max_hp))
-	scale .y = (1 - (max_hp-hp) / float(max_hp))
-	if scale.x >= 0.2:
-		is_beast_mode = true
-		enter_beast_mode()
+
+	var scale_sensitivity := 0.5  # smaller = slower scale change
+	var min_scale := 0.6          # higher = minimum visible size
+
+	var damage_ratio := (max_hp - hp) / float(max_hp)
+	var new_scale := 1.0 - (damage_ratio * scale_sensitivity)
+	new_scale = clamp(new_scale, min_scale, 1.0)
+
+	scale.x = new_scale
+	scale.y = new_scale
 
 	damage_taken_total += damage
 
 	var thresholds_crossed = damage_taken_total / 50
 	if thresholds_crossed > damage_threshold_counter:
-	# Trigger once for each threshold crossed
 		for i in range(damage_threshold_counter, thresholds_crossed):
 			if active_slimes < max_slimes:
 				spawn_slime()
-			#_on_damage_threshold_reached((i + 1) * 50)
 	damage_threshold_counter = thresholds_crossed
 
-
 func enter_beast_mode():
-	print("kind_slime entered beast mode !")
+	print("king_slime entered beast mode !")
 
 #func _on_damage_threshold_reached(total_damage: int) -> void:
 	#print("Threshold reached at: %d damage taken" % total_damage)
