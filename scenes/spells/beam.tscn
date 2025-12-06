@@ -21,6 +21,7 @@ line_pivot = NodePath("Line2D")
 rotation = 0.760964
 points = PackedVector2Array(0, 0, 10, 0)
 width = 5.0
+default_color = Color(1.22733e-06, 0.597533, 0.265845, 1)
 
 [node name="Area2D" type="Area2D" parent="Line2D"]
 collision_layer = 32

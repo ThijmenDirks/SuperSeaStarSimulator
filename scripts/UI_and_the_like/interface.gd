@@ -9,6 +9,8 @@ extends CanvasLayer
 
 @onready var pause_menu: Node2D = $PauseButton/PauseMenu
 
+@onready var cg_label: Label = $Control/CGLabel
+
 #@onready var mana_thingy = load("res://scenes/other/mana_thingy.tscn").instantiate()
 
 var mana_thingies : Array
@@ -60,6 +62,8 @@ func _on_continue_button_pressed() -> void:
 	pause_menu.visible = false
 	get_tree().paused = false
 
+func _on_quit_button_pressed() -> void:
+	get_parent().take_damage(9999, "true")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta: float) -> void:

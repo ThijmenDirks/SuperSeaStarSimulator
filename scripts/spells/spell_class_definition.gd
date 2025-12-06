@@ -45,6 +45,8 @@ var base_damage : int # these two should stay ! (most likely)
 var damage_type : String # might get to be an array if multiple types
 var aoe_size
 
+var classic_mode: bool
+
 enum SPELL_SCHOOLS {
 	FIRE,
 	BUFF,
@@ -99,6 +101,8 @@ func pay_mana(orb_cost : Dictionary) -> bool:
 
 
 func change_kleurenbalkje(colors : Array):
+	if classic_mode:
+		return
 	var color_bar = caster.get_node("Interface/Control/Kleurenbalkje/PanelContainer/HBoxContainer")
 	for color in colors:
 		var used_color_bar = color_bar.get_color_bar(color)
@@ -110,6 +114,8 @@ func change_kleurenbalkje(colors : Array):
 
 
 func get_multiplier(orb_cost):
+	if classic_mode:
+		return 1
 	var color_bar = caster.get_node("Interface/Control/Kleurenbalkje/PanelContainer/HBoxContainer")
 	var total = 0
 	var amount = 0

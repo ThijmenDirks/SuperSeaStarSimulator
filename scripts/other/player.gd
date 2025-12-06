@@ -47,6 +47,7 @@ var scroll_sensitivity: float = 1
 	#if int(scroll_wheel_school_index) > SPELL_SCHOOLS.size():
 
 var score: int
+var classic_mode: bool = false
 
 enum SPELL_SCHOOLS {
 	FIRE,
@@ -56,6 +57,11 @@ enum SPELL_SCHOOLS {
 
 
 func _ready():
+	if classic_mode:
+		equiped_spells = ["fireball", "heal"]
+	else:
+		equiped_spells = ["fireball", "heal", "chain_lightning", "disintegrate", "magic_missile", "teleport", "block_of_stone"]
+	
 	score = 0
 	if false:
 		_init_spells()
@@ -76,13 +82,13 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		var old_school = floor(scroll_wheel_school_index)
 		var return_value_scroll_bar: int
-		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP and not classic_mode:
 			scroll_wheel_school_index += 0.1 * scroll_sensitivity
 			return_value_scroll_bar = selected_school_bar.update_scroll_bar("up", scroll_sensitivity)
 			#print("wheel up to ", scroll_wheel_school_index)
 			#if floor(scroll_wheel_school_index) > SPELL_SCHOOLS.size(): # this line and the line below, along with the other variatnt of this block within this func, should actulaay go in update_selected_school() # done !
 				#scroll_wheel_school_index = 0.0
-		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN and not classic_mode:
 			scroll_wheel_school_index -= 0.1 * scroll_sensitivity
 			return_value_scroll_bar = selected_school_bar.update_scroll_bar("down", scroll_sensitivity)
 			#print("wheel down to ", scroll_wheel_school_index)
@@ -94,12 +100,24 @@ func _input(event: InputEvent) -> void:
 		if floor(scroll_wheel_school_index) != old_school or true:
 			update_selected_school(return_value_scroll_bar)
 		if Input.is_action_just_pressed("left_mouse_click"):
-			print("cast")
+			if not classic_mode:
+				print("cast")
+				cast(selected_spell)
+			else:
+				print("fireball cast")
+			selected_spell = spell_database.fireball
 			cast(selected_spell)
+		if Input.is_action_just_pressed("right_mouse_click") and classic_mode:
+			print("heal cast")
+			selected_spell = spell_database.heal
+			cast(selected_spell)
+		
 		#print(floor(scroll_wheel_school_index), " asdf ", floor(scroll_wheel_school_index))
 
 
 func update_selected_school(return_value_scroll_bar):
+	if classic_mode:
+		return
 	#if floor(scroll_wheel_school_index) > SPELL_SCHOOLS.size() - 1:
 		#scroll_wheel_school_index = 0.0
 	##print("asdf ", floor(scroll_wheel_school_index))
@@ -225,6 +243,8 @@ func new_natius():
 				#selected_spell = spell_slots[SPELL_SCHOOLS[selected_school]][selected_spell_slot]
 
 func update_selected_spell():
+	if classic_mode:
+		return
 	var spells = spell_slots.get(selected_school, [])
 	if selected_spell_slot >= 0 and selected_spell_slot < spells.size():
 		selected_spell = spells[selected_spell_slot]
@@ -316,6 +336,8 @@ func _on_ctimer_to_cast_spell_timeout() -> void:
 
 
 func pay_mana(spell : Dictionary) -> bool:
+	if classic_mode:
+		return true
 	var orb_cost = spell.spell_orb_cost
 	var used_mana_thingies: Array
 	for child in get_node("Interface").get_mana_thingies():
@@ -337,6 +359,7 @@ func cast(spell):
 		return
 	var spell_scene = spell.spell_scene.instantiate()
 	spell_scene.caster = self
+	spell_scene.classic_mode = classic_mode
 	spell_scene.position = position
 	self.get_parent().add_child(spell_scene)
 	is_casting = true

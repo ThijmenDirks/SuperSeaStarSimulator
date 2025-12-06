@@ -2,6 +2,7 @@ extends Node2D
 
 var testlevel: PackedScene = load("res://scenes/levels/test_level.tscn")
 var openworld: PackedScene = load("res://scenes/levels/open_world_mode/forest1start/spawn1.tscn")
+var classic_level: PackedScene = load("res://scenes/levels/classic_level_1.tscn")
 
 #"res://scenes/levels/test_level.tscn"
 
@@ -44,6 +45,15 @@ func _on_open_world_mode_button_button_down() -> void:
 	RoomLoad.load_room(spawn_map, spawn_position)
 	queue_free()
 	#player_instance.global_position = spawn_position
+
+
+func _on_classic_mode_button_pressed() -> void:
+	print("classic_mode button down")
+	get_tree().root.add_child(classic_level.instantiate())
+	#self.add_child(testlevel.instantiate())
+	#self.visible = false
+	queue_free()
+
 
 #func get_player_saved_point():# -> Vector2:
 	#if "Player" in cached_data:
