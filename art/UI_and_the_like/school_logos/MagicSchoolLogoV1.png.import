@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://1xoy0lrgs764"
-path="res://.godot/imported/MagicSchoolLogoV1.png-a0d7979b94e68090a19974ce09586e31.ctex"
+path="res://.godot/imported/MagicSchoolLogoV1.png-9db870b82b5da85549c0037047605132.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/UI_and_the_like/MagicSchoolLogoV1.png"
-dest_files=["res://.godot/imported/MagicSchoolLogoV1.png-a0d7979b94e68090a19974ce09586e31.ctex"]
+source_file="res://art/UI_and_the_like/school_logos/MagicSchoolLogoV1.png"
+dest_files=["res://.godot/imported/MagicSchoolLogoV1.png-9db870b82b5da85549c0037047605132.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4ebmw2hsjxg1"
-path="res://.godot/imported/tempcursortest.png-1a137fc207723c2fa339cc85c4be12b9.ctex"
+uid="uid://vw62q7tkjkih"
+path="res://.godot/imported/blue_hue_kleurenbalkje.png-b8515ed09e8060e0fa9612e6a6c3aa5d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/UI_and_the_like/tempcursortest.png"
-dest_files=["res://.godot/imported/tempcursortest.png-1a137fc207723c2fa339cc85c4be12b9.ctex"]
+source_file="res://art/UI_and_the_like/kleurenbalkje/blue_hue_kleurenbalkje.png"
+dest_files=["res://.godot/imported/blue_hue_kleurenbalkje.png-b8515ed09e8060e0fa9612e6a6c3aa5d.ctex"]
 
 [params]
 

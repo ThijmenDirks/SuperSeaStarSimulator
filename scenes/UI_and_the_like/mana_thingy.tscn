@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/UI_and_the_like/mana_thingy.gd" id="1_cygvf"]
 [ext_resource type="Texture2D" uid="uid://eny37osmjycx" path="res://icon.svg" id="1_pm13x"]
-[ext_resource type="Texture2D" uid="uid://bwag8ua6ahaco" path="res://art/UI_and_the_like/mana_thingy_green_hue_tileset.png" id="3_c464s"]
+[ext_resource type="Texture2D" uid="uid://bwag8ua6ahaco" path="res://art/UI_and_the_like/mana_thingies/mana_thingy_green_hue_tileset.png" id="3_c464s"]
 
 [sub_resource type="Gradient" id="Gradient_7k645"]
 

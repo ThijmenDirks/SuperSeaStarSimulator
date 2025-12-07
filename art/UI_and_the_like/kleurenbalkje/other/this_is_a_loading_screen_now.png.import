@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bx7s6y36f0n41"
-path="res://.godot/imported/mana_thingy_blue_hue_tileset.png-a4f298a8ec2adb5b73bd72ea80982af4.ctex"
+uid="uid://s8a5g28a6pnr"
+path="res://.godot/imported/this_is_a_loading_screen_now.png-e452d5dbbd82554aee8dbad382f0df3c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/UI_and_the_like/mana_thingy_blue_hue_tileset.png"
-dest_files=["res://.godot/imported/mana_thingy_blue_hue_tileset.png-a4f298a8ec2adb5b73bd72ea80982af4.ctex"]
+source_file="res://art/UI_and_the_like/kleurenbalkje/other/this_is_a_loading_screen_now.png"
+dest_files=["res://.godot/imported/this_is_a_loading_screen_now.png-e452d5dbbd82554aee8dbad382f0df3c.ctex"]
 
 [params]
 

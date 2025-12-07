@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vw62q7tkjkih"
-path="res://.godot/imported/blue_hue_kleurenbalkje.png-d3a5bcb0a018e532bbcca59741560cc4.ctex"
+uid="uid://kk0bhk6bvug0"
+path="res://.godot/imported/BuffSchoolLogoV1.png-bcde02528d1356edcd8224bf7d651408.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/UI_and_the_like/blue_hue_kleurenbalkje.png"
-dest_files=["res://.godot/imported/blue_hue_kleurenbalkje.png-d3a5bcb0a018e532bbcca59741560cc4.ctex"]
+source_file="res://art/UI_and_the_like/school_logos/BuffSchoolLogoV1.png"
+dest_files=["res://.godot/imported/BuffSchoolLogoV1.png-bcde02528d1356edcd8224bf7d651408.ctex"]
 
 [params]
 

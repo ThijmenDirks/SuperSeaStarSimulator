@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://kk0bhk6bvug0"
-path="res://.godot/imported/BuffSchoolLogoV1.png-2211af5e28cba9611df6fa5965a0213d.ctex"
+uid="uid://4ebmw2hsjxg1"
+path="res://.godot/imported/tempcursortest.png-354cb7c5cd6d2c08e765017e8c99e30e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/UI_and_the_like/BuffSchoolLogoV1.png"
-dest_files=["res://.godot/imported/BuffSchoolLogoV1.png-2211af5e28cba9611df6fa5965a0213d.ctex"]
+source_file="res://art/UI_and_the_like/kleurenbalkje/other/tempcursortest.png"
+dest_files=["res://.godot/imported/tempcursortest.png-354cb7c5cd6d2c08e765017e8c99e30e.ctex"]
 
 [params]
 

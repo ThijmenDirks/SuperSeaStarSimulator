@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://s8a5g28a6pnr"
-path="res://.godot/imported/this_is_a_loading_screen_now.png-90eb7fefc4bfb0787a7f6d7c0fe39a6e.ctex"
+uid="uid://smykukf4qncj"
+path="res://.godot/imported/mana_thingy_dark_hue_tileset.png-1b653622a064d87b93289f24215edc1f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/UI_and_the_like/this_is_a_loading_screen_now.png"
-dest_files=["res://.godot/imported/this_is_a_loading_screen_now.png-90eb7fefc4bfb0787a7f6d7c0fe39a6e.ctex"]
+source_file="res://art/UI_and_the_like/mana_thingies/mana_thingy_dark_hue_tileset.png"
+dest_files=["res://.godot/imported/mana_thingy_dark_hue_tileset.png-1b653622a064d87b93289f24215edc1f.ctex"]
 
 [params]
 

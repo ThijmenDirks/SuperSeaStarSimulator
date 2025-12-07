@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqb6wp4bjrxil"
-path="res://.godot/imported/star_temphealth_sprite.png-741971b6ce88366ba0ad33a7ff451ea7.ctex"
+uid="uid://cxihusuvjjawx"
+path="res://.godot/imported/mango_hue_kleurenbalkje.png-d0ba6f39a2014f77ee47e81a6deebc0a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/UI_and_the_like/star_temphealth_sprite.png"
-dest_files=["res://.godot/imported/star_temphealth_sprite.png-741971b6ce88366ba0ad33a7ff451ea7.ctex"]
+source_file="res://art/UI_and_the_like/kleurenbalkje/mango_hue_kleurenbalkje.png"
+dest_files=["res://.godot/imported/mango_hue_kleurenbalkje.png-d0ba6f39a2014f77ee47e81a6deebc0a.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3xbvygclf1k0"
-path="res://.godot/imported/mana_thingy_mango_hue_tileset.png-939fe8dabb478281f3f1e81de67c7da3.ctex"
+uid="uid://cqb6wp4bjrxil"
+path="res://.godot/imported/star_temphealth_sprite.png-321495e01464f36090a82e3cb8a5fb2a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/UI_and_the_like/mana_thingy_mango_hue_tileset.png"
-dest_files=["res://.godot/imported/mana_thingy_mango_hue_tileset.png-939fe8dabb478281f3f1e81de67c7da3.ctex"]
+source_file="res://art/UI_and_the_like/kleurenbalkje/other/star_temphealth_sprite.png"
+dest_files=["res://.godot/imported/star_temphealth_sprite.png-321495e01464f36090a82e3cb8a5fb2a.ctex"]
 
 [params]
 

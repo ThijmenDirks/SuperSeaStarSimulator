@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxihusuvjjawx"
-path="res://.godot/imported/mango_hue_kleurenbalkje.png-0266349983efe1808d5141ffd43a4a79.ctex"
+uid="uid://to44ki8s2npu"
+path="res://.godot/imported/idk_waht_to_call_this.png-a4cb05cc59e5f5e530cb4d0dd83a4e44.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/UI_and_the_like/mango_hue_kleurenbalkje.png"
-dest_files=["res://.godot/imported/mango_hue_kleurenbalkje.png-0266349983efe1808d5141ffd43a4a79.ctex"]
+source_file="res://art/UI_and_the_like/kleurenbalkje/other/idk_waht_to_call_this.png"
+dest_files=["res://.godot/imported/idk_waht_to_call_this.png-a4cb05cc59e5f5e530cb4d0dd83a4e44.ctex"]
 
 [params]
 

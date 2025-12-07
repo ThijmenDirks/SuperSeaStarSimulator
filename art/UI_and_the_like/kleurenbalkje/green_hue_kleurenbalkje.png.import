@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7bm0f533mdm1"
-path="res://.godot/imported/FireSchoolLogoV1.png-4f4877e478c3193a3e863dec0f09a33f.ctex"
+uid="uid://bm6emto7w8mse"
+path="res://.godot/imported/green_hue_kleurenbalkje.png-e49a9dbac360d4fae7be389c5a32626c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/UI_and_the_like/FireSchoolLogoV1.png"
-dest_files=["res://.godot/imported/FireSchoolLogoV1.png-4f4877e478c3193a3e863dec0f09a33f.ctex"]
+source_file="res://art/UI_and_the_like/kleurenbalkje/green_hue_kleurenbalkje.png"
+dest_files=["res://.godot/imported/green_hue_kleurenbalkje.png-e49a9dbac360d4fae7be389c5a32626c.ctex"]
 
 [params]
 

@@ -1,10 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://cunftp8agsgen"]
+[gd_scene load_steps=3 format=3 uid="uid://cunftp8agsgen"]
 
+[ext_resource type="Texture2D" uid="uid://gli1y6hch58a" path="res://art/UI_and_the_like/kleurenbalkje/dark_hue_kleurenbalkje.png" id="1_p4ohl"]
 [ext_resource type="Script" path="res://scripts/UI_and_the_like/kleurenbalkje.gd" id="1_tin8t"]
 
 [node name="kleurenbalkje" type="Node2D"]
 
 [node name="background" type="Sprite2D" parent="."]
+
+[node name="DarkHueKleurenbalkje" type="Sprite2D" parent="."]
+position = Vector2(216.5, 10.25)
+scale = Vector2(6.17105, 3.09375)
+texture = ExtResource("1_p4ohl")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 offset_right = 433.0
