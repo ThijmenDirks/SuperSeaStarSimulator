@@ -97,7 +97,7 @@ func explosion(size : String = "big"):
 
 	var hit_targets = explosion_area.get_overlapping_bodies()
 	for target in hit_targets:
-		if target is Enemy or target is Player:
+		if (target is Enemy or target is Player) and not target == caster:
 			#var ray_cast = RayCast2D.new() # uiteindeijk wil ik wel weer gewoon terug naar een raycast hergebruiken
 			ray_cast.set_collision_mask_value(1, false)
 			ray_cast.set_collision_mask_value(2, true)

@@ -4,6 +4,7 @@ extends Node2D
 
 
 @onready var blob = $Blob
+const SLIMEING = preload("res://art/particles/slimeing.tscn")
 
 var slime: PackedScene = load("res://scenes/enemies/slimes/red_slime.tscn")
 
@@ -31,6 +32,7 @@ func _process(delta: float) -> void:
 
 
 func on_blob_land():
+	self.add_child(SLIMEING.instantiate())
 	for body in $DamageArea.get_overlapping_bodies():
 		if body is Enemy or body is Player:
 			body.take_damage(impact_damage, "falling")

@@ -61,7 +61,7 @@ position = Vector2(-88, 479)
 position = Vector2(476, -1)
 
 [node name="spawn5_right" type="Marker2D" parent="Spawns"]
-position = Vector2(-1242, -32)
+position = Vector2(-1275, -26)
 
 [node name="spawn5_cave" type="Marker2D" parent="Spawns"]
 position = Vector2(-104, -640)
@@ -149,11 +149,9 @@ string_target_map = "res://scenes/levels/open_world_mode/forest1start/spawn5b.ts
 collision_layer = 320
 collision_mask = 256
 script = ExtResource("4_3hja3")
-target_map = "res://scenes/levels/open_world_mode/desert1/desert_entrance.tscn"
-target_entrance = "desert_entrance_left"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OldTransitions/Area2D4"]
-position = Vector2(-1333.5, -32)
+position = Vector2(-1413, 59)
 scale = Vector2(4.8, 4.8)
 shape = SubResource("RectangleShape2D_fttis")
 
@@ -163,8 +161,6 @@ shape = SubResource("RectangleShape2D_fttis")
 collision_layer = 320
 collision_mask = 256
 script = ExtResource("4_3hja3")
-target_map = "res://scenes/levels/open_world_mode/forest1start/spawn5b.tscn"
-target_entrance = "below_up"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LayerTransitions/Area2D"]
 position = Vector2(51.75, -509.25)
@@ -175,8 +171,6 @@ shape = SubResource("RectangleShape2D_dtm4o")
 collision_layer = 320
 collision_mask = 256
 script = ExtResource("4_3hja3")
-target_map = "res://scenes/levels/open_world_mode/forest1start/spawn5b.tscn"
-target_entrance = "below_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LayerTransitions/Area2D2"]
 position = Vector2(-62, 166)
@@ -187,8 +181,6 @@ shape = SubResource("RectangleShape2D_dtm4o")
 collision_layer = 320
 collision_mask = 256
 script = ExtResource("4_3hja3")
-target_map = "res://scenes/levels/open_world_mode/forest1start/spawn5b.tscn"
-target_entrance = "below_down2"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LayerTransitions/Area2D3"]
 position = Vector2(-312, 66)
@@ -199,8 +191,6 @@ shape = SubResource("RectangleShape2D_nkubt")
 collision_layer = 320
 collision_mask = 256
 script = ExtResource("4_3hja3")
-target_map = "res://scenes/levels/open_world_mode/forest1start/spawn5b.tscn"
-target_entrance = "below_down3"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LayerTransitions/Area2D5"]
 position = Vector2(-120, 70)
@@ -211,8 +201,6 @@ shape = SubResource("RectangleShape2D_nkubt")
 collision_layer = 320
 collision_mask = 256
 script = ExtResource("4_3hja3")
-target_map = "res://scenes/levels/open_world_mode/forest1start/spawn5b.tscn"
-target_entrance = "below_down4"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LayerTransitions/Area2D6"]
 position = Vector2(-168, 69)

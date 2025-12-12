@@ -5,7 +5,7 @@ extends HBoxContainer
 #@onready var panel3 = $Panel3
 
 var all_colors = ["red", "blue", "green", "purple"]
-var used_colors = ["red", "green", "blue", "a", "purple"]
+var used_colors = ["red", "green", "blue", "purple"]
 var colors_in_bar : Array
 var damage_multiplier = 1 # standaarddeviate tretch_ratio en nog iet <- NEE
 var mana_recharge_multiplier = 1 # size of stretch_ratio. iets met (sieze / gemiddlede)

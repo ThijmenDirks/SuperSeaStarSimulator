@@ -24,6 +24,7 @@ orbit_velocity_min = -0.12
 orbit_velocity_max = 0.12
 linear_accel_min = 18.16
 linear_accel_max = 38.36
+radial_accel_max = 100.0
 angle_min = -720.0
 angle_max = 720.0
 scale_amount_max = 3.0

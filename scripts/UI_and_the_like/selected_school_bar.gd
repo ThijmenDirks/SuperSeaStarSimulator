@@ -13,9 +13,9 @@ extends Node2D
 
 @onready var scroll_bar = $Sprite2D
 
-var fire_school_logo = load("res://art/UI_and_the_like/FireSchoolLogoV1.png")
-var buff_school_logo = load("res://art/UI_and_the_like/BuffSchoolLogoV1.png")
-var other_school_logo = load("res://art/UI_and_the_like/MagicSchoolLogoV1.png")
+var fire_school_logo = load("res://art/UI_and_the_like/school_logos/FireSchoolLogoV1.png")
+var buff_school_logo = load("res://art/UI_and_the_like/school_logos/BuffSchoolLogoV1.png")
+var other_school_logo = load("res://art/UI_and_the_like/school_logos/MagicSchoolLogoV1.png")
 
 var used_school_logos: Array = [fire_school_logo, buff_school_logo, other_school_logo]
 

@@ -11,6 +11,7 @@ radius = 70.0643
 script = ExtResource("1_ehmv2")
 
 [node name="WarningCross" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("1_f7vs2")
 
 [node name="Blob" type="Sprite2D" parent="."]
@@ -21,3 +22,19 @@ texture = ExtResource("1_surx8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
 shape = SubResource("CircleShape2D_cpxef")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -10.0
+offset_top = -15.0
+offset_right = 29.0
+offset_bottom = -5.0
+rotation = 0.785398
+color = Color(1, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = -17.0
+offset_top = 12.0
+offset_right = 22.0
+offset_bottom = 22.0
+rotation = -0.785398
+color = Color(1, 0, 0, 1)

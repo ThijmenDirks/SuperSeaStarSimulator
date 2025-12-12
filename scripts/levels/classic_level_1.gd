@@ -16,7 +16,7 @@ func _ready() -> void:
 	var interface = player.get_child(0)
 	interface.get_child(0).get_child(0).queue_free() # kleurenbalkje
 	interface.get_child(0).get_child(7).queue_free() # SelectedSchoolBar
-	for i in range(5):
+	for i in range(4):
 		interface.get_child(i + 4).queue_free()
 
 	cg_label = interface.cg_label

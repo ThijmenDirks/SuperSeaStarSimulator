@@ -3,8 +3,8 @@ extends Enemy
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
-var dart_cooldown: float = randf_range(2, 4)
-var dart_minimum_distance: int = 20
+var dart_cooldown: float = randf_range(1, 3)
+var dart_minimum_distance: int = 30
 var dart_maximum_distance: int = 50
 var dart_tries: int = 8
 
@@ -12,7 +12,7 @@ var dart_tries: int = 8
 @onready var dart_ray_cast: RayCast2D = $DartRayCast2D
 
 
-@export var animation_tree : AnimationTree
+#@export var animation_tree : AnimationTree
 
 #@onready var timer = $Timer
 
@@ -35,7 +35,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 
 	#print("goblin_state: ", state)
-	update_animation_parameters()
+	#update_animation_parameters() # dart_fey doesnt use complicated animations
+	pass
 
 
 func on_something_in_vision_field(bodies : Array):
@@ -54,7 +55,7 @@ func request_change_state(new_state):
 		STATES.PATHFIND:
 			change_state(STATES.PATHFIND)
 		STATES.IDLE_STAND:
-			change_state(STATES.IDLE_STAND)
+			change_state(STATES.IDLE_WALK)
 		STATES.IDLE_WALK:
 			change_state(STATES.IDLE_WALK)
 		STATES.MELEE_ATTACK:
@@ -88,12 +89,13 @@ func change_state(new_state):
 
 
 func update_animation_parameters():
-	if velocity == Vector2.ZERO:
-		return
-	animation_tree["parameters/Idle/blend_position"] = velocity
-	animation_tree["parameters/Walk/blend_position"] = velocity
-	animation_tree["parameters/IdleCast/blend_position"] = velocity
-	animation_tree["parameters/WalkCast/blend_position"] = velocity
+	pass # dart_fey doesnt use complicated animations
+	#if velocity == Vector2.ZERO:
+		#return
+	#animation_tree["parameters/Idle/blend_position"] = velocity
+	#animation_tree["parameters/Walk/blend_position"] = velocity
+	#animation_tree["parameters/IdleCast/blend_position"] = velocity
+	#animation_tree["parameters/WalkCast/blend_position"] = velocity
 
 
 func _on_dart_timer_timeout() -> void:

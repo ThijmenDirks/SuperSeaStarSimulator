@@ -97,7 +97,7 @@ collision_mask = 256
 script = ExtResource("5_di01j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OldTransitions/Area2D"]
-position = Vector2(70, 0)
+position = Vector2(350, 16)
 scale = Vector2(4.8, 4.8)
 shape = SubResource("RectangleShape2D_0xe6g")
 
@@ -107,7 +107,7 @@ collision_mask = 256
 script = ExtResource("5_di01j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OldTransitions/Area2D2"]
-position = Vector2(-506.5, 50)
+position = Vector2(-801, 114)
 scale = Vector2(4.8, 4.8)
 shape = SubResource("RectangleShape2D_bkrci")
 
@@ -117,14 +117,13 @@ collision_mask = 256
 script = ExtResource("5_di01j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OldTransitions/Area2D3"]
-position = Vector2(-182, 279)
+position = Vector2(-91, 475)
 scale = Vector2(4.8, 4.8)
 shape = SubResource("RectangleShape2D_frw0k")
 
 [node name="OpenWorldModeLoop" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_l8qhs")
 autoplay = true
-stream_paused = true
 
 [connection signal="body_entered" from="OldTransitions/Area2D" to="OldTransitions/Area2D" method="_on_body_entered"]
 [connection signal="body_entered" from="OldTransitions/Area2D2" to="OldTransitions/Area2D2" method="_on_body_entered"]

@@ -1,7 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://bwlk4kny0dg1x"]
+[gd_scene load_steps=12 format=3 uid="uid://5mfn7npak26h"]
 
-[ext_resource type="Script" path="res://scripts/spells/magic_missile/magic_missile_bullet.gd" id="1_4c2lc"]
-[ext_resource type="Texture2D" uid="uid://cashvh84q4fuc" path="res://art/spells/temp_magic_missle_better_alt_version.png" id="2_fs400"]
+[ext_resource type="Script" path="res://scripts/spells/magic_missile/magic_missile_bullet.gd" id="1_v5jvy"]
+[ext_resource type="Texture2D" uid="uid://ykb227qxnc3o" path="res://art/spells/temp_magic_missle_better_alt_version.png" id="2_byopt"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_roufs"]
 friction = 0.0
@@ -75,7 +75,7 @@ contact_monitor = true
 max_contacts_reported = 1
 linear_damp_mode = 1
 angular_damp_mode = 1
-script = ExtResource("1_4c2lc")
+script = ExtResource("1_v5jvy")
 
 [node name="MagicMissileCollision" type="CollisionShape2D" parent="."]
 rotation = 1.5708
@@ -87,7 +87,7 @@ shape = SubResource("CircleShape2D_r61up")
 shape = SubResource("CircleShape2D_c3tof")
 
 [node name="Feesh" type="Sprite2D" parent="."]
-texture = ExtResource("2_fs400")
+texture = ExtResource("2_byopt")
 hframes = 5
 vframes = 2
 

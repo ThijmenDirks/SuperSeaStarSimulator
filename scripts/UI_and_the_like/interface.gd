@@ -16,7 +16,7 @@ extends CanvasLayer
 var mana_thingies : Array
 
 var all_colors = ["red", "blue", "green", "purple"]
-var used_colors = ["red", "green", "blue", "a", "purple"]
+var used_colors = ["red", "green", "blue", "purple"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -25,9 +25,10 @@ func _ready() -> void:
 		var color = used_colors[i]
 		var new_mana_thingy = load("res://scenes/UI_and_the_like/mana_thingy.tscn").instantiate()
 		add_child(new_mana_thingy)
-		new_mana_thingy.my_color = color
+		new_mana_thingy.my_color_string = color
 		#new_mana_thingy.position = Vector2(-190, 50-i*30) # from top top bottom instean bottom to top ?
 		new_mana_thingy.position = Vector2(35, 250-i*30)
+		new_mana_thingy.set_color(color)
 		mana_thingies.append(new_mana_thingy)
 
 
@@ -43,7 +44,7 @@ func update_selected_school_label(selected_school):
 	selected_school_label.text = "school of " + str(selected_school)
 
 func update_selected_slot_label(selected_slot):
-	selected_slot_label.text = "slot " + str(selected_slot)
+	selected_slot_label.text = "slot " + str(selected_slot + 1)
 
 func update_selected_spell_label(selected_spell):
 	selected_spell_label.text = "spell " + str(selected_spell)

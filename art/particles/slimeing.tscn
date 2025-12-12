@@ -10,8 +10,10 @@ colors = PackedColorArray(0, 0.0862745, 1, 1, 0, 0.835294, 1, 1, 1, 1, 1, 0)
 [node name="Slimeing" type="CPUParticles2D"]
 material = ExtResource("1_k8go6")
 scale = Vector2(0.3, 0.3)
+emitting = false
 amount = 45
 lifetime = 0.8
+one_shot = true
 explosiveness = 0.9
 randomness = 0.9
 lifetime_randomness = 0.2

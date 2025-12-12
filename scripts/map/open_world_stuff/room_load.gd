@@ -1,8 +1,10 @@
 extends Node
 
+# this is the one that is in use by transitions
 
 var player_scene = preload("res://scenes/other/player.tscn")
 var player_instance: Node2D
+#var new_room
 
 func load_room(room_path: String, entrance_name):
 	print("load_room 1")

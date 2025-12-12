@@ -18,53 +18,13 @@ gradient = SubResource("Gradient_t31ls")
 [node name="ManaThingy" type="Node2D"]
 script = ExtResource("1_cygvf")
 
-[node name="ManaThingyBackground" type="Sprite2D" parent="."]
-position = Vector2(59, 0)
-scale = Vector2(0.371093, 0.164063)
-texture = ExtResource("1_pm13x")
-
-[node name="orb1" type="Sprite2D" parent="."]
-position = Vector2(37.75, -12.5)
-scale = Vector2(0.042969, 0.0390625)
-texture = ExtResource("1_pm13x")
-
-[node name="orb2" type="Sprite2D" parent="."]
-position = Vector2(43.75, -17.5)
-scale = Vector2(0.042969, 0.0390625)
-texture = ExtResource("1_pm13x")
-
-[node name="orb3" type="Sprite2D" parent="."]
-position = Vector2(49.75, -11.5)
-scale = Vector2(0.042969, 0.0390625)
-texture = ExtResource("1_pm13x")
-
-[node name="orb4" type="Sprite2D" parent="."]
-position = Vector2(55.75, -17.5)
-scale = Vector2(0.042969, 0.0390625)
-texture = ExtResource("1_pm13x")
-
-[node name="orb5" type="Sprite2D" parent="."]
-position = Vector2(62.75, -12.5)
-scale = Vector2(0.042969, 0.0390625)
-texture = ExtResource("1_pm13x")
-
-[node name="orb6" type="Sprite2D" parent="."]
-position = Vector2(68.75, -17.5)
-scale = Vector2(0.042969, 0.0390625)
-texture = ExtResource("1_pm13x")
-
-[node name="orb7" type="Sprite2D" parent="."]
-position = Vector2(75.75, -12.5)
-scale = Vector2(0.042969, 0.0390625)
-texture = ExtResource("1_pm13x")
-
 [node name="ManaThingyGreenHueTileset" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
 texture = ExtResource("3_c464s")
 vframes = 3
 frame = 2
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+[node name="TextureProgressBar1" type="TextureProgressBar" parent="."]
 custom_minimum_size = Vector2(10, 10)
 anchors_preset = 15
 anchor_right = 1.0
@@ -109,3 +69,89 @@ texture_under = SubResource("GradientTexture1D_sydh3")
 texture_progress = SubResource("GradientTexture1D_srp6a")
 tint_under = Color(0, 0, 0, 1)
 tint_progress = Color(100, 100, 100, 1)
+
+[node name="Orbs" type="Node2D" parent="."]
+
+[node name="Orb1" type="ColorRect" parent="Orbs"]
+offset_left = -28.0
+offset_top = -5.0
+offset_right = -24.0
+offset_bottom = -1.0
+
+[node name="Orb2" type="ColorRect" parent="Orbs"]
+offset_left = -22.0
+offset_top = -7.0
+offset_right = -18.0
+offset_bottom = -3.0
+
+[node name="Orb3" type="ColorRect" parent="Orbs"]
+offset_left = -16.0
+offset_top = -5.0
+offset_right = -12.0
+offset_bottom = -1.0
+
+[node name="Orb4" type="ColorRect" parent="Orbs"]
+offset_left = -10.0
+offset_top = -7.0
+offset_right = -6.0
+offset_bottom = -3.0
+
+[node name="Orb5" type="ColorRect" parent="Orbs"]
+offset_left = -4.0
+offset_top = -5.0
+offset_bottom = -1.0
+
+[node name="Orb6" type="ColorRect" parent="Orbs"]
+offset_left = 2.0
+offset_top = -7.0
+offset_right = 6.0
+offset_bottom = -3.0
+
+[node name="Orb7" type="ColorRect" parent="Orbs"]
+offset_left = 8.0
+offset_top = -5.0
+offset_right = 12.0
+offset_bottom = -1.0
+
+[node name="Old" type="Node2D" parent="."]
+visible = false
+
+[node name="ManaThingyBackground" type="Sprite2D" parent="Old"]
+position = Vector2(59, 0)
+scale = Vector2(0.371093, 0.164063)
+texture = ExtResource("1_pm13x")
+
+[node name="orb1" type="Sprite2D" parent="Old"]
+position = Vector2(37.75, -12.5)
+scale = Vector2(0.042969, 0.0390625)
+texture = ExtResource("1_pm13x")
+
+[node name="orb2" type="Sprite2D" parent="Old"]
+position = Vector2(43.75, -17.5)
+scale = Vector2(0.042969, 0.0390625)
+texture = ExtResource("1_pm13x")
+
+[node name="orb3" type="Sprite2D" parent="Old"]
+position = Vector2(49.75, -11.5)
+scale = Vector2(0.042969, 0.0390625)
+texture = ExtResource("1_pm13x")
+
+[node name="orb4" type="Sprite2D" parent="Old"]
+position = Vector2(55.75, -17.5)
+scale = Vector2(0.042969, 0.0390625)
+texture = ExtResource("1_pm13x")
+
+[node name="orb5" type="Sprite2D" parent="Old"]
+position = Vector2(62.75, -12.5)
+scale = Vector2(0.042969, 0.0390625)
+texture = ExtResource("1_pm13x")
+
+[node name="orb6" type="Sprite2D" parent="Old"]
+position = Vector2(68.75, -17.5)
+scale = Vector2(0.042969, 0.0390625)
+texture = ExtResource("1_pm13x")
+
+[node name="orb7" type="Sprite2D" parent="Old"]
+position = Vector2(75.75, -12.5)
+scale = Vector2(0.042969, 0.0390625)
+texture = ExtResource("1_pm13x")

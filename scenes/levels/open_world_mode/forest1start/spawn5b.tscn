@@ -91,8 +91,6 @@ tile_set = ExtResource("1_wokhj")
 collision_layer = 320
 collision_mask = 256
 script = ExtResource("4_fnerd")
-target_map = "res://scenes/levels/open_world_mode/forest1start/spawn3.tscn"
-target_entrance = "spawn3_right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(577, 2)
@@ -103,8 +101,6 @@ shape = SubResource("RectangleShape2D_1s8jl")
 collision_layer = 320
 collision_mask = 256
 script = ExtResource("4_fnerd")
-target_map = "res://scenes/levels/open_world_mode/forest1start/spawn5a.tscn"
-target_entrance = "above_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
 position = Vector2(-275, 135)
@@ -115,8 +111,6 @@ shape = SubResource("RectangleShape2D_1s8jl")
 collision_layer = 320
 collision_mask = 256
 script = ExtResource("4_fnerd")
-target_map = "res://scenes/levels/open_world_mode/forest1start/spawn5a.tscn"
-target_entrance = "above_up"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
 position = Vector2(-8, -520)
@@ -127,8 +121,6 @@ shape = SubResource("RectangleShape2D_1s8jl")
 collision_layer = 320
 collision_mask = 256
 script = ExtResource("4_fnerd")
-target_map = "res://scenes/levels/open_world_mode/forest1start/spawn5a.tscn"
-target_entrance = "above_down2"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D4"]
 position = Vector2(-142, 166)
@@ -139,8 +131,6 @@ shape = SubResource("RectangleShape2D_qfrfi")
 collision_layer = 320
 collision_mask = 256
 script = ExtResource("4_fnerd")
-target_map = "res://scenes/levels/open_world_mode/forest1start/spawn5a.tscn"
-target_entrance = "above_down3"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D5"]
 position = Vector2(-168, 120)
@@ -151,8 +141,6 @@ shape = SubResource("RectangleShape2D_qfrfi")
 collision_layer = 320
 collision_mask = 256
 script = ExtResource("4_fnerd")
-target_map = "res://scenes/levels/open_world_mode/forest1start/spawn5a.tscn"
-target_entrance = "above_down4"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D6"]
 position = Vector2(-120, 120)

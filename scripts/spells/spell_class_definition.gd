@@ -86,7 +86,7 @@ func on_max_range():
 
 
 func pay_mana(orb_cost : Dictionary) -> bool:
-	return true # i know this is dirty, should be fixed somewhen in the future...
+	return true # i know this is dirty, should be fixed somewhen in the future... # currently done in player ?
 	print("nnn   ", caster)
 	var used_mana_thingies: Array
 	for child in caster.get_node("Interface").get_mana_thingies():

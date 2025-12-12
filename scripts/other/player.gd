@@ -341,13 +341,13 @@ func pay_mana(spell : Dictionary) -> bool:
 	var orb_cost = spell.spell_orb_cost
 	var used_mana_thingies: Array
 	for child in get_node("Interface").get_mana_thingies():
-		if child.my_color in orb_cost:
+		if child.my_color_string in orb_cost:
 			used_mana_thingies.append(child)
 	for mana_thingy in used_mana_thingies:
-		if mana_thingy.filled_orbs < orb_cost.get(mana_thingy.my_color):
+		if mana_thingy.filled_orbs < orb_cost.get(mana_thingy.my_color_string):
 			return false
 	for mana_thingy in used_mana_thingies:
-		mana_thingy.filled_orbs -= orb_cost.get(mana_thingy.my_color)
+		mana_thingy.filled_orbs -= orb_cost.get(mana_thingy.my_color_string)
 	return true
 
 
