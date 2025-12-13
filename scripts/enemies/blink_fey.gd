@@ -7,7 +7,7 @@ var blink_visible_duration: int = 5
 var blink_invisible_duration: int = 3
 @onready var blink_timer: Timer = $BlinkTimer
 
-@export var animation_tree : AnimationTree
+#@export var animation_tree : AnimationTree
 
 #@onready var timer = $Timer
 
@@ -21,6 +21,9 @@ func _ready() -> void:
 	chase_end_distance = 20
 	melee_range = 30
 	attack_speed = 0.3
+
+	max_hp = 125
+	hp = max_hp
 
 	state = STATES.IDLE_STAND
 	idle_stand(randi_range(3, 3), "enter") # shuoldnt you just call change_state(IDLE_STAND) ?
@@ -83,12 +86,13 @@ func change_state(new_state):
 
 
 func update_animation_parameters():
-	if velocity == Vector2.ZERO:
-		return
-	animation_tree["parameters/Idle/blend_position"] = velocity
-	animation_tree["parameters/Walk/blend_position"] = velocity
-	animation_tree["parameters/IdleCast/blend_position"] = velocity
-	animation_tree["parameters/WalkCast/blend_position"] = velocity
+	pass # blink_fey doesnt use complicated animations
+	#if velocity == Vector2.ZERO:
+		#return
+	#animation_tree["parameters/Idle/blend_position"] = velocity
+	#animation_tree["parameters/Walk/blend_position"] = velocity
+	#animation_tree["parameters/IdleCast/blend_position"] = velocity
+	#animation_tree["parameters/WalkCast/blend_position"] = velocity
 
 
 func _on_blink_timer_timeout() -> void:

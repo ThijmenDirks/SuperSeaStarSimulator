@@ -16,6 +16,7 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
 gradient = SubResource("Gradient_t31ls")
 
 [node name="ManaThingy" type="Node2D"]
+scale = Vector2(1.2, 1.2)
 script = ExtResource("1_cygvf")
 
 [node name="ManaThingyGreenHueTileset" type="Sprite2D" parent="."]

@@ -39,7 +39,7 @@ var heal = {
 	"spell_healing" = 50.0, # 50.0
 	"spell_healing_type" = "bandage", # ?
 	"spell_kleurenbalkje_change" = 4,
-	"spell_orb_cost" = {"green" = 2, "blue" = 1},
+	"spell_orb_cost" = {"green" = 4, "blue" = 1},
 	"spell_noise" = 20, #amount of (???)(pixels?) ditance in witch enemies are warned. this, or something else, might get multyplied for some enemies.
 	"spell_is_targetable" = true,
 	"spell_range" = 300,

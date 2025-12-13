@@ -27,7 +27,7 @@ func _ready() -> void:
 		add_child(new_mana_thingy)
 		new_mana_thingy.my_color_string = color
 		#new_mana_thingy.position = Vector2(-190, 50-i*30) # from top top bottom instean bottom to top ?
-		new_mana_thingy.position = Vector2(35, 250-i*30)
+		new_mana_thingy.position = Vector2(45, 250-i*30)
 		new_mana_thingy.set_color(color)
 		mana_thingies.append(new_mana_thingy)
 

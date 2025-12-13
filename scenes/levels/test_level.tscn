@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=4 uid="uid://dbifjqhl4pa28"]
+[gd_scene load_steps=58 format=4 uid="uid://dbifjqhl4pa28"]
 
 [ext_resource type="Script" path="res://scripts/levels/test_level.gd" id="1_4lh20"]
 [ext_resource type="PackedScene" uid="uid://bqhlp5wv10xgg" path="res://scenes/other/player.tscn" id="2_ao355"]
@@ -145,6 +145,81 @@ time = 15.0
 script = ExtResource("2_v6og4")
 subwaves = Array[ExtResource("3_wq6wp")]([SubResource("Resource_do67l"), SubResource("Resource_x6351")])
 
+[sub_resource type="Resource" id="Resource_fdt6j"]
+script = ExtResource("3_wq6wp")
+enemy = 7
+min_amount = 2
+max_amount = 4
+time = 4.0
+
+[sub_resource type="Resource" id="Resource_kos2i"]
+script = ExtResource("3_wq6wp")
+enemy = 7
+min_amount = 4
+max_amount = 6
+time = 4.0
+
+[sub_resource type="Resource" id="Resource_ahy12"]
+script = ExtResource("2_v6og4")
+subwaves = Array[ExtResource("3_wq6wp")]([SubResource("Resource_fdt6j"), SubResource("Resource_kos2i")])
+
+[sub_resource type="Resource" id="Resource_ikmfs"]
+script = ExtResource("3_wq6wp")
+enemy = 9
+min_amount = 4
+max_amount = 8
+time = 3.0
+
+[sub_resource type="Resource" id="Resource_30ltt"]
+script = ExtResource("3_wq6wp")
+enemy = 9
+min_amount = 3
+max_amount = 6
+time = 2.0
+
+[sub_resource type="Resource" id="Resource_cnuue"]
+script = ExtResource("3_wq6wp")
+enemy = 9
+min_amount = 4
+max_amount = 9
+time = 10.0
+
+[sub_resource type="Resource" id="Resource_ra7wh"]
+script = ExtResource("2_v6og4")
+subwaves = Array[ExtResource("3_wq6wp")]([SubResource("Resource_ikmfs"), SubResource("Resource_30ltt"), SubResource("Resource_cnuue")])
+
+[sub_resource type="Resource" id="Resource_pmg3t"]
+script = ExtResource("3_wq6wp")
+enemy = 7
+min_amount = 2
+max_amount = 4
+time = 3.0
+
+[sub_resource type="Resource" id="Resource_tto7b"]
+script = ExtResource("3_wq6wp")
+enemy = 9
+min_amount = 3
+max_amount = 5
+time = 4.0
+
+[sub_resource type="Resource" id="Resource_7wtf2"]
+script = ExtResource("3_wq6wp")
+enemy = 7
+min_amount = 2
+max_amount = 4
+time = 1.0
+
+[sub_resource type="Resource" id="Resource_qqgk4"]
+script = ExtResource("3_wq6wp")
+enemy = 9
+min_amount = 3
+max_amount = 5
+time = 5.0
+
+[sub_resource type="Resource" id="Resource_gf3tc"]
+script = ExtResource("2_v6og4")
+subwaves = Array[ExtResource("3_wq6wp")]([SubResource("Resource_pmg3t"), SubResource("Resource_tto7b"), SubResource("Resource_7wtf2"), SubResource("Resource_qqgk4")])
+
 [sub_resource type="Resource" id="Resource_4xd83"]
 script = ExtResource("3_wq6wp")
 enemy = 6
@@ -197,7 +272,7 @@ size = Vector2(4, 80)
 
 [node name="TestLevel" type="Node2D" node_paths=PackedStringArray("spawn_areas")]
 script = ExtResource("1_4lh20")
-all_waves = Array[ExtResource("2_v6og4")]([SubResource("Resource_sjvs0"), SubResource("Resource_se7nw"), SubResource("Resource_rsele"), SubResource("Resource_s5ddg"), SubResource("Resource_sywa8"), SubResource("Resource_yocej"), SubResource("Resource_6jc64")])
+all_waves = Array[ExtResource("2_v6og4")]([SubResource("Resource_sjvs0"), SubResource("Resource_se7nw"), SubResource("Resource_rsele"), SubResource("Resource_s5ddg"), SubResource("Resource_sywa8"), SubResource("Resource_yocej"), SubResource("Resource_ahy12"), SubResource("Resource_ra7wh"), SubResource("Resource_gf3tc"), SubResource("Resource_6jc64")])
 spawn_areas = [NodePath("SpawnAreas/SpawnArea0"), NodePath("SpawnAreas/SpawnArea1"), NodePath("SpawnAreas/SpawnArea2")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
