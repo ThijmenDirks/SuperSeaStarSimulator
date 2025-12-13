@@ -25,14 +25,14 @@ func _process(delta: float) -> void:
 		#
 		if color.size_flags_stretch_ratio != 1.0:
 			var growth = lerp(color.size_flags_stretch_ratio, 1.0, 0.01) - color.size_flags_stretch_ratio
-			print("kleurkleur growth =  ", growth)
-			if growth < 0.001:
+			#print("kleurkleur growth =  ", growth)
+			if growth < 0.001 or true:
 				growth = 0.001
-				print("kleurkleurMIN")
+				#print("kleurkleurMIN")
 			color.size_flags_stretch_ratio += growth
 			if color.size_flags_stretch_ratio > 1.0:
 				color.size_flags_stretch_ratio = 1.0
-			print("kleurkleur color.size_flags_stretch_ratio = ", color.size_flags_stretch_ratio)
+			#print("kleurkleur color.size_flags_stretch_ratio = ", color.size_flags_stretch_ratio)
 
 		
 		

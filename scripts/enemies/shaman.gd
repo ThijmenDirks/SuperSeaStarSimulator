@@ -4,7 +4,7 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
 @export var animation_tree : AnimationTree
-@export var spell_cooldown_time: int = 3 # i might want to do this in enemy_class_def
+@export var spell_cooldown_time: int = 1 # i might want to do this in enemy_class_def
 
 @onready var spell_ability_cooldown_timer = $SpellAbilityCooldownTimer
 
@@ -16,7 +16,7 @@ func _ready() -> void:
 	spell_ability_cooldown_timer.wait_time = spell_cooldown_time
 	base_speed = 40 # 50
 	speed = base_speed
-	chase_end_distance = 100
+	chase_end_distance = 200
 
 	look_for_player_area = $LookForPlayerArea
 	#timer.start(1)

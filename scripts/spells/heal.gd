@@ -3,6 +3,8 @@ extends Spell
 
 var has_exploded : bool = false
 
+@onready var area_2d: Area2D = $Area2D
+
 
 func _ready():
 	print("heal test 0")
@@ -28,6 +30,8 @@ func _ready():
 	position = target_position
 
 	target = await get_body_at_position_with_area(position)
+	target = await area_2d.get_overlapping_bodies()
+	print("heal targets: ", target)
 	print("heal test 3")
 
 	#direction = origin_position.angle_to(get_global_mouse_position())
@@ -57,7 +61,9 @@ func _ready():
 
 	print("hhh  ", target)
 	if target:
-		target.take_healing(healing, healing_type)
+		for this_target in target:
+			if this_target is Entity:
+				this_target.take_healing(healing, healing_type)
 	# once you hit, it wont queue_free ?
 	print("heal test 7")
 	# maybe here the animantion ?

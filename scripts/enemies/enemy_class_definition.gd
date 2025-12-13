@@ -167,7 +167,7 @@ func process_bodies_in_vision_field(): # i think i just want this in every enemy
 	if something_in_vision_field:
 		on_something_in_vision_field(bodies_in_vision_field)
 	else:
-		print("nothing in vision_field")
+		#print("nothing in vision_field") # much-spammed comment
 		angry = false
 
 

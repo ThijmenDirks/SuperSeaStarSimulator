@@ -62,6 +62,9 @@ func _ready():
 			#return
 	#print("heal test 6")
 
+	if caster is Player:
+		caster.is_disintegrating = true
+
 	print("hhh  ", target)
 	if target:
 		target.take_damage(damage, damage_type)
@@ -94,8 +97,12 @@ func on_hit(body) -> void:
 		return
 	if body is Enemy or body is Player or body is BreakableBlock:
 		body.take_damage(damage, damage_type)
+		if caster is Player:
+			caster.is_disintegrating = false
 		queue_free()
 
 
 func _on_life_time_timer_timeout() -> void:
+	if caster is Player:
+		caster.is_disintegrating = false
 	queue_free()

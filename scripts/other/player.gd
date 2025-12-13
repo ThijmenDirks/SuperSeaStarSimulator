@@ -49,6 +49,8 @@ var scroll_sensitivity: float = 1
 var score: int
 var classic_mode: bool = false
 
+var is_disintegrating: bool = false
+
 enum SPELL_SCHOOLS {
 	FIRE,
 	BUFF,
@@ -100,12 +102,9 @@ func _input(event: InputEvent) -> void:
 		if floor(scroll_wheel_school_index) != old_school or true:
 			update_selected_school(return_value_scroll_bar)
 		if Input.is_action_just_pressed("left_mouse_click"):
-			if not classic_mode:
-				print("cast")
-				cast(selected_spell)
-			else:
-				print("fireball cast")
-			selected_spell = spell_database.fireball
+			if classic_mode:
+				selected_spell = spell_database.fireball
+			print("cast")
 			cast(selected_spell)
 		if Input.is_action_just_pressed("right_mouse_click") and classic_mode:
 			print("heal cast")
@@ -173,8 +172,8 @@ func update_animation_parameters():
 #-
 var spell_slots: Dictionary = {
 	SPELL_SCHOOLS.FIRE : [spell_database.fireball, spell_database.disintegrate],
-	SPELL_SCHOOLS.BUFF : [spell_database.heal, spell_database.teleport, spell_database.block_of_stone],
-	SPELL_SCHOOLS.OTHER : [spell_database.magic_missile],
+	SPELL_SCHOOLS.BUFF : [spell_database.heal, spell_database.teleport],
+	SPELL_SCHOOLS.OTHER : [spell_database.magic_missile, spell_database.block_of_stone],
 }
 #var learned_spells: Dictionary = {
 	#SPELL_SCHOOLS.FIRE: [spell_database.fireball, spell_database.magic_missile]
@@ -352,7 +351,9 @@ func pay_mana(spell : Dictionary) -> bool:
 
 
 func cast(spell):
-	if is_casting:
+	print("spell_scene: ", spell.spell_name)
+
+	if is_casting or is_disintegrating:
 		return
 	if not pay_mana(spell): # WARNING pay_mana() also gets called in the spell itself. # fixed it! kinda dirty, but still
 		print("out of orbs miscast !")

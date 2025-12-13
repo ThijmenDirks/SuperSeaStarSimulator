@@ -45,6 +45,10 @@ func _ready():
 			print("out of orbs miscast!")
 			queue_free()
 			return
+
+	if caster is Player:
+		caster.is_disintegrating = true
+
 	for bullet in amount_of_bullets:
 		# this should get a function
 		var current_bullet = spell_bullets.instantiate()
@@ -54,6 +58,8 @@ func _ready():
 		
 		
 		await get_tree().create_timer(rate_of_fire).timeout
+	if caster is Player:
+		caster.is_disintegrating = false
 	queue_free()
 
 #func _physics_process(delta: float,) -> void:

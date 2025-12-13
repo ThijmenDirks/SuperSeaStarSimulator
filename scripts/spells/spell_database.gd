@@ -19,7 +19,7 @@ var fireball = {
 	"spell_damage" = 50.0,
 	"spell_damage_type" = "fire",
 	"spell_kleurenbalkje_change" = 2,
-	"spell_orb_cost" = {"red" = 1}, # 3
+	"spell_orb_cost" = {"red" = 2}, # 3
 	"spell_noise" = 200, #amount of (???)(pixels?) ditance in witch enemies are warned. this, or something else, might get multyplied for some enemies.
 	"spell_is_targetable" = true,
 	"spell_range" = 3000,
@@ -81,7 +81,7 @@ var disintegrate = {
 	"spell_damage" = 999.0,
 	"spell_damage_type" = "true", # ?
 	"spell_kleurenbalkje_change" = 8,
-	"spell_orb_cost" = {"red" = 1, "green" = 1, "blue" = 1}, # 5, 5, 2
+	"spell_orb_cost" = {"red" = 6, "green" = 2, "blue" = 2, "purple" = 3}, # 5, 5, 2
 	"spell_noise" = 300, #amount of (???)(pixels?) ditance in witch enemies are warned. this, or something else, might get multyplied for some enemies.
 	"spell_is_targetable" = true,
 	"spell_range" = 300,
@@ -100,7 +100,7 @@ var magic_missile = {
 	"spell_damage" = 30.0,
 	"spell_damage_type" = "magic",
 	"spell_kleurenbalkje_change" = 10,
-	"spell_orb_cost" = {"purple" = 1}, # 1
+	"spell_orb_cost" = {"purple" = 2}, # 1
 	"spell_noise" = 200, #amount of (???)(pixels?) ditance in witch enemies are warned. this, or something else, might get multyplied for some enemies.
 	"spell_is_targetable" = true,
 	"spell_range" = 200,
@@ -124,7 +124,7 @@ var teleport = {
 	#"spell_healing" = 50.0, # 50.0
 	#"spell_healing_type" = "bandage", # ?
 	"spell_kleurenbalkje_change" = 4,
-	"spell_orb_cost" = {"purple" = 1}, # 5
+	"spell_orb_cost" = {"purple" = 1, "blue" = 1}, # 5
 	"spell_noise" = 20, #amount of (???)(pixels?) ditance in witch enemies are warned. this, or something else, might get multyplied for some enemies.
 	"spell_is_targetable" = true,
 	"spell_range" = 300,
@@ -136,8 +136,8 @@ var teleport = {
 var block_of_stone = {
 	"spell_name" = "block_of_stone",
 	"spell_recipe" = ["q", "r"],
-	"spell_school" = SPELL_SCHOOLS.BUFF,
-	"spell_slot" = 2,
+	"spell_school" = SPELL_SCHOOLS.OTHER,
+	"spell_slot" = 1,
 	"spell_type" = "utility",
 	"spell_target" = "single_target",
 	"duration" = 5,

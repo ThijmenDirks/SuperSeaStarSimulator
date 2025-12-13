@@ -29,17 +29,18 @@ func _process(delta: float) -> void:
 
 func _on_timer_timeout() -> void:
 	spawn_goblins()
-	timer.start(randi_range(2, 5))
+	timer.start(randf_range(0.2, 0.8))
+
 
 func spawn_goblins():
-	for i in randi_range(2, 5):
-		var goblin_pos: Vector2 = Vector2(randi_range(-868, 1169), randi_range(-427, 418))
-		if goblin_pos.distance_to(player.position) > 190:
-			var new_goblin = GOBLIN.instantiate()
-			new_goblin.position = goblin_pos
-			add_child(new_goblin)
-			current_enemies_amount += 1
-			print("gobling spawned ! there are now ", current_enemies_amount, " goblins ! ssss", randf())
+	#for i in randi_range(2, 5):
+	var goblin_pos: Vector2 = Vector2(randi_range(-868, 1169), randi_range(-427, 418))
+	if goblin_pos.distance_to(player.position) > 190:
+		var new_goblin = GOBLIN.instantiate()
+		new_goblin.position = goblin_pos
+		add_child(new_goblin)
+		current_enemies_amount += 1
+		print("gobling spawned ! there are now ", current_enemies_amount, " goblins ! ssss", randf())
 
 
 #-868, -427

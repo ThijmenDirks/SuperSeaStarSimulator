@@ -17,10 +17,10 @@ func _ready() -> void:
 	speed = base_speed
 	look_for_player_area = $LookForPlayerArea
 	#timer.start(1)
-	attack_damage = 50
+	attack_damage = 60
 	chase_end_distance = 20
 	melee_range = 30
-	attack_speed = 0.5
+	attack_speed = 0.3
 
 	state = STATES.IDLE_STAND
 	idle_stand(randi_range(3, 3), "enter") # shuoldnt you just call change_state(IDLE_STAND) ?

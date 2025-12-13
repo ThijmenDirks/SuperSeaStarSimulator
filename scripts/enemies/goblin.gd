@@ -17,7 +17,7 @@ func _ready() -> void:
 	attack_damage = 50
 	chase_end_distance = 20
 	melee_range = 30
-	attack_speed = 0.6
+	attack_speed = 0.2
 
 	state = STATES.IDLE_STAND
 	idle_stand(randi_range(3, 3), "enter") # shuoldnt you just call change_state(IDLE_STAND) ?

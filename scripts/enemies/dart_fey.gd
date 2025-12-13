@@ -3,9 +3,9 @@ extends Enemy
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
-var dart_cooldown: float = randf_range(1, 3)
+var dart_cooldown: float = randf_range(1.0, 2.5)
 var dart_minimum_distance: int = 30
-var dart_maximum_distance: int = 50
+var dart_maximum_distance: int = 70
 var dart_tries: int = 8
 
 @onready var dart_timer: Timer = $DartTimer
@@ -22,10 +22,10 @@ func _ready() -> void:
 	speed = base_speed
 	look_for_player_area = $LookForPlayerArea
 	#timer.start(1)
-	attack_damage = 50
+	attack_damage = 20
 	chase_end_distance = 20
 	melee_range = 30
-	attack_speed = 0.5
+	attack_speed = 0.2
 
 	state = STATES.IDLE_STAND
 	idle_stand(randi_range(3, 3), "enter") # shuoldnt you just call change_state(IDLE_STAND) ?

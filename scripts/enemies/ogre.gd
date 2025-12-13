@@ -16,7 +16,7 @@ func _ready() -> void:
 	attack_damage = 120
 	chase_end_distance = 40
 	melee_range = 55
-	attack_speed = 0.75
+	attack_speed = 0.5
 	max_hp = 500
 	hp = max_hp
 
