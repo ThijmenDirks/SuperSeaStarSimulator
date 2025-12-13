@@ -55,7 +55,7 @@ ID = "spawn2_up"
 string_target_map = "res://scenes/levels/open_world_mode/forest1start/spawn2.tscn"
 
 [node name="Sign" parent="." instance=ExtResource("6_et6rm")]
-position = Vector2(33, -37)
+position = Vector2(335, -396)
 text = "Scroll to select school 1-5 to select spell, left mouse click to cast"
 
 [node name="OpenWorldModeLoop" type="AudioStreamPlayer2D" parent="."]

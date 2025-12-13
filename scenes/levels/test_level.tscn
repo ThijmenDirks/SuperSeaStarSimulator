@@ -353,10 +353,6 @@ shadow_color = Color(0, 0, 0, 0.321569)
 shadow_filter_smooth = 64.0
 texture = SubResource("GradientTexture2D_a1u8x")
 
-[node name="Sign4" parent="." instance=ExtResource("13_g0f83")]
-position = Vector2(28, 9)
-text = "Scroll to select school 1-5 to select spell, left mouse click to cast"
-
 [node name="disabled" type="Node2D" parent="."]
 position = Vector2(20000, 0)
 

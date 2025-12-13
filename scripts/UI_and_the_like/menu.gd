@@ -1,6 +1,6 @@
 extends Node2D
 
-var testlevel: PackedScene = load("res://scenes/levels/test_level.tscn")
+var testlevel: PackedScene = load("res://scenes/levels/test_level3.tscn")
 var openworld: PackedScene = load("res://scenes/levels/open_world_mode/forest1start/spawn1.tscn")
 var classic_level: PackedScene = load("res://scenes/levels/classic_level_1.tscn")
 
