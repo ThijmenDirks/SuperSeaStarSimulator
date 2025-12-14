@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://drpevs8n2f2li" path="res://scenes/enemies/slimes/red_slime.tscn" id="5_oip38"]
 [ext_resource type="PackedScene" uid="uid://dvrq0jcv8ld8t" path="res://scenes/enemies/ogre.tscn" id="6_pfohd"]
 [ext_resource type="PackedScene" uid="uid://bpsxwlr7jvqe7" path="res://scenes/levels/open_world_mode/transition.tscn" id="7_x7uax"]
-[ext_resource type="AudioStream" uid="uid://iuvkdvvgtfpd" path="res://art/very basic music/wave mode basic loop.wav" id="8_d3ct2"]
+[ext_resource type="AudioStream" uid="uid://iuvkdvvgtfpd" path="res://art/music/wave mode basic loop.wav" id="8_d3ct2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_stiix"]
 size = Vector2(161, 50.5)

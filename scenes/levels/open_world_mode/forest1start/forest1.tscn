@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://d36mrokfs3i2g" path="res://scenes/enemies/blink_fey.tscn" id="5_p5mck"]
 [ext_resource type="Script" path="res://scripts/map/open_world_stuff/spawn_zones.gd" id="6_nfuip"]
 [ext_resource type="PackedScene" uid="uid://bpsxwlr7jvqe7" path="res://scenes/levels/open_world_mode/transition.tscn" id="6_v7rn7"]
-[ext_resource type="AudioStream" uid="uid://iuvkdvvgtfpd" path="res://art/very basic music/wave mode basic loop.wav" id="8_w34ji"]
+[ext_resource type="AudioStream" uid="uid://iuvkdvvgtfpd" path="res://art/music/wave mode basic loop.wav" id="8_w34ji"]
 
 [sub_resource type="Gradient" id="Gradient_mgjv1"]
 interpolation_mode = 2

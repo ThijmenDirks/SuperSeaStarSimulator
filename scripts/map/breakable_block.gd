@@ -4,7 +4,7 @@ class_name BreakableBlock extends StaticBody2D
 
 var resistances_and_weaknesses: Dictionary
 
-@export var max_hp: int = 100
+@export var max_hp: int = 70
 @export var hp: int = 100
 
 

@@ -11,7 +11,7 @@ func _on_body_entered(body):
 
 
 
-	if body.is_in_group("player") and body is Player:
+	if body.is_in_group("player") and body is Player and get_child(0) is CollisionPolygon2D:
 		print("player got lost in desert")
 		print("Transition triggered!")
 		print("Changing to:", target_map)

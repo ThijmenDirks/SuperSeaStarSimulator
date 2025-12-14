@@ -705,7 +705,7 @@ polygon = PackedVector2Array(0.5, 0, 0, 0.5, -0.5, 0, 0, -0.5)
 [node name="CharacterBody2DG3" type="CharacterBody2D" node_paths=PackedStringArray("animation_tree")]
 y_sort_enabled = true
 collision_layer = 541
-collision_mask = 2
+collision_mask = 1026
 script = ExtResource("1_3jecn")
 animation_tree = NodePath("AnimationTree")
 
@@ -748,7 +748,7 @@ collision_mask = 66
 
 [node name="WallRayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(-40, 88)
-collision_mask = 2
+collision_mask = 1026
 
 [node name="LookForPlayerArea" type="Area2D" parent="."]
 scale = Vector2(0.5, 0.5)
@@ -780,6 +780,7 @@ offset_right = 118.0
 offset_bottom = 117.0
 
 [node name="Label" type="Label" parent="."]
+visible = false
 offset_left = -35.0
 offset_top = -49.0
 offset_right = 35.0

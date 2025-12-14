@@ -11,7 +11,7 @@ var timer_is_already_running = true
 
 func _ready() -> void:
 	bounty = 40
-	max_hp= 200
+	max_hp = 200
 	hp = 200#max_HP
 	base_speed = 60
 	speed = base_speed
@@ -74,7 +74,7 @@ func request_change_state(new_state):
 	match new_state:
 		STATES.CHASE: # might want to make slimes unable to chase adn use jump_attack for it instaed
 			if state != STATES.JUMP_ATTACK and angry:
-				change_state(STATES.JUMP_ATTACK)
+				change_state(STATES.CHASE)
 		#STATES.PATHFIND:
 			#change_state(STATES.PATHFIND)
 		STATES.IDLE_STAND:
@@ -85,10 +85,10 @@ func request_change_state(new_state):
 			#change_state(STATES.IDLE_WALK)
 		STATES.JUMP_ATTACK:
 			if angry:
-				change_state(STATES.JUMP_ATTACK)
+				change_state(STATES.CHASE)
 		STATES.ATTACK:
 			if angry:
-				change_state(STATES.JUMP_ATTACK)
+				change_state(STATES.CHASE)
 
 
 func change_state(new_state):

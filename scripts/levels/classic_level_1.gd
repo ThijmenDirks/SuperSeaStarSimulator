@@ -1,9 +1,9 @@
 class_name ClassicLevel
-extends Node2D
+extends Level
 
 const GOBLIN = preload("res://scenes/enemies/goblin.tscn")
 
-var current_enemies_amount: int = 0
+var current_goblin_amount: int = 0
 var cg_label: Label
 
 @onready var timer: Timer = $Timer
@@ -24,7 +24,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	cg_label.text = str("goblins: ") + str(current_enemies_amount)
+	cg_label.text = str("goblins: ") + str(current_goblin_amount)
 
 
 func _on_timer_timeout() -> void:
@@ -39,8 +39,8 @@ func spawn_goblins():
 		var new_goblin = GOBLIN.instantiate()
 		new_goblin.position = goblin_pos
 		add_child(new_goblin)
-		current_enemies_amount += 1
-		print("gobling spawned ! there are now ", current_enemies_amount, " goblins ! ssss", randf())
+		current_goblin_amount += 1
+		print("gobling spawned ! there are now ", current_goblin_amount, " goblins ! ssss", randf())
 
 
 #-868, -427

@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ciu03g4mjuxs2" path="res://scenes/enemies/slimes/green_slime.tscn" id="4_trmcp"]
 [ext_resource type="Script" path="res://scripts/map/open_world_stuff/spawn_zones.gd" id="5_di01j"]
 [ext_resource type="PackedScene" uid="uid://bpsxwlr7jvqe7" path="res://scenes/levels/open_world_mode/transition.tscn" id="5_eo1m3"]
-[ext_resource type="AudioStream" uid="uid://df6n1xh60jg7i" path="res://art/very basic music/open world mode loop.wav" id="7_l8qhs"]
+[ext_resource type="AudioStream" uid="uid://df6n1xh60jg7i" path="res://art/music/open world mode loop.wav" id="7_l8qhs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_04iyh"]
 size = Vector2(196.156, 54.1563)

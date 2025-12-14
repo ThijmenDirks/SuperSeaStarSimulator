@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://qchn08qp8wt0" path="res://scenes/map/sign.tscn" id="13_g0f83"]
 [ext_resource type="PackedScene" uid="uid://cjfavrdl82vi3" path="res://scenes/map/breakable_block.tscn" id="13_ij83k"]
 [ext_resource type="PackedScene" uid="uid://b1nmsy182cd4k" path="res://debug and testing/bridge.tscn" id="14_eg12w"]
-[ext_resource type="AudioStream" uid="uid://iuvkdvvgtfpd" path="res://art/very basic music/wave mode basic loop.wav" id="15_t0o6j"]
+[ext_resource type="AudioStream" uid="uid://iuvkdvvgtfpd" path="res://art/music/wave mode basic loop.wav" id="15_t0o6j"]
 
 [sub_resource type="Resource" id="Resource_2nrsd"]
 script = ExtResource("3_wq6wp")
@@ -253,12 +253,12 @@ vertices = PackedVector2Array(531.688, -33.9766, 1677.87, 559.063, -1038.45, 577
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 2, 4, 5), PackedInt32Array(5, 4, 6, 7), PackedInt32Array(6, 1, 0, 7)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-1107, -696, 1673, -641, 1688, 569, -1048, 588), PackedVector2Array(-160, -58, -161, -45, 521, -44, 520, -59)])
 
-[sub_resource type="Gradient" id="Gradient_2bm5n"]
+[sub_resource type="Gradient" id="Gradient_k0qqb"]
 interpolation_mode = 2
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_a1u8x"]
-gradient = SubResource("Gradient_2bm5n")
+gradient = SubResource("Gradient_k0qqb")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.1, 0.2)

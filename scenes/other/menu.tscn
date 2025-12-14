@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://drnocsmdslwo0" path="res://art/outdated art/tile_forest3.png" id="3_1068x"]
 [ext_resource type="Script" path="res://scripts/map/day_night.gd" id="4_ppu2r"]
 [ext_resource type="Texture2D" uid="uid://to44ki8s2npu" path="res://art/UI_and_the_like/kleurenbalkje/other/idk_waht_to_call_this.png" id="5_evot6"]
-[ext_resource type="AudioStream" uid="uid://iuvkdvvgtfpd" path="res://art/very basic music/wave mode basic loop.wav" id="6_c01ny"]
+[ext_resource type="AudioStream" uid="uid://iuvkdvvgtfpd" path="res://art/music/wave mode basic loop.wav" id="6_c01ny"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_74ope"]
 texture = ExtResource("3_1068x")
@@ -136,8 +136,7 @@ text = "basic
 controls"
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(183, 195)
+position = Vector2(181, 208)
 scale = Vector2(3.35417, 3.53906)
 texture = ExtResource("5_evot6")
 

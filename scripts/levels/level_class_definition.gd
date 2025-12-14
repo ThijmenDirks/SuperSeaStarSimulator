@@ -54,6 +54,8 @@ var how_manieth_wave: int = 0
 var current_enemies_amount: int = 0
 var max_enemies_amount: int = 100
 
+var is_king_slime_wave: bool = false
+
 @onready var wave_number_label = get_node("CharacterBody2D/Interface")
 
 #var current_wave: int = 0 # wave numer 0 will be empty
@@ -69,8 +71,9 @@ func _ready() -> void:
 func spawn_next_wave():
 	how_manieth_wave += 1
 	var wave
-	if how_manieth_wave % 20 == 0:
+	if how_manieth_wave % 20 == 0: # 20
 		wave = all_waves[all_waves.size()-1]
+		is_king_slime_wave = true
 	else:
 		wave = all_waves[randi_range(0, all_waves.size()-2)] # not -1 cause of king_slime
 	wave_has_fully_spawned = false
@@ -87,6 +90,8 @@ func spawn_next_wave():
 
 func spawn_enemies(enemy_name: String, amount: int):
 	var spawn_area_node = get_node("SpawnAreas").get_child(randi_range(0, 2))
+	if is_king_slime_wave:
+		spawn_area_node = get_node("SpawnAreas").get_child(2)
 	for i in amount:
 		if current_enemies_amount < max_enemies_amount:
 			var new_enemy

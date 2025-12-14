@@ -63,10 +63,10 @@ func request_change_state(new_state):
 			change_state(STATES.IDLE_WALK)
 		STATES.JUMP_ATTACK:
 			if angry:
-				change_state(STATES.JUMP_ATTACK)
+				change_state(STATES.CHASE)
 		STATES.ATTACK:
 			if angry:
-				change_state(STATES.JUMP_ATTACK)
+				change_state(STATES.CHASE)
 
 
 func change_state(new_state):

@@ -48,6 +48,7 @@ var scroll_sensitivity: float = 1
 
 var score: int
 var classic_mode: bool = false
+#var open_world_mode: bool = true
 
 var is_disintegrating: bool = false
 
@@ -59,6 +60,8 @@ enum SPELL_SCHOOLS {
 
 
 func _ready():
+	if get_parent() is Level:
+		interface.score_label.visible = true
 	if classic_mode:
 		equiped_spells = ["fireball", "heal"]
 	else:
@@ -138,9 +141,9 @@ func update_selected_school(return_value_scroll_bar):
 	update_selected_spell()
 	#print("wheel, school updated to ", SPELL_SCHOOLS.keys()[floor(scroll_wheel_school_index)], " on index ", scroll_wheel_school_index)
 	interface.update_selected_school_label(SPELL_SCHOOLS.keys()[selected_school])
-	visible = false
-	await get_tree().create_timer(0.2).timeout
-	visible = true
+	#visible = false
+	#await get_tree().create_timer(0.2).timeout
+	#visible = true
 
 
 func _physics_process(delta: float) -> void:
@@ -325,7 +328,7 @@ func _on_ctimer_to_cast_spell_timeout() -> void:
 			print(spell_that_will_be_cast)
 			spell_has_been_cast = true
 			is_casting = true
-			await get_tree().create_timer(0.3).timeout # for the animation # shouldnt this be before the actual casting?
+			await get_tree().create_timer(0.6).timeout # for the animation # shouldnt this be before the actual casting?
 			is_casting = false
 	if not spell_has_been_cast:
 		print("Nonexistent spell Miscast! ", (current_spell_input))
@@ -358,13 +361,16 @@ func cast(spell):
 	if not pay_mana(spell): # WARNING pay_mana() also gets called in the spell itself. # fixed it! kinda dirty, but still
 		print("out of orbs miscast !")
 		return
+	#is_casting = true
+	#await get_tree().create_timer(0.6).timeout # for the animation (and anti-spam) # shouldnt this be before the actual casting?
+	#is_casting = false
 	var spell_scene = spell.spell_scene.instantiate()
 	spell_scene.caster = self
 	spell_scene.classic_mode = classic_mode
 	spell_scene.position = position
 	self.get_parent().add_child(spell_scene)
 	is_casting = true
-	await get_tree().create_timer(0.3).timeout # for the animation (and anti-spam) # shouldnt this be before the actual casting?
+	await get_tree().create_timer(0.6).timeout # for the animation (and anti-spam) # shouldnt this be before the actual casting?
 	is_casting = false
 	# the selected spell is in the form of a dict in SpellDatabase.
 	# first, there should be paid, so if the player cant pay, the spell doesnt spawn at all.
@@ -445,6 +451,7 @@ func take_damage(damage : int, damage_type : String):
 
 
 func die():
+	interface.score_label.visible = false
 	add_child(game_over_screen)
 	#get_parent().add_child(game_over_screen)
 	#queue_free()

@@ -2,6 +2,9 @@ extends Node
 
 var old_window_mode
 
+func _ready() -> void:
+	process_mode = PROCESS_MODE_ALWAYS
+
 func _input(event):
 	#print("iinputevent ", event)
 	if event.is_action_pressed("c"):

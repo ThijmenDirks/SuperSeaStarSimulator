@@ -55,8 +55,11 @@ func _ready() -> void:
 func request_change_state(new_state):
 	match new_state:
 		STATES.CHASE: # might want to make slimes unable to chase adn use jump_attack for it instaed
-			if state != STATES.JUMP_ATTACK:
+			if state != STATES.JUMP_ATTACK or true:
 				change_state(STATES.CHASE)
+			#state = STATES.IDLE_WALK
+			#desired_walk_direction = chase_target.position
+
 		#STATES.PATHFIND:
 			#change_state(STATES.PATHFIND)
 		#STATES.IDLE_STAND:
@@ -64,9 +67,9 @@ func request_change_state(new_state):
 		STATES.IDLE_WALK:
 			change_state(STATES.IDLE_WALK)
 		STATES.JUMP_ATTACK:
-			change_state(STATES.JUMP_ATTACK)
+			change_state(STATES.CHASE)
 		STATES.ATTACK:
-			change_state(STATES.JUMP_ATTACK)
+			change_state(STATES.CHASE)
 
 
 func change_state(new_state):

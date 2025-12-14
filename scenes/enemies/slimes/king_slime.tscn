@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dtlu5kac5vxvs" path="res://art/enemy sprites/angy_slime_king.png" id="4_lyevn"]
 [ext_resource type="PackedScene" uid="uid://ccmwkars1n0na" path="res://scenes/UI_and_the_like/hp_bar.tscn" id="5_j2fpg"]
 [ext_resource type="PackedScene" uid="uid://cn2bi5uhlbamd" path="res://scenes/other/vector_wheel.tscn" id="6_46usb"]
-[ext_resource type="AudioStream" uid="uid://sw4561mae8g0" path="res://art/very basic music/king slime loop 2.wav" id="6_cvnvh"]
+[ext_resource type="AudioStream" uid="uid://sw4561mae8g0" path="res://art/music/king slime loop 2.wav" id="6_cvnvh"]
 
 [sub_resource type="Animation" id="Animation_kx0ak"]
 length = 0.001
@@ -985,21 +985,22 @@ hframes = 3
 vframes = 2
 
 [node name="DebugLabel" type="Label" parent="."]
+visible = false
 offset_left = -19.0
 offset_top = -10.0
 offset_right = 21.0
 offset_bottom = 13.0
 
 [node name="HPBar" parent="." instance=ExtResource("5_j2fpg")]
-offset_left = -10.0
-offset_top = -26.0
-offset_right = 118.0
-offset_bottom = 102.0
+offset_left = -32.0
+offset_top = -55.0
+offset_right = 96.0
+offset_bottom = 73.0
+scale = Vector2(0.5, 0.083)
 
 [node name="VectorWheel" parent="." instance=ExtResource("6_46usb")]
 
 [node name="DamageArea" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 256
 

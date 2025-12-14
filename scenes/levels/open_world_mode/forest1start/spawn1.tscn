@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bpsxwlr7jvqe7" path="res://scenes/levels/open_world_mode/transition.tscn" id="5_1gcee"]
 [ext_resource type="PackedScene" uid="uid://qchn08qp8wt0" path="res://scenes/map/sign.tscn" id="6_et6rm"]
 [ext_resource type="Script" path="res://scripts/map/open_world_stuff/spawn_zones.gd" id="6_ok71m"]
-[ext_resource type="AudioStream" uid="uid://df6n1xh60jg7i" path="res://art/very basic music/open world mode loop.wav" id="7_87165"]
+[ext_resource type="AudioStream" uid="uid://df6n1xh60jg7i" path="res://art/music/open world mode loop.wav" id="7_87165"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pv047"]
 size = Vector2(8.54167, 20.2083)

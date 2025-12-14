@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://daqn5xaeqrobm"
-path="res://.godot/imported/king slime loop 1.wav-b959c6df0fbb50af8cee644a28736db2.sample"
+path="res://.godot/imported/king slime loop 1.wav-5352632c2a476f5c9a38489055a7b959.sample"
 
 [deps]
 
-source_file="res://art/very basic music/king slime loop 1.wav"
-dest_files=["res://.godot/imported/king slime loop 1.wav-b959c6df0fbb50af8cee644a28736db2.sample"]
+source_file="res://art/music/king slime loop 1.wav"
+dest_files=["res://.godot/imported/king slime loop 1.wav-5352632c2a476f5c9a38489055a7b959.sample"]
 
 [params]
 

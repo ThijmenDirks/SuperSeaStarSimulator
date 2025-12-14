@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://scripts/map/open_world_stuff/spawn_zones.gd" id="5_0gdtq"]
 [ext_resource type="PackedScene" uid="uid://bolg702rb3vex" path="res://scenes/enemies/mummy.tscn" id="6_6jtdg"]
 [ext_resource type="PackedScene" uid="uid://bpsxwlr7jvqe7" path="res://scenes/levels/open_world_mode/transition.tscn" id="7_nrcjg"]
-[ext_resource type="AudioStream" uid="uid://daqn5xaeqrobm" path="res://art/very basic music/king slime loop 1.wav" id="8_c0l0r"]
+[ext_resource type="AudioStream" uid="uid://daqn5xaeqrobm" path="res://art/music/king slime loop 1.wav" id="8_c0l0r"]
 [ext_resource type="PackedScene" uid="uid://bqhlp5wv10xgg" path="res://scenes/other/player.tscn" id="9_11ga0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_06j0w"]

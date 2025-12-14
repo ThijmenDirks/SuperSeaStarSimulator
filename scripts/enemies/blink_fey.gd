@@ -27,6 +27,9 @@ func _ready() -> void:
 
 	state = STATES.IDLE_STAND
 	idle_stand(randi_range(3, 3), "enter") # shuoldnt you just call change_state(IDLE_STAND) ?
+	
+	fix_vector_wheel()
+
 	super()
 
 
@@ -93,6 +96,10 @@ func update_animation_parameters():
 	#animation_tree["parameters/Walk/blend_position"] = velocity
 	#animation_tree["parameters/IdleCast/blend_position"] = velocity
 	#animation_tree["parameters/WalkCast/blend_position"] = velocity
+
+func fix_vector_wheel():
+	for vector: RayCast2D in get_node("VectorWheel").get_children():
+		vector.set_collision_mask_value(11, false)
 
 
 func _on_blink_timer_timeout() -> void:

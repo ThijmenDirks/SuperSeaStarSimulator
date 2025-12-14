@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://df6n1xh60jg7i"
-path="res://.godot/imported/open world mode loop.wav-5a6aa6d5313084f22e01406c71265d57.sample"
+path="res://.godot/imported/open world mode loop.wav-133174d09784669e6a50db17a8a60c14.sample"
 
 [deps]
 
-source_file="res://art/very basic music/open world mode loop.wav"
-dest_files=["res://.godot/imported/open world mode loop.wav-5a6aa6d5313084f22e01406c71265d57.sample"]
+source_file="res://art/music/open world mode loop.wav"
+dest_files=["res://.godot/imported/open world mode loop.wav-133174d09784669e6a50db17a8a60c14.sample"]
 
 [params]
 

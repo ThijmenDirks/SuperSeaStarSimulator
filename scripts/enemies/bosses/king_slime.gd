@@ -70,9 +70,9 @@ func request_change_state(new_state):
 		STATES.IDLE_WALK:
 			change_state(STATES.IDLE_WALK)
 		STATES.JUMP_ATTACK:
-			change_state(STATES.JUMP_ATTACK)
+			change_state(STATES.CHASE)
 		STATES.ATTACK:
-			change_state(STATES.JUMP_ATTACK)
+			change_state(STATES.CHASE)
 
 
 func change_state(new_state):

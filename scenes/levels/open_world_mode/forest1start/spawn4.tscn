@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://scripts/map/open_world_stuff/spawn_zones.gd" id="6_ra0qe"]
 [ext_resource type="PackedScene" uid="uid://bpsxwlr7jvqe7" path="res://scenes/levels/open_world_mode/transition.tscn" id="8_hcdgw"]
 [ext_resource type="Texture2D" uid="uid://qreksclpirx0" path="res://art/other/feesh.png" id="8_y0ye1"]
-[ext_resource type="AudioStream" uid="uid://sw4561mae8g0" path="res://art/very basic music/king slime loop 2.wav" id="10_gtmc3"]
+[ext_resource type="AudioStream" uid="uid://sw4561mae8g0" path="res://art/music/king slime loop 2.wav" id="10_gtmc3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1l1h1"]
 size = Vector2(39, 190)

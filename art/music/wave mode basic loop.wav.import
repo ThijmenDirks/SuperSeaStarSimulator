@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://iuvkdvvgtfpd"
-path="res://.godot/imported/wave mode basic loop.wav-0879f239cf87ea0016386767745906d1.sample"
+path="res://.godot/imported/wave mode basic loop.wav-577ca744f67dd5e7a3a0c841e5a501f3.sample"
 
 [deps]
 
-source_file="res://art/very basic music/wave mode basic loop.wav"
-dest_files=["res://.godot/imported/wave mode basic loop.wav-0879f239cf87ea0016386767745906d1.sample"]
+source_file="res://art/music/wave mode basic loop.wav"
+dest_files=["res://.godot/imported/wave mode basic loop.wav-577ca744f67dd5e7a3a0c841e5a501f3.sample"]
 
 [params]
 
