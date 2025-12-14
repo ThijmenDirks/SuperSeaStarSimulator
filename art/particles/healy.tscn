@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://buxqvk6sar3u8"]
+
+[ext_resource type="Texture2D" uid="uid://bq7uv35i6xdvr" path="res://art/particle textures/star_particle_texture.png" id="1_h7636"]
+
+[sub_resource type="Gradient" id="Gradient_ts5fw"]
+colors = PackedColorArray(0.254902, 0.960784, 0.603922, 0.592157, 0.545098, 1, 0.658824, 0.301961)
+
+[node name="Healy" type="CPUParticles2D"]
+amount = 220
+lifetime = 1.5
+preprocess = 0.5
+explosiveness = 0.9
+randomness = 0.62
+lifetime_randomness = 0.3
+texture = ExtResource("1_h7636")
+emission_shape = 3
+emission_rect_extents = Vector2(12, 12)
+particle_flag_align_y = true
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.1
+initial_velocity_max = 20.2
+angular_velocity_min = 4.0
+angular_velocity_max = 20.0
+orbit_velocity_min = -0.2
+orbit_velocity_max = -0.2
+linear_accel_max = 4.0
+radial_accel_max = 4.0
+tangential_accel_max = 4.0
+damping_max = 7.071
+angle_min = -360.0
+angle_max = 360.0
+scale_amount_min = 0.8
+scale_amount_max = 1.3
+color = Color(0.215686, 0.886275, 0.666667, 1)
+color_ramp = SubResource("Gradient_ts5fw")
+hue_variation_min = -0.01
+hue_variation_max = 0.08
+anim_speed_min = 4.17
+anim_speed_max = 4.17

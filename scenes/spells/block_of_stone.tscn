@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://dpwvtnflmypx0"]
 
 [ext_resource type="Script" path="res://scripts/spells/block_of_stone.gd" id="1_6iqj6"]
-[ext_resource type="Texture2D" uid="uid://eny37osmjycx" path="res://icon.svg" id="2_adbem"]
+[ext_resource type="Texture2D" uid="uid://clvqm26hyrf6m" path="res://art/spells/block_spell_sprite.png" id="2_wengc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_glycs"]
 radius = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7ycu8"]
-size = Vector2(23, 22)
+size = Vector2(23, 24)
 
 [node name="BlockOfStone" type="RigidBody2D"]
 collision_layer = 32
@@ -27,14 +27,14 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="Icon" type="Sprite2D" parent="StoneBlock"]
-visible = false
-scale = Vector2(0.185, 0.185)
-texture = ExtResource("2_adbem")
+scale = Vector2(0.74, 0.74)
+texture = ExtResource("2_wengc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StoneBlock"]
 shape = SubResource("RectangleShape2D_7ycu8")
 
 [node name="ColorRect" type="ColorRect" parent="StoneBlock"]
+visible = false
 offset_left = -11.0
 offset_top = -11.0
 offset_right = 11.0

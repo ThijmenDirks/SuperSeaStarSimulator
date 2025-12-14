@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://jwm6nsu4w710"]
+[gd_scene load_steps=5 format=3 uid="uid://jwm6nsu4w710"]
 
 [ext_resource type="Script" path="res://scripts/spells/heal.gd" id="1_0x8wj"]
 [ext_resource type="Texture2D" uid="uid://eny37osmjycx" path="res://icon.svg" id="2_37f0x"]
+[ext_resource type="PackedScene" uid="uid://buxqvk6sar3u8" path="res://art/particles/healy.tscn" id="3_abgnk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_glycs"]
 radius = 24.0832
@@ -25,7 +26,13 @@ scale = Vector2(0.37, 0.37)
 texture = ExtResource("2_37f0x")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 offset_left = -20.0
 offset_top = -20.0
 offset_right = 20.0
 offset_bottom = 20.0
+
+[node name="Healy" parent="." instance=ExtResource("3_abgnk")]
+z_index = 10
+emitting = false
+one_shot = true
