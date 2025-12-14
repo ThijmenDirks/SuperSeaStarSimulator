@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://d2j6yvi38nfrv"]
+[gd_scene load_steps=14 format=4 uid="uid://d2j6yvi38nfrv"]
 
 [ext_resource type="Script" path="res://scripts/map/open_world_stuff/load_room.gd" id="1_5x23r"]
 [ext_resource type="TileSet" uid="uid://ch01sy32qq7w2" path="res://art/tilesets/flayer1.tres" id="2_2ebfm"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/map/open_world_stuff/spawn_zones.gd" id="6_nfuip"]
 [ext_resource type="PackedScene" uid="uid://bpsxwlr7jvqe7" path="res://scenes/levels/open_world_mode/transition.tscn" id="6_v7rn7"]
 [ext_resource type="AudioStream" uid="uid://iuvkdvvgtfpd" path="res://art/music/wave mode basic loop.wav" id="8_w34ji"]
+[ext_resource type="PackedScene" uid="uid://ci3lteqgnbq8c" path="res://scenes/enemies/dart_fey.tscn" id="9_hxnvi"]
 
 [sub_resource type="Gradient" id="Gradient_mgjv1"]
 interpolation_mode = 2
@@ -92,5 +93,8 @@ shape = SubResource("RectangleShape2D_at2jy")
 [node name="WaveModeBasicLoop" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_w34ji")
 autoplay = true
+
+[node name="CharacterBody2DG4" parent="." instance=ExtResource("9_hxnvi")]
+position = Vector2(46, 174)
 
 [connection signal="body_entered" from="OldTransitions/Area2D" to="OldTransitions/Area2D" method="_on_body_entered"]
