@@ -67,6 +67,9 @@ func _ready():
 	# once you hit, it wont queue_free ?
 	print("heal test 7")
 	# maybe here the animantion ?
+
+	$Healy.emitting = true
+	await get_tree().create_timer(1.5).timeout
 	queue_free()
 
 func _physics_process(delta: float,) -> void:

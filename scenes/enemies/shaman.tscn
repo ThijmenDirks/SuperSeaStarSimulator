@@ -799,5 +799,5 @@ rotation = 3.14159
 scale = Vector2(16, 16)
 occluder = SubResource("OccluderPolygon2D_hggry")
 
-[connection signal="body_entered" from="VisionField" to="." method="singal_test"]
 [connection signal="body_entered" from="VisionField" to="." method="_on_vision_field_body_entered"]
+[connection signal="body_entered" from="VisionField" to="." method="singal_test"]

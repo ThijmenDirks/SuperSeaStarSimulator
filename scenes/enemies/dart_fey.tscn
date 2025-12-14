@@ -185,6 +185,6 @@ collision_mask = 2
 hit_from_inside = true
 
 [connection signal="timeout" from="StateDurationTimer" to="." method="_on_timer_timeout"]
-[connection signal="body_entered" from="VisionField" to="." method="singal_test"]
 [connection signal="body_entered" from="VisionField" to="." method="_on_vision_field_body_entered"]
+[connection signal="body_entered" from="VisionField" to="." method="singal_test"]
 [connection signal="timeout" from="DartTimer" to="." method="_on_dart_timer_timeout"]
