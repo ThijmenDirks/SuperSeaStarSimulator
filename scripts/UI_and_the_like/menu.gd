@@ -3,6 +3,7 @@ extends Node2D
 var testlevel: PackedScene = load("res://scenes/levels/test_level3.tscn")
 var openworld: PackedScene = load("res://scenes/levels/open_world_mode/forest1start/spawn1.tscn")
 var classic_level: PackedScene = load("res://scenes/levels/classic_level_1.tscn")
+var turtortial: PackedScene = load("res://scenes/levels/turtortial.tscn")
 
 #"res://scenes/levels/test_level.tscn"
 
@@ -65,3 +66,11 @@ func _on_classic_mode_button_pressed() -> void:
 	#if "Player" in cached_data:
 		#return cached_data["Player"]["saved_map"]
 	#return "res://scenes/levels/open_world_mode/forest1start/spawn1.tscn"
+
+
+func _on_basic_controls_button_2_pressed():
+	print("turtortial_mode button down")
+	get_tree().root.add_child(turtortial.instantiate())
+	#self.add_child(testlevel.instantiate())
+	#self.visible = false
+	queue_free()

@@ -92,10 +92,10 @@ position = Vector2(1420, 397)
 scale = Vector2(4.6875, 2.5625)
 
 [node name="WaveModeButton" type="Button" parent="."]
-offset_left = 250.0
-offset_top = 130.0
-offset_right = 394.0
-offset_bottom = 161.0
+offset_left = 243.0
+offset_top = 114.0
+offset_right = 396.0
+offset_bottom = 145.0
 action_mode = 0
 text = "wave mode"
 icon_alignment = 1
@@ -121,18 +121,19 @@ script = ExtResource("4_ppu2r")
 start_time = 12.0
 
 [node name="OpenWorldModeButton" type="Button" parent="."]
-offset_left = 250.0
-offset_top = 161.0
-offset_right = 394.0
-offset_bottom = 192.0
+offset_left = 243.0
+offset_top = 146.0
+offset_right = 396.0
+offset_bottom = 177.0
 text = "open world mode"
 
 [node name="BasicControlsButton" type="Button" parent="."]
-offset_left = 250.0
-offset_top = 223.0
-offset_right = 394.0
-offset_bottom = 255.0
-text = "basic controls"
+offset_left = 243.0
+offset_top = 211.0
+offset_right = 315.0
+offset_bottom = 265.0
+text = "basic 
+controls"
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 visible = false
@@ -146,15 +147,23 @@ volume_db = -24.36
 autoplay = true
 
 [node name="ClassicModeButton" type="Button" parent="."]
-offset_left = 250.0
-offset_top = 192.0
-offset_right = 394.0
-offset_bottom = 223.0
+offset_left = 243.0
+offset_top = 178.0
+offset_right = 396.0
+offset_bottom = 209.0
 action_mode = 0
 text = "classic mode"
 icon_alignment = 1
+
+[node name="BasicControlsButton2" type="Button" parent="."]
+offset_left = 317.0
+offset_top = 211.0
+offset_right = 396.0
+offset_bottom = 265.0
+text = "turtortial"
 
 [connection signal="button_down" from="WaveModeButton" to="." method="_on_wave_mode_button_button_down"]
 [connection signal="button_down" from="OpenWorldModeButton" to="." method="_on_open_world_mode_button_button_down"]
 [connection signal="pressed" from="BasicControlsButton" to="." method="_on_basic_controls_button_pressed"]
 [connection signal="pressed" from="ClassicModeButton" to="." method="_on_classic_mode_button_pressed"]
+[connection signal="pressed" from="BasicControlsButton2" to="." method="_on_basic_controls_button_2_pressed"]
