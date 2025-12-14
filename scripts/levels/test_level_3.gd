@@ -1,4 +1,4 @@
-extends Level
+class_name TestLevel extends Level
 
 @onready var player: Player = $CharacterBody2D # here for bounty
 

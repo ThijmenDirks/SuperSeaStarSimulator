@@ -48,7 +48,7 @@ offset_left = 300.0
 offset_top = 312.0
 offset_right = 340.0
 offset_bottom = 335.0
-text = "slot"
+text = "slot 1"
 
 [node name="SelectedSpellLabel" type="Label" parent="Control"]
 visible = false
@@ -77,6 +77,7 @@ position = Vector2(570, 17)
 position = Vector2(568, 58)
 
 [node name="SaveButton" type="Button" parent="Control"]
+visible = false
 layout_mode = 0
 offset_left = 61.0
 offset_top = 6.0

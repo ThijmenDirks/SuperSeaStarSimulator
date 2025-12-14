@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=4 uid="uid://dm7i3rqjabagx"]
+[gd_scene load_steps=8 format=4 uid="uid://dm7i3rqjabagx"]
 
+[ext_resource type="Script" path="res://scripts/levels/tutortial.gd" id="1_2m1em"]
 [ext_resource type="PackedScene" uid="uid://bqhlp5wv10xgg" path="res://scenes/other/player.tscn" id="1_rukjy"]
 [ext_resource type="TileSet" uid="uid://ch01sy32qq7w2" path="res://art/tilesets/flayer1.tres" id="2_ppove"]
 [ext_resource type="TileSet" uid="uid://0nc4alojvvx7" path="res://art/tilesets/flayerb.tres" id="3_sgj7l"]
@@ -8,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://df6n1xh60jg7i" path="res://art/music/open world mode loop.wav" id="6_ca5ye"]
 
 [node name="Turtortial" type="Node2D"]
+script = ExtResource("1_2m1em")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_rukjy")]
 position = Vector2(-21, -124)

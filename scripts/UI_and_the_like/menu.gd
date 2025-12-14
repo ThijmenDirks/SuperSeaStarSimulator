@@ -41,8 +41,8 @@ func _on_open_world_mode_button_button_down() -> void:
 	#load_room(Spawnstates.next_map_path, Spawnstates.next_entrance_name)
 	var spawn_map = SaveSystem.get_player_saved_map()
 	var spawn_position = SaveSystem.get_player_saved_point()
-	spawn_map = "res://scenes/levels/open_world_mode/forest1start/spawn1.tscn" # deze line
-	spawn_position = "Start" # en deze line
+	#spawn_map = "res://scenes/levels/open_world_mode/forest1start/spawn1.tscn" # deze line
+	#spawn_position = "Start" # en deze line
 	RoomLoad.load_room(spawn_map, spawn_position)
 	queue_free()
 	#player_instance.global_position = spawn_position

@@ -60,8 +60,11 @@ enum SPELL_SCHOOLS {
 
 
 func _ready():
-	if get_parent() is Level:
+	if get_parent() is Level and not get_parent() is TutorialLevel:
 		interface.score_label.visible = true
+	if not get_parent() is Level and not get_parent() is TutorialLevel: # OW
+		interface.save_button.visible = true
+
 	if classic_mode:
 		equiped_spells = ["fireball", "heal"]
 	else:
@@ -452,6 +455,7 @@ func take_damage(damage : int, damage_type : String):
 
 func die():
 	interface.score_label.visible = false
+	interface.save_button.visible = false
 	add_child(game_over_screen)
 	#get_parent().add_child(game_over_screen)
 	#queue_free()

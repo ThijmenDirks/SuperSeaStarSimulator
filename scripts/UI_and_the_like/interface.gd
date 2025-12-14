@@ -11,6 +11,8 @@ extends CanvasLayer
 
 @onready var cg_label: Label = $Control/CGLabel
 
+@onready var save_button: Button = $Control/SaveButton
+
 #@onready var mana_thingy = load("res://scenes/other/mana_thingy.tscn").instantiate()
 
 var mana_thingies : Array

@@ -40,7 +40,8 @@ func _ready():
 
 	if caster is Player:
 		if pay_mana(orb_cost):
-			change_kleurenbalkje(["purple"])
+			#change_kleurenbalkje(["purple"])
+			pass
 		else:
 			print("out of orbs miscast!")
 			queue_free()

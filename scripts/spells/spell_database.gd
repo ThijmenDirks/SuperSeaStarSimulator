@@ -99,7 +99,7 @@ var magic_missile = {
 	"spell_target" = "bullets",
 	"spell_damage" = 30.0,
 	"spell_damage_type" = "magic",
-	"spell_kleurenbalkje_change" = 10,
+	"spell_kleurenbalkje_change" = 1,
 	"spell_orb_cost" = {"purple" = 2}, # 1
 	"spell_noise" = 200, #amount of (???)(pixels?) ditance in witch enemies are warned. this, or something else, might get multyplied for some enemies.
 	"spell_is_targetable" = true,
