@@ -28,6 +28,7 @@ Playerglob="*res://scripts/map/open_world_stuff/playerglob.gd"
 RoomLoad="*res://scripts/map/open_world_stuff/room_load.gd"
 SaveSystem="*res://scripts/other/save_system.gd"
 RunningLabel="*res://debug and testing/running_label.gd"
+CursorScript="*res://scripts/UI_and_the_like/cursor_script.gd"
 
 [display]
 

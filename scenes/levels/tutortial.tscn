@@ -45,7 +45,6 @@ text = "Use left click to cast spells!"
 
 [node name="BreakableBlock2" parent="." instance=ExtResource("5_507ul")]
 position = Vector2(-16, -412)
-hp = 75
 
 [node name="BreakableBlock3" parent="." instance=ExtResource("5_507ul")]
 position = Vector2(-48, -412)
@@ -85,7 +84,7 @@ text = "But the more the colors are out of balance, the less powerfull your spel
 
 [node name="Sign7" parent="." instance=ExtResource("4_t2n26")]
 position = Vector2(24, -827)
-text = "There are three modes to play, wave mode, classic mode and open world mode. Try playing them all!"
+text = "The blue stars at the top right are your hitpoints. Make sure they don't drop to zero!"
 
 [node name="WaveModeBasicLoop" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_ca5ye")

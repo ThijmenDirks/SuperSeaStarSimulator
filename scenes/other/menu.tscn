@@ -162,8 +162,18 @@ offset_right = 396.0
 offset_bottom = 265.0
 text = "turtortial"
 
+[node name="MouseSizeButton" type="Button" parent="."]
+visible = false
+custom_minimum_size = Vector2(153, 31)
+offset_left = 734.0
+offset_top = 280.0
+offset_right = 887.0
+offset_bottom = 311.0
+text = "big cursor"
+
 [connection signal="button_down" from="WaveModeButton" to="." method="_on_wave_mode_button_button_down"]
 [connection signal="button_down" from="OpenWorldModeButton" to="." method="_on_open_world_mode_button_button_down"]
 [connection signal="pressed" from="BasicControlsButton" to="." method="_on_basic_controls_button_pressed"]
 [connection signal="pressed" from="ClassicModeButton" to="." method="_on_classic_mode_button_pressed"]
 [connection signal="pressed" from="BasicControlsButton2" to="." method="_on_basic_controls_button_2_pressed"]
+[connection signal="pressed" from="MouseSizeButton" to="." method="_on_mouse_size_button_pressed"]

@@ -5,6 +5,12 @@ var openworld: PackedScene = load("res://scenes/levels/open_world_mode/forest1st
 var classic_level: PackedScene = load("res://scenes/levels/classic_level_1.tscn")
 var turtortial: PackedScene = load("res://scenes/levels/tutortial.tscn")
 
+@onready var mouse_size_button: Button = $MouseSizeButton
+
+var big_cursor: bool = false
+
+var CursorScript = preload("res://scripts/UI_and_the_like/cursor_script.gd")
+
 #"res://scenes/levels/test_level.tscn"
 
 #var x: 
@@ -74,3 +80,15 @@ func _on_basic_controls_button_2_pressed():
 	#self.add_child(testlevel.instantiate())
 	#self.visible = false
 	queue_free()
+
+
+func _on_mouse_size_button_pressed() -> void:
+	if big_cursor:
+		get_tree().get_root().get_node("/root/CursorScript").get_small()
+		mouse_size_button.text = "big cursor"
+		big_cursor = false
+	else:
+		get_tree().get_root().get_node("/root/CursorScript").get_big()
+		mouse_size_button.text = "small cursor"
+		big_cursor = true
+		

@@ -4,9 +4,12 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	score_label.text = "score: " + str(get_parent().score * 10)
-	#await get_tree().physics_frame
-	score_label.position.x = -(score_label.size.x/2)
+	if not get_parent().get_parent() is Spawn:
+		score_label.text = "score: " + str(get_parent().score * 10)
+		#await get_tree().physics_frame
+		score_label.position.x = -(score_label.size.x/2)
+	else:
+		score_label.text = " "
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

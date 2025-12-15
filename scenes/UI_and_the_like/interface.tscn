@@ -122,27 +122,27 @@ process_mode = 2
 visible = false
 
 [node name="GamePausedLabel" type="Label" parent="PauseButton/PauseMenu"]
-offset_left = 278.0
-offset_top = 146.0
-offset_right = 382.0
-offset_bottom = 169.0
+offset_left = 234.0
+offset_top = 135.0
+offset_right = 440.0
+offset_bottom = 180.0
 text = "game paused
 "
 label_settings = SubResource("LabelSettings_v87s1")
 
 [node name="ContinueButton" type="Button" parent="PauseButton/PauseMenu"]
-offset_left = 292.0
-offset_top = 181.0
-offset_right = 369.0
-offset_bottom = 212.0
+offset_left = 257.0
+offset_top = 182.0
+offset_right = 334.0
+offset_bottom = 213.0
 text = "continue
 "
 
 [node name="QuitButton" type="Button" parent="PauseButton/PauseMenu"]
-offset_left = 292.0
-offset_top = 212.0
-offset_right = 369.0
-offset_bottom = 243.0
+offset_left = 335.0
+offset_top = 182.0
+offset_right = 412.0
+offset_bottom = 213.0
 text = "Quit"
 
 [connection signal="button_up" from="Control/SaveButton" to="." method="_on_save_button_button_up"]
