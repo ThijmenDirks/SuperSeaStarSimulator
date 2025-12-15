@@ -48,6 +48,7 @@ offset_bottom = 201.0
 text = "school"
 
 [node name="SelectedSlotLabel" type="Label" parent="Control"]
+visible = false
 layout_mode = 0
 offset_left = 300.0
 offset_top = 312.0
