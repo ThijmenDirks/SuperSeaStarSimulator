@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://ddx6b7cun7e4g"]
+[gd_scene load_steps=6 format=3 uid="uid://ddx6b7cun7e4g"]
 
 [ext_resource type="Script" path="res://scripts/UI_and_the_like/interface.gd" id="1_2vce3"]
 [ext_resource type="PackedScene" uid="uid://cunftp8agsgen" path="res://scenes/UI_and_the_like/kleurenbalkje.tscn" id="2_n8u1q"]
 [ext_resource type="PackedScene" uid="uid://ru6tajmrjcet" path="res://scenes/UI_and_the_like/star_temphealth_sprite.tscn" id="3_epcvx"]
 [ext_resource type="PackedScene" uid="uid://ct3iy5obah41a" path="res://scenes/UI_and_the_like/selected_school_bar.tscn" id="4_x3xi3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_v87s1"]
+font_size = 32
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Interface" type="CanvasLayer"]
 script = ExtResource("1_2vce3")
@@ -123,6 +128,7 @@ offset_right = 382.0
 offset_bottom = 169.0
 text = "game paused
 "
+label_settings = SubResource("LabelSettings_v87s1")
 
 [node name="ContinueButton" type="Button" parent="PauseButton/PauseMenu"]
 offset_left = 292.0
