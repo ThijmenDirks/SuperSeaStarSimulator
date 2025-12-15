@@ -1,4 +1,4 @@
-We are working on an easy way to download it. Our honest apologises for the inconvenience.
+https://drive.google.com/file/d/1f8wCattMQPa409MZ0_0aLdRJuA8IzvL4/view?usp=sharing
 
-
-Currently, the only way to play the game is to download Godot 4.3.stable, download the game by clicking the green button -> zip, click the file with right mouse click -> unzip, create a new project in godot, search for the unzipped game, and create it.
+by copying this link and pasting it in google, you will be send to google drive. By clicking the big blue "Download" button, the game will start to download. Have fun!
+(if anything doesnt work, or if you need help, please contact us using magister mail or in real life)
