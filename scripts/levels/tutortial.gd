@@ -1,1 +1,0 @@
-class_name TutorialLevel extends Node2D

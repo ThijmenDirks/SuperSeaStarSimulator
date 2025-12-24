@@ -31,6 +31,7 @@ func _ready():
 		var damage_multiplier = get_multiplier(orb_cost)
 		damage = this_spell.spell_damage * damage_multiplier
 		kleurenbalkje_change = this_spell.spell_kleurenbalkje_change
+	
 		#target_position = get_global_mouse_position() # when cast by an enemy, it will be simply set as : spell.position = (target_pos)
 	#print("heal test 2")
 
@@ -72,6 +73,7 @@ func _ready():
 	# maybe here the animantion ?
 	#queue3_free()
 
+	beam._ready()
 
 #func _on_hit():
 	#print("hit 1")
@@ -89,6 +91,7 @@ func _physics_process(delta: float,) -> void:
 	##print(position.length(), "   fff   ", self)
 	#if self.position.distance_to(origin_position) >= max_range or position == target_position:
 		#on_max_range()
+	beam._physics_process(delta)
 
 
 func on_hit(body) -> void:

@@ -115,7 +115,7 @@ shape = SubResource("CircleShape2D_c3tof")
 [node name="SmallExplosion" type="Area2D" parent="."]
 top_level = true
 collision_layer = 33
-collision_mask = 11
+collision_mask = 8223
 
 [node name="SmallExplosionCollision" type="CollisionShape2D" parent="SmallExplosion"]
 scale = Vector2(0.25, 0.25)
@@ -123,7 +123,7 @@ shape = SubResource("CircleShape2D_0d406")
 
 [node name="BigExplosion" type="Area2D" parent="."]
 collision_layer = 32
-collision_mask = 4
+collision_mask = 8220
 
 [node name="BigExplosionCollision" type="CollisionShape2D" parent="BigExplosion"]
 scale = Vector2(0.5, 0.5)

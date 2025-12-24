@@ -95,9 +95,11 @@ func explosion(size : String = "big"):
 	else:
 		explosion_area = $SmallExplosion
 
+		await get_tree().physics_frame
+
 	var hit_targets = explosion_area.get_overlapping_bodies()
 	for target in hit_targets:
-		if (target is Enemy or target is Player) and not target == caster:
+		if (target is Enemy or target is Player or target is BreakableBlock) and not target == caster:
 			#var ray_cast = RayCast2D.new() # uiteindeijk wil ik wel weer gewoon terug naar een raycast hergebruiken
 			ray_cast.set_collision_mask_value(1, false)
 			ray_cast.set_collision_mask_value(2, true)
@@ -106,7 +108,7 @@ func explosion(size : String = "big"):
 			#ray_cast.rotation -= rotation + PI
 			ray_cast.force_raycast_update()
 			print("coll   ", ray_cast.get_collider(), rotation_degrees)
-			if not ray_cast.is_colliding():
+			if (not ray_cast.is_colliding() and not target is BreakableBlock) or target is BreakableBlock:
 				print("hit an enemy  ", target, "   damage:   ", get_damage_by_explosion(base_damage, self.global_position.distance_to(target.global_position) , aoe_size), damage_type)
 				target.take_damage(get_damage_by_explosion(base_damage, self.global_position.distance_to(target.global_position) , aoe_size), damage_type)
 	#$CPUParticles2D.position = to_local(explosion_area.global_position)

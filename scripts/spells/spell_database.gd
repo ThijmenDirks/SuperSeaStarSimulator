@@ -75,16 +75,16 @@ var disintegrate = {
 	"spell_slot" = 2,
 	"spell_type" = "damage",
 	"spell_target" = "single_target",
-	"spell_base_grow_speed" = 30,
+	"spell_base_grow_speed" = 60,
 	"spell_rotation_speed" = 0.02,
 	"spell_lifetime" = 5,
 	"spell_damage" = 999.0,
 	"spell_damage_type" = "true", # ?
 	"spell_kleurenbalkje_change" = 8,
-	"spell_orb_cost" = {"red" = 6, "green" = 2, "blue" = 2, "purple" = 3}, # 5, 5, 2
-	"spell_noise" = 300, #amount of (???)(pixels?) ditance in witch enemies are warned. this, or something else, might get multyplied for some enemies.
+	"spell_orb_cost" = {"red" = 7, "green" = 2, "blue" = 2, "purple" = 3}, # 5, 5, 2
+	"spell_noise" = 900, #amount of (???)(pixels?) ditance in witch enemies are warned. this, or something else, might get multyplied for some enemies.
 	"spell_is_targetable" = true,
-	"spell_range" = 300,
+	"spell_range" = 900,
 	"spell_function" = load("res://scripts/spells/disintegrate.gd"),# NIET ".BOOM()", MAAR BIJ ELKE CAST NIEUWE INSTANCE VAN FUNCTIE, ANDERS WORDT ER GEOVERWRITED BIJ SPAMMEN! + gebruik await in functie zodat de animatie niet direct weer wordt verwijderd
 	"spell_scene" = load("res://scenes/spells/disintegrate.tscn")
 	}

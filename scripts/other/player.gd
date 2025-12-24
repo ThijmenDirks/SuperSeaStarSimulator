@@ -112,13 +112,24 @@ func _input(event: InputEvent) -> void:
 		if Input.is_action_just_pressed("left_mouse_click"):
 			if classic_mode:
 				selected_spell = spell_database.fireball
-			print("cast")
+			#print("cast")
+			else:
+				selected_spell_slot = 0
+				update_selected_spell()
 			cast(selected_spell)
-		if Input.is_action_just_pressed("right_mouse_click") and classic_mode:
-			print("heal cast")
-			selected_spell = spell_database.heal
+		if Input.is_action_just_pressed("right_mouse_click"):
+			if classic_mode:
+				print("heal cast")
+				selected_spell = spell_database.heal
+			else:
+				selected_spell_slot = 1
+				update_selected_spell()
 			cast(selected_spell)
-		
+
+			#selected_spell_slot = spell_slot_keys.find(key)
+			#print("selected_spell_slot: ", selected_spell_slot)
+			#update_selected_spell()
+
 		#print(floor(scroll_wheel_school_index), " asdf ", floor(scroll_wheel_school_index))
 
 
@@ -160,7 +171,7 @@ func _physics_process(delta: float) -> void:
 	update_animation_parameters()
 #	print("hi", check_if_input_is_in_list(keys_for_spellcasting))
 	#natius()
-	new_natius()
+	#new_natius()
 	update_hp_bar()
 	#if input_is_in_list(keys_for_spellcasting):
 		#spell_cast_funtion_one()

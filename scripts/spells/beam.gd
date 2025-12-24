@@ -51,7 +51,7 @@ func _ready() -> void:
 # thanks to daikaigan
 
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 
 	# Clamp the rotation value of the pivot such that 
 	# it's always between -PI and PI.
